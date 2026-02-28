@@ -1,0 +1,46 @@
+{
+  "name": "hatsune-miku-by-vai-theme",
+  "author": {
+    "name": "Vadim Khristenko",
+    "email": "just@vai-prog.ru"
+  },
+  "displayName": "HatsuneMikuEditorTheme",
+  "description": "This extension provides a Hatsune Miku theme for Visual Studio Code editor.",
+  "version": "0.0.1",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme-VSC.git",
+    "directory": "themes"
+  },
+  "engines": {
+    "vscode": "^1.109.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Hatsune Miku Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/mikuV1-dark.json"
+      },
+      {
+        "label": "Hatsune Miku Light",
+        "uiTheme": "vs",
+        "path": "./themes/mikuV1-light.json"
+      },
+      {
+        "label": "Hatsune Miku Sakura Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/sakuraV1-dark.json"
+      },
+      {
+        "label": "Hatsune Miku Sakura Light",
+        "uiTheme": "vs",
+        "path": "./themes/sakuraV1-light.json"
+      }
+    ]
+  }
+}
