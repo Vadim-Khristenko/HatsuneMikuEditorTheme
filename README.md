@@ -6,7 +6,7 @@ This README provides instructions for Visual Studio Code users who want to insta
 
 ## Quick installation (VSIX)
 
-1. Download the VSIX file from the repository root. The file is named in the format:
+1. Download the VSIX file from the repository root or releases. The file is named in the format:
    - `hatsune-miku-by-vai-theme-<version>.vsix`
 
 2. In Visual Studio Code:
