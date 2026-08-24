@@ -30,9 +30,35 @@ jobs:
         with:
           path: dist
           merge-multiple: true
+      - name: Generate beautiful notes
+        run: |
+          cat > /tmp/notes.md << 'EOF'
+          ## Hatsune Miku themes — four looks, six editors
+
+          One MIT license covers everything here. No separate fine print per editor.
+
+          **Variants**
+          - Miku Dark `#0d0e1a` / `#39c5bb` — deep navy, my daily
+          - Miku Light `#f0fafa` / `#007a72` — soft daylight
+          - Sakura Dark `#130d14` / `#e87ea1`
+          - Sakura Light `#fff5f8` / `#cc4477`
+
+          **Install**
+          - VS Code: `dist/hatsune-miku-vsc-*.vsix` → Install from VSIX
+          - Zed: `dist/zed-*.zip` → unpack, then Install Dev Extension (marketplace coming soon)
+          - JetBrains: `dist/jetbrains-*.zip` → Install Plugin from Disk
+          - Neovim: `dist/neovim-*.zip` → `:colorscheme hatsune-miku`
+          - Sublime: `dist/sublime-*.zip` → Color Scheme
+          - Notepad++: `dist/notepadpp-*.zip` → Settings → Import → Import style theme(s)
+
+          ---
+          Auto-generated changelog below.
+          EOF
+          cat /tmp/notes.md
       - uses: softprops/action-gh-release@v3
         with:
           files: dist/*
+          body_path: /tmp/notes.md
           generate_release_notes: true
       - name: Publish to Open VSX
         env:
