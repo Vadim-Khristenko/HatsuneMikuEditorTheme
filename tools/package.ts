@@ -67,6 +67,7 @@ async function packageJetBrains() {
     output.on("close", resolve);
     archive.on("error", reject);
     archive.pipe(output);
+    archive.append("Manifest-Version: 1.0\nCreated-By: HatsuneMikuEditorTheme\n", { name: "META-INF/MANIFEST.MF" });
     archive.directory("jetbrains/META-INF", "META-INF");
     archive.directory("jetbrains/themes", "themes");
     archive.finalize();
