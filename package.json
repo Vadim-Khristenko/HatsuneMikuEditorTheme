@@ -1,7 +1,7 @@
 {
   "name": "hatsune-miku-themes",
   "private": true,
-  "version": "0.0.4",
+  "version": "0.0.5",
   "workspaces": ["vsc"],
   "scripts": {
     "check": "node tools/check-themes.mjs",
