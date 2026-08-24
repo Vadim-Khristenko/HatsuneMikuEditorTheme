@@ -1,40 +1,44 @@
-# Hatsune Miku — Темы для редакторов
+# Hatsune Miku — темы для редакторов
 
 [![CI](https://img.shields.io/github/actions/workflow/status/Vadim-Khristenko/HatsuneMikuEditorTheme/ci.yml?branch=main&label=CI&labelColor=0d0e1a&color=39c5bb&style=for-the-badge)](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/actions/workflows/ci.yml)
 [![Релиз](https://img.shields.io/github/v/release/Vadim-Khristenko/HatsuneMikuEditorTheme?label=релиз&labelColor=0d0e1a&color=ff6e8a&style=for-the-badge)](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/releases)
 [![Лицензия](https://img.shields.io/github/license/Vadim-Khristenko/HatsuneMikuEditorTheme?label=лицензия&labelColor=0d0e1a&color=86a8ff&style=for-the-badge)](LICENSE)
-[![Версия](https://img.shields.io/badge/версия-0.0.3-ffd580?style=for-the-badge&labelColor=0d0e1a)](package.json)
 
-Монорепозиторий тем Hatsune Miku — 4 варианта (Miku Dark/Light, Sakura Dark/Light) для 6 редакторов. Все темы распространяются под **единой лицензией MIT** и единым контрактом палитры (`vsc/themes/*.json` — канон). Никаких отдельных лицензий на редактор.
+Мне хотелось, чтобы Мику была рядом и в коде. Спокойная, читаемая, без кричащих цветов. Получилось четыре варианта на шесть редакторов. Одна палитра, одна идея.
+
+Я держу темы VS Code как основу, остальные повторяют её. Лицензия одна на всё — MIT в корне, без отдельных оговорок на редактор.
 
 [English version](README.md)
 
-## Особенности
+## Что внутри
 
-- **Единая палитра** — один контракт, шесть портов: VS Code, Zed, JetBrains, Neovim, Sublime, Notepad++
-- **Четыре варианта** с выверенным контрастом, валидация через `tools/check-themes.mjs`
-- **Bun** — workspaces, упаковка на TypeScript (`tools/package.ts`, `archiver`), валидация `tools/validate.ts`
-- **CI/CD** — `ci.yml` на каждый push, `release.yml` на тег `v*` с артефактами
+Одна палитра, шесть портов. VS Code, Zed, JetBrains, Neovim, Sublime, Notepad++. Цвета одинаковые, ощущения тоже.
 
-## Варианты
+Четыре образа:
 
-- **Miku Dark** `#0d0e1a` / акцент `#39c5bb`
-- **Miku Light** `#f0fafa` / акцент `#007a72`
-- **Sakura Dark** `#130d14` / акцент `#e87ea1`
-- **Sakura Light** `#fff5f8` / акцент `#cc4477`
+- Miku Dark `#0d0e1a` с `#39c5bb`. Мой основной.
+- Miku Light `#f0fafa` с `#007a72`. Для светлых комнат.
+- Sakura Dark `#130d14` с `#e87ea1`.
+- Sakura Light `#fff5f8` с `#cc4477`.
+
+Контраст я проверяю скриптом `tools/check-themes.mjs`, а не на глаз.
+
+Сборка простая. Bun, TypeScript и `archiver` в `tools/package.ts`, проверка в `tools/validate.ts`. Старался без магии.
+
+CI на каждый пуш, релиз по тегу `v*`.
 
 ## Редакторы
 
-| Редактор | Папка | Артефакт | Установка |
+| Редактор | Папка | Файл | Установка |
 |---|---|---|---|
 | VS Code | `vsc/` | `dist/hatsune-miku-vsc-*.vsix` | Установить из VSIX |
-| Zed | `zed/` | `dist/zed-*.zip` | Install Dev Extension |
+| Zed | `zed/` | `dist/zed-*.zip` | Распаковать архив, затем Zed → Install Dev Extension и выбрать папку. Скоро попробую публикацию в маркетплейс Zed. |
 | JetBrains | `jetbrains/` | `dist/jetbrains-*.zip` | Install Plugin from Disk |
 | Neovim | `neovim/` | `dist/neovim-*.zip` | `:colorscheme hatsune-miku` |
 | Sublime | `sublime/` | `dist/sublime-*.zip` | Preferences → Color Scheme |
 | Notepad++ | `notepadpp/` | `dist/notepadpp-*.zip` | Опции → Импорт → Импортировать тему |
 
-Каждая тема в каждой папке — под **одной лицензией MIT** (файл `LICENSE` в корне).
+Каждая папка — та же лицензия MIT. См. `LICENSE` в корне.
 
 ## Разработка
 
@@ -45,15 +49,15 @@ bun run validate
 bun run package:all
 ```
 
-Скрипты упаковки — на TypeScript, без хардкода shell.
+Скрипты в `tools/package.ts` и `tools/validate.ts`, всё читаемо.
 
 ## Релизы
 
-Тег `v*` → GitHub Release с 6 артефактами. Публикация в Open VSX (`OVSX_TOKEN`) и JetBrains (`JB_TOKEN`) по секретам; VS Marketplace пока пропускается.
+Тег вроде `v0.0.4` собирает все шесть пакетов. Заметки к релизу генерируются с палитрой и подсказками по установке. Open VSX публикуется если есть `OVSX_TOKEN`, JetBrains если есть `JB_TOKEN`. VS Marketplace пока пропускаю, с аккаунтом Microsoft не сложилось.
 
 ## Участие
 
-См. [CONTRIBUTING.md](CONTRIBUTING.md).
+См. `CONTRIBUTING.md`. Держите `vsc/themes/*.json` как канон и прогоняйте `bun run validate` перед PR.
 
 ## Автор
 

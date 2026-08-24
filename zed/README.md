@@ -13,9 +13,11 @@ Zed port — 4 variants (Miku Dark/Light, Sakura Dark/Light). Part of [HatsuneMi
 
 ## Installation
 
-1. Download `dist/zed-*.zip` or build: `bun run package:zed`
-2. Zed → Extensions → Install Dev Extension → select `zed/` folder
+1. Download `dist/zed-*.zip` from Releases and unpack it, or build locally: `bun run package:zed`
+2. Zed → Extensions → Install Dev Extension → select the unpacked `zed/` folder
 3. Settings → Theme → pick Hatsune Miku variant
+
+I will try to publish this to the Zed extensions marketplace soon, so you can install it with one click. For now dev extension is the way.
 
 ## Development
 
