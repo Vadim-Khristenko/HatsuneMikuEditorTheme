@@ -30,6 +30,9 @@ jobs:
         with:
           path: dist
           merge-multiple: true
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
       - name: Generate beautiful notes
         run: |
           cat > /tmp/notes.md << 'EOF'
@@ -76,7 +79,8 @@ jobs:
           if [ -n "$JB_TOKEN" ]; then
             JB_FILE=$(ls dist/jetbrains-*.zip | head -n1)
             if [ -n "$JB_FILE" ]; then
-              curl -H "Authorization: Bearer $JB_TOKEN" --fail --upload-file "$JB_FILE" https://plugins.jetbrains.com/api/plugins || echo "JB publish failed"
+              echo "Publishing $JB_FILE to JetBrains Marketplace..."
+              curl -X POST -H "Authorization: Bearer $JB_TOKEN" -F "file=@$JB_FILE" https://plugins.jetbrains.com/api/plugins --fail || echo "JB publish failed (first upload must be done manually at https://plugins.jetbrains.com/author/me)"
             fi
           else
             echo "JB_TOKEN not set, skipping"
