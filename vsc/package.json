@@ -1,12 +1,13 @@
 {
   "name": "hatsune-miku-by-vai-theme",
+  "publisher": "Vadim-Khristenko",
   "author": {
     "name": "Vadim Khristenko",
     "email": "vadim@vai-rice.space"
   },
   "displayName": "HatsuneMikuEditorTheme",
   "description": "This extension provides a Hatsune Miku theme for Visual Studio Code editor.",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "license": "MIT",
   "repository": {
     "type": "git",
