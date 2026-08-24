@@ -1,0 +1,109 @@
+# ---- Операционная система ----
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Linux/Unix
+*~                    # временные файлы редакторов
+.nfs*                 # Network File System temporary files
+
+# ---- IDE / Редакторы ----
+# Visual Studio Code
+.vscode/
+.vscode/*
+
+# JetBrains (IntelliJ, PyCharm, WebStorm, Rider и пр.)
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Sublime Text
+*.sublime-*
+
+# Vim / Neovim
+*.swp
+.*.swp
+*.swo
+*.swn
+
+# Emacs
+*~
+.#*
+
+# Atom
+.atom/
+
+# ---- Логи ----
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ---- Пакеты / Менеджеры пакетов ----
+node_modules/
+bower_components/
+
+# ---- Сборочные артефакты / Временные папки ----
+dist/
+build/
+out/
+release/
+tmp/
+temp/
+.cache/
+.cache-loader/
+.vite/
+coverage/
+coverage.*
+.nyc_output/
+
+# ---- Языковые артефакты и пакеты ----
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+dist/
+build/
+.eggs/
+
+# Java / JVM
+*.class
+*.jar
+*.war
+*.ear
+*.log
+*.class
+
+# .NET
+bin/
+obj/
+
+# ---- Настройки окружения и секреты ----
+.env
+.env.*
+*.local
+secrets.yml
+credentials.yml
+*.pem
+*.key
+*.crt
+
+# ---- Дополнительно ----
+.history
+.cache/
+.vscode-test/
+.idea/
+
+*.zip
+*.tar.gz

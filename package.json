@@ -1,0 +1,23 @@
+{
+  "name": "hatsune-miku-themes",
+  "private": true,
+  "version": "0.0.3",
+  "workspaces": ["vsc"],
+  "scripts": {
+    "check": "node tools/check-themes.mjs",
+    "validate": "bun tools/validate.ts",
+    "package:vsc": "bun tools/package.ts vsc",
+    "package:zed": "bun tools/package.ts zed",
+    "package:jetbrains": "bun tools/package.ts jetbrains",
+    "package:neovim": "bun tools/package.ts neovim",
+    "package:sublime": "bun tools/package.ts sublime",
+    "package:notepadpp": "bun tools/package.ts notepadpp",
+    "package:all": "bun tools/package.ts all"
+  },
+  "devDependencies": {
+    "@types/archiver": "^8.0.0"
+  },
+  "dependencies": {
+    "archiver": "5.3.1"
+  }
+}

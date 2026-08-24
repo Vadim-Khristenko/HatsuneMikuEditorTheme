@@ -1,0 +1,190 @@
+{
+  "name": "Hatsune Miku Dark",
+  "author": "Vadim Khristenko <vadim@vai-rice.space>",
+  "variables": {
+    "bg": "#0d0e1a",
+    "alt": "#0a0b18",
+    "surface": "#11121f",
+    "elevated": "#161728",
+    "linehl": "#131526",
+    "border": "#1e2035",
+    "fg": "#ccd6f6",
+    "muted": "#7079a8",
+    "faint": "#4a5280",
+    "linenr": "#3d4470",
+    "accent": "#39c5bb",
+    "hover": "#00e5d6",
+    "comment": "#4a5280",
+    "comment_doc": "#5a6490",
+    "keyword": "#ff6e8a",
+    "operator": "#86a8ff",
+    "fn": "#39c5bb",
+    "str": "#ffd580",
+    "escape": "#ff8fa3",
+    "num": "#d4a0ff",
+    "type": "#86a8ff",
+    "prop": "#a8c0ff",
+    "param": "#e8c0a0",
+    "builtin": "#ff8fa3",
+    "attr": "#d4a0ff",
+    "decor": "#ffd580",
+    "err": "#ff6e8a"
+  },
+  "globals": {
+    "background": "var(bg)",
+    "foreground": "var(fg)",
+    "caret": "#39c5bb",
+    "invisibles": "#4a5280",
+    "line_highlight": "var(linehl)",
+    "selection": "#39c5bb22",
+    "selection_border": "var(border)",
+    "find_highlight": "#39c5bb44",
+    "find_highlight_foreground": "#0d0e1a",
+    "gutter": "var(bg)",
+    "gutter_foreground": "var(linenr)",
+    "gutter_foreground_highlight": "#39c5bb",
+    "guide": "var(border)",
+    "active_guide": "#39c5bb55",
+    "stack_guide": "var(border)",
+    "brackets_options": "underline",
+    "brackets_foreground": "var(accent)",
+    "bracket_contents_options": "underline",
+    "bracket_contents_foreground": "var(accent)",
+    "tags_options": "stippled_underline",
+    "tags_foreground": "var(accent)",
+    "highlight": "#39c5bb44",
+    "shadow": "#0d0e1a40",
+    "shadow_width": "4"
+  },
+  "rules": [
+    {
+      "scope": "comment, punctuation.definition.comment",
+      "foreground": "var(comment)",
+      "font_style": "italic"
+    },
+    {
+      "scope": "comment.block.documentation, comment.line.documentation",
+      "foreground": "var(comment_doc)",
+      "font_style": "italic"
+    },
+    {
+      "scope": "string",
+      "foreground": "var(str)"
+    },
+    {
+      "scope": "constant.character.escape",
+      "foreground": "var(escape)"
+    },
+    {
+      "scope": "string.regexp",
+      "foreground": "var(hover)"
+    },
+    {
+      "scope": "constant.numeric, constant.language",
+      "foreground": "var(num)"
+    },
+    {
+      "scope": "constant.other.symbol",
+      "foreground": "var(accent)"
+    },
+    {
+      "scope": "keyword, storage",
+      "foreground": "var(keyword)"
+    },
+    {
+      "scope": "keyword.control.flow, keyword.control.return",
+      "foreground": "var(keyword)",
+      "font_style": "bold"
+    },
+    {
+      "scope": "keyword.operator",
+      "foreground": "var(operator)"
+    },
+    {
+      "scope": "entity.name.function, variable.function, support.function",
+      "foreground": "var(fn)"
+    },
+    {
+      "scope": "support.function.builtin",
+      "foreground": "var(hover)",
+      "font_style": "italic"
+    },
+    {
+      "scope": "entity.name.function.decorator, punctuation.decorator",
+      "foreground": "var(decor)",
+      "font_style": "italic"
+    },
+    {
+      "scope": "variable.language",
+      "foreground": "var(builtin)",
+      "font_style": "italic"
+    },
+    {
+      "scope": "variable.parameter",
+      "foreground": "var(param)"
+    },
+    {
+      "scope": "entity.name.type, entity.name.class, support.class",
+      "foreground": "var(type)"
+    },
+    {
+      "scope": "support.type, storage.type",
+      "foreground": "var(type)"
+    },
+    {
+      "scope": "entity.name.tag",
+      "foreground": "var(keyword)"
+    },
+    {
+      "scope": "entity.other.attribute-name",
+      "foreground": "var(attr)"
+    },
+    {
+      "scope": "variable.other.member, variable.other.property, meta.object-literal.key",
+      "foreground": "var(prop)"
+    },
+    {
+      "scope": "punctuation, punctuation.definition.tag, punctuation.separator, meta.brace",
+      "foreground": "var(muted)"
+    },
+    {
+      "scope": "invalid, invalid.illegal",
+      "foreground": "var(err)"
+    },
+    {
+      "scope": "markup.heading",
+      "foreground": "var(accent)",
+      "font_style": "bold"
+    },
+    {
+      "scope": "markup.italic",
+      "font_style": "italic"
+    },
+    {
+      "scope": "markup.bold",
+      "font_style": "bold"
+    },
+    {
+      "scope": "markup.underline",
+      "font_style": "underline"
+    },
+    {
+      "scope": "string.other.link",
+      "foreground": "var(accent)",
+      "font_style": "underline"
+    },
+    {
+      "scope": "markup.raw",
+      "foreground": "var(num)"
+    },
+    {
+      "scope": "markup.quote",
+      "foreground": "var(muted)",
+      "font_style": "italic"
+    },
+    {
+      "scope": "punctuation.definition.list_item",
+      "foreground": "var(accent)"
+    }
+  ]
+}
