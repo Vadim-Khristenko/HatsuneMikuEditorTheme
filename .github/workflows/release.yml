@@ -9,14 +9,14 @@ jobs:
       matrix:
         pkg: [vsc, zed, jetbrains, neovim, sublime, notepadpp]
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
       - run: bun install --frozen-lockfile
       - run: bun run check
       - run: bun run package:${{ matrix.pkg }}
-      - uses: actions/upload-artifact@v7
+      - uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.pkg }}-dist
           path: dist/*
@@ -26,21 +26,32 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/download-artifact@v8
+      - uses: actions/download-artifact@v4
         with:
           path: dist
           merge-multiple: true
-      - uses: softprops/action-gh-release@v3
+      - uses: softprops/action-gh-release@v2
         with:
           files: dist/*
           generate_release_notes: true
       - name: Publish to Open VSX
-        if: ${{ secrets.OVSX_TOKEN != '' }}
-        run: bun x ovsx publish dist/*.vsix --pat ${{ secrets.OVSX_TOKEN }} || echo "OVSX publish failed"
-      - name: Publish to JetBrains Marketplace
-        if: ${{ secrets.JB_TOKEN != '' }}
+        env:
+          OVSX_TOKEN: ${{ secrets.OVSX_TOKEN }}
         run: |
-          JB_FILE=$(ls dist/jetbrains-*.zip | head -n1)
-          if [ -n "$JB_FILE" ]; then
-            curl -H "Authorization: Bearer ${{ secrets.JB_TOKEN }}" --fail --upload-file "$JB_FILE" https://plugins.jetbrains.com/api/plugins || echo "JB publish failed"
+          if [ -n "$OVSX_TOKEN" ]; then
+            bun x ovsx publish dist/*.vsix --pat "$OVSX_TOKEN" || echo "OVSX publish failed"
+          else
+            echo "OVSX_TOKEN not set, skipping"
+          fi
+      - name: Publish to JetBrains Marketplace
+        env:
+          JB_TOKEN: ${{ secrets.JB_TOKEN }}
+        run: |
+          if [ -n "$JB_TOKEN" ]; then
+            JB_FILE=$(ls dist/jetbrains-*.zip | head -n1)
+            if [ -n "$JB_FILE" ]; then
+              curl -H "Authorization: Bearer $JB_TOKEN" --fail --upload-file "$JB_FILE" https://plugins.jetbrains.com/api/plugins || echo "JB publish failed"
+            fi
+          else
+            echo "JB_TOKEN not set, skipping"
           fi
