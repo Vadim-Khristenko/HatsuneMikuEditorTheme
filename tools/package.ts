@@ -55,7 +55,40 @@ async function packageVSC() {
 }
 
 async function packageZed() { await zipFiles(["zed/themes", "zed/extension.toml"], `${outDir}/zed-${version}.zip`); console.log(`→ ${outDir}/zed-${version}.zip`); }
-async function packageJetBrains() { await zipFiles(["jetbrains/META-INF", "jetbrains/themes"], `${outDir}/jetbrains-${version}.zip`); console.log(`→ ${outDir}/jetbrains-${version}.zip`); }
+async function packageJetBrains() {
+  // JetBrains Marketplace expects a .jar in lib/ (jar is zip with META-INF + themes)
+  const jarName = "HatsuneMikuTheme.jar";
+  const jarPath = join(outDir, jarName);
+  if (!existsSync(outDir)) mkdirSync(outDir, { recursive: true });
+  // create jar
+  await new Promise<void>((resolve, reject) => {
+    const output = createWriteStream(jarPath);
+    const archive: any = archiver("zip", { zlib: { level: 9 } });
+    output.on("close", resolve);
+    archive.on("error", reject);
+    archive.pipe(output);
+    archive.directory("jetbrains/META-INF", "META-INF");
+    archive.directory("jetbrains/themes", "themes");
+    archive.finalize();
+  });
+  // create outer plugin zip with lib/<jar>
+  const out = join(outDir, `jetbrains-${version}.zip`);
+  await new Promise<void>((resolve, reject) => {
+    const output = createWriteStream(out);
+    const archive: any = archiver("zip", { zlib: { level: 9 } });
+    output.on("close", resolve);
+    archive.on("error", reject);
+    archive.pipe(output);
+    archive.file(jarPath, { name: `lib/${jarName}` });
+    archive.finalize();
+  });
+  // cleanup temp jar (keep for debugging? remove)
+  try { await Bun.file(jarPath).exists() && Bun.write(jarPath, ""); } catch {}
+  // actually remove jar file
+  const { unlinkSync } = await import("node:fs");
+  try { unlinkSync(jarPath); } catch {}
+  console.log(`→ ${out} (lib/${jarName} inside)`);
+}
 async function packageNeovim() { await zipFiles(["neovim/colors", "neovim/README.md", "neovim/LICENSE"], `${outDir}/neovim-${version}.zip`); console.log(`→ ${outDir}/neovim-${version}.zip`); }
 async function packageSublime() {
   const files = readdirSync("sublime").filter(f=>f.endsWith(".sublime-color-scheme")).map(f=>`sublime/${f}`);
