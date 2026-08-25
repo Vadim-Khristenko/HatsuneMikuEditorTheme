@@ -65,8 +65,8 @@ async function packageJetBrains() {
   const code = await proc.exited;
   if (code !== 0) throw new Error(`gradlew buildPlugin failed ${code}`);
   const distDir = join("jetbrains", "build", "distributions");
-  const built = readdirSync(distDir).filter(f => f.endsWith(".zip"));
-  if (!built.length) throw new Error("no distribution zip found in jetbrains/build/distributions");
+  const built = readdirSync(distDir).filter(f => f.endsWith(".zip") && f.includes(version));
+  if (!built.length) throw new Error(`no distribution zip for version ${version} in jetbrains/build/distributions`);
   if (!existsSync(outDir)) mkdirSync(outDir, { recursive: true });
   const out = join(outDir, `jetbrains-${version}.zip`);
   await Bun.write(out, Bun.file(join(distDir, built[0])));
