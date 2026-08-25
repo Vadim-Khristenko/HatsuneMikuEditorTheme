@@ -53,7 +53,7 @@ Scripts live in `tools/package.ts` and `tools/validate.ts`. No hidden shell, you
 
 ## Releases
 
-Push a tag like `v0.0.8` and GitHub builds all six packages. Release notes are generated with the palette and install hints. Open VSX publishes if `OVSX_TOKEN` is set, JetBrains if `JB_TOKEN` is set. VS Marketplace is skipped for now, my Microsoft account hit a snag.
+Push a tag like `v0.0.9` and GitHub builds all six packages. Release notes are generated with the palette and install hints. Open VSX publishes if `OVSX_TOKEN` is set, JetBrains if `JB_TOKEN` is set. VS Marketplace is skipped for now, my Microsoft account hit a snag.
 
 ## Contributing
 
