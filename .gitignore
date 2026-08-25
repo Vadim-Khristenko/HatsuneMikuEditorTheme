@@ -6,3 +6,7 @@ docs/
 jetbrains/build/
 jetbrains/.gradle/
 jetbrains/.intellijPlatform/
+
+.idea/
+.vscode/
+*.log
