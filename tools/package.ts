@@ -60,7 +60,7 @@ async function packageJetBrains() {
   // (guaranteed-correct layout: <name>/lib/<name>-<version>.jar).
   const gradlew = process.platform === "win32"
     ? ["cmd", "/c", "gradlew.bat"]
-    : ["./gradlew"];
+    : ["sh", "./gradlew"];
   const proc = Bun.spawn([...gradlew, "buildPlugin", "--no-daemon", "-q"], { cwd: "jetbrains", stdout: "inherit", stderr: "inherit" });
   const code = await proc.exited;
   if (code !== 0) throw new Error(`gradlew buildPlugin failed ${code}`);
