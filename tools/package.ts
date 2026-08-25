@@ -56,39 +56,21 @@ async function packageVSC() {
 
 async function packageZed() { await zipFiles(["zed/themes", "zed/extension.toml"], `${outDir}/zed-${version}.zip`); console.log(`→ ${outDir}/zed-${version}.zip`); }
 async function packageJetBrains() {
-  // JetBrains Marketplace expects a .jar in lib/ (jar is zip with META-INF + themes)
-  const jarName = "HatsuneMikuTheme.jar";
-  const jarPath = join(outDir, jarName);
+  // Official path: IntelliJ Platform Gradle Plugin builds the distribution zip
+  // (guaranteed-correct layout: <name>/lib/<name>-<version>.jar).
+  const gradlew = process.platform === "win32"
+    ? ["cmd", "/c", "gradlew.bat"]
+    : ["./gradlew"];
+  const proc = Bun.spawn([...gradlew, "buildPlugin", "--no-daemon", "-q"], { cwd: "jetbrains", stdout: "inherit", stderr: "inherit" });
+  const code = await proc.exited;
+  if (code !== 0) throw new Error(`gradlew buildPlugin failed ${code}`);
+  const distDir = join("jetbrains", "build", "distributions");
+  const built = readdirSync(distDir).filter(f => f.endsWith(".zip"));
+  if (!built.length) throw new Error("no distribution zip found in jetbrains/build/distributions");
   if (!existsSync(outDir)) mkdirSync(outDir, { recursive: true });
-  // create jar
-  await new Promise<void>((resolve, reject) => {
-    const output = createWriteStream(jarPath);
-    const archive: any = archiver("zip", { zlib: { level: 9 } });
-    output.on("close", resolve);
-    archive.on("error", reject);
-    archive.pipe(output);
-    archive.append("Manifest-Version: 1.0\nCreated-By: HatsuneMikuEditorTheme\n", { name: "META-INF/MANIFEST.MF" });
-    archive.directory("jetbrains/META-INF", "META-INF");
-    archive.directory("jetbrains/themes", "themes");
-    archive.finalize();
-  });
-  // create outer plugin zip with lib/<jar>
   const out = join(outDir, `jetbrains-${version}.zip`);
-  await new Promise<void>((resolve, reject) => {
-    const output = createWriteStream(out);
-    const archive: any = archiver("zip", { zlib: { level: 9 } });
-    output.on("close", resolve);
-    archive.on("error", reject);
-    archive.pipe(output);
-    archive.file(jarPath, { name: `lib/${jarName}` });
-    archive.finalize();
-  });
-  // cleanup temp jar (keep for debugging? remove)
-  try { await Bun.file(jarPath).exists() && Bun.write(jarPath, ""); } catch {}
-  // actually remove jar file
-  const { unlinkSync } = await import("node:fs");
-  try { unlinkSync(jarPath); } catch {}
-  console.log(`→ ${out} (lib/${jarName} inside)`);
+  await Bun.write(out, Bun.file(join(distDir, built[0])));
+  console.log(`→ ${out}`);
 }
 async function packageNeovim() { await zipFiles(["neovim/colors", "neovim/README.md", "neovim/LICENSE"], `${outDir}/neovim-${version}.zip`); console.log(`→ ${outDir}/neovim-${version}.zip`); }
 async function packageSublime() {

@@ -1,8 +1,9 @@
 <idea-plugin>
   <id>space.vai-rice.hatsune-miku-theme</id>
   <name>Hatsune Miku Theme</name>
-  <version>0.0.6</version>
-  <vendor email="vadim@vai-rice.space">Vadim Khristenko</vendor>
+  <version>0.0.7</version>
+  <vendor url="https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme" email="vadim@vai-rice.space">Vadim Khristenko</vendor>
+  <idea-version since-build="231" until-build="262.*"/>
   <description><![CDATA[
     Hatsune Miku color themes (Miku Dark/Light, Sakura Dark/Light) for
     IntelliJ Platform IDEs. Inspired by Hatsune Miku.
