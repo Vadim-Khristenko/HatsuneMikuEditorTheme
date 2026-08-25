@@ -13,6 +13,11 @@ jobs:
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
+      - uses: actions/setup-java@v5
+        with:
+          distribution: zulu
+          java-version: 21
+          cache: gradle
       - run: bun install --frozen-lockfile
       - run: bun run check
       - run: bun run package:${{ matrix.pkg }}
@@ -26,6 +31,15 @@ jobs:
     permissions:
       contents: write
     steps:
+      - uses: actions/checkout@v7
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - uses: actions/setup-java@v5
+        with:
+          distribution: zulu
+          java-version: 21
+          cache: gradle
       - uses: actions/download-artifact@v8
         with:
           path: dist
@@ -74,14 +88,11 @@ jobs:
           fi
       - name: Publish to JetBrains Marketplace
         env:
-          JB_TOKEN: ${{ secrets.JB_TOKEN }}
+          PUBLISH_TOKEN: ${{ secrets.JB_TOKEN }}
         run: |
-          if [ -n "$JB_TOKEN" ]; then
-            JB_FILE=$(ls dist/jetbrains-*.zip | head -n1)
-            if [ -n "$JB_FILE" ]; then
-              echo "Publishing $JB_FILE to JetBrains Marketplace..."
-              curl -X POST -H "Authorization: Bearer $JB_TOKEN" -F "file=@$JB_FILE" https://plugins.jetbrains.com/api/plugins --fail || echo "JB publish failed (first upload must be done manually at https://plugins.jetbrains.com/author/me)"
-            fi
+          if [ -n "$PUBLISH_TOKEN" ]; then
+            cd jetbrains
+            ./gradlew publishPlugin --no-daemon -q || echo "JB publish failed"
           else
             echo "JB_TOKEN not set, skipping"
           fi

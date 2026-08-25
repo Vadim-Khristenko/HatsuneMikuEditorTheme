@@ -3,3 +3,6 @@ dist
 *.vsix
 docs/
 .env
+jetbrains/build/
+jetbrains/.gradle/
+"jetbrains/.intellijPlatform/"  
