@@ -8,7 +8,7 @@
   "displayName": "HatsuneMikuEditorTheme",
   "icon": "icon.png",
   "description": "This extension provides a Hatsune Miku theme for Visual Studio Code editor.",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "license": "MIT",
   "repository": {
     "type": "git",

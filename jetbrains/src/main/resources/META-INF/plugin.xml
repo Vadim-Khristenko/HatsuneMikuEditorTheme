@@ -1,7 +1,7 @@
 <idea-plugin>
-  <id>space.vai-rice.hatsune-miku-theme</id>
+  <id>com.github.vadimkhristenko.hatsunemikutheme</id>
   <name>Hatsune Miku Theme</name>
-  <version>0.0.7</version>
+  <version>0.0.8</version>
   <vendor url="https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme" email="vadim@vai-rice.space">Vadim Khristenko</vendor>
   <idea-version since-build="231" until-build="262.*"/>
   <description><![CDATA[
