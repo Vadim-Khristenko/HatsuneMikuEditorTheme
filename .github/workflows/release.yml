@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        pkg: [vsc, zed, jetbrains, neovim, sublime, notepadpp]
+        pkg: [vsc, zed, jetbrains, neovim, sublime, notepadpp, browser]
     steps:
       - uses: actions/checkout@v7
       - uses: oven-sh/setup-bun@v2
@@ -67,6 +67,10 @@ jobs:
           - Neovim: `dist/neovim-*.zip` → `:colorscheme hatsune-miku`
           - Sublime: `dist/sublime-*.zip` → Color Scheme
           - Notepad++: `dist/notepadpp-*.zip` → Settings → Import → Import style theme(s)
+          - Chrome, Helium and other Chromium: `dist/hatsune-miku-editor-chromium-*.zip` → unpack, chrome://extensions → Load unpacked
+          - Browser frame colors (Chromium): `dist/hatsune-miku-colorful-browser-<variant>-*.zip` → Load unpacked
+          - Firefox: `dist/hatsune-miku-editor-firefox-*.zip` → about:debugging → Load Temporary Add-on (AMO listing coming)
+          - Zen: `dist/hatsune-miku-zen-mod-*.zip`, see `browser/zen/readme.md`
 
           ---
           Auto-generated changelog below.

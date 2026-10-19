@@ -1,0 +1,34 @@
+[
+  {
+    "property": "mod.hatsunemiku.variant",
+    "label": "Variant",
+    "type": "dropdown",
+    "defaultValue": "miku-auto",
+    "options": [
+      {
+        "label": "Miku, follow system",
+        "value": "miku-auto"
+      },
+      {
+        "label": "Sakura, follow system",
+        "value": "sakura-auto"
+      },
+      {
+        "label": "Miku Dark",
+        "value": "miku-dark"
+      },
+      {
+        "label": "Miku Light",
+        "value": "miku-light"
+      },
+      {
+        "label": "Sakura Dark",
+        "value": "sakura-dark"
+      },
+      {
+        "label": "Sakura Light",
+        "value": "sakura-light"
+      }
+    ]
+  }
+]

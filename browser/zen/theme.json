@@ -1,0 +1,19 @@
+{
+  "id": "hatsune-miku-editor",
+  "name": "HatsuneMikuEditor",
+  "description": "Miku and Sakura colors for Zen: sidebar, tabs, toolbar and URL bar. Pairs with the HatsuneMikuEditor new tab.",
+  "homepage": "https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme",
+  "style": "chrome.css",
+  "readme": "readme.md",
+  "preferences": "preferences.json",
+  "author": "Vadim Khristenko",
+  "version": "0.1.0",
+  "tags": [
+    "miku",
+    "vocaloid",
+    "teal",
+    "pink",
+    "dark",
+    "light"
+  ]
+}

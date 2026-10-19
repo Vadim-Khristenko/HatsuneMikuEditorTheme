@@ -1,0 +1,33 @@
+const svg = (body: string, extra = 'fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"') =>
+  `<svg viewBox="0 0 24 24" width="100%" height="100%" ${extra}>${body}</svg>`;
+
+export const I = {
+  search: svg('<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>'),
+  gear: svg('<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/>'),
+  plus: svg('<path d="M12 5v14M5 12h14"/>'),
+  x: svg('<path d="M6 6l12 12M18 6 6 18"/>'),
+  check: svg('<path d="m5 12 5 5 9-10"/>'),
+  pencil: svg('<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>'),
+  grip: svg('<circle cx="9" cy="6" r="1.2"/><circle cx="15" cy="6" r="1.2"/><circle cx="9" cy="12" r="1.2"/><circle cx="15" cy="12" r="1.2"/><circle cx="9" cy="18" r="1.2"/><circle cx="15" cy="18" r="1.2"/>', 'fill="currentColor" stroke="none"'),
+  left: svg('<path d="m15 6-6 6 6 6"/>'),
+  right: svg('<path d="m9 6 6 6-6 6"/>'),
+  up: svg('<path d="m6 15 6-6 6 6"/>'),
+  down: svg('<path d="m6 9 6 6 6-6"/>'),
+  trash: svg('<path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/>'),
+  play: svg('<path d="M7 5v14l12-7z"/>', 'fill="currentColor" stroke="none"'),
+  pause: svg('<rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/>', 'fill="currentColor" stroke="none"'),
+  reset: svg('<path d="M4 4v6h6"/><path d="M20 12a8 8 0 1 1-2.3-5.7L20 9"/>'),
+  sound: svg('<path d="M4 9v6h4l5 4V5L8 9z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/>'),
+  muted: svg('<path d="M4 9v6h4l5 4V5L8 9z"/><path d="m17 9 4 6M21 9l-4 6"/>'),
+  external: svg('<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>'),
+  upload: svg('<path d="M12 16V4M7 9l5-5 5 5M4 20h16"/>'),
+  sun: svg('<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>'),
+  partly: svg('<path d="M12 3v1.5M5.6 5.6l1 1M3 12h1.5M17.4 5.6l-1 1"/><path d="M8.5 11a4 4 0 0 1 7.3-2.2"/><path d="M17.5 20H9a4 4 0 1 1 .9-7.9A5 5 0 0 1 19 13.5a3.3 3.3 0 0 1-1.5 6.5z"/>'),
+  cloud: svg('<path d="M17.5 19H8a5 5 0 1 1 1-9.9A6 6 0 0 1 20 11a4 4 0 0 1-2.5 8z"/>'),
+  fog: svg('<path d="M4 10h16M3 14h18M6 18h12M7 6h10"/>'),
+  rain: svg('<path d="M17.5 15H8a5 5 0 1 1 1-9.9A6 6 0 0 1 20 7a4 4 0 0 1-2.5 8z"/><path d="M8 18l-1 3M12 18l-1 3M16 18l-1 3"/>'),
+  snow: svg('<path d="M17.5 15H8a5 5 0 1 1 1-9.9A6 6 0 0 1 20 7a4 4 0 0 1-2.5 8z"/><path d="M8 19h.01M12 21h.01M16 19h.01"/>', 'fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"'),
+  storm: svg('<path d="M17.5 15H8a5 5 0 1 1 1-9.9A6 6 0 0 1 20 7a4 4 0 0 1-2.5 8z"/><path d="m13 15-3 4h4l-3 4"/>'),
+  note: svg('<path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/>'),
+  calendar: svg('<rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/>'),
+};

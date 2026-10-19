@@ -72,6 +72,10 @@ async function packageJetBrains() {
   await Bun.write(out, Bun.file(join(distDir, built[0])));
   console.log(`→ ${out}`);
 }
+async function packageBrowser() {
+  const proc = Bun.spawn(["bun", "browser/build.ts", "--zip"], { stdout: "inherit", stderr: "inherit" });
+  if ((await proc.exited) !== 0) throw new Error("browser build failed");
+}
 async function packageNeovim() { await zipFiles(["neovim/colors", "neovim/README.md", "neovim/LICENSE"], `${outDir}/neovim-${version}.zip`); console.log(`→ ${outDir}/neovim-${version}.zip`); }
 async function packageSublime() {
   const files = readdirSync("sublime").filter(f=>f.endsWith(".sublime-color-scheme")).map(f=>`sublime/${f}`);
@@ -90,6 +94,7 @@ switch (target) {
   case "neovim": await packageNeovim(); break;
   case "sublime": await packageSublime(); break;
   case "notepadpp": await packageNotepadpp(); break;
+  case "browser": await packageBrowser(); break;
   case "all":
     try { await packageVSC(); } catch(e){ console.error(e); console.log("vsc failed, continuing..."); }
     await packageZed();
@@ -97,6 +102,7 @@ switch (target) {
     await packageNeovim();
     await packageSublime();
     await packageNotepadpp();
+    await packageBrowser();
     break;
   default: console.error(`unknown target ${target}`); process.exit(1);
 }

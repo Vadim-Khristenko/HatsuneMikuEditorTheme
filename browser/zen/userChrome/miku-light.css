@@ -1,0 +1,33 @@
+/* HatsuneMikuEditor for Zen: Miku Light. Generated, do not edit by hand. */
+@media all {
+  :root {
+    --zen-primary-color: #007a72 !important;
+    --zen-colors-primary: #ffffff !important;
+    --zen-colors-secondary: #ffffff !important;
+    --zen-colors-tertiary: #eaf8f7 !important;
+    --zen-colors-border: #c8e8e6 !important;
+    --zen-main-browser-background: #eaf8f7 !important;
+    --zen-themed-toolbar-bg: #eaf8f7 !important;
+    --toolbox-bgcolor-inactive: #eaf8f7 !important;
+    --toolbar-bgcolor: #f0fafa !important;
+    --toolbar-color: #1a3a3a !important;
+    --toolbar-field-color: #1a3a3a !important;
+    --toolbar-field-focus-color: #1a3a3a !important;
+    --toolbarbutton-icon-fill: #1a3a3a !important;
+    --lwt-text-color: #1a3a3a !important;
+    --tab-selected-textcolor: #1a3a3a !important;
+    --arrowpanel-background: #ffffff !important;
+    --arrowpanel-color: #1a3a3a !important;
+    --sidebar-text-color: #1a3a3a !important;
+    --lwt-sidebar-text-color: #1a3a3a !important;
+    --lwt-sidebar-background-color: #eaf8f7 !important;
+    --newtab-background-color: #f0fafa !important;
+    --newtab-text-primary-color: #1a3a3a !important;
+    --focus-outline-color: #007a72 !important;
+  }
+  .urlbar-background { background-color: #ffffff !important; }
+  .urlbarView-url { color: #007a72 !important; }
+  #zen-appcontent-navbar-container, hbox#titlebar, #TabsToolbar { background-color: #eaf8f7 !important; }
+  .tabbrowser-tab[selected] .tab-background { background-color: #ffffff !important; box-shadow: inset 0 0 0 1px rgba(0, 122, 114, 0.35) !important; }
+  ::selection { background-color: rgba(0, 122, 114, 0.3); }
+}

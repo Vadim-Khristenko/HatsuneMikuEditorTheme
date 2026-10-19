@@ -12,7 +12,10 @@
     "package:neovim": "bun tools/package.ts neovim",
     "package:sublime": "bun tools/package.ts sublime",
     "package:notepadpp": "bun tools/package.ts notepadpp",
-    "package:all": "bun tools/package.ts all"
+    "package:browser": "bun tools/package.ts browser",
+    "package:all": "bun tools/package.ts all",
+    "build:browser": "bun browser/build.ts",
+    "test:browser": "bun test browser"
   },
   "devDependencies": {
     "@types/archiver": "^8.0.0"
