@@ -1,7 +1,7 @@
-import { expandBang, parseBang, type Bang, type BangIndex } from "./bangs";
-import type { EngineId } from "./settings";
+import { BangIndex, expandBang, parseBang, type Bang, type BangRow } from "./bangs";
+import type { CustomBang, CustomEngine, EngineId, PresetEngine } from "./settings";
 
-export const ENGINE_URLS: Record<Exclude<EngineId, "browser" | "custom">, { name: string; url: string }> = {
+export const ENGINE_URLS: Record<Exclude<PresetEngine, "browser">, { name: string; url: string }> = {
   duckduckgo: { name: "DuckDuckGo", url: "https://duckduckgo.com/?q=%s" },
   google: { name: "Google", url: "https://www.google.com/search?q=%s" },
   bing: { name: "Bing", url: "https://www.bing.com/search?q=%s" },
@@ -46,9 +46,25 @@ export function resolve(input: string, bangs: BangIndex | null, useBangs: boolea
   return { kind: "search", query: s };
 }
 
-export function engineUrl(engine: EngineId, custom: string, query: string): string | null {
+function customOf(engine: EngineId, engines: CustomEngine[]): CustomEngine | undefined {
+  return engine.startsWith("custom:") ? engines.find((e) => `custom:${e.id}` === engine) : undefined;
+}
+
+/** Display name of the engine, null for the browser's own. */
+export function engineName(engine: EngineId, engines: CustomEngine[]): string | null {
   if (engine === "browser") return null;
-  const template = engine === "custom" ? custom : ENGINE_URLS[engine].url;
+  return customOf(engine, engines)?.name ?? ENGINE_URLS[engine as Exclude<PresetEngine, "browser">]?.name ?? null;
+}
+
+export function engineUrl(engine: EngineId, engines: CustomEngine[], query: string): string | null {
+  if (engine === "browser") return null;
+  const template = customOf(engine, engines)?.url ?? ENGINE_URLS[engine as Exclude<PresetEngine, "browser">]?.url;
   if (!template || !/%s|\{searchTerms\}/.test(template)) return ENGINE_URLS.duckduckgo.url.replace("%s", encodeURIComponent(query));
   return template.replace(/%s|\{searchTerms\}/g, encodeURIComponent(query));
+}
+
+/** The user's own bangs go first, so they win over a built-in with the same trigger. */
+export function buildIndex(builtIn: BangRow[], mine: CustomBang[]): BangIndex {
+  const own: BangRow[] = mine.map((b) => [b.name, b.trigger, b.url.replace(/%s/g, "{searchTerms}")]);
+  return new BangIndex([...own, ...builtIn]);
 }

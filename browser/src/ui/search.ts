@@ -1,6 +1,6 @@
 import { parseBang } from "../bangs";
 import { browserSearch, canBrowserSearch } from "../ext";
-import { ENGINE_URLS, engineUrl, resolve } from "../search";
+import { engineName, engineUrl, resolve } from "../search";
 import type { Ctx } from "./ctx";
 import { h, icon } from "./dom";
 import { I } from "./icons";
@@ -12,13 +12,15 @@ function go(url: string, newTab: boolean): void {
   else window.location.href = url;
 }
 
-export async function submitQuery(ctx: Ctx, text: string, newTab: boolean): Promise<void> {
+/** `invert` flips the "open in a new tab" setting (Ctrl or Cmd held). */
+export async function submitQuery(ctx: Ctx, text: string, invert: boolean): Promise<void> {
+  const newTab = ctx.s.search.newTab !== invert;
   const action = resolve(text, ctx.bangs(), ctx.s.search.bangs);
   if (action.kind === "none") return;
   if (action.kind !== "search") return go(action.url, newTab);
-  const { engine, custom } = ctx.s.search;
+  const { engine, engines } = ctx.s.search;
   if (engine === "browser" && canBrowserSearch && (await browserSearch(action.query, newTab))) return;
-  go(engineUrl(engine === "browser" ? "duckduckgo" : engine, custom, action.query)!, newTab);
+  go(engineUrl(engine === "browser" ? "duckduckgo" : engine, engines, action.query)!, newTab);
 }
 
 export type SearchStyle = "pill" | "box" | "line";
@@ -45,7 +47,7 @@ export function searchBar(ctx: Ctx, style: SearchStyle, opts: { placeholder?: st
   });
   const chip = h("span", { class: "bang-chip", attrs: { hidden: true } });
   const list = h("ul", { class: "suggest", attrs: { id: listId, role: "listbox", "aria-label": ctx.t("bangSuggestions"), hidden: true } });
-  const engineName = ctx.s.search.engine === "browser" ? ctx.t("browserEngine") : ctx.s.search.engine === "custom" ? "" : ENGINE_URLS[ctx.s.search.engine].name;
+  const engineLabel = engineName(ctx.s.search.engine, ctx.s.search.engines) ?? ctx.t("browserEngine");
 
   const currentToken = () => {
     const before = input.value.slice(0, input.selectionStart ?? input.value.length);
@@ -129,7 +131,7 @@ export function searchBar(ctx: Ctx, style: SearchStyle, opts: { placeholder?: st
     h("label", { class: "sr", attrs: { for: id }, text: ctx.t("searchLabel") }),
     input,
     chip,
-    style !== "line" && engineName ? h("span", { class: "engine mono", text: engineName }) : null,
+    style !== "line" ? h("span", { class: "engine mono", text: engineLabel }) : null,
     opts.button ? h("button", { class: "btn-fill", attrs: { type: "submit" }, text: ctx.t("searchButton") }) : null,
     list,
   );

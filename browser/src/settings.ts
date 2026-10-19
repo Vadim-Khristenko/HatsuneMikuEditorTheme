@@ -9,18 +9,30 @@ export type LocaleSetting = (typeof LOCALES)[number];
 export const FONTS = ["onest", "unbounded", "mplus", "jetbrains", "system"] as const;
 export type FontId = (typeof FONTS)[number];
 
-export const ENGINES = ["browser", "duckduckgo", "google", "bing", "yandex", "brave", "startpage", "kagi", "baidu", "custom"] as const;
-export type EngineId = (typeof ENGINES)[number];
+export const ENGINES = ["browser", "duckduckgo", "google", "bing", "yandex", "brave", "startpage", "kagi", "baidu"] as const;
+export type PresetEngine = (typeof ENGINES)[number];
+/** A preset id, or `custom:<id>` for one of the user's own engines. */
+export type EngineId = PresetEngine | `custom:${string}`;
+
+export const ICON_MODES = ["auto", "browser", "duckduckgo", "google", "letters"] as const;
+export type IconMode = (typeof ICON_MODES)[number];
+
+export const ROTATIONS = ["tab", "5m", "15m", "1h", "1d"] as const;
+export type Rotation = (typeof ROTATIONS)[number];
 
 export const WIDGETS = ["clock", "weather", "calendar", "shortcuts", "todos", "nowPlaying", "pomodoro", "note", "line"] as const;
 export type WidgetId = (typeof WIDGETS)[number];
 
-export const WALLPAPERS = ["art", "bundled", "image", "none"] as const;
+export const WALLPAPERS = ["art", "bundled", "playlist", "none"] as const;
 export type WallpaperKind = (typeof WALLPAPERS)[number];
 
 export interface Shortcut { id: string; name: string; url: string }
 export interface Todo { id: string; text: string; done: boolean }
 export interface CalEvent { id: string; date: string; time: string; title: string }
+export interface CustomEngine { id: string; name: string; url: string }
+export interface CustomBang { id: string; trigger: string; name: string; url: string }
+/** Items are `img:<key>` (a picture in IndexedDB) or `set:<file>` (a bundled wallpaper). */
+export interface Playlist { id: string; name: string; items: string[]; every: Rotation; shuffle: boolean }
 
 export interface Settings {
   v: 1;
@@ -30,16 +42,18 @@ export interface Settings {
   layout: Layout;
   locale: LocaleSetting;
   name: string;
+  birthday: string;
+  motion: boolean;
   fonts: { ui: FontId; display: FontId };
   clock24: boolean;
   seconds: boolean;
-  search: { engine: EngineId; custom: string; bangs: boolean };
+  search: { engine: EngineId; engines: CustomEngine[]; bangs: boolean; myBangs: CustomBang[]; newTab: boolean };
   shortcuts: Shortcut[];
-  favicons: boolean;
+  icons: IconMode;
   widgets: Record<WidgetId, boolean>;
   order: WidgetId[];
   weather: { city: string; lat: number | null; lon: number | null; units: "c" | "f" };
-  wallpaper: { kind: WallpaperKind; dim: number; blur: number };
+  wallpaper: { kind: WallpaperKind; dim: number; blur: number; playlists: Playlist[]; active: string | null };
   lines: string[];
   note: string;
   todos: Todo[];
@@ -68,16 +82,18 @@ export function defaults(): Settings {
     layout: "stage",
     locale: "auto",
     name: "",
+    birthday: "",
+    motion: true,
     fonts: { ui: "onest", display: "unbounded" },
     clock24: true,
     seconds: false,
-    search: { engine: "browser", custom: "", bangs: true },
+    search: { engine: "browser", engines: [], bangs: true, myBangs: [], newTab: false },
     shortcuts: DEFAULT_SHORTCUTS.map((s) => ({ ...s })),
-    favicons: false,
+    icons: "auto",
     widgets: { clock: true, weather: true, calendar: true, shortcuts: true, todos: true, nowPlaying: true, pomodoro: true, note: true, line: true },
     order: [...WIDGETS],
     weather: { city: "", lat: null, lon: null, units: "c" },
-    wallpaper: { kind: "art", dim: 30, blur: 0 },
+    wallpaper: { kind: "art", dim: 30, blur: 0, playlists: [], active: null },
     lines: [],
     note: "",
     todos: [],
@@ -98,6 +114,11 @@ const num = (v: unknown, fallback: number, min: number, max: number) =>
 const coord = (v: unknown, lim: number) => (typeof v === "number" && Number.isFinite(v) && Math.abs(v) <= lim ? v : null);
 
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+const TRIGGER_RE = /^[^\s!]{1,32}$/;
+
+export function hasTerms(url: string): boolean {
+  return /%s|\{searchTerms\}/.test(url);
+}
 const TIME_RE = /^([01]\d|2[0-3]):[0-5]\d$/;
 
 export function uid(): string {
@@ -151,6 +172,49 @@ export function normalize(input: unknown): Settings {
           : []).slice(0, 100)
     : [];
 
+  const engines = Array.isArray(search.engines)
+    ? search.engines.flatMap((e): CustomEngine[] => {
+        if (!isObj(e)) return [];
+        const url = str(e.url, "", 500).trim();
+        if (!normalizeUrl(url.replace(/%s|\{searchTerms\}/g, "x")) || !hasTerms(url)) return [];
+        return [{ id: str(e.id, "", 20) || uid(), name: str(e.name, "", 40).trim() || new URL(normalizeUrl(url.replace(/%s|\{searchTerms\}/g, "x"))!).hostname, url }];
+      }).slice(0, 20)
+    : [];
+  // Older versions kept one custom engine as `custom` plus engine "custom".
+  if (typeof search.custom === "string" && hasTerms(search.custom) && normalizeUrl(search.custom.replace(/%s|\{searchTerms\}/g, "x")) && !engines.length) {
+    engines.push({ id: "legacy", name: new URL(normalizeUrl(search.custom.replace(/%s|\{searchTerms\}/g, "x"))!).hostname, url: search.custom });
+  }
+  let engine: EngineId = pick(search.engine, ENGINES, d.search.engine);
+  if (search.engine === "custom" && engines.some((e) => e.id === "legacy")) engine = "custom:legacy";
+  if (typeof search.engine === "string" && search.engine.startsWith("custom:") && engines.some((e) => `custom:${e.id}` === search.engine)) engine = search.engine as EngineId;
+
+  const myBangs = Array.isArray(search.myBangs)
+    ? search.myBangs.flatMap((b): CustomBang[] => {
+        if (!isObj(b)) return [];
+        const trigger = str(b.trigger, "", 32).trim().toLowerCase().replace(/^!+/, "");
+        const url = str(b.url, "", 500).trim();
+        if (!TRIGGER_RE.test(trigger) || !normalizeUrl(url.replace(/%s|\{searchTerms\}/g, "x"))) return [];
+        return [{ id: str(b.id, "", 20) || uid(), trigger, name: str(b.name, "", 40).trim() || trigger, url }];
+      }).slice(0, 100)
+    : [];
+
+  const playlists = Array.isArray(wallpaper.playlists)
+    ? wallpaper.playlists.flatMap((p): Playlist[] => {
+        if (!isObj(p)) return [];
+        const items = Array.isArray(p.items) ? p.items.filter((x): x is string => typeof x === "string" && /^(img|set):[\w.-]{1,80}$/.test(x)).slice(0, 200) : [];
+        return [{ id: str(p.id, "", 20) || uid(), name: str(p.name, "", 40), items: [...new Set(items)], every: pick(p.every, ROTATIONS, "tab"), shuffle: bool(p.shuffle, false) }];
+      }).slice(0, 20)
+    : [];
+  let kind = pick(wallpaper.kind, WALLPAPERS, d.wallpaper.kind);
+  // Version 0.1 had a single uploaded picture under the key "wallpaper".
+  if (wallpaper.kind === "image") {
+    kind = "playlist";
+    if (!playlists.length) playlists.push({ id: "mine", name: "", items: ["img:wallpaper"], every: "tab", shuffle: false });
+  }
+  const active = typeof wallpaper.active === "string" && playlists.some((p) => p.id === wallpaper.active) ? wallpaper.active : playlists[0]?.id ?? null;
+
+  const birthday = typeof input.birthday === "string" && DATE_RE.test(input.birthday) && !Number.isNaN(Date.parse(input.birthday)) ? input.birthday : "";
+
   const events = Array.isArray(input.events)
     ? input.events.flatMap((e): CalEvent[] =>
         isObj(e) && typeof e.date === "string" && DATE_RE.test(e.date) && typeof e.time === "string" && TIME_RE.test(e.time) && typeof e.title === "string" && e.title.trim()
@@ -166,16 +230,14 @@ export function normalize(input: unknown): Settings {
     layout: pick(input.layout, LAYOUTS, d.layout),
     locale: pick(input.locale, LOCALES, d.locale),
     name: str(input.name, d.name, 40),
+    birthday,
+    motion: bool(input.motion, d.motion),
     fonts: { ui: pick(fonts.ui, FONTS, d.fonts.ui), display: pick(fonts.display, FONTS, d.fonts.display) },
     clock24: bool(input.clock24, d.clock24),
     seconds: bool(input.seconds, d.seconds),
-    search: {
-      engine: pick(search.engine, ENGINES, d.search.engine),
-      custom: str(search.custom, "", 500),
-      bangs: bool(search.bangs, d.search.bangs),
-    },
+    search: { engine, engines, bangs: bool(search.bangs, d.search.bangs), myBangs, newTab: bool(search.newTab, d.search.newTab) },
     shortcuts,
-    favicons: bool(input.favicons, d.favicons),
+    icons: input.favicons === true && input.icons === undefined ? "browser" : pick(input.icons, ICON_MODES, d.icons),
     widgets,
     order,
     weather: {
@@ -185,9 +247,11 @@ export function normalize(input: unknown): Settings {
       units: pick(weather.units, ["c", "f"] as const, "c"),
     },
     wallpaper: {
-      kind: pick(wallpaper.kind, WALLPAPERS, d.wallpaper.kind),
+      kind,
       dim: num(wallpaper.dim, d.wallpaper.dim, 0, 90),
       blur: num(wallpaper.blur, d.wallpaper.blur, 0, 40),
+      playlists,
+      active,
     },
     lines: Array.isArray(input.lines) ? input.lines.filter((l): l is string => typeof l === "string" && !!l.trim()).map((l) => l.slice(0, 200)).slice(0, 100) : [],
     note: str(input.note, "", 5000),

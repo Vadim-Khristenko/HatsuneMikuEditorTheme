@@ -106,6 +106,8 @@ function encodeTerms(query: string, flags: number): string {
 
 /** Turns a bang and its query into the target URL, the way Helium does. */
 export function expandBang(bang: Bang, query: string): string {
+  // A bang without a placeholder is a bookmark: it always opens its address.
+  if (!bang.url.includes(PLACEHOLDER)) return new URL(bang.url).href;
   if (!query) {
     const url = new URL(bang.url.replace(PLACEHOLDER, ""));
     if (!(bang.flags & OPEN_BASE_PATH)) return url.origin + "/";

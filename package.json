@@ -15,10 +15,13 @@
     "package:browser": "bun tools/package.ts browser",
     "package:all": "bun tools/package.ts all",
     "build:browser": "bun browser/build.ts",
-    "test:browser": "bun test browser"
+    "test:browser": "bun test browser",
+    "typecheck:browser": "tsc -p browser/tsconfig.json"
   },
   "devDependencies": {
-    "@types/archiver": "^8.0.0"
+    "@types/archiver": "^8.0.0",
+    "@types/bun": "^1.4.3",
+    "typescript": "5.9.3"
   },
   "dependencies": {
     "archiver": "5.3.1"
