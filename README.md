@@ -66,7 +66,7 @@ Scripts live in `tools/package.ts` and `tools/validate.ts`. No hidden shell, you
 
 ## Releases
 
-Push a tag like `v0.1.0` and GitHub builds all six packages. Release notes are generated with the palette and install hints. Open VSX publishes if `OVSX_TOKEN` is set, JetBrains if `JB_TOKEN` is set. VS Marketplace is skipped for now, my Microsoft account hit a snag.
+Push a tag like `v0.2.0` and GitHub builds every package: the six editors plus the browser new tab for Chromium and Firefox, the Chromium frame themes and the Zen mod. The tag has to match the version in every package, or the release stops. Release notes are generated with the palette and install hints. Open VSX publishes if `OVSX_TOKEN` is set, JetBrains if `JB_TOKEN` is set, and with `AMO_JWT_ISSUER` and `AMO_JWT_SECRET` Mozilla signs the Firefox add-on, so the release carries an `.xpi` that installs for good. VS Marketplace is skipped for now, my Microsoft account hit a snag.
 
 ## Contributing
 

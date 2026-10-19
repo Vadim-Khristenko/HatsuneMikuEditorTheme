@@ -18,8 +18,23 @@ jobs:
           distribution: zulu
           java-version: 21
           cache: gradle
+      - name: Tag matches the version in every package
+        run: |
+          v="${GITHUB_REF_NAME#v}"
+          bad=0
+          for f in package.json vsc/package.json browser/zen/theme.json; do
+            got=$(node -p "require('./$f').version")
+            [ "$got" = "$v" ] || { echo "::error file=$f::version $got, tag says $v"; bad=1; }
+          done
+          grep -q "^version = \"$v\"" zed/extension.toml || { echo "::error file=zed/extension.toml::version is not $v"; bad=1; }
+          grep -q "^pluginVersion = $v" jetbrains/gradle.properties || { echo "::error file=jetbrains/gradle.properties::pluginVersion is not $v"; bad=1; }
+          grep -q "<version>$v</version>" jetbrains/src/main/resources/META-INF/plugin.xml || { echo "::error file=plugin.xml::version is not $v"; bad=1; }
+          exit $bad
       - run: bun install --frozen-lockfile
       - run: bun run check
+      - if: matrix.pkg == 'browser'
+        # validate also dry-runs every package; clear them so this job ships only its own
+        run: bun run validate && rm -r dist
       - run: bun run package:${{ matrix.pkg }}
       - uses: actions/upload-artifact@v7
         with:
@@ -44,19 +59,36 @@ jobs:
         with:
           path: dist
           merge-multiple: true
-      - uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: latest
+      - name: Sign the Firefox add-on on AMO (unlisted)
+        env:
+          AMO_JWT_ISSUER: ${{ secrets.AMO_JWT_ISSUER }}
+          AMO_JWT_SECRET: ${{ secrets.AMO_JWT_SECRET }}
+        run: |
+          if [ -z "$AMO_JWT_ISSUER" ] || [ -z "$AMO_JWT_SECRET" ]; then
+            echo "AMO_JWT_ISSUER / AMO_JWT_SECRET not set, the Firefox build stays an unsigned zip"
+            exit 0
+          fi
+          v="${GITHUB_REF_NAME#v}"
+          mkdir -p /tmp/firefox /tmp/signed
+          unzip -q "dist/hatsune-miku-editor-firefox-$v.zip" -d /tmp/firefox
+          if bun x web-ext@8 sign --source-dir /tmp/firefox --artifacts-dir /tmp/signed \
+               --channel unlisted --api-key "$AMO_JWT_ISSUER" --api-secret "$AMO_JWT_SECRET" \
+               --approval-timeout 900000; then
+            mv /tmp/signed/*.xpi "dist/hatsune-miku-editor-firefox-$v.xpi"
+          else
+            echo "::warning::AMO signing failed, the release keeps the unsigned zip"
+          fi
       - name: Generate beautiful notes
         run: |
+          v="${GITHUB_REF_NAME#v}"
           cat > /tmp/notes.md << 'EOF'
-          ## Hatsune Miku themes — four looks, six editors
+          ## Hatsune Miku themes: four looks, six editors and your browser
 
           One MIT license covers everything here. No separate fine print per editor.
 
           **Variants**
-          - Miku Dark `#0d0e1a` / `#39c5bb` — deep navy, my daily
-          - Miku Light `#f0fafa` / `#007a72` — soft daylight
+          - Miku Dark `#0d0e1a` / `#39c5bb`, deep navy, my daily
+          - Miku Light `#f0fafa` / `#007a72`, soft daylight
           - Sakura Dark `#130d14` / `#e87ea1`
           - Sakura Light `#fff5f8` / `#cc4477`
 
@@ -69,12 +101,18 @@ jobs:
           - Notepad++: `dist/notepadpp-*.zip` → Settings → Import → Import style theme(s)
           - Chrome, Helium and other Chromium: `dist/hatsune-miku-editor-chromium-*.zip` → unpack, chrome://extensions → Load unpacked
           - Browser frame colors (Chromium): `dist/hatsune-miku-colorful-browser-<variant>-*.zip` → Load unpacked
-          - Firefox: `dist/hatsune-miku-editor-firefox-*.zip` → about:debugging → Load Temporary Add-on (AMO listing coming)
+          - Firefox: FIREFOX_LINE
           - Zen: `dist/hatsune-miku-zen-mod-*.zip`, see `browser/zen/readme.md`
 
           ---
           Auto-generated changelog below.
           EOF
+          if [ -f "dist/hatsune-miku-editor-firefox-$v.xpi" ]; then
+            ff="\`dist/hatsune-miku-editor-firefox-$v.xpi\` → open it in Firefox, Mozilla signed it"
+          else
+            ff="\`dist/hatsune-miku-editor-firefox-$v.zip\` → about:debugging → Load Temporary Add-on"
+          fi
+          sed -i "s|FIREFOX_LINE|$ff|" /tmp/notes.md
           cat /tmp/notes.md
       - uses: softprops/action-gh-release@v3
         with:
