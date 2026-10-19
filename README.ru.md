@@ -40,6 +40,19 @@ CI на каждый пуш, релиз по тегу `v*`.
 
 Каждая папка — та же лицензия MIT. См. `LICENSE` в корне.
 
+## Браузеры
+
+Палитра переехала и в браузер: новая вкладка с четырьмя макетами (Сцена, Нотный стан, Бенто, Дзен), виджетами, `!бэнгами` как в Helium и тремя языками: русским, английским и китайским. Подробности в `browser/README.md`.
+
+| Браузер | Папка | Файл | Как поставить |
+|---|---|---|---|
+| Chrome, Helium, любой Chromium | `browser/` | `dist/hatsune-miku-editor-chromium-*.zip` | Распаковать, `chrome://extensions` → Загрузить распакованное |
+| Цвета рамки Chromium | `browser/` | `dist/hatsune-miku-colorful-browser-*.zip` | По одному на вариант, тоже распакованным |
+| Firefox | `browser/` | `dist/hatsune-miku-editor-firefox-*.zip` | `about:debugging` → Загрузить временное дополнение |
+| Zen | `browser/zen/` | `dist/hatsune-miku-zen-mod-*.zip` | См. `browser/zen/readme.md` |
+
+Собрать: `bun run build:browser`.
+
 ## Разработка
 
 ```bash

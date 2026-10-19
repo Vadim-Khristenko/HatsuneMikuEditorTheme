@@ -10,3 +10,7 @@ jetbrains/.intellijPlatform/
 .idea/
 .vscode/
 *.log
+
+# browser packages, rebuilt by bun browser/build.ts
+browser/build/
+.local/

@@ -40,6 +40,19 @@ CI runs on every push. Tag `v*` builds a release with all artifacts.
 
 Each folder is distributed under the same MIT license. See root `LICENSE`. Nothing extra.
 
+## Browsers
+
+The palette also lives in the browser now: a new tab page with four layouts (Stage, Score, Bento, Zen), widgets, Helium style `!bangs` and Russian, English and Chinese. Details in `browser/README.md`.
+
+| Browser | Folder | File | How to install |
+|---|---|---|---|
+| Chrome, Helium, any Chromium | `browser/` | `dist/hatsune-miku-editor-chromium-*.zip` | Unpack, `chrome://extensions` → Load unpacked |
+| Chromium frame colors | `browser/` | `dist/hatsune-miku-colorful-browser-*.zip` | One per variant, Load unpacked |
+| Firefox | `browser/` | `dist/hatsune-miku-editor-firefox-*.zip` | `about:debugging` → Load Temporary Add-on |
+| Zen | `browser/zen/` | `dist/hatsune-miku-zen-mod-*.zip` | See `browser/zen/readme.md` |
+
+Build them with `bun run build:browser`.
+
 ## How to develop
 
 ```bash
