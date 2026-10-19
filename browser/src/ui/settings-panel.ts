@@ -3,8 +3,8 @@ import { LANG_NAMES, type Lang } from "../i18n";
 import type { MessageKey } from "../locales/en";
 import { PALETTES, THEME_IDS } from "../palette";
 import { ENGINE_URLS } from "../search";
-import { ENGINES, FONTS, LAYOUTS, normalize, normalizeUrl, uid, WALLPAPERS, WIDGETS, type FontId } from "../settings";
-import { bundledList, forgetWallpaperUrl, saveWallpaper, wallpaperUrl } from "../wallpaper";
+import { ENGINES, FONTS, hasTerms, ICON_MODES, LAYOUTS, normalize, normalizeUrl, ROTATIONS, uid, WALLPAPERS, WIDGETS, type EngineId, type FontId, type IconMode, type Playlist, type Rotation } from "../settings";
+import { bundledList, clearImages, deleteImage, itemUrl, saveImage } from "../wallpaper";
 import { findCity } from "../weather";
 import { type Ctx, FONT_STACKS, hostOf } from "./ctx";
 import { button, fill, h, icon } from "./dom";
@@ -121,6 +121,7 @@ export class SettingsPanel {
           h("span", { class: "tc-bar", style: { background: p.card } })), h("span", { text: p.name }));
       })),
       sw(t("followSystem"), s.followSystem, (v) => ctx.store.update((x) => { x.followSystem = v; })),
+      sw(t("motion"), s.motion, (v) => ctx.store.update((x) => { x.motion = v; }), t("motionHint")),
       browserTheme.available
         ? sw(t("paintBrowser"), s.paintBrowser, (v) => {
             ctx.store.update((x) => { x.paintBrowser = v; });
@@ -144,8 +145,13 @@ export class SettingsPanel {
     const { t, s } = ctx;
     const name = h("input", { class: "field", attrs: { id: "set-name", type: "text", maxlength: 40, value: s.name, autocomplete: "given-name" } });
     name.addEventListener("change", () => ctx.store.update((x) => { x.name = name.value; }));
+    const today = new Date().toISOString().slice(0, 10);
+    const bday = h("input", { class: "field", attrs: { id: "set-bday", type: "date", value: s.birthday, min: "1900-01-01", max: today, autocomplete: "bday" } });
+    bday.addEventListener("change", () => ctx.store.update((x) => { x.birthday = bday.value; }));
     return section("personal", t("s_personal"),
       field(t("yourName"), name, t("yourNameHint")),
+      field(t("birthday"), h("div", { class: "row" }, bday,
+        s.birthday ? button(t("clear"), { class: "btn-icon tiny", on: { click: () => ctx.store.update((x) => { x.birthday = ""; }) } }, icon(I.x)) : null), t("birthdayHint")),
       sw(t("clock24"), s.clock24, (v) => ctx.store.update((x) => { x.clock24 = v; })),
       sw(t("seconds"), s.seconds, (v) => ctx.store.update((x) => { x.seconds = v; })),
     );
@@ -182,16 +188,6 @@ export class SettingsPanel {
   private wallpaper(): HTMLElement {
     const { ctx } = this;
     const { t, s } = ctx;
-    const file = h("input", { class: "sr", attrs: { type: "file", accept: "image/*", id: "set-wall-file" } });
-    file.addEventListener("change", async () => {
-      const f = file.files?.[0];
-      if (!f) return;
-      await saveWallpaper(f);
-      forgetWallpaperUrl();
-      ctx.store.update((x) => { x.wallpaper.kind = "image"; });
-    });
-    const thumb = h("span", { class: "wall-thumb" });
-    void wallpaperUrl().then((u) => { if (u) thumb.style.backgroundImage = `url("${u}")`; });
     const range = (key: "dim" | "blur", max: number, label: string) => {
       const r = h("input", { class: "range", attrs: { type: "range", min: 0, max, value: s.wallpaper[key] } });
       r.addEventListener("input", () => {
@@ -200,21 +196,93 @@ export class SettingsPanel {
       });
       return field(label, r);
     };
-    const labels: Record<(typeof WALLPAPERS)[number], MessageKey> = { art: "wallpaperArt", bundled: "wallpaperBundled", image: "wallpaperImage", none: "wallpaperNone" };
+    const labels: Record<(typeof WALLPAPERS)[number], MessageKey> = { art: "wallpaperArt", bundled: "wallpaperBundled", playlist: "wallpaperPlaylist", none: "wallpaperNone" };
     const kinds = h("div", { class: "segmented", attrs: { role: "group", "aria-label": t("s_wallpaper") } });
-    void bundledList().then((list) => {
-      fill(kinds, WALLPAPERS.filter((k) => k !== "bundled" || list.length > 0).map((k) => h("button", {
+    const playlists = h("div", { class: "playlists" });
+    void bundledList().then((set) => {
+      fill(kinds, WALLPAPERS.filter((k) => k !== "bundled" || set.length > 0).map((k) => h("button", {
         attrs: { type: "button", "aria-pressed": String(s.wallpaper.kind === k) },
-        on: { click: () => ctx.store.update((x) => { x.wallpaper.kind = k; }) },
+        on: { click: () => ctx.store.update((x) => {
+          x.wallpaper.kind = k;
+          if (k === "playlist" && !x.wallpaper.playlists.length) {
+            const id = uid();
+            x.wallpaper.playlists.push({ id, name: "", items: set.map((f) => `set:${f}`), every: "tab", shuffle: false });
+            x.wallpaper.active = id;
+          }
+        }) },
         text: t(labels[k]),
       })));
+      fill(playlists, this.playlistEditor(set));
     });
     return section("wallpaper", t("s_wallpaper"),
       kinds,
-      h("div", { class: "wall-row" }, thumb, h("label", { class: "btn-ghost", attrs: { for: "set-wall-file" } }, icon(I.upload), h("span", { text: t("upload") })), file),
+      playlists,
       range("dim", 90, t("dim")),
       range("blur", 40, t("blur")),
     );
+  }
+
+  private playlistEditor(set: string[]): HTMLElement[] {
+    const { ctx } = this;
+    const { t, s } = ctx;
+    const lists = s.wallpaper.playlists;
+    const pl = lists.find((x) => x.id === s.wallpaper.active) ?? lists[0];
+    const edit = (fn: (p: Playlist) => void) => ctx.store.update((x) => { const it = x.wallpaper.playlists.find((y) => y.id === pl?.id); if (it) fn(it); });
+    const add = () => ctx.store.update((x) => {
+      const id = uid();
+      x.wallpaper.playlists.push({ id, name: "", items: [], every: "tab", shuffle: false });
+      x.wallpaper.active = id;
+      x.wallpaper.kind = "playlist";
+    });
+    const tabs = h("div", { class: "chips" },
+      lists.map((l, i) => h("button", {
+        class: "chip",
+        attrs: { type: "button", "aria-pressed": String(l.id === pl?.id) },
+        on: { click: () => ctx.store.update((x) => { x.wallpaper.active = l.id; x.wallpaper.kind = "playlist"; }) },
+        text: l.name || `${t("playlistDefault")}${i ? ` ${i + 1}` : ""}`,
+      })),
+      button(t("playlistNew"), { class: "chip", on: { click: add } }, icon(I.plus), h("span", { text: t("playlistNew") })));
+    if (!pl) return [tabs];
+
+    const name = h("input", { class: "field", attrs: { type: "text", maxlength: 40, value: pl.name, placeholder: t("playlistDefault"), "aria-label": t("shortcutName") } });
+    name.addEventListener("change", () => edit((p) => { p.name = name.value.trim(); }));
+    const files = h("input", { class: "sr", attrs: { type: "file", accept: "image/*", multiple: true, id: "set-wall-files" } });
+    files.addEventListener("change", async () => {
+      const added: string[] = [];
+      for (const f of Array.from(files.files ?? [])) if (f.type.startsWith("image/")) added.push(await saveImage(f));
+      if (added.length) edit((p) => { p.items.push(...added); });
+    });
+    const usedElsewhere = (item: string) => s.wallpaper.playlists.some((x) => x.id !== pl.id && x.items.includes(item));
+    const thumbs = h("ul", { class: "wall-thumbs" }, pl.items.length
+      ? pl.items.map((item) => {
+          const thumb = h("li", { class: "wall-thumb" });
+          void itemUrl(item).then((u) => { if (u) thumb.style.backgroundImage = `url("${u}")`; });
+          thumb.append(button(t("remove"), { class: "btn-icon tiny", on: { click: async () => {
+            if (!usedElsewhere(item)) await deleteImage(item);
+            edit((p) => { p.items = p.items.filter((x) => x !== item); });
+          } } }, icon(I.x)));
+          return thumb;
+        })
+      : h("li", { class: "hint", text: t("playlistEmpty") }));
+    const missing = set.map((f) => `set:${f}`).filter((x) => !pl.items.includes(x));
+    return [
+      tabs,
+      h("div", { class: "playlist-card" },
+        field(t("shortcutName"), name),
+        thumbs,
+        h("div", { class: "row wrap" },
+          h("label", { class: "btn-ghost", attrs: { for: "set-wall-files" } }, icon(I.upload), h("span", { text: t("addPictures") })), files,
+          missing.length ? button(t("addSet"), { class: "btn-ghost", on: { click: () => edit((p) => { p.items.push(...missing); }) } }, icon(I.plus), h("span", { text: t("addSet") })) : null),
+        field(t("playlistEvery"), select(pl.every, ROTATIONS.map((r): [Rotation, string] => [r, t(`every_${r}` as MessageKey)]), (v) => edit((p) => { p.every = v; }))),
+        sw(t("shuffle"), pl.shuffle, (v) => edit((p) => { p.shuffle = v; })),
+        button(t("deletePlaylist"), { class: "btn-ghost danger", on: { click: async () => {
+          for (const item of pl.items) if (!usedElsewhere(item)) await deleteImage(item);
+          ctx.store.update((x) => {
+            x.wallpaper.playlists = x.wallpaper.playlists.filter((y) => y.id !== pl.id);
+            x.wallpaper.active = x.wallpaper.playlists[0]?.id ?? null;
+          });
+        } } }, icon(I.trash), h("span", { text: t("deletePlaylist") }))),
+    ];
   }
 
   private widgets(): HTMLElement {
@@ -240,15 +308,63 @@ export class SettingsPanel {
   private search(): HTMLElement {
     const { ctx } = this;
     const { t, s } = ctx;
-    const engines = ENGINES.filter((e) => e !== "browser" || canBrowserSearch).map((e): [typeof e, string] => [e, e === "browser" ? t("browserEngine") : e === "custom" ? "URL…" : ENGINE_URLS[e].name]);
-    const custom = h("input", { class: "field", attrs: { type: "url", value: s.search.custom, placeholder: "https://example.com/?q=%s" } });
-    custom.addEventListener("change", () => ctx.store.update((x) => { x.search.custom = custom.value.trim(); }));
+    const presets = ENGINES.filter((e) => e !== "browser" || canBrowserSearch).map((e): [EngineId, string] => [e, e === "browser" ? t("browserEngine") : ENGINE_URLS[e].name]);
+    const mine = s.search.engines.map((e): [EngineId, string] => [`custom:${e.id}`, e.name]);
     const count = ctx.bangs()?.size ?? 10000;
+
+    const templateOk = (v: string, needTerms: boolean) => !!normalizeUrl(v.replace(/%s|\{searchTerms\}/g, "x")) && (!needTerms || hasTerms(v));
+    const row = (inputs: HTMLInputElement[], onRemove: () => void) => h("li", { class: "sc-row three" }, inputs,
+      button(t("remove"), { class: "btn-icon tiny", on: { click: onRemove } }, icon(I.trash)));
+
+    const engineRows = s.search.engines.map((e) => {
+      const name = h("input", { class: "field", attrs: { type: "text", value: e.name, maxlength: 40, "aria-label": t("engineNameLabel") } });
+      const url = h("input", { class: "field", attrs: { type: "url", value: e.url, placeholder: "https://example.com/?q=%s", "aria-label": t("engineUrlLabel") } });
+      const commit = () => {
+        url.setCustomValidity(templateOk(url.value, true) ? "" : t("engineUrlLabel"));
+        if (!url.reportValidity()) return;
+        ctx.store.update((x) => { const it = x.search.engines.find((y) => y.id === e.id); if (it) { it.name = name.value.trim(); it.url = url.value.trim(); } });
+      };
+      name.addEventListener("change", commit);
+      url.addEventListener("change", commit);
+      return row([name, url], () => ctx.store.update((x) => {
+        x.search.engines = x.search.engines.filter((y) => y.id !== e.id);
+        if (x.search.engine === `custom:${e.id}`) x.search.engine = "browser";
+      }));
+    });
+
+    const bangRows = s.search.myBangs.map((b) => {
+      const trig = h("input", { class: "field mono", attrs: { type: "text", value: `!${b.trigger}`, maxlength: 33, "aria-label": t("bangTrigger") } });
+      const url = h("input", { class: "field", attrs: { type: "url", value: b.url, placeholder: "https://example.com/?q=%s", "aria-label": t("engineUrlLabel") } });
+      const commit = () => {
+        url.setCustomValidity(templateOk(url.value, false) ? "" : t("badTemplate"));
+        if (!url.reportValidity()) return;
+        ctx.store.update((x) => { const it = x.search.myBangs.find((y) => y.id === b.id); if (it) { it.trigger = trig.value; it.url = url.value.trim(); it.name = hostOf(normalizeUrl(url.value.replace(/%s|\{searchTerms\}/g, "x")) ?? url.value); } });
+      };
+      trig.addEventListener("change", commit);
+      url.addEventListener("change", commit);
+      return row([trig, url], () => ctx.store.update((x) => { x.search.myBangs = x.search.myBangs.filter((y) => y.id !== b.id); }));
+    });
+
+    // New rows start as a valid placeholder the user then edits in place.
+    const addEngine = () => ctx.store.update((x) => {
+      const id = uid();
+      x.search.engines.push({ id, name: "DuckDuckGo Lite", url: "https://lite.duckduckgo.com/lite/?q=%s" });
+      x.search.engine = `custom:${id}`;
+    });
+    const addBang = () => ctx.store.update((x) => { x.search.myBangs.push({ id: uid(), trigger: `my${x.search.myBangs.length + 1}`, name: "GitHub", url: "https://github.com/search?q=%s" }); });
+
     return section("search", t("s_search"),
-      field(t("engine"), select(s.search.engine, engines, (v) => ctx.store.update((x) => { x.search.engine = v; }))),
-      s.search.engine === "custom" ? field(t("customEngine"), custom) : null,
+      field(t("engine"), select<EngineId>(s.search.engine, [...presets, ...mine], (v) => ctx.store.update((x) => { x.search.engine = v; }))),
+      sw(t("newTabResults"), s.search.newTab, (v) => ctx.store.update((x) => { x.search.newTab = v; }), t("newTabHint")),
+      h("h4", { text: t("myEngines") }),
+      h("ul", { class: "sc-list" }, engineRows),
+      button(t("addEngine"), { class: "btn-ghost", on: { click: addEngine } }, icon(I.plus), h("span", { text: t("addEngine") })),
+      h("h4", { text: "!bangs" }),
       sw(t("bangsToggle"), s.search.bangs, (v) => ctx.store.update((x) => { x.search.bangs = v; }), t("bangsHint", { count: count.toLocaleString(ctx.i18n.intl) })),
-      h("a", { class: "link-btn small", attrs: { href: "https://helium.computer/bangs", target: "_blank", rel: "noopener" }, text: `${t("bangsList")} ↗` }),
+      h("a", { class: "link-btn small", attrs: { href: "https://helium.computer/bangs", target: "_blank", rel: "noopener" }, text: `${t("bangsList")} \u2197` }),
+      h("p", { class: "hint", text: t("myBangsHint") }),
+      h("ul", { class: "sc-list" }, bangRows),
+      button(t("addBang"), { class: "btn-ghost", on: { click: addBang } }, icon(I.plus), h("span", { text: t("addBang") })),
     );
   }
 
@@ -275,7 +391,7 @@ export class SettingsPanel {
     return section("shortcuts", t("s_shortcuts"),
       h("ul", { class: "sc-list" }, rows),
       button(t("addShortcut"), { class: "btn-ghost", on: { click: () => ctx.addShortcut() } }, icon(I.plus), h("span", { text: t("addShortcut") })),
-      isFirefox ? null : sw(t("favicons"), s.favicons, (v) => ctx.store.update((x) => { x.favicons = v; })),
+      field(t("iconsMode"), select(s.icons, ICON_MODES.filter((m) => m !== "browser" || !isFirefox).map((m): [IconMode, string] => [m, t(`icons_${m}` as MessageKey)]), (v) => ctx.store.update((x) => { x.icons = v; })), t("iconsHint")),
     );
   }
 
@@ -342,8 +458,7 @@ export class SettingsPanel {
         h("label", { class: "btn-ghost", attrs: { for: "set-import" } }, icon(I.upload), h("span", { text: t("importData") })), file,
         button(t("resetAll"), { class: "btn-ghost danger", on: { click: async () => {
           if (!confirm(t("resetConfirm"))) return;
-          await saveWallpaper(null);
-          forgetWallpaperUrl();
+          await clearImages();
           ctx.store.replace(normalize({ v: 1, shortcuts: undefined }));
         } } }, icon(I.reset), h("span", { text: t("resetAll") }))),
       status,

@@ -39,10 +39,3 @@ export function makeI18n(lang: Lang): I18n {
     },
   };
 }
-
-export function greetingKey(hour: number): MessageKey {
-  if (hour >= 5 && hour < 12) return "greetMorning";
-  if (hour >= 12 && hour < 18) return "greetDay";
-  if (hour >= 18 && hour < 23) return "greetEvening";
-  return "greetNight";
-}

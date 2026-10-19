@@ -13,6 +13,8 @@ export interface Ctx {
   p: Palette;
   wallpaper: string | null;
   edit: boolean;
+  /** Drawn once per page: picks greetings and taglines so they vary between tabs but not between seconds. */
+  seed: number;
   bangs(): BangIndex | null;
   /** Runs `fn` every second while this render is alive, and once right away. */
   tick(fn: (now: Date) => void): void;
@@ -22,6 +24,8 @@ export interface Ctx {
   openSettings(section?: string): void;
   addShortcut(): void;
   rerender(): void;
+  /** Next or previous picture of the active wallpaper playlist. */
+  wallStep(dir: 1 | -1): void;
 }
 
 export const FONT_STACKS: Record<Settings["fonts"]["ui"], string> = {

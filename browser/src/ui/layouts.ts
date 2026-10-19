@@ -22,7 +22,7 @@ function stage(ctx: Ctx): HTMLElement {
       dateLine(ctx, "stage-date mono caps", { weekday: "long", day: "numeric", month: "long" }),
       on(ctx, "clock") ? clock(ctx, "stage-clock display") : null,
       equalizer(),
-      greeting(ctx, "stage-greet", ctx.t("stageTagline")),
+      greeting(ctx, "stage-greet", "stage"),
       searchBar(ctx, "pill", { button: true }),
       on(ctx, "shortcuts") ? shortcuts(ctx, "setlist", 10) : null),
     minis.length || on(ctx, "line")
@@ -154,7 +154,7 @@ function zen(ctx: Ctx): HTMLElement {
     h("div", { class: "zen-bottom" },
       dateLine(ctx, "zen-date mono accent caps", { weekday: "short", day: "2-digit", month: "2-digit" }),
       on(ctx, "clock") ? clock(ctx, "zen-clock display") : null,
-      h("div", { class: "zen-tagline" }, greeting(ctx, "", ctx.t("zenTagline"))),
+      h("div", { class: "zen-tagline" }, greeting(ctx, "", "zen")),
       on(ctx, "shortcuts") ? shortcuts(ctx, "dock", 9) : null),
     drawerIds.length
       ? open

@@ -5,8 +5,11 @@ import { BangIndex, expandBang, parseBang, type BangRow } from "../src/bangs";
 import { chromeThemeManifest, firefoxTheme, zenChromeCss, zenPreferences } from "../src/browser-themes";
 import { detectLang, makeI18n, MESSAGES } from "../src/i18n";
 import { contrast, PALETTES, THEME_IDS } from "../src/palette";
-import { engineUrl, looksLikeUrl, resolve } from "../src/search";
+import { buildIndex, engineName, engineUrl, looksLikeUrl, resolve } from "../src/search";
+import { ageOn, daysUntilBirthday, greet, occasionOf } from "../src/greetings";
+import { PHRASES } from "../src/locales/phrases";
 import { defaults, normalize, normalizeUrl, WIDGETS } from "../src/settings";
+import { nextIndex } from "../src/wallpaper";
 
 const rows = JSON.parse(readFileSync(join(import.meta.dir, "..", "data", "bangs.json"), "utf8")) as BangRow[];
 const index = new BangIndex(rows);
@@ -61,11 +64,21 @@ describe("search", () => {
     expect(resolve("   ", index, true)).toEqual({ kind: "none" });
   });
 
-  test("engine urls", () => {
-    expect(engineUrl("browser", "", "x")).toBeNull();
-    expect(engineUrl("duckduckgo", "", "miku 39")).toBe("https://duckduckgo.com/?q=miku%2039");
-    expect(engineUrl("custom", "https://s.example/?q={searchTerms}", "a")).toBe("https://s.example/?q=a");
-    expect(engineUrl("custom", "broken", "a")).toBe("https://duckduckgo.com/?q=a");
+  test("engine urls, presets and custom", () => {
+    const mine = [{ id: "e1", name: "Lite", url: "https://lite.example/?q=%s" }];
+    expect(engineUrl("browser", mine, "x")).toBeNull();
+    expect(engineUrl("duckduckgo", mine, "miku 39")).toBe("https://duckduckgo.com/?q=miku%2039");
+    expect(engineUrl("custom:e1", mine, "a b")).toBe("https://lite.example/?q=a%20b");
+    expect(engineUrl("custom:gone", mine, "a")).toBe("https://duckduckgo.com/?q=a");
+    expect(engineName("custom:e1", mine)).toBe("Lite");
+    expect(engineName("browser", mine)).toBeNull();
+  });
+
+  test("personal bangs win over built-in ones", () => {
+    const idx = buildIndex(rows, [{ id: "b", trigger: "ttv", name: "Mine", url: "https://mine.example/s/%s" }, { id: "c", trigger: "home", name: "Home", url: "https://vai-rice.space" }]);
+    expect(resolve("!ttv lofi", idx, true)).toMatchObject({ url: "https://mine.example/s/lofi" });
+    expect(resolve("!home", idx, true)).toMatchObject({ url: "https://vai-rice.space/" });
+    expect(idx.suggest("hom")[0].bang.name).toBe("Home");
   });
 });
 
@@ -97,6 +110,30 @@ describe("settings", () => {
     expect(n.order.slice(0, 2)).toEqual(["note", "clock"]);
     expect(new Set(n.order)).toEqual(new Set(WIDGETS));
     expect(n.wallpaper.dim).toBe(90);
+  });
+
+  test("0.1 settings migrate: single picture, custom engine, favicons", () => {
+    const n = normalize({ wallpaper: { kind: "image", dim: 20 }, search: { engine: "custom", custom: "https://s.example/?q=%s" }, favicons: true });
+    expect(n.wallpaper.kind).toBe("playlist");
+    expect(n.wallpaper.playlists[0].items).toEqual(["img:wallpaper"]);
+    expect(n.wallpaper.active).toBe(n.wallpaper.playlists[0].id);
+    expect(n.search.engine).toBe("custom:legacy");
+    expect(n.search.engines[0].url).toBe("https://s.example/?q=%s");
+    expect(n.icons).toBe("browser");
+  });
+
+  test("birthday, custom bangs and playlists are validated", () => {
+    const n = normalize({
+      birthday: "2010-13-40",
+      search: { myBangs: [{ trigger: "!Mk", url: "example.com/?q=%s" }, { trigger: "bad trigger", url: "https://x.y" }], engines: [{ name: "no terms", url: "https://x.y" }] },
+      wallpaper: { playlists: [{ name: "a", items: ["img:abc", "set:miku-dark.webp", "evil:../../x", "img:abc"], every: "weekly" }] },
+    });
+    expect(n.birthday).toBe("");
+    expect(n.search.myBangs.map((b) => b.trigger)).toEqual(["mk"]);
+    expect(n.search.engines).toEqual([]);
+    expect(n.wallpaper.playlists[0].items).toEqual(["img:abc", "set:miku-dark.webp"]);
+    expect(n.wallpaper.playlists[0].every).toBe("tab");
+    expect(normalize({ birthday: "2009-08-31" }).birthday).toBe("2009-08-31");
   });
 
   test("normalizeUrl only allows http(s)", () => {
@@ -154,6 +191,78 @@ describe("palette", () => {
     const zen = join(import.meta.dir, "..", "zen");
     expect(readFileSync(join(zen, "chrome.css"), "utf8")).toBe(zenChromeCss());
     expect(JSON.parse(readFileSync(join(zen, "preferences.json"), "utf8"))).toEqual(zenPreferences());
+  });
+});
+
+describe("greetings", () => {
+  const at = (iso: string) => new Date(`${iso}`);
+  const opts = { name: "Вадим", birthday: "", seed: 0.42, sep: ", ", intl: "ru-RU" };
+
+  test("every bank has phrases in every language, all with the name slot", () => {
+    for (const lang of ["ru", "en", "zh"] as const) {
+      for (const [key, list] of Object.entries(PHRASES[lang])) {
+        if (key === "soon") continue;
+        expect((list as string[]).length).toBeGreaterThan(1);
+        if (!["stage", "zen"].includes(key)) for (const ph of list as string[]) expect(ph).toContain("{name}");
+      }
+    }
+  });
+
+  test("time of day, name and no name", () => {
+    const morning = greet("ru", at("2026-10-20T08:00"), opts).text;
+    expect(PHRASES.ru.morning.map((p) => p.replace("{name}", ", Вадим"))).toContain(morning);
+    const noName = greet("en", at("2026-10-20T03:00"), { ...opts, name: "" }).text;
+    expect(noName).not.toContain("{name}");
+    expect(PHRASES.en.late.map((p) => p.replace("{name}", ""))).toContain(noName);
+  });
+
+  test("different seeds give different greetings", () => {
+    const texts = new Set([0.05, 0.25, 0.45, 0.65, 0.85].map((seed) => greet("ru", at("2026-10-20T19:00"), { ...opts, seed }).text));
+    expect(texts.size).toBeGreaterThan(2);
+  });
+
+  test("occasions and birthday", () => {
+    expect(occasionOf(at("2026-08-31T12:00"), "")).toBe("mikuBirthday");
+    expect(occasionOf(at("2026-03-09T12:00"), "")).toBe("mikuDay");
+    expect(occasionOf(at("2027-01-01T00:30"), "")).toBe("newYear");
+    expect(occasionOf(at("2026-08-31T12:00"), "2010-08-31")).toBe("birthday");
+    expect(occasionOf(at("2027-02-28T12:00"), "2008-02-29")).toBe("birthday");
+    const g = greet("ru", at("2026-08-31T12:00"), { ...opts, birthday: "2010-08-31", seed: 0.99 });
+    expect(g.occasion).toBe("birthday");
+    expect(g.text).toContain("Вадим");
+    expect(ageOn("2010-08-31", at("2026-08-31T12:00"))).toBe(16);
+  });
+
+  test("birthday countdown during the last week", () => {
+    expect(daysUntilBirthday("2010-10-23", at("2026-10-20T12:00"))).toBe(3);
+    expect(daysUntilBirthday("2010-12-23", at("2026-10-20T12:00"))).toBeNull();
+    expect(daysUntilBirthday("2010-01-02", at("2026-12-30T12:00"))).toBe(3);
+    expect(greet("ru", at("2026-10-20T12:00"), { ...opts, birthday: "2010-10-23" }).soon).toContain("3");
+  });
+});
+
+describe("wallpaper carousel", () => {
+  const pl = (every: "tab" | "1h", shuffle = false) => ({ id: "p", name: "", items: ["img:a", "img:b", "img:c"], every, shuffle });
+
+  test("first open starts at the beginning", () => {
+    expect(nextIndex(pl("tab"), undefined, "open", 1000)).toMatchObject({ i: 0, changed: true });
+  });
+
+  test("every new tab moves on, timers wait for their interval", () => {
+    expect(nextIndex(pl("tab"), { i: 2, at: 0 }, "open", 10).i).toBe(0);
+    expect(nextIndex(pl("tab"), { i: 0, at: 0 }, "timer", 10_000_000).i).toBe(0);
+    expect(nextIndex(pl("1h"), { i: 0, at: 0 }, "open", 60_000).i).toBe(0);
+    expect(nextIndex(pl("1h"), { i: 0, at: 0 }, "timer", 3_600_000).i).toBe(1);
+    expect(nextIndex(pl("1h"), { i: 0, at: 0 }, "prev", 5).i).toBe(2);
+    expect(nextIndex(pl("1h"), { i: 1, at: 0 }, "next", 5).i).toBe(2);
+  });
+
+  test("shuffle never repeats the current picture", () => {
+    for (const r of [0, 0.3, 0.6, 0.99]) expect(nextIndex(pl("tab", true), { i: 1, at: 0 }, "next", 5, () => r).i).not.toBe(1);
+  });
+
+  test("a shrunk playlist never points past its end", () => {
+    expect(nextIndex(pl("1h"), { i: 9, at: 0 }, "open", 5).i).toBe(2);
   });
 });
 

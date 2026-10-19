@@ -1,5 +1,5 @@
-import { faviconUrl } from "../ext";
-import { greetingKey } from "../i18n";
+import { attachIcon } from "./favicons";
+import { greet, tagline } from "../greetings";
 import { PALETTES, THEME_IDS } from "../palette";
 import type { Shortcut } from "../settings";
 import { type Ctx, fmtDate, monogram, timeParts } from "./ctx";
@@ -40,13 +40,21 @@ export function brand(ctx: Ctx): HTMLElement {
 
 /** Live clock. The colon uses the accent so the time reads like a beat. */
 export function clock(ctx: Ctx, cls: string): HTMLElement {
-  const hh = h("span");
-  const mm = h("span");
+  const hh = h("span", { class: "clock-digits" });
+  const mm = h("span", { class: "clock-digits" });
   const ss = h("span", { class: "clock-sec" });
   const suffix = h("span", { class: "clock-suffix" });
   const el = h("time", { class: `clock ${cls}` }, hh, h("span", { class: "clock-colon", text: ":" }), mm, ctx.s.seconds ? ss : null, suffix);
   ctx.tick((now) => {
     const t = timeParts(now, ctx.s.clock24);
+    // A soft slide whenever the minute (or hour) turns over.
+    for (const [node, value] of [[hh, t.hh], [mm, t.mm]] as const) {
+      if (node.textContent && node.textContent !== value) {
+        node.classList.remove("flip");
+        void node.offsetWidth;
+        node.classList.add("flip");
+      }
+    }
     hh.textContent = t.hh;
     mm.textContent = t.mm;
     ss.textContent = t.ss;
@@ -64,12 +72,22 @@ export function dateLine(ctx: Ctx, cls: string, opts: Intl.DateTimeFormatOptions
   return el;
 }
 
-export function greeting(ctx: Ctx, cls: string, extra?: string): HTMLElement {
-  const el = h("div", { class: cls });
+/** A greeting picked from a bank per time of day, weekday and occasion; `kind` adds the layout's tagline. */
+export function greeting(ctx: Ctx, cls: string, kind?: "stage" | "zen"): HTMLElement {
+  const main = h("span", { class: "greet-main" });
+  const soon = h("span", { class: "greet-soon", attrs: { hidden: true } });
+  const el = h("div", { class: `greet ${cls}` }, main, soon);
+  let last = "";
   ctx.tick((now) => {
-    const base = ctx.t(greetingKey(now.getHours()));
-    const named = ctx.s.name.trim() ? `${base}${ctx.t("nameSep")}${ctx.s.name.trim()}` : base;
-    el.textContent = extra ? `${named}. ${extra}` : `${named}.`;
+    const g = greet(ctx.i18n.lang, now, { name: ctx.s.name, birthday: ctx.s.birthday, seed: ctx.seed, sep: ctx.t("nameSep"), intl: ctx.i18n.intl });
+    const text = kind ? `${g.text} ${tagline(ctx.i18n.lang, kind, ctx.seed)}` : g.text;
+    if (text !== last) {
+      last = text;
+      main.textContent = text;
+      el.classList.toggle("festive", !!g.occasion);
+    }
+    soon.hidden = !g.soon;
+    soon.textContent = g.soon ?? "";
   });
   return el;
 }
@@ -87,9 +105,9 @@ export function equalizer(bars = 56): HTMLElement {
 }
 
 function face(ctx: Ctx, sc: Shortcut, cls: string): HTMLElement {
-  const fav = ctx.s.favicons ? faviconUrl(sc.url) : null;
-  if (fav) return h("span", { class: `${cls} has-img` }, h("img", { attrs: { src: fav, alt: "", width: 32, height: 32, loading: "lazy" } }));
-  return h("span", { class: cls, text: monogram(sc.name) });
+  const el = h("span", { class: cls }, h("span", { class: "letter", text: monogram(sc.name) }));
+  attachIcon(el, sc.url, ctx.s.icons);
+  return el;
 }
 
 function addTile(ctx: Ctx, cls: string): HTMLElement {
@@ -105,7 +123,7 @@ export function shortcuts(ctx: Ctx, style: ShortcutStyle, limit = 48): HTMLEleme
   const label = ctx.t("w_shortcuts");
   if (style === "setlist") {
     return h("nav", { class: "setlist", attrs: { "aria-label": label } },
-      list.map((sc, i) => h("a", { class: "track", attrs: { href: sc.url, title: sc.url } },
+      list.map((sc, i) => h("a", { class: "track", style: { "--i": String(i) }, attrs: { href: sc.url, title: sc.url } },
         h("span", { class: "track-no mono", text: String(i + 1).padStart(2, "0") }),
         face(ctx, sc, "track-face"),
         h("span", { class: "track-name", text: sc.name }))),
