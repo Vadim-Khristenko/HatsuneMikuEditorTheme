@@ -1,4 +1,4 @@
-import { permissions, storage, tabs, type AudibleTab } from "../ext";
+import { dataConsent, permissions, storage, tabs, type AudibleTab } from "../ext";
 import { format, idle, pause, remaining, settle, start, type PomoState } from "../pomodoro";
 import { uid, type WidgetId } from "../settings";
 import { forecast, type Forecast, type Sky, skyLabel } from "../weather";
@@ -45,9 +45,11 @@ function loadForecast(ctx: Ctx): Promise<Forecast> | null {
 export function weatherWidget(ctx: Ctx, variant: Variant): HTMLElement {
   const body = h("div", { class: "w-body" });
   const el = variant === "mini" ? h("section", { class: "card mini w-weather", attrs: { "aria-label": ctx.t("w_weather") } }, body) : card(ctx, "weather", "", body);
-  const pending = loadForecast(ctx);
+  // A city picked before consent was withdrawn in about:addons stays put, but is not sent anywhere.
+  const pending = dataConsent.has("locationInfo") ? loadForecast(ctx) : null;
   if (!pending) {
-    body.append(button(ctx.t("weatherSetCity"), { class: "w-empty link-btn", on: { click: () => ctx.openSettings("weather") } }));
+    const hint = ctx.s.weather.lat === null ? "weatherSetCity" : "weatherConsent";
+    body.append(button(ctx.t(hint), { class: "w-empty link-btn", on: { click: () => ctx.openSettings("weather") } }));
     return el;
   }
   body.append(h("span", { class: "w-loading", text: "…" }));

@@ -119,6 +119,68 @@ export const permissions = {
   },
 };
 
+/** The pattern a host permission is granted for: one site, both schemes. */
+export const originPattern = (pageUrl: string): string | null => {
+  try {
+    const u = new URL(pageUrl);
+    return /^https?:$/.test(u.protocol) ? `*://${u.hostname}/*` : null;
+  } catch {
+    return null;
+  }
+};
+
+/** Access to the sites behind the shortcuts, asked per site so the prompt names them. */
+export const siteAccess = {
+  available: isExtension && !!api?.permissions?.request,
+  async has(pageUrl: string): Promise<boolean> {
+    const o = originPattern(pageUrl);
+    if (!o || !api?.permissions?.contains) return false;
+    return api.permissions.contains({ origins: [o] }).catch(() => false);
+  },
+  /** Call it first thing in a click or change handler, or the browser will not show the prompt. */
+  async request(pageUrls: string[]): Promise<boolean> {
+    const origins = [...new Set(pageUrls.map(originPattern).filter((o): o is string => !!o))];
+    if (!origins.length || !api?.permissions?.request) return false;
+    return api.permissions.request({ origins }).catch(() => false);
+  },
+};
+
+/** Data that leaves the browser, named the way Firefox names it in its consent prompt. */
+export type DataKind = "locationInfo" | "browsingActivity";
+
+const grantedData = new Set<string>();
+
+/**
+ * Firefox (and Zen) ask the user before an add-on sends anything out: the city goes to
+ * Open-Meteo, site domains go to an icon service. Other browsers have no such prompt.
+ */
+export const dataConsent = {
+  /** Reads what the user already allowed. Runs once before the first render. */
+  async load(): Promise<void> {
+    if (!isFirefox || !api?.permissions?.getAll) return;
+    const all = await api.permissions.getAll().catch(() => null);
+    grantedData.clear();
+    for (const k of all?.data_collection ?? []) grantedData.add(k);
+    if (!consentHooked) {
+      consentHooked = true;
+      api.permissions.onAdded?.addListener((p: any) => { for (const k of p?.data_collection ?? []) grantedData.add(k); });
+      api.permissions.onRemoved?.addListener((p: any) => { for (const k of p?.data_collection ?? []) grantedData.delete(k); });
+    }
+  },
+  has(kind: DataKind): boolean {
+    return !isFirefox || grantedData.has(kind);
+  },
+  /** Call it first thing in a click or submit handler, or Firefox will not show the prompt. */
+  async request(kind: DataKind): Promise<boolean> {
+    if (!isFirefox || grantedData.has(kind)) return true;
+    if (!api?.permissions?.request) return false;
+    const ok: boolean = await api.permissions.request({ data_collection: [kind] }).catch(() => false);
+    if (ok) grantedData.add(kind);
+    return ok;
+  },
+};
+let consentHooked = false;
+
 export type GenericFamily = "standard" | "sansserif" | "serif" | "fixed";
 
 export const fontSettings = {

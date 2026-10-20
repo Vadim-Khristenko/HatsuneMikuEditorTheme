@@ -8,8 +8,8 @@ The same four palettes, now for the browser. A new tab page with four layouts, r
 |---|---|---|
 | HatsuneMikuEditor | Chrome, Helium, Edge, Brave, any Chromium | New tab: layouts, widgets, bangs, theme switcher, fonts |
 | HatsuneMikuEditor (Colorful Browser) | Chromium | Colors the window itself: tabs, toolbar, address bar. One package per variant |
-| HatsuneMikuEditor for Firefox | Firefox, Zen | The same new tab, and it recolors the whole window when you switch themes |
-| Zen mod | Zen | Sidebar, tabs and URL bar styling, see `zen/readme.md` |
+| HatsuneMikuEditor for Firefox | Firefox, Zen, Firefox for Android | The same new tab, and it recolors the whole window when you switch themes |
+| Zen mod | Zen | Sidebar, tabs and URL bar styling, installed through Sine, see [zen/readme.md](zen/readme.md) |
 
 Why two Chromium packages: Chromium only lets a theme package recolor the browser frame, and a theme package cannot contain any code. So the new tab is one extension and the frame colors are a second, tiny one. Firefox has no such limit, so there it is a single extension.
 
@@ -40,7 +40,17 @@ Clock, weather (Open-Meteo, no key, only after you choose a city), calendar with
 
 ## Shortcut icons
 
-Icons are preloaded and fade in. Automatic mode asks the browser cache first (private) and skips Chromium's generic globe, then DuckDuckGo's icon service. Google (sharpest), cache only, DuckDuckGo only and plain letters are there too. Remote services only ever see the domain.
+Icons are preloaded and fade in. Settings, Shortcuts, Icons picks where they come from:
+
+| Mode | Where the icon comes from |
+|---|---|
+| Automatic | The browser cache first (private, Chromium only), skipping Chromium's generic globe; then the site itself if you gave access to it; then DuckDuckGo |
+| From the site itself | The shortcut's own page: the largest of its `<link rel="icon">`, `apple-touch-icon` and web app manifest icons, falling back to `/favicon.ico` |
+| Browser cache only | Chromium's favicon cache, nothing leaves the browser |
+| DuckDuckGo, Google | Their icon services; Google's are the sharpest |
+| Letters | No pictures at all |
+
+"From the site itself" asks the browser for access to the sites of your shortcuts, by name, the moment you pick it or add a shortcut. The page is fetched without cookies, and what it found is kept for a week. Remote icon services only ever see the domain. In Firefox they also wait for your consent in Firefox's own data prompt; until then tiles show letters.
 
 ## Wallpapers
 
@@ -53,6 +63,13 @@ Russian, English and Chinese. Auto follows the browser, or pick one in settings.
 ## Fonts
 
 The page ships Onest, Unbounded, JetBrains Mono and M PLUS Rounded 1c locally, no requests to Google. In Chromium the extension can also set the default fonts that websites use (standard, sans, serif, monospace) through `chrome.fontSettings`. Only fonts installed on your computer can be used there; that is a browser rule. Firefox has no such API.
+
+## Install
+
+- **Firefox and Zen:** from addons.mozilla.org once the listing is approved, or the `hatsune-miku-editor-firefox-*.zip` from [the releases](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/releases/latest) through `about:debugging`, Load Temporary Add-on.
+- **Firefox for Android:** from addons.mozilla.org on the phone. Android does not let add-ons replace the new tab, so the page opens from the menu: Extensions, HatsuneMikuEditor. Browser search and window colors are desktop only there; the page searches with the engine picked in its settings.
+- **Chrome, Helium, Edge, Brave:** unpack `hatsune-miku-editor-chromium-*.zip`, open `chrome://extensions`, turn on Developer mode, Load unpacked. For frame colors also load one `hatsune-miku-colorful-browser-*` package.
+- **Zen window colors:** the Zen mod through Sine, step by step with fixes for a failing installer in [zen/readme.md](zen/readme.md) (по-русски: [zen/readme.ru.md](zen/readme.ru.md)).
 
 ## Install from source
 
@@ -75,8 +92,11 @@ bun run package:browser        # zips in dist/
 | favicon (Chromium) | Optional site icons on shortcuts |
 | theme (Firefox) | Recolor the window when you switch themes |
 | tabs (optional) | Track titles in Now playing, asked only when you click |
+| access to a site (optional) | "From the site itself" icons, asked per shortcut site |
 
-No analytics, no remote code. Network requests: weather after you pick a city, and shortcut icons from DuckDuckGo or Google only if the icon mode uses them.
+No analytics, no remote code. Network requests: weather after you pick a city, shortcut icons from DuckDuckGo or Google only if the icon mode uses them, and the shortcut sites themselves in "From the site itself" mode.
+
+In Firefox the add-on declares no required data collection. Weather (the city goes to Open-Meteo, `locationInfo`) and remote icons (site domains go to DuckDuckGo or Google, `browsingActivity`) are optional, and Firefox asks for each the first time you use it. You can withdraw either in `about:addons`, and the page goes back to letters and an empty weather card.
 
 ## Development
 

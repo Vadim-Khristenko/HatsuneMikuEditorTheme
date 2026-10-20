@@ -36,6 +36,8 @@ function manifest(target: "chromium" | "firefox") {
     icons: ICONS,
     chrome_url_overrides: { newtab: "newtab.html" },
     optional_permissions: ["tabs"],
+    // "Icons from the site" reads a shortcut's own page; access is asked per site, never for all.
+    optional_host_permissions: ["*://*/*"],
   };
   if (target === "chromium") {
     return { ...base, minimum_chrome_version: "116", permissions: ["storage", "search", "fontSettings", "favicon"] };
@@ -44,12 +46,17 @@ function manifest(target: "chromium" | "firefox") {
     ...base,
     permissions: ["storage", "search", "theme"],
     background: { scripts: ["background.js"], type: "module" },
+    // Firefox for Android has no new tab override; this button opens the page there.
+    action: { default_title: "Miku Tab", default_icon: ICONS },
     browser_specific_settings: {
       gecko: {
         id: "hatsune-miku-editor@vai-rice.space",
         strict_min_version: "140.0",
-        data_collection_permissions: { required: ["none"] },
+        // Nothing leaves the browser until the user asks for weather or remote icons.
+        data_collection_permissions: { required: ["none"], optional: ["locationInfo", "browsingActivity"] },
       },
+      // Built-in data consent reaches Android in 142.
+      gecko_android: { strict_min_version: "142.0" },
     },
   };
 }
@@ -128,7 +135,8 @@ function zenMod(): string {
     id: "hatsune-miku-editor",
     name: "HatsuneMikuEditor",
     description: "Miku and Sakura colors for Zen: sidebar, tabs, toolbar and URL bar. Pairs with the HatsuneMikuEditor new tab.",
-    homepage: "https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme",
+    // Sine fetches updates from `${homepage}/theme.json`, so this has to name the branch and the folder.
+    homepage: "https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/tree/master/browser/zen",
     style: "chrome.css",
     readme: "readme.md",
     preferences: "preferences.json",

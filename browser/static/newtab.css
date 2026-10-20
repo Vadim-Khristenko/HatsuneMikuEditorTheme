@@ -390,7 +390,9 @@ select.field option { background: var(--card); color: var(--fg); }
 .dock { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
 .dock-item { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; background: var(--glass); border: 1px solid var(--line); color: var(--fg); backdrop-filter: blur(12px); transition: transform .2s var(--ease), border-color .2s; }
 .dock-item:hover, .dock-item:focus-visible { transform: translateY(-3px); border-color: var(--accent); color: var(--accent); }
-.dock-face { font-weight: 600; font-size: 16px; }
+.dock-face { font-weight: 600; font-size: 16px; display: grid; place-items: center; }
+/* The round dock item is the frame already; a painted face would show as a box behind the icon. */
+.dock-face.has-img { background: none !important; box-shadow: none; }
 .dock-item.add { padding: 0; border-style: dashed; color: var(--muted); }
 .dock-item.add .ico { width: 20px; height: 20px; }
 .zen-drawer {
