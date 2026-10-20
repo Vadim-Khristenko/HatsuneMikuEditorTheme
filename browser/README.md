@@ -38,6 +38,14 @@ Clock, weather (Open-Meteo, no key, only after you choose a city), calendar with
 - Add your birthday (the year is optional) and the page congratulates you, knows your age, rains confetti, and counts down the last week before it.
 - Soft entrances, a minute flip on the clock, cross-fades between themes and layouts (View Transitions). One switch turns all motion off, and the system "reduce motion" setting is respected.
 
+## Shortcuts
+
+One editor adds and edits them: the name first, then the address, the picture on the left. It opens from the plus tile, from a row in Settings, Shortcuts, and in Bento's edit mode from a click on any tile.
+
+The address has to be something a browser can reach: `site.com` and any custom zone (`nas.lan`, `router.home.arpa`), `localhost` and `*.localhost`, IPv4 and IPv6 (`::1` gets its brackets). A port and a path are fine. Local hosts default to `http://`, public names to `https://`.
+
+The picture can be your own: upload any PNG, JPEG, WebP or SVG and it is cut down to a 128 px square that lives in the settings, or link to an image. A picture with transparent corners keeps a margin like a logo, anything else covers the tile.
+
 ## Shortcut icons
 
 Icons are preloaded and fade in. Settings, Shortcuts, Icons picks where they come from:

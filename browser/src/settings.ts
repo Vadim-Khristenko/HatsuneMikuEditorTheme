@@ -1,3 +1,4 @@
+import { parseAddress } from "./address";
 import { THEME_IDS, type ThemeId } from "./palette";
 
 export const LAYOUTS = ["stage", "score", "bento", "zen"] as const;
@@ -26,7 +27,8 @@ export type WidgetId = (typeof WIDGETS)[number];
 export const WALLPAPERS = ["art", "bundled", "playlist", "none"] as const;
 export type WallpaperKind = (typeof WALLPAPERS)[number];
 
-export interface Shortcut { id: string; name: string; url: string }
+/** `icon` is the user's own picture: a small data: URL from an upload, or an image link. `fill` lets it cover the tile. */
+export interface Shortcut { id: string; name: string; url: string; icon?: string; fill?: boolean }
 export interface Todo { id: string; text: string; done: boolean }
 export interface CalEvent { id: string; date: string; time: string; title: string }
 export interface CustomEngine { id: string; name: string; url: string }
@@ -128,7 +130,8 @@ export function uid(): string {
 export function normalizeUrl(input: string): string | null {
   const s = input.trim();
   if (!s) return null;
-  const withScheme = /^[a-z][a-z0-9+.-]*:/i.test(s) ? s : `https://${s}`;
+  // "localhost:3000" is a host and a port, not a scheme.
+  const withScheme = /^[a-z][a-z0-9+.-]*:\/\//i.test(s) || /^https?:/i.test(s) ? s : `https://${s}`;
   try {
     const u = new URL(withScheme);
     if (!["http:", "https:"].includes(u.protocol) || !u.hostname) return null;
@@ -136,6 +139,16 @@ export function normalizeUrl(input: string): string | null {
   } catch {
     return null;
   }
+}
+
+const ICON_DATA_RE = /^data:image\/(png|jpeg|webp);base64,[A-Za-z0-9+/]+=*$/;
+export const ICON_DATA_MAX = 200_000;
+
+/** A shortcut picture: an uploaded raster as a data: URL, or an http(s) image link. */
+export function iconSrc(v: unknown): string | null {
+  if (typeof v !== "string") return null;
+  if (v.startsWith("data:")) return v.length <= ICON_DATA_MAX && ICON_DATA_RE.test(v) ? v : null;
+  return v.length <= 2000 && /^https?:\/\//i.test(v) ? parseAddress(v) : null;
 }
 
 /** Accepts anything (storage, an imported backup) and returns a valid Settings object. */
@@ -161,7 +174,13 @@ export function normalize(input: unknown): Settings {
         const url = normalizeUrl(str(s.url, ""));
         if (!url) return [];
         const name = str(s.name, "", 40).trim() || new URL(url).hostname.replace(/^www\./, "");
-        return [{ id: str(s.id, "", 20) || uid(), name, url }];
+        const sc: Shortcut = { id: str(s.id, "", 20) || uid(), name, url };
+        const icon = iconSrc(s.icon);
+        if (icon) {
+          sc.icon = icon;
+          if (s.fill === true) sc.fill = true;
+        }
+        return [sc];
       }).slice(0, 48)
     : d.shortcuts;
 

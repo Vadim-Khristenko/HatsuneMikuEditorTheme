@@ -33,7 +33,7 @@ CI runs on every push. Tag `v*` builds a release with all artifacts.
 |---|---|---|---|
 | VS Code | `vsc/` | `dist/hatsune-miku-vsc-*.vsix` | Install from VSIX or `bun run package:vsc` |
 | Zed | `zed/` | `dist/zed-*.zip` | Unpack the zip, then Zed → Install Dev Extension and pick the folder. Marketplace is coming, I am working on it. |
-| JetBrains | `jetbrains/` | `dist/jetbrains-*.zip` | Settings → Plugins → Install Plugin from Disk |
+| JetBrains | `jetbrains/` | `dist/jetbrains-*.zip` | Settings → Plugins → Install Plugin from Disk. Comes with a wallpaper: Settings → Appearance & Behavior → Hatsune Miku |
 | Neovim | `neovim/` | `dist/neovim-*.zip` | Copy to `~/.config/nvim/colors/`, then `:colorscheme hatsune-miku` |
 | Sublime Text | `sublime/` | `dist/sublime-*.zip` | Preferences → Color Scheme |
 | Notepad++ | `notepadpp/` | `dist/notepadpp-*.zip` | Settings → Import → Import style theme(s) |

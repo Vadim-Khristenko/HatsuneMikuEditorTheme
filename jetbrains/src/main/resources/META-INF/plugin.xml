@@ -1,18 +1,33 @@
 <idea-plugin>
   <id>com.github.vadimkhristenko.hatsunemikutheme</id>
   <name>Hatsune Miku Theme</name>
-  <version>0.2.2</version>
+  <version>0.2.3</version>
   <vendor url="https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme" email="vadim@vai-rice.space">Vadim Khristenko</vendor>
-  <idea-version since-build="231" until-build="262.*"/>
+  <idea-version since-build="242" until-build="262.*"/>
   <description><![CDATA[
     Hatsune Miku color themes (Miku Dark/Light, Sakura Dark/Light) for
     IntelliJ Platform IDEs. Inspired by Hatsune Miku.
+    <br/><br/>
+    Wallpapers too: <b>Settings | Appearance &amp; Behavior | Hatsune Miku</b> puts the drawn Miku art,
+    painted for the current theme, or your own picture behind the editor or the whole window.
+    <b>View | Appearance | Hatsune Miku Wallpaper</b> turns it on and off.
   ]]></description>
   <depends>com.intellij.modules.platform</depends>
+  <resource-bundle>messages.MikuBundle</resource-bundle>
   <extensions defaultExtensionNs="com.intellij">
     <themeProvider id="hatsunemiku.dark" path="/themes/hatsuneMikuDark.theme.json"/>
     <themeProvider id="hatsunemiku.light" path="/themes/hatsuneMikuLight.theme.json"/>
     <themeProvider id="hatsunemiku.sakuradark" path="/themes/hatsuneMikuSakuraDark.theme.json"/>
     <themeProvider id="hatsunemiku.sakuralight" path="/themes/hatsuneMikuSakuraLight.theme.json"/>
+    <applicationConfigurable parentId="appearance" id="hatsunemiku.wallpaper" key="settings.title"
+                             instance="com.github.vadimkhristenko.hatsunemikutheme.wallpaper.WallpaperConfigurable"/>
   </extensions>
+  <applicationListeners>
+    <listener class="com.github.vadimkhristenko.hatsunemikutheme.wallpaper.ThemeListener" topic="com.intellij.ide.ui.LafManagerListener"/>
+  </applicationListeners>
+  <actions>
+    <action id="HatsuneMiku.ToggleWallpaper" class="com.github.vadimkhristenko.hatsunemikutheme.wallpaper.ToggleWallpaperAction">
+      <add-to-group group-id="ViewAppearanceGroup" anchor="last"/>
+    </action>
+  </actions>
 </idea-plugin>

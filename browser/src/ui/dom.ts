@@ -64,6 +64,24 @@ export function button(label: string, props: Props = {}, ...children: Child[]): 
   return h("button", { ...props, attrs: { "aria-label": label, title: label, ...attrs } }, ...children);
 }
 
+/**
+ * Closes a modal on a click outside its box. Both the press and the release have to land outside,
+ * so selecting text in a field and letting go past the edge does not throw the dialog away.
+ */
+export function closeOnBackdrop(dialog: HTMLDialogElement): void {
+  const outside = (e: MouseEvent) => {
+    if (e.target !== dialog) return false;
+    const r = dialog.getBoundingClientRect();
+    return e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom;
+  };
+  let pressed = false;
+  dialog.addEventListener("pointerdown", (e) => { pressed = outside(e); });
+  dialog.addEventListener("click", (e) => {
+    if (pressed && outside(e)) dialog.close();
+    pressed = false;
+  });
+}
+
 export function srOnly(text: string): HTMLSpanElement {
   return h("span", { class: "sr", text });
 }
