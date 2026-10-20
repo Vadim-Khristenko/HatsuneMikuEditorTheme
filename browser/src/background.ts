@@ -13,4 +13,11 @@ async function paint(): Promise<void> {
 
 void paint();
 storage.onChanged((key) => { if (key === "settings") void paint(); });
+
+// Firefox for Android cannot replace the new tab, so the add-on button opens the page instead.
+// On desktop the same button is a shortcut to it.
+declare const browser: any; // eslint-disable-line @typescript-eslint/no-explicit-any
+browser?.action?.onClicked?.addListener(() => {
+  void browser.tabs.create({ url: browser.runtime.getURL("newtab.html") });
+});
 if (typeof matchMedia === "function") matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => void paint());

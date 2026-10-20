@@ -14,7 +14,7 @@ export type PresetEngine = (typeof ENGINES)[number];
 /** A preset id, or `custom:<id>` for one of the user's own engines. */
 export type EngineId = PresetEngine | `custom:${string}`;
 
-export const ICON_MODES = ["auto", "browser", "duckduckgo", "google", "letters"] as const;
+export const ICON_MODES = ["auto", "site", "browser", "duckduckgo", "google", "letters"] as const;
 export type IconMode = (typeof ICON_MODES)[number];
 
 export const ROTATIONS = ["tab", "5m", "15m", "1h", "1d"] as const;

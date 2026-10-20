@@ -1,4 +1,5 @@
-import { browserTheme, canBrowserSearch, fontSettings, type GenericFamily, isFirefox } from "../ext";
+import { browserTheme, canBrowserSearch, dataConsent, fontSettings, type GenericFamily, isFirefox, siteAccess } from "../ext";
+import { usesRemoteIcons } from "./favicons";
 import { LANG_NAMES, type Lang } from "../i18n";
 import type { MessageKey } from "../locales/en";
 import { PALETTES, THEME_IDS } from "../palette";
@@ -391,7 +392,13 @@ export class SettingsPanel {
     return section("shortcuts", t("s_shortcuts"),
       h("ul", { class: "sc-list" }, rows),
       button(t("addShortcut"), { class: "btn-ghost", on: { click: () => ctx.addShortcut() } }, icon(I.plus), h("span", { text: t("addShortcut") })),
-      field(t("iconsMode"), select(s.icons, ICON_MODES.filter((m) => m !== "browser" || !isFirefox).map((m): [IconMode, string] => [m, t(`icons_${m}` as MessageKey)]), (v) => ctx.store.update((x) => { x.icons = v; })), t("iconsHint")),
+      field(t("iconsMode"), select(s.icons, ICON_MODES.filter((m) => m !== "browser" || !isFirefox).map((m): [IconMode, string] => [m, t(`icons_${m}` as MessageKey)]), (v) => {
+        // The prompt has to come straight from the change; the tiles redraw once it is answered.
+        const asked = v === "site" ? siteAccess.request(ctx.s.shortcuts.map((sc) => sc.url))
+          : usesRemoteIcons(v) ? dataConsent.request("browsingActivity") : Promise.resolve(true);
+        void asked.finally(() => ctx.store.update((x) => { x.icons = v; }));
+      }), s.icons === "site" ? t("iconsSiteHint")
+        : usesRemoteIcons(s.icons) && !dataConsent.has("browsingActivity") ? t("iconsConsent") : t("iconsHint")),
     );
   }
 
@@ -401,6 +408,10 @@ export class SettingsPanel {
     const input = h("input", { class: "field", attrs: { id: "set-city", type: "search", value: s.weather.city, placeholder: t("city"), "aria-label": t("city") } });
     const results = h("ul", { class: "city-results" });
     const find = async () => {
+      if (!(await dataConsent.request("locationInfo"))) {
+        results.replaceChildren(h("li", { class: "muted small", text: t("weatherConsent") }));
+        return;
+      }
       results.replaceChildren(h("li", { class: "muted small", text: "…" }));
       const places = await findCity(input.value.trim(), ctx.i18n.lang).catch(() => []);
       results.replaceChildren(...(places.length ? places.map((p) => h("li", null, button(`${p.name}, ${p.country}`, {
@@ -483,7 +494,9 @@ export function addShortcutDialog(ctx: Ctx): void {
             url.reportValidity();
             return;
           }
-          ctx.store.update((s) => { s.shortcuts.push({ id: uid(), name: name.value.trim() || hostOf(u), url: u }); });
+          // In "from the site" mode the new site is asked for access right away, while the click still counts.
+          const asked = ctx.s.icons === "site" ? siteAccess.request([u]) : Promise.resolve(true);
+          void asked.finally(() => ctx.store.update((s) => { s.shortcuts.push({ id: uid(), name: name.value.trim() || hostOf(u), url: u }); }));
         },
       },
     },

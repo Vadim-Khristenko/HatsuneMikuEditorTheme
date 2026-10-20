@@ -1,6 +1,6 @@
 import type { BangIndex, BangRow } from "./bangs";
 import { buildIndex } from "./search";
-import { assetUrl, uiLanguage } from "./ext";
+import { assetUrl, dataConsent, uiLanguage } from "./ext";
 import { makeI18n, resolveLang } from "./i18n";
 import { Store } from "./store";
 import type { Ctx } from "./ui/ctx";
@@ -18,7 +18,7 @@ import type { Settings } from "./settings";
 import type { Palette } from "./palette";
 
 async function main(): Promise<void> {
-  const store = await Store.load();
+  const [store] = await Promise.all([Store.load(), dataConsent.load()]);
   preloadIcons(store.s.shortcuts, store.s.icons);
   const dark = matchMedia("(prefers-color-scheme: dark)");
   const root = document.getElementById("app")!;

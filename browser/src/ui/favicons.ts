@@ -1,20 +1,90 @@
-import { faviconUrl } from "../ext";
+import { dataConsent, faviconUrl, siteAccess } from "../ext";
 import type { IconMode, Shortcut } from "../settings";
+import { bestIcon, iconLinks, manifestIcons } from "../site-icon";
 import { hostOf } from "./ctx";
+
+/** Modes that may ask DuckDuckGo or Google for an icon, and so need consent in Firefox. */
+export const usesRemoteIcons = (mode: IconMode) => mode === "auto" || mode === "duckduckgo" || mode === "google";
+
+/** A source that is not a URL yet: the site's own page is read first to find its icon. */
+const SITE = "site:";
 
 /** Where to look for a site's icon, best first. Remote services only ever see the domain. */
 export function iconSources(url: string, mode: IconMode): string[] {
   if (mode === "letters") return [];
   const host = hostOf(url);
   const local = faviconUrl(url);
+  // Without consent in Firefox nothing leaves the browser, and the tile keeps its letter.
+  const remote = (src: string) => (dataConsent.has("browsingActivity") ? [src] : []);
+  const site = siteAccess.available ? [SITE + url] : [];
   const ddg = `https://icons.duckduckgo.com/ip3/${encodeURIComponent(host)}.ico`;
   const google = `https://www.google.com/s2/favicons?domain=${encodeURIComponent(host)}&sz=128`;
   switch (mode) {
     case "browser": return local ? [local] : [];
-    case "duckduckgo": return [ddg];
-    case "google": return [google];
-    case "auto": return local ? [local, ddg] : [ddg];
+    case "site": return site;
+    case "duckduckgo": return remote(ddg);
+    case "google": return remote(google);
+    // The site's own icon is used only where the user already gave access to that site.
+    case "auto": return [...(local ? [local] : []), ...site, ...remote(ddg)];
   }
+}
+
+const SITE_KEY = "hme:site-icons";
+const WEEK = 7 * 24 * 3600 * 1000;
+let siteCache: Record<string, { src: string | null; at: number }> = {};
+try {
+  siteCache = JSON.parse(localStorage.getItem(SITE_KEY) ?? "{}");
+} catch {
+  siteCache = {};
+}
+const cachedSite = (url: string): string | null | undefined => {
+  const hit = siteCache[url];
+  return hit && Date.now() - hit.at < (hit.src ? WEEK : WEEK / 7) ? hit.src : undefined;
+};
+
+async function fetchText(url: string, accept: string): Promise<{ text: string; url: string } | null> {
+  try {
+    // No cookies: the site sees a visit from nobody in particular.
+    const res = await fetch(url, { credentials: "omit", redirect: "follow", headers: { accept }, signal: AbortSignal.timeout(8000) });
+    if (!res.ok) return null;
+    return { text: (await res.text()).slice(0, 600_000), url: res.url || url };
+  } catch {
+    return null;
+  }
+}
+
+const inflight = new Map<string, Promise<string | null>>();
+
+/** Reads the shortcut's page and picks the largest icon it declares, the manifest included. */
+function resolveSite(pageUrl: string): Promise<string | null> {
+  const hit = cachedSite(pageUrl);
+  if (hit !== undefined) return Promise.resolve(hit);
+  let job = inflight.get(pageUrl);
+  if (job) return job;
+  job = (async () => {
+    if (!(await siteAccess.has(pageUrl))) return null;
+    const page = await fetchText(pageUrl, "text/html");
+    if (!page) return null;
+    const { icons, manifest } = iconLinks(page.text, page.url);
+    if (manifest && !icons.some((i) => i.size >= 128)) {
+      const m = await fetchText(manifest, "application/manifest+json, application/json");
+      try {
+        if (m) icons.push(...manifestIcons(JSON.parse(m.text), m.url));
+      } catch {
+        /* not JSON */
+      }
+    }
+    const src = bestIcon(icons) ?? new URL("/favicon.ico", page.url).href;
+    siteCache[pageUrl] = { src, at: Date.now() };
+    try {
+      localStorage.setItem(SITE_KEY, JSON.stringify(siteCache));
+    } catch {
+      /* storage blocked */
+    }
+    return src;
+  })().finally(() => inflight.delete(pageUrl));
+  inflight.set(pageUrl, job);
+  return job;
 }
 
 const KEY = "hme:icon-pick";
@@ -63,14 +133,15 @@ function globeSignature(): Promise<string | null> {
   return globe;
 }
 
-const isLocal = (src: string) => !/^https?:/.test(src);
+const isLocal = (src: string) => !/^https?:/.test(src) && !src.startsWith(SITE);
 
 /** Starts loading every icon right away, so tiles show them without a flash of letters. */
 export function preloadIcons(shortcuts: Shortcut[], mode: IconMode): void {
   for (const sc of shortcuts) {
     const srcs = iconSources(sc.url, mode);
     const first = picks[sc.url] && srcs.includes(picks[sc.url]) ? picks[sc.url] : srcs[0];
-    if (first) new Image().src = first;
+    const src = first?.startsWith(SITE) ? cachedSite(sc.url) : first;
+    if (src) new Image().src = src;
   }
 }
 
@@ -89,9 +160,20 @@ export function attachIcon(holder: HTMLElement, url: string, mode: IconMode): vo
   img.alt = "";
   img.decoding = "async";
   img.referrerPolicy = "no-referrer";
+  const load = () => {
+    const src = order[i];
+    if (!src.startsWith(SITE)) {
+      img.src = src;
+      return;
+    }
+    void resolveSite(url).then((found) => {
+      if (found) img.src = found;
+      else next();
+    });
+  };
   const next = () => {
     i += 1;
-    if (i < order.length) img.src = order[i];
+    if (i < order.length) load();
     else img.remove();
   };
   img.addEventListener("load", async () => {
@@ -106,6 +188,6 @@ export function attachIcon(holder: HTMLElement, url: string, mode: IconMode): vo
     img.classList.add("loaded");
   });
   img.addEventListener("error", next);
-  img.src = order[0];
+  load();
   holder.append(img);
 }
