@@ -50,7 +50,8 @@ function manifest(target: "chromium" | "firefox") {
     action: { default_title: "Miku Tab", default_icon: ICONS },
     browser_specific_settings: {
       gecko: {
-        id: "hatsune-miku-editor@vai-rice.space",
+        // hatsune-miku-editor@vai-rice.space was deleted on AMO, and AMO never takes a deleted ID back.
+        id: "hatsune-miku-tab@vai-rice.space",
         strict_min_version: "140.0",
         // Nothing leaves the browser until the user asks for weather or remote icons.
         data_collection_permissions: { required: ["none"], optional: ["locationInfo", "browsingActivity"] },
