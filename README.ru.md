@@ -33,7 +33,7 @@ CI на каждый пуш, релиз по тегу `v*`.
 |---|---|---|---|
 | VS Code | `vsc/` | `dist/hatsune-miku-vsc-*.vsix` | Установить из VSIX |
 | Zed | `zed/` | `dist/zed-*.zip` | Распаковать архив, затем Zed → Install Dev Extension и выбрать папку. Скоро попробую публикацию в маркетплейс Zed. |
-| JetBrains | `jetbrains/` | `dist/jetbrains-*.zip` | Install Plugin from Disk |
+| JetBrains | `jetbrains/` | `dist/jetbrains-*.zip` | Install Plugin from Disk. Есть обои: Settings → Appearance & Behavior → Hatsune Miku |
 | Neovim | `neovim/` | `dist/neovim-*.zip` | `:colorscheme hatsune-miku` |
 | Sublime | `sublime/` | `dist/sublime-*.zip` | Preferences → Color Scheme |
 | Notepad++ | `notepadpp/` | `dist/notepadpp-*.zip` | Опции → Импорт → Импортировать тему |

@@ -4,11 +4,13 @@ import { LANG_NAMES, type Lang } from "../i18n";
 import type { MessageKey } from "../locales/en";
 import { PALETTES, THEME_IDS } from "../palette";
 import { ENGINE_URLS } from "../search";
-import { ENGINES, FONTS, hasTerms, ICON_MODES, LAYOUTS, normalize, normalizeUrl, ROTATIONS, uid, WALLPAPERS, WIDGETS, type EngineId, type FontId, type IconMode, type Playlist, type Rotation } from "../settings";
+import { parseAddress } from "../address";
+import { ENGINES, FONTS, hasTerms, ICON_MODES, LAYOUTS, normalize, ROTATIONS, uid, WALLPAPERS, WIDGETS, type EngineId, type FontId, type IconMode, type Playlist, type Rotation, type Settings } from "../settings";
 import { bundledList, clearImages, deleteImage, itemUrl, saveImage } from "../wallpaper";
 import { findCity } from "../weather";
-import { type Ctx, FONT_STACKS, hostOf } from "./ctx";
-import { button, fill, h, icon } from "./dom";
+import { shortcutFace } from "./common";
+import { type Ctx, FONT_STACKS, hostOf, isoDate } from "./ctx";
+import { button, closeOnBackdrop, fill, h, icon } from "./dom";
 import { I } from "./icons";
 import { applyLook } from "./look";
 
@@ -52,17 +54,34 @@ const SECTION_TITLE: Record<Section, MessageKey> = {
   search: "s_search", shortcuts: "s_shortcuts", weather: "s_weather", lines: "s_lines", data: "s_data",
 };
 
+/** Text-like controls: a rebuild under them throws away the caret and whatever the browser is composing. */
+const isTyping = (el: Element | null) => el instanceof HTMLTextAreaElement || (el instanceof HTMLInputElement && !["checkbox", "radio", "range", "file", "button", "submit"].includes(el.type));
+
 export class SettingsPanel {
   private dialog: HTMLDialogElement;
   private content: HTMLElement;
   private nav: HTMLElement;
   private ctx!: Ctx;
+  /** Set by save(): the next refresh only takes the new context, the controls stay as they are. */
+  private keep = false;
+  private stale = false;
 
   constructor() {
     this.content = h("div", { class: "set-content" });
     this.nav = h("nav", { class: "set-nav" });
-    this.dialog = h("dialog", { class: "settings", on: { click: (e: MouseEvent) => { if (e.target === this.dialog) this.dialog.close(); } } },
-      h("div", { class: "set-shell" }, this.nav, this.content));
+    this.dialog = h("dialog", { class: "settings" }, h("div", { class: "set-shell" }, this.nav, this.content));
+    closeOnBackdrop(this.dialog);
+    // A change that arrived while the user was typing is drawn once the field is left,
+    // and after the click that left it, so the button under the pointer still gets that click.
+    let pressing = false;
+    this.dialog.addEventListener("pointerdown", () => { pressing = true; }, true);
+    this.dialog.addEventListener("pointerup", () => { setTimeout(() => { pressing = false; }, 0); }, true);
+    this.dialog.addEventListener("focusout", (e) => {
+      if (!this.stale || isTyping(e.relatedTarget as Element | null)) return;
+      const later = () => setTimeout(() => { if (this.stale && !isTyping(document.activeElement)) this.refresh(this.ctx); }, 0);
+      if (pressing) window.addEventListener("click", later, { once: true });
+      else later();
+    });
     document.body.append(this.dialog);
   }
 
@@ -70,8 +89,18 @@ export class SettingsPanel {
     return this.dialog.open;
   }
 
+  /** Saves what was typed into a field. The field already shows it, so the panel is not rebuilt under the cursor. */
+  private save(fn: (s: Settings) => void, redrawLater = false): void {
+    this.keep = true;
+    this.ctx.store.update(fn);
+    this.keep = false;
+    // Other controls show what was typed too (an engine name in the engine list): they catch up on focusout.
+    if (redrawLater) this.stale = true;
+  }
+
   open(ctx: Ctx, focus?: string): void {
     this.ctx = ctx;
+    this.stale = false;
     this.render();
     if (!this.dialog.open) this.dialog.showModal();
     const target = focus ? this.content.querySelector(`#set-${focus}`) : null;
@@ -83,6 +112,12 @@ export class SettingsPanel {
   refresh(ctx: Ctx): void {
     this.ctx = ctx;
     if (!this.dialog.open) return;
+    // Our own save, or something else (another tab, a late bangs list) while a field has the caret.
+    if (this.keep || isTyping(document.activeElement)) {
+      this.stale = !this.keep || this.stale;
+      return;
+    }
+    this.stale = false;
     const top = this.content.scrollTop;
     // Controls are rebuilt in the same order, so the focused one is found again by position.
     const focusables = () => [...this.dialog.querySelectorAll<HTMLElement>(FOCUSABLE)];
@@ -145,14 +180,28 @@ export class SettingsPanel {
     const { ctx } = this;
     const { t, s } = ctx;
     const name = h("input", { class: "field", attrs: { id: "set-name", type: "text", maxlength: 40, value: s.name, autocomplete: "given-name" } });
-    name.addEventListener("change", () => ctx.store.update((x) => { x.name = name.value; }));
-    const today = new Date().toISOString().slice(0, 10);
+    name.addEventListener("change", () => this.save((x) => { x.name = name.value; }));
+    const today = isoDate(new Date());
     const bday = h("input", { class: "field", attrs: { id: "set-bday", type: "date", value: s.birthday, min: "1900-01-01", max: today, autocomplete: "bday" } });
-    bday.addEventListener("change", () => ctx.store.update((x) => { x.birthday = bday.value; }));
+    const clearBday = button(t("clear"), { class: "btn-icon tiny", attrs: { hidden: !s.birthday }, on: { click: () => {
+      bday.value = "";
+      clearBday.hidden = true;
+      this.save((x) => { x.birthday = ""; });
+    } } }, icon(I.x));
+    // Chromium reports a full date after the first digit of the year (2 becomes 0002), so only
+    // a plausible year is saved, and the field is never rebuilt while the rest is typed.
+    const saveBday = () => {
+      const v = bday.value;
+      const year = Number(v.slice(0, 4));
+      if (v && (year < 1900 || v > today)) return;
+      clearBday.hidden = !v;
+      if (v !== this.ctx.s.birthday) this.save((x) => { x.birthday = v; });
+    };
+    bday.addEventListener("change", saveBday);
+    bday.addEventListener("blur", saveBday);
     return section("personal", t("s_personal"),
       field(t("yourName"), name, t("yourNameHint")),
-      field(t("birthday"), h("div", { class: "row" }, bday,
-        s.birthday ? button(t("clear"), { class: "btn-icon tiny", on: { click: () => ctx.store.update((x) => { x.birthday = ""; }) } }, icon(I.x)) : null), t("birthdayHint")),
+      field(t("birthday"), h("div", { class: "row" }, bday, clearBday), t("birthdayHint")),
       sw(t("clock24"), s.clock24, (v) => ctx.store.update((x) => { x.clock24 = v; })),
       sw(t("seconds"), s.seconds, (v) => ctx.store.update((x) => { x.seconds = v; })),
     );
@@ -246,7 +295,7 @@ export class SettingsPanel {
     if (!pl) return [tabs];
 
     const name = h("input", { class: "field", attrs: { type: "text", maxlength: 40, value: pl.name, placeholder: t("playlistDefault"), "aria-label": t("shortcutName") } });
-    name.addEventListener("change", () => edit((p) => { p.name = name.value.trim(); }));
+    name.addEventListener("change", () => this.save((x) => { const it = x.wallpaper.playlists.find((y) => y.id === pl.id); if (it) it.name = name.value.trim(); }));
     const files = h("input", { class: "sr", attrs: { type: "file", accept: "image/*", multiple: true, id: "set-wall-files" } });
     files.addEventListener("change", async () => {
       const added: string[] = [];
@@ -290,8 +339,16 @@ export class SettingsPanel {
     const { ctx } = this;
     const { t, s } = ctx;
     const num = (key: "focus" | "rest", label: string) => {
-      const n = h("input", { class: "field num", attrs: { type: "number", min: 1, max: key === "focus" ? 180 : 60, value: s.pomodoro[key] } });
-      n.addEventListener("change", () => ctx.store.update((x) => { x.pomodoro[key] = Number(n.value); }));
+      const max = key === "focus" ? 180 : 60;
+      const n = h("input", { class: "field num", attrs: { type: "number", min: 1, max, step: 1, value: s.pomodoro[key], inputmode: "numeric" } });
+      n.addEventListener("change", () => {
+        // An empty or half typed number keeps the old value; anything else is clamped in place.
+        if (n.value === "" || !Number.isFinite(n.valueAsNumber)) return;
+        const v = Math.min(max, Math.max(1, Math.round(n.valueAsNumber)));
+        if (String(v) !== n.value) n.value = String(v);
+        this.save((x) => { x.pomodoro[key] = v; });
+      });
+      n.addEventListener("blur", () => { if (n.value === "") n.value = String(this.ctx.s.pomodoro[key]); });
       return field(label, n);
     };
     return section("widgets", t("s_widgets"),
@@ -313,37 +370,55 @@ export class SettingsPanel {
     const mine = s.search.engines.map((e): [EngineId, string] => [`custom:${e.id}`, e.name]);
     const count = ctx.bangs()?.size ?? 10000;
 
-    const templateOk = (v: string, needTerms: boolean) => !!normalizeUrl(v.replace(/%s|\{searchTerms\}/g, "x")) && (!needTerms || hasTerms(v));
-    const row = (inputs: HTMLInputElement[], onRemove: () => void) => h("li", { class: "sc-row three" }, inputs,
-      button(t("remove"), { class: "btn-icon tiny", on: { click: onRemove } }, icon(I.trash)));
+    const target = (v: string) => parseAddress(v.trim().replace(/%s|\{searchTerms\}/g, "x"));
+    // "github.com/search?q=%s" is saved with the scheme the address check picked, and shown that way.
+    const withScheme = (input: HTMLInputElement, u: string) => {
+      const v = input.value.trim();
+      input.value = /^https?:\/\//i.test(v) ? v : `${u.slice(0, u.indexOf("//") + 2)}${v}`;
+      return input.value;
+    };
+    // Errors are shown under the row and never pull the caret back, unlike reportValidity().
+    const row = (inputs: HTMLInputElement[], err: HTMLElement, onRemove: () => void) => h("li", { class: "sc-edit" },
+      h("div", { class: "sc-row three" }, inputs, button(t("remove"), { class: "btn-icon tiny", on: { click: onRemove } }, icon(I.trash))), err);
+    const flag = (input: HTMLInputElement, err: HTMLElement, msg: string) => {
+      input.setAttribute("aria-invalid", String(!!msg));
+      err.textContent = msg;
+      return !msg;
+    };
 
     const engineRows = s.search.engines.map((e) => {
       const name = h("input", { class: "field", attrs: { type: "text", value: e.name, maxlength: 40, "aria-label": t("engineNameLabel") } });
-      const url = h("input", { class: "field", attrs: { type: "url", value: e.url, placeholder: "https://example.com/?q=%s", "aria-label": t("engineUrlLabel") } });
+      const url = h("input", { class: "field", attrs: { type: "text", inputmode: "url", spellcheck: "false", value: e.url, placeholder: "https://example.com/?q=%s", "aria-label": t("engineUrlLabel") } });
+      const err = h("p", { class: "field-error", attrs: { "aria-live": "polite" } });
       const commit = () => {
-        url.setCustomValidity(templateOk(url.value, true) ? "" : t("engineUrlLabel"));
-        if (!url.reportValidity()) return;
-        ctx.store.update((x) => { const it = x.search.engines.find((y) => y.id === e.id); if (it) { it.name = name.value.trim(); it.url = url.value.trim(); } });
+        const u = target(url.value);
+        if (!flag(url, err, !u ? t("badTemplate") : !hasTerms(url.value) ? t("needsTerms") : "")) return;
+        const full = withScheme(url, u!);
+        this.save((x) => { const it = x.search.engines.find((y) => y.id === e.id); if (it) { it.name = name.value.trim() || hostOf(u!); it.url = full; } }, true);
       };
       name.addEventListener("change", commit);
       url.addEventListener("change", commit);
-      return row([name, url], () => ctx.store.update((x) => {
+      return row([name, url], err, () => ctx.store.update((x) => {
         x.search.engines = x.search.engines.filter((y) => y.id !== e.id);
         if (x.search.engine === `custom:${e.id}`) x.search.engine = "browser";
       }));
     });
 
     const bangRows = s.search.myBangs.map((b) => {
-      const trig = h("input", { class: "field mono", attrs: { type: "text", value: `!${b.trigger}`, maxlength: 33, "aria-label": t("bangTrigger") } });
-      const url = h("input", { class: "field", attrs: { type: "url", value: b.url, placeholder: "https://example.com/?q=%s", "aria-label": t("engineUrlLabel") } });
+      const trig = h("input", { class: "field mono", attrs: { type: "text", value: `!${b.trigger}`, maxlength: 33, spellcheck: "false", "aria-label": t("bangTrigger") } });
+      const url = h("input", { class: "field", attrs: { type: "text", inputmode: "url", spellcheck: "false", value: b.url, placeholder: "https://example.com/?q=%s", "aria-label": t("engineUrlLabel") } });
+      const err = h("p", { class: "field-error", attrs: { "aria-live": "polite" } });
       const commit = () => {
-        url.setCustomValidity(templateOk(url.value, false) ? "" : t("badTemplate"));
-        if (!url.reportValidity()) return;
-        ctx.store.update((x) => { const it = x.search.myBangs.find((y) => y.id === b.id); if (it) { it.trigger = trig.value; it.url = url.value.trim(); it.name = hostOf(normalizeUrl(url.value.replace(/%s|\{searchTerms\}/g, "x")) ?? url.value); } });
+        const trigger = trig.value.trim().toLowerCase().replace(/^!+/, "");
+        const u = target(url.value);
+        if (!flag(trig, err, /^[^\s!]{1,32}$/.test(trigger) ? "" : t("badTrigger"))) return;
+        if (!flag(url, err, u ? "" : t("badTemplate"))) return;
+        const full = withScheme(url, u!);
+        this.save((x) => { const it = x.search.myBangs.find((y) => y.id === b.id); if (it) { it.trigger = trigger; it.url = full; it.name = hostOf(u!); } });
       };
       trig.addEventListener("change", commit);
       url.addEventListener("change", commit);
-      return row([trig, url], () => ctx.store.update((x) => { x.search.myBangs = x.search.myBangs.filter((y) => y.id !== b.id); }));
+      return row([trig, url], err, () => ctx.store.update((x) => { x.search.myBangs = x.search.myBangs.filter((y) => y.id !== b.id); }));
     });
 
     // New rows start as a valid placeholder the user then edits in place.
@@ -372,21 +447,16 @@ export class SettingsPanel {
   private shortcuts(): HTMLElement {
     const { ctx } = this;
     const { t, s } = ctx;
+    // Each row opens the same editor as the page: name, address and picture in one place.
     const rows = s.shortcuts.map((sc, i) => {
-      const name = h("input", { class: "field", attrs: { type: "text", value: sc.name, maxlength: 40, "aria-label": t("shortcutName") } });
-      const url = h("input", { class: "field", attrs: { type: "url", value: sc.url, "aria-label": t("shortcutUrl") } });
-      const commit = () => {
-        const u = normalizeUrl(url.value);
-        url.setCustomValidity(u ? "" : t("badUrl"));
-        if (!u) return url.reportValidity();
-        ctx.store.update((x) => { const it = x.shortcuts.find((y) => y.id === sc.id); if (it) { it.name = name.value.trim() || hostOf(u); it.url = u; } });
-      };
-      name.addEventListener("change", commit);
-      url.addEventListener("change", commit);
       const swap = (d: number) => ctx.store.update((x) => { const j = i + d; if (j < 0 || j >= x.shortcuts.length) return; [x.shortcuts[i], x.shortcuts[j]] = [x.shortcuts[j], x.shortcuts[i]]; });
-      return h("li", { class: "sc-row" }, name, url,
-        button(t("dragToMove"), { class: "btn-icon tiny", attrs: { disabled: i === 0 }, on: { click: () => swap(-1) } }, icon(I.up)),
-        button(t("dragToMove"), { class: "btn-icon tiny", attrs: { disabled: i === s.shortcuts.length - 1 }, on: { click: () => swap(1) } }, icon(I.down)),
+      return h("li", { class: "sc-item" },
+        h("button", { class: "sc-item-main", attrs: { type: "button", title: t("editShortcut") }, on: { click: () => ctx.editShortcut(sc.id) } },
+          shortcutFace(ctx, sc, "sc-item-face"),
+          h("span", { class: "sc-item-text" }, h("span", { class: "ellipsis", text: sc.name }), h("span", { class: "muted small ellipsis", text: sc.url.replace(/^https?:\/\//, "").replace(/\/$/, "") })),
+          icon(I.pencil, "ico sc-item-pen")),
+        button(t("moveUp"), { class: "btn-icon tiny", attrs: { disabled: i === 0 }, on: { click: () => swap(-1) } }, icon(I.up)),
+        button(t("moveDown"), { class: "btn-icon tiny", attrs: { disabled: i === s.shortcuts.length - 1 }, on: { click: () => swap(1) } }, icon(I.down)),
         button(t("remove"), { class: "btn-icon tiny", on: { click: () => ctx.store.update((x) => { x.shortcuts = x.shortcuts.filter((y) => y.id !== sc.id); }) } }, icon(I.trash)));
     });
     return section("shortcuts", t("s_shortcuts"),
@@ -436,7 +506,7 @@ export class SettingsPanel {
     const { t, s } = ctx;
     const area = h("textarea", { class: "field area", attrs: { rows: 6, placeholder: t("defaultLines").split("|").join("\n") } });
     area.value = s.lines.join("\n");
-    area.addEventListener("change", () => ctx.store.update((x) => { x.lines = area.value.split("\n").map((l) => l.trim()).filter(Boolean); }));
+    area.addEventListener("change", () => this.save((x) => { x.lines = area.value.split("\n").map((l) => l.trim()).filter(Boolean); }));
     return section("lines", t("s_lines"), h("p", { class: "hint", text: t("linesHint") }), area);
   }
 
@@ -477,38 +547,3 @@ export class SettingsPanel {
   }
 }
 
-/** Small modal to add a shortcut from the page itself. */
-export function addShortcutDialog(ctx: Ctx): void {
-  const { t } = ctx;
-  const name = h("input", { class: "field", attrs: { id: "add-sc-name", type: "text", maxlength: 40 } });
-  const url = h("input", { class: "field", attrs: { id: "add-sc-url", type: "text", required: true, placeholder: "github.com", inputmode: "url" } });
-  const dialog = h("dialog", { class: "mini-dialog", attrs: { "aria-labelledby": "add-sc-title" } },
-    h("form", {
-      attrs: { method: "dialog" },
-      on: {
-        submit: (e: SubmitEvent) => {
-          const u = normalizeUrl(url.value);
-          if (!u) {
-            e.preventDefault();
-            url.setCustomValidity(t("badUrl"));
-            url.reportValidity();
-            return;
-          }
-          // In "from the site" mode the new site is asked for access right away, while the click still counts.
-          const asked = ctx.s.icons === "site" ? siteAccess.request([u]) : Promise.resolve(true);
-          void asked.finally(() => ctx.store.update((s) => { s.shortcuts.push({ id: uid(), name: name.value.trim() || hostOf(u), url: u }); }));
-        },
-      },
-    },
-      h("h3", { attrs: { id: "add-sc-title" }, text: t("addShortcut") }),
-      h("label", { class: "field-col", attrs: { for: "add-sc-url" } }, h("span", { text: t("shortcutUrl") })), url,
-      h("label", { class: "field-col", attrs: { for: "add-sc-name" } }, h("span", { text: t("shortcutName") })), name,
-      h("div", { class: "row end" },
-        h("button", { class: "btn-ghost", attrs: { type: "button" }, on: { click: () => dialog.close() }, text: t("cancel") }),
-        h("button", { class: "btn-fill", attrs: { type: "submit" }, text: t("save") }))));
-  url.addEventListener("input", () => url.setCustomValidity(""));
-  dialog.addEventListener("close", () => dialog.remove());
-  document.body.append(dialog);
-  dialog.showModal();
-  url.focus();
-}

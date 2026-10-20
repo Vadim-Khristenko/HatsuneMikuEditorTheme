@@ -1,9 +1,9 @@
-import { attachIcon } from "./favicons";
+import { attachCustomIcon, attachIcon } from "./favicons";
 import { greet, tagline } from "../greetings";
 import { PALETTES, THEME_IDS } from "../palette";
 import type { Shortcut } from "../settings";
 import { type Ctx, fmtDate, monogram, timeParts } from "./ctx";
-import { button, h, icon } from "./dom";
+import { button, h, icon, type Props } from "./dom";
 import { I } from "./icons";
 
 export function themeSwitcher(ctx: Ctx, cls = ""): HTMLElement {
@@ -104,14 +104,32 @@ export function equalizer(bars = 56): HTMLElement {
   return h("div", { class: "eq", attrs: { "aria-hidden": "true" } }, items);
 }
 
-function face(ctx: Ctx, sc: Shortcut, cls: string): HTMLElement {
+/** The tile picture: the user's own one, else the site icon, with the first letter underneath. */
+export function shortcutFace(ctx: Ctx, sc: Pick<Shortcut, "name" | "url" | "icon" | "fill">, cls: string): HTMLElement {
   const el = h("span", { class: cls }, h("span", { class: "letter", text: monogram(sc.name) }));
-  attachIcon(el, sc.url, ctx.s.icons);
+  if (sc.icon) attachCustomIcon(el, sc.icon, !!sc.fill);
+  else attachIcon(el, sc.url, ctx.s.icons);
   return el;
 }
 
+const face = shortcutFace;
+
 function addTile(ctx: Ctx, cls: string): HTMLElement {
   return button(ctx.t("addShortcut"), { class: cls, on: { click: () => ctx.addShortcut() } }, icon(I.plus));
+}
+
+/** A shortcut link. In edit mode a click opens its editor instead of the site. */
+function tile(ctx: Ctx, sc: Shortcut, props: Props, ...children: Node[]): HTMLAnchorElement {
+  const a = h("a", { ...props, attrs: { href: sc.url, title: ctx.edit ? ctx.t("editShortcut") : sc.url, ...props.attrs } }, ...children);
+  if (ctx.edit) {
+    a.classList.add("sc-editable");
+    a.draggable = false;
+    a.addEventListener("click", (e) => {
+      e.preventDefault();
+      ctx.editShortcut(sc.id);
+    });
+  }
+  return a;
 }
 
 export type ShortcutStyle = "setlist" | "grid" | "dock" | "keys";
@@ -123,7 +141,7 @@ export function shortcuts(ctx: Ctx, style: ShortcutStyle, limit = 48): HTMLEleme
   const label = ctx.t("w_shortcuts");
   if (style === "setlist") {
     return h("nav", { class: "setlist", attrs: { "aria-label": label } },
-      list.map((sc, i) => h("a", { class: "track", style: { "--i": String(i) }, attrs: { href: sc.url, title: sc.url } },
+      list.map((sc, i) => tile(ctx, sc, { class: "track", style: { "--i": String(i) } },
         h("span", { class: "track-no mono", text: String(i + 1).padStart(2, "0") }),
         face(ctx, sc, "track-face"),
         h("span", { class: "track-name", text: sc.name }))),
@@ -131,18 +149,18 @@ export function shortcuts(ctx: Ctx, style: ShortcutStyle, limit = 48): HTMLEleme
   }
   if (style === "grid") {
     return h("nav", { class: "link-grid", attrs: { "aria-label": label } },
-      list.map((sc, i) => h("a", { class: "link", attrs: { href: sc.url, title: sc.url } },
+      list.map((sc, i) => tile(ctx, sc, { class: "link" },
         face(ctx, sc, `link-face ${i % 4 === 1 ? "solid" : ""}`),
         h("span", { class: "link-name", text: sc.name }))),
       addTile(ctx, "link add"));
   }
   if (style === "dock") {
     return h("nav", { class: "dock", attrs: { "aria-label": label } },
-      list.map((sc) => h("a", { class: "dock-item", attrs: { href: sc.url, title: sc.name, "aria-label": sc.name } }, face(ctx, sc, "dock-face"))),
+      list.map((sc) => tile(ctx, sc, { class: "dock-item", attrs: { title: sc.name, "aria-label": sc.name } }, face(ctx, sc, "dock-face"))),
       addTile(ctx, "dock-item add"));
   }
   // Piano: every shortcut is a white key; black keys sit where a real keyboard has them.
-  const keys = list.map((sc, i) => h("a", { class: "key", attrs: { href: sc.url, title: sc.url } },
+  const keys = list.map((sc, i) => tile(ctx, sc, { class: "key" },
     h("span", { class: "key-note mono", text: SOLFEGE[i % 7] }),
     face(ctx, sc, "key-face"),
     h("span", { class: "key-name", text: sc.name })));

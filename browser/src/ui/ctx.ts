@@ -23,6 +23,7 @@ export interface Ctx {
   setEdit(v: boolean): void;
   openSettings(section?: string): void;
   addShortcut(): void;
+  editShortcut(id: string): void;
   rerender(): void;
   /** Next or previous picture of the active wallpaper playlist. */
   wallStep(dir: 1 | -1): void;

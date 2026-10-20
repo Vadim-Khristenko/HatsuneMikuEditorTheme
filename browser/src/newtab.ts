@@ -12,7 +12,8 @@ import { installSearchHotkeys } from "./ui/search";
 import { celebrate } from "./ui/effects";
 import { preloadIcons } from "./ui/favicons";
 import { occasionOf } from "./greetings";
-import { addShortcutDialog, SettingsPanel } from "./ui/settings-panel";
+import { SettingsPanel } from "./ui/settings-panel";
+import { shortcutDialog } from "./ui/shortcut-dialog";
 import { bundledUrl, itemUrl, rotate, type Step, WallLayer } from "./wallpaper";
 import type { Settings } from "./settings";
 import type { Palette } from "./palette";
@@ -100,7 +101,8 @@ async function main(): Promise<void> {
       onDispose: (fn) => { disposers.push(fn); },
       setEdit: (v) => { edit = v; void render(); },
       openSettings: (section) => panel.open(ctx, section),
-      addShortcut: () => addShortcutDialog(ctx),
+      addShortcut: () => shortcutDialog(ctx),
+      editShortcut: (id) => shortcutDialog(ctx, id),
       rerender: () => void render(),
       wallStep: (dir) => void stepWall(dir > 0 ? "next" : "prev"),
     };

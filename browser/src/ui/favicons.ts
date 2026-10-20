@@ -138,11 +138,32 @@ const isLocal = (src: string) => !/^https?:/.test(src) && !src.startsWith(SITE);
 /** Starts loading every icon right away, so tiles show them without a flash of letters. */
 export function preloadIcons(shortcuts: Shortcut[], mode: IconMode): void {
   for (const sc of shortcuts) {
+    if (sc.icon) {
+      new Image().src = sc.icon;
+      continue;
+    }
     const srcs = iconSources(sc.url, mode);
     const first = picks[sc.url] && srcs.includes(picks[sc.url]) ? picks[sc.url] : srcs[0];
     const src = first?.startsWith(SITE) ? cachedSite(sc.url) : first;
     if (src) new Image().src = src;
   }
+}
+
+/** The user's own picture for a tile. When it does not load, the letter stays. */
+export function attachCustomIcon(holder: HTMLElement, src: string, fill: boolean): void {
+  const img = document.createElement("img");
+  img.className = "face-img";
+  img.alt = "";
+  img.decoding = "async";
+  img.referrerPolicy = "no-referrer";
+  img.addEventListener("load", () => {
+    holder.classList.add("has-img", "own-img");
+    holder.classList.toggle("img-fill", fill);
+    img.classList.add("loaded");
+  });
+  img.addEventListener("error", () => img.remove());
+  img.src = src;
+  holder.append(img);
 }
 
 /**

@@ -21,6 +21,12 @@ dependencies {
     }
 }
 
+// 2024.2 is the first platform on Java 21, which is also what the IDE jars we compile against need.
+tasks.withType<JavaCompile>().configureEach {
+    options.release.set(providers.gradleProperty("javaVersion").map { it.toInt() })
+    options.encoding = "UTF-8"
+}
+
 intellijPlatform {
     buildSearchableOptions = false
 

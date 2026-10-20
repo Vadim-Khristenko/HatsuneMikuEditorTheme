@@ -355,9 +355,13 @@ select.field option { background: var(--card); color: var(--fg); }
 /* C. Bento */
 .layout-bento { gap: 20px; }
 .layout-bento .topbar .search { flex: 1; max-width: none; }
-.bento-grid { flex: 1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: minmax(196px, auto); grid-auto-flow: dense; gap: 16px; }
+.bento-grid { flex: 1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: auto; grid-auto-flow: dense; align-content: start; gap: 16px; }
+.bento-grid > .card { min-height: 196px; }
 .bento-grid .hero, .bento-grid .wide { grid-column: span 2; }
 .bento-grid .tall { grid-row: span 2; }
+/* The line of the day is one sentence: a full-width strip, not a 196px box that pushes the page into a scroll. */
+.bento-grid > .w-line { grid-column: 1 / -1; min-height: 0; flex-direction: row; align-items: baseline; gap: 18px; padding: 14px 24px; border-radius: 20px; }
+.bento-grid > .w-line .line-text { font-size: 15px; color: var(--muted); min-width: 0; }
 .link-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; align-content: center; height: 100%; }
 .link { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 8px 4px; border-radius: 16px; transition: background-color .2s; }
 .link:hover, .link:focus-visible { background: var(--soft); }
@@ -393,6 +397,7 @@ select.field option { background: var(--card); color: var(--fg); }
 .dock-face { font-weight: 600; font-size: 16px; display: grid; place-items: center; }
 /* The round dock item is the frame already; a painted face would show as a box behind the icon. */
 .dock-face.has-img { background: none !important; box-shadow: none; }
+.dock-face.img-fill { width: 100%; height: 100%; border-radius: 50%; }
 .dock-item.add { padding: 0; border-style: dashed; color: var(--muted); }
 .dock-item.add .ico { width: 20px; height: 20px; }
 .zen-drawer {
@@ -509,6 +514,48 @@ dialog.settings[open] { animation: pop .25s var(--ease); }
 .mini-dialog h3 { margin: 0 0 8px; font-family: var(--font-display); font-size: 18px; font-weight: 500; }
 .field-col { font-size: 13px; color: var(--muted); margin-top: 6px; }
 .mini-dialog .row.end { margin-top: 14px; }
+.field[aria-invalid="true"] { border-color: var(--accent2); }
+.field[aria-invalid="true"]:focus { outline-color: var(--accent2); }
+.field-error { margin: 0; font-size: 13px; line-height: 1.4; color: var(--accent2); }
+.field-error:empty { display: none; }
+
+/* Shortcut editor: the picture on the left, name then address on the right */
+.sc-dialog { width: min(500px, 94vw); }
+.sc-editor { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 18px; align-items: start; }
+.sc-pic { display: flex; flex-direction: column; align-items: center; gap: 6px; padding-top: 24px; }
+.sc-preview { position: relative; display: block; width: 88px; height: 88px; border-radius: 24px; cursor: pointer; }
+.sc-preview:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.sc-preview-face, .sc-face { display: grid; place-items: center; width: 100%; height: 100%; border-radius: inherit; }
+.sc-face { position: relative; overflow: hidden; background: var(--soft); color: var(--accent); font-family: var(--font-display); font-weight: 500; font-size: 34px; }
+.sc-face img { width: 48px; height: 48px; border-radius: 10px; }
+.sc-preview-badge { position: absolute; right: -6px; bottom: -6px; width: 30px; height: 30px; display: grid; place-items: center; border-radius: 50%; background: var(--fill); color: var(--ink); box-shadow: 0 0 0 3px var(--card); transition: transform .2s var(--ease); }
+.sc-preview-badge .ico { width: 15px; height: 15px; }
+.sc-preview:hover .sc-preview-badge { transform: scale(1.1); }
+.sc-pic-tools { display: flex; gap: 2px; }
+.sc-pic-tools .btn-icon[aria-pressed="true"] { color: var(--accent); background: var(--soft); }
+.sc-fields { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.sc-link-row { display: flex; flex-direction: column; gap: 8px; }
+.sc-delete { margin-right: auto; }
+@media (max-width: 420px) {
+  .sc-editor { grid-template-columns: 1fr; }
+  .sc-pic { flex-direction: row; padding-top: 0; }
+}
+
+/* Shortcut list in settings */
+.sc-item { display: flex; align-items: center; gap: 4px; }
+.sc-item-main { flex: 1; min-width: 0; display: flex; align-items: center; gap: 12px; padding: 6px 12px 6px 6px; border: 1px solid var(--line); border-radius: 16px; background: var(--alt); color: var(--fg); text-align: left; transition: border-color .2s; }
+.sc-item-main:hover, .sc-item-main:focus-visible { border-color: var(--accent); }
+.sc-item-face { position: relative; flex: none; width: 38px; height: 38px; border-radius: 12px; display: grid; place-items: center; overflow: hidden; background: var(--soft); color: var(--accent); font-family: var(--font-display); font-weight: 500; }
+.sc-item-face img { width: 22px; height: 22px; border-radius: 5px; }
+.sc-item-text { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.sc-item-pen { width: 16px; height: 16px; color: var(--muted); opacity: 0; transition: opacity .2s; }
+.sc-item-main:hover .sc-item-pen, .sc-item-main:focus-visible .sc-item-pen { opacity: 1; }
+.sc-edit { display: flex; flex-direction: column; gap: 4px; }
+
+/* In edit mode a tile is a handle for its editor */
+.sc-editable { cursor: pointer; position: relative; }
+.sc-editable::after { content: ""; position: absolute; inset: 2px; border-radius: inherit; border: 1.5px dashed var(--line2); pointer-events: none; }
+.sc-editable:hover::after { border-color: var(--accent); }
 
 /* Motion: entrance, clock flips, theme cross-fades, special days */
 @keyframes rise { from { opacity: 0; transform: translateY(14px); } }
@@ -563,6 +610,11 @@ dialog.settings[open] { animation: pop .25s var(--ease); }
 .has-img > .letter { display: none; }
 .track-face, .link-face, .key-face, .dock-face { position: relative; }
 .track-face.has-img img, .link-face.has-img img, .key-face.has-img img { width: 28px; height: 28px; }
+/* The user's own picture: a covering one fills the whole tile, a logo on transparency keeps a margin. */
+.own-img { overflow: hidden; }
+.own-img.img-fill { box-shadow: none; }
+.has-img.img-fill > img.face-img { width: 100%; height: 100%; border-radius: inherit; object-fit: cover; }
+.sc-face.has-img.own-img:not(.img-fill) > img.face-img { width: 60px; height: 60px; }
 
 :root.no-motion *, :root.no-motion *::before, :root.no-motion *::after { animation: none !important; transition: none !important; }
 :root.no-motion #fx { display: none; }
