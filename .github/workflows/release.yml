@@ -2,8 +2,34 @@ name: Release
 on:
   push:
     tags: ["v*"]
+
+# A tag releases the ports whose version in release.json moved since the previous tag
+# (bun tools/release/release.ts prepare bumps only those). Every port is still built, so the
+# GitHub release always carries the full set, but the stores only hear about what changed.
 jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.plan.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - run: bun install --frozen-lockfile
+      - name: Versions agree with release.json and the tag
+        run: bun tools/release/release.ts check --tag "$GITHUB_REF_NAME"
+      - id: plan
+        name: Ports this tag releases
+        run: |
+          changed=$(bun tools/release/release.ts changed --tag "$GITHUB_REF_NAME")
+          echo "changed=$changed" >> "$GITHUB_OUTPUT"
+          echo "### Released ports: $changed" >> "$GITHUB_STEP_SUMMARY"
+
   build:
+    needs: plan
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -18,18 +44,6 @@ jobs:
           distribution: zulu
           java-version: 21
           cache: gradle
-      - name: Tag matches the version in every package
-        run: |
-          v="${GITHUB_REF_NAME#v}"
-          bad=0
-          for f in package.json vsc/package.json browser/zen/theme.json; do
-            got=$(node -p "require('./$f').version")
-            [ "$got" = "$v" ] || { echo "::error file=$f::version $got, tag says $v"; bad=1; }
-          done
-          grep -q "^version = \"$v\"" zed/extension.toml || { echo "::error file=zed/extension.toml::version is not $v"; bad=1; }
-          grep -q "^pluginVersion = $v" jetbrains/gradle.properties || { echo "::error file=jetbrains/gradle.properties::pluginVersion is not $v"; bad=1; }
-          grep -q "<version>$v</version>" jetbrains/src/main/resources/META-INF/plugin.xml || { echo "::error file=plugin.xml::version is not $v"; bad=1; }
-          exit $bad
       - run: bun install --frozen-lockfile
       - run: bun run check
       - if: matrix.pkg == 'browser'
@@ -40,103 +54,86 @@ jobs:
         with:
           name: ${{ matrix.pkg }}-dist
           path: dist/*
+
   release:
-    needs: build
+    needs: [plan, build]
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
       - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
       - uses: actions/setup-java@v5
+        if: contains(fromJSON(needs.plan.outputs.changed), 'jetbrains')
         with:
           distribution: zulu
           java-version: 21
           cache: gradle
+      - run: bun install --frozen-lockfile
       - uses: actions/download-artifact@v8
         with:
           path: dist
           merge-multiple: true
-      - name: Sign the Firefox add-on on AMO (unlisted)
+
+      - name: Firefox on addons.mozilla.org
+        if: contains(fromJSON(needs.plan.outputs.changed), 'browser')
         env:
-          AMO_JWT_ISSUER: ${{ secrets.AMO_JWT_ISSUER }}
-          AMO_JWT_SECRET: ${{ secrets.AMO_JWT_SECRET }}
+          FIREFOX_JWT_USER: ${{ secrets.FIREFOX_JWT_USER }}
+          FIREFOX_JWT_TOKEN: ${{ secrets.FIREFOX_JWT_TOKEN }}
         run: |
-          if [ -z "$AMO_JWT_ISSUER" ] || [ -z "$AMO_JWT_SECRET" ]; then
-            echo "AMO_JWT_ISSUER / AMO_JWT_SECRET not set, the Firefox build stays an unsigned zip"
+          if [ -z "$FIREFOX_JWT_USER" ] || [ -z "$FIREFOX_JWT_TOKEN" ]; then
+            echo "::warning::FIREFOX_JWT_USER / FIREFOX_JWT_TOKEN not set, the Firefox build stays an unsigned zip"
             exit 0
           fi
-          v="${GITHUB_REF_NAME#v}"
-          mkdir -p /tmp/firefox /tmp/signed
-          unzip -q "dist/hatsune-miku-editor-firefox-$v.zip" -d /tmp/firefox
-          if bun x web-ext@8 sign --source-dir /tmp/firefox --artifacts-dir /tmp/signed \
-               --channel unlisted --api-key "$AMO_JWT_ISSUER" --api-secret "$AMO_JWT_SECRET" \
-               --approval-timeout 900000; then
-            mv /tmp/signed/*.xpi "dist/hatsune-miku-editor-firefox-$v.xpi"
-          else
-            echo "::warning::AMO signing failed, the release keeps the unsigned zip"
-          fi
-      - name: Generate beautiful notes
-        run: |
-          v="${GITHUB_REF_NAME#v}"
-          cat > /tmp/notes.md << 'EOF'
-          ## Hatsune Miku themes: four looks, six editors, Telegram and your browser
+          v=$(node -p "require('./release.json').ports.browser")
+          bun tools/release/release.ts section --port browser --format text > /tmp/amo-notes.txt
+          # AMO reviews the human-readable source of bundled code: the browser port and what it imports.
+          git archive --format=zip -o /tmp/source.zip HEAD browser tools/jb-palette.json package.json bun.lock release.json
+          set +e
+          bun tools/release/amo.ts --addon hatsune-miku-tab@vai-rice.space \
+            --file "dist/hatsune-miku-editor-firefox-$v.zip" --source /tmp/source.zip \
+            --notes /tmp/amo-notes.txt --out "dist/hatsune-miku-editor-firefox-$v.xpi" \
+            --approval-notes "Build: bun install --frozen-lockfile && bun browser/build.ts --zip (Bun 1.3+). The add-on is browser/build/firefox." \
+            --wait 900
+          code=$?
+          set -e
+          case $code in
+            0) echo "Mozilla signed $v, the release carries the .xpi" ;;
+            3) echo "::warning::Firefox $v is listed and waits for Mozilla's review; the release keeps the unsigned zip" ;;
+            *) echo "::warning::AMO submission failed, the release keeps the unsigned zip" ;;
+          esac
 
-          One MIT license covers everything here. No separate fine print per editor.
+      - name: Release notes from the changelogs
+        run: bun tools/release/release.ts notes --tag "$GITHUB_REF_NAME" | tee /tmp/notes.md
 
-          **Variants**
-          - Miku Dark `#0d0e1a` / `#39c5bb`, deep navy, my daily
-          - Miku Light `#f0fafa` / `#007a72`, soft daylight
-          - Sakura Dark `#130d14` / `#e87ea1`
-          - Sakura Light `#fff5f8` / `#cc4477`
-
-          **Install**
-          - VS Code: `dist/hatsune-miku-vsc-*.vsix` → Install from VSIX
-          - Zed: `dist/zed-*.zip` → unpack, then Install Dev Extension (marketplace coming soon)
-          - JetBrains: `dist/jetbrains-*.zip` → Install Plugin from Disk
-          - Neovim: `dist/neovim-*.zip` → `:colorscheme hatsune-miku`
-          - Sublime: `dist/sublime-*.zip` → Color Scheme
-          - Notepad++: `dist/notepadpp-*.zip` → Settings → Import → Import style theme(s)
-          - Telegram for Android: `HatsuneMiku*.attheme` → send it to Saved Messages, tap it, Apply
-          - Telegram Desktop: `HatsuneMiku*.tdesktop-theme` → open it in Telegram, Apply
-          - Chrome, Helium and other Chromium: `dist/hatsune-miku-editor-chromium-*.zip` → unpack, chrome://extensions → Load unpacked
-          - Browser frame colors (Chromium): `dist/hatsune-miku-colorful-browser-<variant>-*.zip` → Load unpacked
-          - Firefox: FIREFOX_LINE
-          - Zen: `dist/hatsune-miku-zen-mod-*.zip`, see `browser/zen/readme.md`
-
-          ---
-          Auto-generated changelog below.
-          EOF
-          if [ -f "dist/hatsune-miku-editor-firefox-$v.xpi" ]; then
-            ff="\`dist/hatsune-miku-editor-firefox-$v.xpi\` → open it in Firefox, Mozilla signed it"
-          else
-            ff="\`dist/hatsune-miku-editor-firefox-$v.zip\` → about:debugging → Load Temporary Add-on"
-          fi
-          sed -i "s|FIREFOX_LINE|$ff|" /tmp/notes.md
-          cat /tmp/notes.md
       - uses: softprops/action-gh-release@v3
         with:
           files: dist/*
           body_path: /tmp/notes.md
-          generate_release_notes: true
+
       - name: Publish to Open VSX
+        if: contains(fromJSON(needs.plan.outputs.changed), 'vsc')
         env:
           OVSX_TOKEN: ${{ secrets.OVSX_TOKEN }}
         run: |
           if [ -n "$OVSX_TOKEN" ]; then
-            bun x ovsx publish dist/*.vsix --pat "$OVSX_TOKEN" || echo "OVSX publish failed"
+            bun x ovsx publish dist/*.vsix --pat "$OVSX_TOKEN" || echo "::warning::Open VSX publish failed"
           else
             echo "OVSX_TOKEN not set, skipping"
           fi
+
       - name: Publish to JetBrains Marketplace
+        if: contains(fromJSON(needs.plan.outputs.changed), 'jetbrains')
         env:
           PUBLISH_TOKEN: ${{ secrets.JB_TOKEN }}
         run: |
           if [ -n "$PUBLISH_TOKEN" ]; then
             cd jetbrains
-            ./gradlew publishPlugin --no-daemon -q || echo "JB publish failed"
+            ./gradlew publishPlugin --no-daemon -q || echo "::warning::JetBrains publish failed"
           else
             echo "JB_TOKEN not set, skipping"
           fi

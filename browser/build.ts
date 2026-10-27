@@ -14,7 +14,8 @@ const archiver = archiverMod.default ?? archiverMod; // eslint-disable-line @typ
 const here = import.meta.dir;
 const repo = join(here, "..");
 const out = join(here, "build");
-const version: string = JSON.parse(readFileSync(join(repo, "package.json"), "utf8")).version;
+// The browser port has its own version in release.json; the repository version names the tag.
+const version: string = JSON.parse(readFileSync(join(repo, "release.json"), "utf8")).ports.browser;
 const zip = process.argv.includes("--zip");
 
 const LOCALES: Record<string, { extName: string; extDescription: string }> = {

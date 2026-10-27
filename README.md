@@ -77,7 +77,7 @@ Scripts live in `tools/package.ts` and `tools/validate.ts`. No hidden shell, you
 
 ## Releases
 
-Push a tag like `v0.2.0` and GitHub builds every package: the six editors, the Telegram themes, plus the browser new tab for Chromium and Firefox, the Chromium frame themes and the Zen mod. The tag has to match the version in every package, or the release stops. Release notes are generated with the palette and install hints. Open VSX publishes if `OVSX_TOKEN` is set, JetBrains if `JB_TOKEN` is set, and with `AMO_JWT_ISSUER` and `AMO_JWT_SECRET` Mozilla signs the Firefox add-on, so the release carries an `.xpi` that installs for good. VS Marketplace is skipped for now, my Microsoft account hit a snag.
+Every port keeps its own version in `release.json`. `bun run release:plan` shows which ports changed since the last tag, `bun run release:prepare` bumps only those and writes their changelogs from the commits. A tag like `v0.3.0` then builds every package for the GitHub release, so the full set is always there, but only the changed ports reach the stores: Open VSX with `OVSX_TOKEN`, JetBrains with `JB_TOKEN`, and Firefox on addons.mozilla.org with `FIREFOX_JWT_USER` and `FIREFOX_JWT_TOKEN`, where the changelog becomes the release notes and the signed `.xpi` comes back into the release. Details in `CONTRIBUTING.md`. VS Marketplace is skipped for now, my Microsoft account hit a snag.
 
 ## Contributing
 

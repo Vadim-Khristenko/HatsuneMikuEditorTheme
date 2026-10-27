@@ -4,7 +4,7 @@
   "version": "0.2.3",
   "workspaces": ["vsc"],
   "scripts": {
-    "check": "node tools/check-themes.mjs && bun test tools/telegram",
+    "check": "node tools/check-themes.mjs && bun tools/release/release.ts check && bun test tools",
     "validate": "bun tools/validate.ts",
     "package:vsc": "bun tools/package.ts vsc",
     "package:zed": "bun tools/package.ts zed",
@@ -21,7 +21,9 @@
     "test:browser": "bun test browser",
     "typecheck:browser": "tsc -p browser/tsconfig.json",
     "test:telegram": "bun test tools/telegram",
-    "typecheck:telegram": "tsc -p tools/telegram/tsconfig.json"
+    "typecheck:telegram": "tsc -p tools/telegram/tsconfig.json",
+    "release:plan": "bun tools/release/release.ts plan",
+    "release:prepare": "bun tools/release/release.ts prepare"
   },
   "devDependencies": {
     "@types/archiver": "^8.0.0",
