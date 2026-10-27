@@ -11,8 +11,14 @@ if (t.status !== 0) process.exit(t.status ?? 1);
 console.log("validate: telegram typecheck...");
 const ttc = spawnSync("bun", ["x", "tsc", "-p", "tools/telegram/tsconfig.json"], { stdio: "inherit" });
 if (ttc.status !== 0) process.exit(ttc.status ?? 1);
-console.log("validate: telegram tests...");
-const tt = spawnSync("bun", ["test", "tools/telegram"], { stdio: "inherit" });
+console.log("validate: release typecheck...");
+const rtc = spawnSync("bun", ["x", "tsc", "-p", "tools/release/tsconfig.json"], { stdio: "inherit" });
+if (rtc.status !== 0) process.exit(rtc.status ?? 1);
+console.log("validate: release versions...");
+const rv = spawnSync("bun", ["tools/release/release.ts", "check"], { stdio: "inherit" });
+if (rv.status !== 0) process.exit(rv.status ?? 1);
+console.log("validate: telegram and release tests...");
+const tt = spawnSync("bun", ["test", "tools"], { stdio: "inherit" });
 if (tt.status !== 0) process.exit(tt.status ?? 1);
 console.log("validate: checking package scripts dry-run...");
 for (const pkg of ["zed","jetbrains","neovim","sublime","notepadpp","telegram","browser"]) {

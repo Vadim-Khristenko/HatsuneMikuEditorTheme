@@ -5,7 +5,9 @@ const require = createRequire(import.meta.url);
 const archiverMod = require("archiver");
 const archiver: any = (archiverMod as any).default ?? archiverMod;
 
-const version: string = JSON.parse(await Bun.file("package.json").json().then(j=>JSON.stringify(j))).version ?? "0.0.3";
+// Every port carries its own version (release.json), so an unchanged port keeps its file names.
+const ports: Record<string, string> = JSON.parse(await Bun.file("release.json").text()).ports;
+const v = (port: string): string => ports[port] ?? (() => { throw new Error(`release.json has no version for ${port}`); })();
 const outDir = "dist";
 
 function zipFiles(sources: string[], outFile: string): Promise<void> {
@@ -46,7 +48,7 @@ function zipFiles(sources: string[], outFile: string): Promise<void> {
 async function packageVSC() {
   console.log("packaging vsc...");
   if (!existsSync(outDir)) mkdirSync(outDir, { recursive: true });
-  const out = join(outDir, `hatsune-miku-vsc-${version}.vsix`);
+  const out = join(outDir, `hatsune-miku-vsc-${v("vsc")}.vsix`);
   const absOut = join(process.cwd(), out);
   const proc = Bun.spawn(["bun", "x", "@vscode/vsce", "package", "-o", absOut], { cwd: "vsc", stdout: "inherit", stderr: "inherit" });
   const code = await proc.exited;
@@ -54,7 +56,7 @@ async function packageVSC() {
   console.log(`→ ${out}`);
 }
 
-async function packageZed() { await zipFiles(["zed/themes", "zed/extension.toml"], `${outDir}/zed-${version}.zip`); console.log(`→ ${outDir}/zed-${version}.zip`); }
+async function packageZed() { await zipFiles(["zed/themes", "zed/extension.toml"], `${outDir}/zed-${v("zed")}.zip`); console.log(`→ ${outDir}/zed-${v("zed")}.zip`); }
 async function packageJetBrains() {
   // Official path: IntelliJ Platform Gradle Plugin builds the distribution zip
   // (guaranteed-correct layout: <name>/lib/<name>-<version>.jar).
@@ -65,10 +67,10 @@ async function packageJetBrains() {
   const code = await proc.exited;
   if (code !== 0) throw new Error(`gradlew buildPlugin failed ${code}`);
   const distDir = join("jetbrains", "build", "distributions");
-  const built = readdirSync(distDir).filter(f => f.endsWith(".zip") && f.includes(version));
-  if (!built.length) throw new Error(`no distribution zip for version ${version} in jetbrains/build/distributions`);
+  const built = readdirSync(distDir).filter(f => f.endsWith(".zip") && f.includes(v("jetbrains")));
+  if (!built.length) throw new Error(`no distribution zip for version ${v("jetbrains")} in jetbrains/build/distributions`);
   if (!existsSync(outDir)) mkdirSync(outDir, { recursive: true });
-  const out = join(outDir, `jetbrains-${version}.zip`);
+  const out = join(outDir, `jetbrains-${v("jetbrains")}.zip`);
   await Bun.write(out, Bun.file(join(distDir, built[0])));
   console.log(`→ ${out}`);
 }
@@ -81,14 +83,14 @@ async function packageTelegram() {
   const proc = Bun.spawn(["bun", "tools/telegram/build.ts", "--out", outDir], { stdout: "inherit", stderr: "inherit" });
   if ((await proc.exited) !== 0) throw new Error("telegram build failed");
 }
-async function packageNeovim() { await zipFiles(["neovim/colors", "neovim/README.md", "neovim/LICENSE"], `${outDir}/neovim-${version}.zip`); console.log(`→ ${outDir}/neovim-${version}.zip`); }
+async function packageNeovim() { await zipFiles(["neovim/colors", "neovim/README.md", "neovim/LICENSE"], `${outDir}/neovim-${v("neovim")}.zip`); console.log(`→ ${outDir}/neovim-${v("neovim")}.zip`); }
 async function packageSublime() {
   const files = readdirSync("sublime").filter(f=>f.endsWith(".sublime-color-scheme")).map(f=>`sublime/${f}`);
-  await zipFiles(files, `${outDir}/sublime-${version}.zip`); console.log(`→ ${outDir}/sublime-${version}.zip`);
+  await zipFiles(files, `${outDir}/sublime-${v("sublime")}.zip`); console.log(`→ ${outDir}/sublime-${v("sublime")}.zip`);
 }
 async function packageNotepadpp() {
   const files = readdirSync("notepadpp").filter(f=>f.endsWith(".xml")).map(f=>`notepadpp/${f}`);
-  await zipFiles(files, `${outDir}/notepadpp-${version}.zip`); console.log(`→ ${outDir}/notepadpp-${version}.zip`);
+  await zipFiles(files, `${outDir}/notepadpp-${v("notepadpp")}.zip`); console.log(`→ ${outDir}/notepadpp-${v("notepadpp")}.zip`);
 }
 
 const target = process.argv[2] ?? "all";

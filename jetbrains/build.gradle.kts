@@ -34,6 +34,8 @@ intellijPlatform {
         id.set(providers.gradleProperty("pluginGroup"))
         name.set(providers.gradleProperty("pluginName"))
         version.set(providers.gradleProperty("pluginVersion"))
+        // Written from the commits by `bun tools/release/release.ts prepare`.
+        changeNotes.set(providers.fileContents(layout.projectDirectory.file("change-notes.html")).asText)
 
         ideaVersion {
             sinceBuild.set(providers.gradleProperty("pluginSinceBuild"))

@@ -1,22 +1,26 @@
-# Change Log
+# Changelog: VS Code
 
-All notable changes to the "hatsune-miku-by-vai-theme" extension will be documented in this file.
-
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
+Every release of this port, newest first. Written from the commits that changed it.
+The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and versions follow [SemVer](https://semver.org/).
 
 ## [Unreleased]
 
-- Added missing modern workbench/editor color keys (minimap, inlay hints,
-  bracket highlighting, sticky scroll, merge editor, notebook, symbol icons,
-  testing, chat, status bar item states, overview ruler, etc.) to all four
-  theme variants.
+## [0.2.3] - 2026-10-20
+
+Up to this version every port was released together; see the [GitHub releases](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/releases).
+
+## [0.0.4] - 2026-08-25
+
+### Added
+
+- Modern workbench and editor color keys (minimap, inlay hints, bracket highlighting, sticky scroll, merge editor, notebook, symbol icons, testing, chat, status bar item states, overview ruler) in all four variants.
 
 ## [0.0.2]
 
-- Fix package.json engine field to set minimum supported VS Code version to ^1.69.0.
-- Bump package version to 0.0.2.
+### Fixed
+
+- The engine field asks for VS Code ^1.69.0 again.
 
 ## [0.0.1]
 
-- Initial release.
-- Note: package.json originally specified an incorrect minimum engine (^1.109.0); this was fixed in 0.0.2.
+- First release. Its package.json asked for an engine (^1.109.0) that was too new; 0.0.2 fixed that.
