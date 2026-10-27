@@ -21,6 +21,8 @@ jobs:
       - run: bun install --frozen-lockfile
       - name: Versions agree with release.json and the tag
         run: bun tools/release/release.ts check --tag "$GITHUB_REF_NAME"
+      - name: Palette, themes and tests, once for every port
+        run: bun run check
       - id: plan
         name: Ports this tag releases
         run: |
@@ -39,16 +41,14 @@ jobs:
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
+      # Each job installs only what its port needs: the checks ran once in plan, and CI validates every push.
       - uses: actions/setup-java@v5
+        if: matrix.pkg == 'jetbrains'
         with:
           distribution: zulu
           java-version: 21
           cache: gradle
       - run: bun install --frozen-lockfile
-      - run: bun run check
-      - if: matrix.pkg == 'browser'
-        # validate also dry-runs every package; clear them so this job ships only its own
-        run: bun run validate && rm -r dist
       - run: bun run package:${{ matrix.pkg }}
       - uses: actions/upload-artifact@v7
         with:
@@ -73,7 +73,6 @@ jobs:
           distribution: zulu
           java-version: 21
           cache: gradle
-      - run: bun install --frozen-lockfile
       - uses: actions/download-artifact@v8
         with:
           path: dist
@@ -114,6 +113,22 @@ jobs:
         with:
           files: dist/*
           body_path: /tmp/notes.md
+          # The "latest" hub below carries the Latest mark, so its stable links always work.
+          make_latest: "false"
+
+      - name: Refresh the latest hub
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          bun tools/release/hub.ts assets --dir dist --out /tmp/hub
+          bun tools/release/hub.ts notes --tag "$GITHUB_REF_NAME" > /tmp/hub.md
+          title="Hatsune Miku themes: every app, newest build"
+          if gh release view latest >/dev/null 2>&1; then
+            gh release upload latest /tmp/hub/* --clobber
+            gh release edit latest --title "$title" --notes-file /tmp/hub.md --latest
+          else
+            gh release create latest /tmp/hub/* --title "$title" --notes-file /tmp/hub.md --latest --target "$GITHUB_SHA"
+          fi
 
       - name: Publish to Open VSX
         if: contains(fromJSON(needs.plan.outputs.changed), 'vsc')
