@@ -55,10 +55,7 @@ export function nearestNeutral(p: Palette, t: number): Rgba {
  * Everything else they leave out looks the same by day and by night, like call screens.
  */
 export const LIGHT_ONLY = {
-  android: new Set([
-    "chat_inArticleCodeBackground", "chat_inArticleCodeScrollbarBackground", "chat_outArticleCodeScrollbarBackground",
-    "premiumGradientBackgroundOverlay", "voipgroup_windowBackgroundWhiteInputField",
-  ]),
+  android: new Set(["premiumGradientBackgroundOverlay", "voipgroup_windowBackgroundWhiteInputField"]),
   desktop: new Set(["searchedTextMatchBg", "callIconBgActive", "creditsBg2"]),
 };
 

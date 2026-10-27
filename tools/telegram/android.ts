@@ -1,7 +1,7 @@
 import { argbHex, parseArgb, withAlpha, type Rgba } from "./color";
 import { KEYS } from "./keys";
-import { rampStep, type Palette } from "./palette";
-import { familyOf, isColored, LIGHT_ONLY, remap, type Axis } from "./remap";
+import { selectedOf, type Palette } from "./palette";
+import { familyOf, isColored, LIGHT_ONLY, position, remap, type Axis } from "./remap";
 
 const keys = KEYS.android.keys;
 
@@ -12,6 +12,9 @@ function axisOf(source: "default" | "night"): Axis {
 
 /** Keys drawn inside the outgoing bubble: Telegram tints them green, the themes tint them with the accent. */
 const isOut = (k: string) => /^chat_out|^chat_messageLinkOut|^chat_messageTextOut/.test(k);
+
+/** Keys that hold words to read, not icons, lines or fills. */
+const isText = (k: string) => /Text|Title|Name|Date|Time$|Hint|Placeholder|Caption|Label/.test(k) && !/Background|Bg$|Icon|Line|Selector/.test(k);
 
 /** The colors that carry the look. Everything else follows Telegram's own design, recolored. */
 export function androidRoles(p: Palette): Record<string, Rgba> {
@@ -85,8 +88,8 @@ export function androidRoles(p: Palette): Record<string, Rgba> {
     chats_sentClock: p.muted,
     chats_sentError: p.red,
     chats_sentErrorIcon: p.onAccent,
-    chats_pinnedIcon: p.faint,
-    chats_muteIcon: p.faint,
+    chats_pinnedIcon: p.muted,
+    chats_muteIcon: p.muted,
     chats_mentionIcon: p.onAccent,
     chats_verifiedBackground: p.accent,
     chats_verifiedCheck: p.onAccent,
@@ -108,11 +111,11 @@ export function androidRoles(p: Palette): Record<string, Rgba> {
     chats_menuItemCheck: p.accent,
 
     chat_inBubble: inBubble,
-    chat_inBubbleSelected: rampStep(p, inBubble, 1),
+    chat_inBubbleSelected: selectedOf(p, inBubble),
     chat_inBubbleSelectedOverlay: a(p.accent, 0x1f),
     chat_inBubbleShadow: a(p.black, p.dark ? 0x40 : 0x1a),
     chat_outBubble: outBubble,
-    chat_outBubbleSelected: rampStep(p, outBubble, 1),
+    chat_outBubbleSelected: selectedOf(p, outBubble),
     chat_outBubbleSelectedOverlay: a(p.accent, 0x1f),
     chat_outBubbleGradientSelectedOverlay: a(p.accent, 0x1f),
     chat_outBubbleShadow: a(p.black, p.dark ? 0x40 : 0x1a),
@@ -143,12 +146,37 @@ export function androidRoles(p: Palette): Record<string, Rgba> {
     chat_outReplyMediaMessageSelectedText: p.muted,
     chat_inLoader: p.accent,
     chat_outLoader: p.accent,
-    chat_inLoaderSelected: p.accentHover,
-    chat_outLoaderSelected: p.accentHover,
+    chat_inLoaderSelected: p.accent,
+    chat_outLoaderSelected: p.accent,
     chat_inMenu: p.muted,
     chat_outMenu: p.muted,
     chat_inMenuSelected: p.muted,
     chat_outMenuSelected: p.muted,
+    chat_botButtonText: p.fg,
+
+    // A loader is an accent circle; its icon and progress ring are cut out of the bubble.
+    chat_inFileProgress: inBubble,
+    chat_inFileProgressSelected: inBubble,
+    chat_inAudioProgress: inBubble,
+    chat_inAudioSelectedProgress: inBubble,
+    chat_outFileProgress: outBubble,
+    chat_outFileProgressSelected: outBubble,
+    chat_outAudioProgress: outBubble,
+    chat_outAudioSelectedProgress: outBubble,
+    chat_inAudioSeekbar: p.faint,
+    chat_inAudioCacheSeekbar: p.muted,
+    chat_inAudioSeekbarFill: p.accent,
+    chat_inAudioSeekbarSelected: p.accent,
+    chat_outAudioSeekbar: p.faint,
+    chat_outAudioCacheSeekbar: p.muted,
+    chat_outAudioSeekbarFill: p.accent,
+    chat_outAudioSeekbarSelected: p.accent,
+    chat_inVoiceSeekbar: p.faint,
+    chat_inVoiceSeekbarFill: p.accent,
+    chat_inVoiceSeekbarSelected: p.accent,
+    chat_outVoiceSeekbar: p.faint,
+    chat_outVoiceSeekbarFill: p.accent,
+    chat_outVoiceSeekbarSelected: p.accent,
 
     chat_messagePanelBackground: p.alt,
     chat_messagePanelText: p.fg,
@@ -158,6 +186,14 @@ export function androidRoles(p: Palette): Record<string, Rgba> {
     chat_messagePanelCursor: p.accent,
     chat_messagePanelVoiceBackground: p.accent,
     chat_messagePanelVoiceDuration: p.onAccent,
+    // The send button of the attach sheet paints this icon on the floating button fill.
+    chat_messagePanelVoicePressed: p.onAccent,
+    dialogFloatingButton: p.accent,
+    dialogFloatingButtonPressed: p.accentHover,
+    dialogFloatingIcon: p.onAccent,
+    chat_emojiPanelBackspace: p.muted,
+    undo_cancelColor: p.accentOnInk,
+    undo_infoColor: p.dark ? p.fg : p.bg,
     chat_messagePanelShadow: a(p.black, 0x00),
 
     chat_serviceBackground: a(p.bg, 0xcc),
@@ -224,6 +260,12 @@ export function androidRoles(p: Palette): Record<string, Rgba> {
     featuredStickers_addedIcon: p.accent,
     featuredStickers_removeButtonText: p.red,
     featuredStickers_unread: p.accent,
+    chat_msgIvButtonPrimaryIn: p.accent,
+    chat_msgIvButtonPrimaryOut: p.accent,
+    chat_msgIvButtonPrimaryInPressed: p.accentHover,
+    chat_msgIvButtonPrimaryOutPressed: p.accentHover,
+    chat_msgIvButtonPrimaryInText: p.onAccent,
+    chat_msgIvButtonPrimaryOutText: p.onAccent,
 
     dialogBackground: p.surface,
     dialogBackgroundGray: p.alt,
@@ -307,6 +349,23 @@ export const WALLPAPER_KEYS = new Set(["chat_wallpaper", "chat_wallpaper_gradien
 /** Keys that turn on effects the themes do not use. Telegram leaves them off when they are absent. */
 const OFF_KEYS = new Set(["chat_outBubbleGradient", "chat_outBubbleGradient2", "chat_outBubbleGradient3", "chat_outBubbleGradientAnimated"]);
 
+/**
+ * Keys Telegram works out from the bubbles and the text when a theme leaves them out
+ * (Theme.applyCalculatedTableColors, RichMessageLayout.RichButton). Setting them would only
+ * freeze a guess, so the themes leave them to Telegram.
+ */
+export const DERIVED_KEYS = new Set([
+  ...["in", "out"].flatMap((side) => [
+    `chat_${side}TableBackground`, `chat_${side}TableBorder`, `chat_${side}Divider`,
+    `chat_${side}ArticleDetailsLine`, `chat_${side}ArticleDetailsArrow`,
+    `chat_${side}ArticleCodeScrollbarBackground`, `chat_${side}ArticleCodeScrollbar`,
+  ]),
+  "chat_inArticleCodeBackground",
+  ...["Default", "DefaultInline", "Danger", "Success"].flatMap((style) =>
+    ["In", "Out"].flatMap((side) => [`chat_msgIvButton${style}${side}`, `chat_msgIvButton${style}${side}Pressed`]),
+  ),
+]);
+
 /** Every Android color key for one variant. */
 export function androidColors(p: Palette): Map<string, Rgba> {
   const roles = androidRoles(p);
@@ -314,6 +373,7 @@ export function androidColors(p: Palette): Map<string, Rgba> {
   const night = axisOf("night");
   const out = new Map<string, Rgba>();
   const visiting = new Set<string>();
+  const textAxis = { bg: p.bg, fg: p.fg };
 
   const compute = (k: string): Rgba | undefined => {
     if (out.has(k)) return out.get(k);
@@ -329,10 +389,16 @@ export function androidColors(p: Palette): Map<string, Rgba> {
       if (!p.dark) source = key.default;
       else if (key.night) [source, axis] = [key.night, night];
       else if (!key.fallback) [source, axis] = [key.default, LIGHT_ONLY.android.has(k) ? light : night];
-      if (source) {
+      // A fallback names what a key means (the text of a primary button is the text on the accent), so
+      // a solid key whose fallback carries a role takes that role. Tints keep their own alpha below.
+      if (key.fallback && roles[key.fallback] && (!source || parseArgb(source).a === 255)) {
+        c = compute(key.fallback);
+      } else if (source) {
         const base = parseArgb(source);
         c = remap(base, axis, p);
         if (isOut(k) && isColored(base) && familyOf(base) === "green") c = withAlpha(p.accent, base.a);
+        // Telegram's light gray captions land on the editor's faint comment shade, too pale to read.
+        else if (isText(k) && !isColored(base) && base.a === 255 && position(c, textAxis) < position(p.muted, textAxis)) c = p.muted;
       } else if (key.fallback) {
         c = compute(key.fallback);
       }
@@ -345,6 +411,10 @@ export function androidColors(p: Palette): Map<string, Rgba> {
   for (const k of Object.keys(keys)) {
     if (WALLPAPER_KEYS.has(k) || OFF_KEYS.has(k)) continue;
     compute(k);
+  }
+  for (const k of DERIVED_KEYS) {
+    if (!keys[k]) throw new Error(`android: derived key ${k} is not in the snapshot`);
+    out.delete(k);
   }
   for (const k of Object.keys(roles)) if (!keys[k]) throw new Error(`android: role for unknown key ${k}`);
   return out;

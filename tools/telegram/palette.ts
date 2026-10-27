@@ -48,6 +48,8 @@ export interface Palette {
   accent: Rgba;
   /** Text and icons on an accent fill. */
   onAccent: Rgba;
+  /** The accent on a surface of text color, like a toast: the brightest accent hue of the palette. */
+  accentOnInk: Rgba;
   accentHover: Rgba;
   link: Rgba;
   red: Rgba;
@@ -60,6 +62,18 @@ export interface Palette {
   pink: Rgba;
   /** Syntax colors of the editor theme, for code blocks in messages. */
   code: { keyword: Rgba; operator: Rgba; constant: Rgba; string: Rgba; number: Rgba; comment: Rgba; function: Rgba };
+}
+
+/**
+ * A selected bubble or row: the nearest ramp step toward the text that still carries both the text
+ * (4.5:1) and the secondary text (3:1). Falls back to the surface itself when no step does.
+ */
+export function selectedOf(p: Palette, c: Rgba): Rgba {
+  for (let s = 1; s <= 3; s++) {
+    const next = rampStep(p, c, s);
+    if (contrast(p.fg, next) >= 4.5 && contrast(p.muted, next) >= 3) return next;
+  }
+  return c;
 }
 
 /** The ramp entry `steps` away from `c`, toward the text color for positive steps. */
@@ -126,6 +140,7 @@ export function paletteOf(v: Variant): Palette {
     black: pick("#000000"),
     accent,
     onAccent: pick("button.foreground"),
+    accentOnInk: accent,
     accentHover: pick("button.hoverBackground"),
     link: pick("textLink.foreground"),
     red: pick("editorError.foreground"),
@@ -147,6 +162,13 @@ export function paletteOf(v: Variant): Palette {
       function: pick(jb.fn),
     },
   };
+  if (!p.dark) {
+    const hue = familyOf(accent);
+    const best = [...canon].map(parseRgba).filter((c) => isColored(c) && familyOf(c) === hue)
+      .sort((a, b) => contrast(b, p.fg) - contrast(a, p.fg))[0];
+    if (best && contrast(best, p.fg) > contrast(accent, p.fg)) p.accentOnInk = best;
+  }
+
   // Peer colors fill avatars under initials in onAccent, so each keeps its hue but must hold 3:1.
   for (const f of ["red", "orange", "yellow", "green", "cyan", "blue", "violet", "pink"] as const) {
     if (contrast(p[f], p.onAccent) >= 3) continue;
