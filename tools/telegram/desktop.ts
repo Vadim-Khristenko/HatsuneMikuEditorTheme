@@ -210,6 +210,18 @@ export function desktopRoles(p: Palette): Record<string, Rgba> {
 
     profileVerifiedCheckBg: p.accent,
     profileVerifiedCheckFg: p.onAccent,
+
+    // Telegram writes these as windowFgActive, the text on the accent, but draws them on dark
+    // scrims, toasts and photos, where it means plain white. The dark looks have dark ink there.
+    toastBg: p.dark ? withAlpha(p.black, 0xb2) : withAlpha(p.fg, 0xe5),
+    toastFg: p.white,
+    importantTooltipFgLink: p.accentOnInk,
+    radialFg: p.white,
+    historyIconFgInverted: p.white,
+    historyForwardChooseFg: p.white,
+    mediaviewMenuFg: p.white,
+    mediaviewControlFg: p.white,
+    youtubePlayIconFg: p.white,
     introBg: p.bg,
 
     // Telegram Desktop paints syntax with these: the editor theme's own token colors.
