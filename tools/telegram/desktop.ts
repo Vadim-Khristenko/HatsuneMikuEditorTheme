@@ -1,6 +1,6 @@
-import { parseRgba, rgbaHex, withAlpha, type Rgba } from "./color";
+import { contrast, parseRgba, rgbaHex, withAlpha, type Rgba } from "./color";
 import { KEYS } from "./keys";
-import { rampStep, type Palette } from "./palette";
+import { rampStep, selectionOn, type Palette } from "./palette";
 import { familyColor, familyOf, isColored, LIGHT_ONLY, remap, type Axis } from "./remap";
 
 const keys = KEYS.desktop.keys;
@@ -159,9 +159,9 @@ export function desktopRoles(p: Palette): Record<string, Rgba> {
     emojiPanHeaderFg: p.muted,
 
     msgInBg: p.raised,
-    msgInBgSelected: rampStep(p, p.raised, 1),
+    msgInBgSelected: selectionOn(p, p.raised),
     msgOutBg: p.secondary,
-    msgOutBgSelected: rampStep(p, p.secondary, 1),
+    msgOutBgSelected: selectionOn(p, p.secondary),
     msgInShadow: a(p.black, p.dark ? 0x40 : 0x1a),
     msgInShadowSelected: a(p.black, p.dark ? 0x40 : 0x1a),
     msgOutShadow: a(p.black, p.dark ? 0x40 : 0x1a),
@@ -275,6 +275,15 @@ export function desktopColors(p: Palette): Map<string, Rgba> {
 
   for (const k of Object.keys(roles)) if (!keys[k]) throw new Error(`desktop: role for unknown key ${k}`);
   for (const k of Object.keys(keys)) compute(k);
+
+  // A selected message is painted with the selection shade, so its captions, links and names
+  // fall back to the text color wherever their own hue would not read on it.
+  for (const k of Object.keys(keys)) {
+    if (!/^(msg|history)\w*(In|Out)\w*Fg\w*Sel(ected)?$/.test(k)) continue;
+    const under = out.get(/Out/.test(k) ? "msgOutBgSelected" : "msgInBgSelected")!;
+    const c = out.get(k)!;
+    if (c.a === 255 && contrast(c, under) < 3) out.set(k, p.fg);
+  }
   return out;
 }
 

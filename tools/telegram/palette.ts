@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { contrast, lightness, parseRgba, rgbHex, type Rgba } from "./color";
+import { contrast, hueSat, lightness, parseRgba, rgbHex, type Rgba } from "./color";
 import { familyOf, isColored } from "./remap";
 
 const ROOT = join(import.meta.dir, "..", "..");
@@ -74,6 +74,20 @@ export function selectedOf(p: Palette, c: Rgba): Rgba {
     if (contrast(p.fg, next) >= 4.5 && contrast(p.muted, next) >= 3) return next;
   }
   return c;
+}
+
+/**
+ * A text selection on `surface`: a palette color that stands apart from the surface (1.5:1), keeps
+ * the text readable (4.5:1) and leans toward the accent hue, the closest such shade to the surface.
+ */
+export function selectionOn(p: Palette, surface: Rgba): Rgba {
+  const hueOf = (c: Rgba) => hueSat(c).h;
+  const dist = (a: number, b: number) => Math.min(Math.abs(a - b), 360 - Math.abs(a - b));
+  const pool = [...p.canon].map(parseRgba).filter((c) =>
+    contrast(c, surface) >= 1.5 && contrast(c, p.fg) >= 4.5 && hueSat(c).s > 0.1 && hueSat(c).s < 0.8 && Math.abs(lightness(c) - lightness(p.fg)) > Math.abs(lightness(c) - lightness(surface)) * 0.5);
+  if (!pool.length) throw new Error(`${p.variant.code}: no selection shade for ${rgbHex(surface)}`);
+  const score = (c: Rgba) => dist(hueOf(c), hueOf(p.accent)) / 60 + Math.abs(lightness(c) - lightness(surface)) / 10;
+  return pool.sort((a, b) => score(a) - score(b))[0];
 }
 
 /** The ramp entry `steps` away from `c`, toward the text color for positive steps. */
