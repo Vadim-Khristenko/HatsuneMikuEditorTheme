@@ -53,6 +53,17 @@ The palette also lives in the browser now: a new tab page with four layouts (Sta
 
 Build them with `bun run build:browser`.
 
+## Telegram
+
+Chats get the palette too. Every color key Telegram has gets a value: 812 on Android, 586 on Desktop, so nothing falls back to the stock blue. The chat background is the drawn Miku art from the JetBrains plugin, painted in the colors of each variant.
+
+| App | File | How to install |
+|---|---|---|
+| Telegram for Android | `dist/HatsuneMiku*.attheme` | Send it to Saved Messages, tap it, Apply |
+| Telegram Desktop | `dist/HatsuneMiku*.tdesktop-theme` | Open the file in Telegram, Apply |
+
+Build them with `bun run build:telegram`. The generator lives in `tools/telegram/`. It starts from Telegram's own day and night themes and recolors them, so the layout of light and shade stays Telegram's while every color comes from the palette. When Telegram adds keys, `bun run sync:telegram` takes a fresh snapshot of them.
+
 ## How to develop
 
 ```bash
@@ -66,7 +77,7 @@ Scripts live in `tools/package.ts` and `tools/validate.ts`. No hidden shell, you
 
 ## Releases
 
-Push a tag like `v0.2.0` and GitHub builds every package: the six editors plus the browser new tab for Chromium and Firefox, the Chromium frame themes and the Zen mod. The tag has to match the version in every package, or the release stops. Release notes are generated with the palette and install hints. Open VSX publishes if `OVSX_TOKEN` is set, JetBrains if `JB_TOKEN` is set, and with `AMO_JWT_ISSUER` and `AMO_JWT_SECRET` Mozilla signs the Firefox add-on, so the release carries an `.xpi` that installs for good. VS Marketplace is skipped for now, my Microsoft account hit a snag.
+Push a tag like `v0.2.0` and GitHub builds every package: the six editors, the Telegram themes, plus the browser new tab for Chromium and Firefox, the Chromium frame themes and the Zen mod. The tag has to match the version in every package, or the release stops. Release notes are generated with the palette and install hints. Open VSX publishes if `OVSX_TOKEN` is set, JetBrains if `JB_TOKEN` is set, and with `AMO_JWT_ISSUER` and `AMO_JWT_SECRET` Mozilla signs the Firefox add-on, so the release carries an `.xpi` that installs for good. VS Marketplace is skipped for now, my Microsoft account hit a snag.
 
 ## Contributing
 

@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        pkg: [vsc, zed, jetbrains, neovim, sublime, notepadpp, browser]
+        pkg: [vsc, zed, jetbrains, neovim, sublime, notepadpp, telegram, browser]
     steps:
       - uses: actions/checkout@v7
       - uses: oven-sh/setup-bun@v2
@@ -82,7 +82,7 @@ jobs:
         run: |
           v="${GITHUB_REF_NAME#v}"
           cat > /tmp/notes.md << 'EOF'
-          ## Hatsune Miku themes: four looks, six editors and your browser
+          ## Hatsune Miku themes: four looks, six editors, Telegram and your browser
 
           One MIT license covers everything here. No separate fine print per editor.
 
@@ -99,6 +99,8 @@ jobs:
           - Neovim: `dist/neovim-*.zip` → `:colorscheme hatsune-miku`
           - Sublime: `dist/sublime-*.zip` → Color Scheme
           - Notepad++: `dist/notepadpp-*.zip` → Settings → Import → Import style theme(s)
+          - Telegram for Android: `HatsuneMiku*.attheme` → send it to Saved Messages, tap it, Apply
+          - Telegram Desktop: `HatsuneMiku*.tdesktop-theme` → open it in Telegram, Apply
           - Chrome, Helium and other Chromium: `dist/hatsune-miku-editor-chromium-*.zip` → unpack, chrome://extensions → Load unpacked
           - Browser frame colors (Chromium): `dist/hatsune-miku-colorful-browser-<variant>-*.zip` → Load unpacked
           - Firefox: FIREFOX_LINE

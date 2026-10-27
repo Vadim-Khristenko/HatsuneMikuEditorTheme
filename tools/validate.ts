@@ -8,8 +8,14 @@ if (tc.status !== 0) process.exit(tc.status ?? 1);
 console.log("validate: browser tests...");
 const t = spawnSync("bun", ["test", "browser"], { stdio: "inherit" });
 if (t.status !== 0) process.exit(t.status ?? 1);
+console.log("validate: telegram typecheck...");
+const ttc = spawnSync("bun", ["x", "tsc", "-p", "tools/telegram/tsconfig.json"], { stdio: "inherit" });
+if (ttc.status !== 0) process.exit(ttc.status ?? 1);
+console.log("validate: telegram tests...");
+const tt = spawnSync("bun", ["test", "tools/telegram"], { stdio: "inherit" });
+if (tt.status !== 0) process.exit(tt.status ?? 1);
 console.log("validate: checking package scripts dry-run...");
-for (const pkg of ["zed","jetbrains","neovim","sublime","notepadpp","browser"]) {
+for (const pkg of ["zed","jetbrains","neovim","sublime","notepadpp","telegram","browser"]) {
   const res = spawnSync("bun", ["tools/package.ts", pkg], { stdio: "inherit" });
   if (res.status !== 0) { console.error(`package:${pkg} failed`); process.exit(1); }
 }

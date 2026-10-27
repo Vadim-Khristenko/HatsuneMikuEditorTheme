@@ -4,7 +4,7 @@
   "version": "0.2.3",
   "workspaces": ["vsc"],
   "scripts": {
-    "check": "node tools/check-themes.mjs",
+    "check": "node tools/check-themes.mjs && bun test tools/telegram",
     "validate": "bun tools/validate.ts",
     "package:vsc": "bun tools/package.ts vsc",
     "package:zed": "bun tools/package.ts zed",
@@ -12,11 +12,16 @@
     "package:neovim": "bun tools/package.ts neovim",
     "package:sublime": "bun tools/package.ts sublime",
     "package:notepadpp": "bun tools/package.ts notepadpp",
+    "package:telegram": "bun tools/package.ts telegram",
     "package:browser": "bun tools/package.ts browser",
     "package:all": "bun tools/package.ts all",
     "build:browser": "bun browser/build.ts",
+    "build:telegram": "bun tools/telegram/build.ts",
+    "sync:telegram": "bun tools/telegram/sync-keys.ts",
     "test:browser": "bun test browser",
-    "typecheck:browser": "tsc -p browser/tsconfig.json"
+    "typecheck:browser": "tsc -p browser/tsconfig.json",
+    "test:telegram": "bun test tools/telegram",
+    "typecheck:telegram": "tsc -p tools/telegram/tsconfig.json"
   },
   "devDependencies": {
     "@types/archiver": "^8.0.0",

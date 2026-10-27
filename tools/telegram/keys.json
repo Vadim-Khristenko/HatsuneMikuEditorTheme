@@ -1,0 +1,5972 @@
+{
+  "android": {
+    "source": "https://github.com/DrKLO/Telegram/tree/3de37c8cfb039452be7398909461da6288babf15",
+    "files": [
+      "TMessagesProj/src/main/java/org/telegram/ui/ActionBar/ThemeColors.java",
+      "TMessagesProj/src/main/java/org/telegram/ui/ActionBar/Theme.java",
+      "TMessagesProj/src/main/assets/night.attheme"
+    ],
+    "keys": {
+      "actionBarActionModeDefault": {
+        "default": "#ffffffff",
+        "night": "#ff272727"
+      },
+      "actionBarActionModeDefaultIcon": {
+        "default": "#ff1a1d21",
+        "night": "#ffffffff"
+      },
+      "actionBarActionModeDefaultSelector": {
+        "default": "#ffe2e2e2",
+        "night": "#1effffff"
+      },
+      "actionBarActionModeDefaultTop": {
+        "default": "#10000000",
+        "night": "#ff262626"
+      },
+      "actionBarActionModeReaction": {
+        "default": "#fff0f0f0",
+        "fallback": "windowBackgroundGray",
+        "night": "#12ffffff"
+      },
+      "actionBarActionModeReactionDot": {
+        "default": "#ffc0c0c0",
+        "night": "#ff353e47"
+      },
+      "actionBarActionModeReactionText": {
+        "default": "#ff82868a",
+        "fallback": "chat_inReactionButtonText",
+        "night": "#ffffffff"
+      },
+      "actionBarBrowser": {
+        "default": "#ffffffff",
+        "fallback": "actionBarDefault"
+      },
+      "actionBarDefault": {
+        "default": "#ffffffff",
+        "night": "#ff232326"
+      },
+      "actionBarDefaultArchived": {
+        "default": "#ffffffff",
+        "fallback": "actionBarDefault",
+        "night": "#ff232326"
+      },
+      "actionBarDefaultArchivedIcon": {
+        "default": "#ff1a1d21",
+        "fallback": "actionBarDefaultIcon",
+        "night": "#ffffffff"
+      },
+      "actionBarDefaultArchivedSearch": {
+        "default": "#ff1a1d21",
+        "fallback": "actionBarDefaultSearch",
+        "night": "#ffffffff"
+      },
+      "actionBarDefaultArchivedSelector": {
+        "default": "#121a1d21",
+        "fallback": "actionBarDefaultSelector",
+        "night": "#ff3e3e3f"
+      },
+      "actionBarDefaultArchivedTitle": {
+        "default": "#ff1a1d21",
+        "fallback": "windowBackgroundWhiteBlackText",
+        "night": "#ffffffff"
+      },
+      "actionBarDefaultIcon": {
+        "default": "#ff1a1d21",
+        "night": "#ffffffff"
+      },
+      "actionBarDefaultSearch": {
+        "default": "#ff1a1d21",
+        "night": "#ffffffff"
+      },
+      "actionBarDefaultSearchArchivedPlaceholder": {
+        "default": "#ff838c96",
+        "fallback": "actionBarDefaultSearchPlaceholder"
+      },
+      "actionBarDefaultSearchPlaceholder": {
+        "default": "#ff79817e",
+        "night": "#82ffffff"
+      },
+      "actionBarDefaultSelector": {
+        "default": "#121a1d21",
+        "night": "#16ffffff"
+      },
+      "actionBarDefaultSubmenuBackground": {
+        "default": "#ffffffff",
+        "night": "#ff282829"
+      },
+      "actionBarDefaultSubmenuItem": {
+        "default": "#ff1a1d21",
+        "night": "#ffffffff"
+      },
+      "actionBarDefaultSubmenuItemIcon": {
+        "default": "#ff1a1d21",
+        "fallback": "dialogIcon",
+        "night": "#ffffffff"
+      },
+      "actionBarDefaultSubmenuSeparator": {
+        "default": "#fff5f5f5",
+        "fallback": "windowBackgroundGray",
+        "night": "#ff1e1e1f"
+      },
+      "actionBarDefaultSubtitle": {
+        "default": "#ff79817e",
+        "night": "#73f2f2f2"
+      },
+      "actionBarDefaultTitle": {
+        "default": "#ff1a1d21",
+        "fallback": "windowBackgroundWhiteBlackText",
+        "night": "#ffffffff"
+      },
+      "actionBarTabActiveText": {
+        "default": "#ff298acf",
+        "fallback": "actionBarDefaultTitle",
+        "night": "#ff5cc1ff"
+      },
+      "actionBarTabLine": {
+        "default": "#ff298acf",
+        "fallback": "actionBarDefaultTitle",
+        "night": "#ff43b7ff"
+      },
+      "actionBarTabSelector": {
+        "default": "#121a1d21",
+        "fallback": "actionBarDefaultSelector",
+        "night": "#3158636a"
+      },
+      "actionBarTabUnactiveText": {
+        "default": "#ff777c7f",
+        "fallback": "actionBarDefaultSubtitle",
+        "night": "#ff8e8e8f"
+      },
+      "actionBarWhiteSelector": {
+        "default": "#121a1d21",
+        "night": "#10ffffff"
+      },
+      "avatar_actionBarIconBlue": {
+        "default": "#ff1a1d21",
+        "night": "#ffffffff"
+      },
+      "avatar_actionBarSelectorBlue": {
+        "default": "#121a1d21",
+        "night": "#19ffffff"
+      },
+      "avatar_background2Blue": {
+        "default": "#ff408acf",
+        "fallback": "avatar_backgroundBlue"
+      },
+      "avatar_background2Cyan": {
+        "default": "#ff359ad4",
+        "fallback": "avatar_backgroundCyan"
+      },
+      "avatar_background2Green": {
+        "default": "#ff46ba43",
+        "fallback": "avatar_backgroundGreen"
+      },
+      "avatar_background2Orange": {
+        "default": "#fff68136",
+        "fallback": "avatar_backgroundOrange",
+        "night": "#ffe58943"
+      },
+      "avatar_background2Pink": {
+        "default": "#ffd95574",
+        "fallback": "avatar_backgroundPink"
+      },
+      "avatar_background2Red": {
+        "default": "#ffd45246",
+        "fallback": "avatar_backgroundRed",
+        "night": "#ffd9614f"
+      },
+      "avatar_background2Saved": {
+        "default": "#ff409fe1",
+        "fallback": "avatar_backgroundSaved",
+        "night": "#ff1a88e7"
+      },
+      "avatar_background2Violet": {
+        "default": "#ff6c61df",
+        "fallback": "avatar_backgroundViolet"
+      },
+      "avatar_backgroundActionBarBlue": {
+        "default": "#fff5f5f5",
+        "night": "#ff1f1f20"
+      },
+      "avatar_backgroundArchived": {
+        "default": "#ffb8c2cc",
+        "fallback": "chats_unreadCounterMuted",
+        "night": "#ff3c3c3c"
+      },
+      "avatar_backgroundArchivedHidden": {
+        "default": "#ff229af0",
+        "fallback": "avatar_backgroundSaved",
+        "night": "#ff44a1e8"
+      },
+      "avatar_backgroundBlue": {
+        "default": "#ff5caffa"
+      },
+      "avatar_backgroundCyan": {
+        "default": "#ff5bcbe3"
+      },
+      "avatar_backgroundGreen": {
+        "default": "#ff9ad164"
+      },
+      "avatar_backgroundInProfileBlue": {
+        "default": "#ffffffff",
+        "night": "#ff549cdd"
+      },
+      "avatar_backgroundOrange": {
+        "default": "#fffebb5b",
+        "night": "#fff2bc64"
+      },
+      "avatar_backgroundPink": {
+        "default": "#ffff8aac"
+      },
+      "avatar_backgroundRed": {
+        "default": "#ffff845e",
+        "night": "#ffdc805b"
+      },
+      "avatar_backgroundSaved": {
+        "default": "#ff69bdf9",
+        "night": "#ff4fa1e8"
+      },
+      "avatar_backgroundViolet": {
+        "default": "#ffb694f9"
+      },
+      "avatar_nameInMessageBlue": {
+        "default": "#ff368ad1",
+        "night": "#ff5cadea"
+      },
+      "avatar_nameInMessageCyan": {
+        "default": "#ff309eba",
+        "night": "#ff53ccc6"
+      },
+      "avatar_nameInMessageGreen": {
+        "default": "#ff40a920",
+        "night": "#ff7dd071"
+      },
+      "avatar_nameInMessageOrange": {
+        "default": "#ffd67722",
+        "night": "#ffe8ab5a"
+      },
+      "avatar_nameInMessagePink": {
+        "default": "#ffc7508b",
+        "night": "#ffe8749a"
+      },
+      "avatar_nameInMessageRed": {
+        "default": "#ffcc5049",
+        "night": "#ffe88878"
+      },
+      "avatar_nameInMessageViolet": {
+        "default": "#ff955cdb",
+        "night": "#ff8c8dea"
+      },
+      "avatar_subtitleInProfileBlue": {
+        "default": "#ff1a1d21",
+        "night": "#78fdfdff"
+      },
+      "avatar_text": {
+        "default": "#ffffffff"
+      },
+      "bot_loadingIcon": {
+        "default": "#fff2f2f2",
+        "fallback": "groupcreate_spanBackground",
+        "night": "#1effffff"
+      },
+      "botKeyboard_button_danger": {
+        "default": "#ffdb4646"
+      },
+      "botKeyboard_button_primary": {
+        "default": "#ff229af0"
+      },
+      "botKeyboard_button_success": {
+        "default": "#ff40b135"
+      },
+      "buttonNeutral": {
+        "default": "#ffe4e4e4",
+        "fallback": "chat_replyPanelLine"
+      },
+      "buttonNeutralText": {
+        "default": "#ff1a1d21",
+        "fallback": "windowBackgroundWhiteBlackText"
+      },
+      "calls_callReceivedGreenIcon": {
+        "default": "#ff00c853",
+        "night": "#ff48dd76"
+      },
+      "calls_callReceivedRedIcon": {
+        "default": "#ffff4848"
+      },
+      "changephoneinfo_image2": {
+        "default": "#ff229af0",
+        "fallback": "featuredStickers_addButton"
+      },
+      "chat_addContact": {
+        "default": "#ff298acf",
+        "night": "#ff79c4fc"
+      },
+      "chat_adminSelectedText": {
+        "default": "#ff89b4c1",
+        "fallback": "chat_inTimeSelectedText",
+        "night": "#ff8db2d3"
+      },
+      "chat_adminText": {
+        "default": "#ffc0c6cb",
+        "fallback": "chat_inTimeText",
+        "night": "#ff7d7f81"
+      },
+      "chat_attachActiveTab": {
+        "default": "#ff33a7f5",
+        "night": "#ff6abfff"
+      },
+      "chat_attachAudioBackground": {
+        "default": "#ffeb6060",
+        "night": "#fff66f6b"
+      },
+      "chat_attachCheckBoxBackground": {
+        "default": "#ff229af0",
+        "fallback": "dialogRoundCheckBox"
+      },
+      "chat_attachCheckBoxCheck": {
+        "default": "#ffffffff"
+      },
+      "chat_attachContactBackground": {
+        "default": "#fff2c04b",
+        "night": "#ffdeb045"
+      },
+      "chat_attachContactText": {
+        "default": "#ffdfa000",
+        "fallback": "chat_attachContactBackground"
+      },
+      "chat_attachEmptyImage": {
+        "default": "#ffcccccc",
+        "fallback": "emptyListPlaceholder"
+      },
+      "chat_attachGalleryBackground": {
+        "default": "#ff459df5",
+        "night": "#ff4d96f5"
+      },
+      "chat_attachIcon": {
+        "default": "#ffffffff"
+      },
+      "chat_attachLocationBackground": {
+        "default": "#ff60c255"
+      },
+      "chat_attachPermissionImage": {
+        "default": "#ff333333",
+        "fallback": "dialogTextBlack"
+      },
+      "chat_attachPermissionMark": {
+        "default": "#ffe25050",
+        "fallback": "chat_sentError"
+      },
+      "chat_attachPermissionText": {
+        "default": "#ff6f777a",
+        "fallback": "dialogTextBlack"
+      },
+      "chat_attachPhotoBackground": {
+        "default": "#0c000000"
+      },
+      "chat_attachPollBackground": {
+        "default": "#fff2c04b",
+        "fallback": "chat_attachAudioBackground",
+        "night": "#ffdeb045"
+      },
+      "chat_attachUnactiveTab": {
+        "default": "#ff92999e",
+        "night": "#ff6d91a6"
+      },
+      "chat_BlurAlpha": {
+        "default": "#b2000000",
+        "night": "#b2000000"
+      },
+      "chat_BlurAlphaSlow": {
+        "default": "#c1000000",
+        "night": "#c1000000"
+      },
+      "chat_botButtonText": {
+        "default": "#ffffffff"
+      },
+      "chat_botKeyboardButtonBackground": {
+        "default": "#66bcc3c8",
+        "night": "#ff2c2c2e"
+      },
+      "chat_botKeyboardButtonBackgroundPressed": {
+        "default": "#66808c94",
+        "night": "#ff49494b"
+      },
+      "chat_botKeyboardButtonText": {
+        "default": "#f0444444",
+        "night": "#ffffffff"
+      },
+      "chat_botSwitchToInlineText": {
+        "default": "#ff4391cc",
+        "night": "#ff79c4fc"
+      },
+      "chat_editMediaButton": {
+        "default": "#ff1a9cff",
+        "fallback": "dialogFloatingButton"
+      },
+      "chat_emojiBottomPanelIcon": {
+        "default": "#ff8c9197",
+        "fallback": "chat_emojiPanelIcon",
+        "night": "#ff6e6e6f"
+      },
+      "chat_emojiPanelBackground": {
+        "default": "#fff0f2f5",
+        "night": "#ff1e1e1f"
+      },
+      "chat_emojiPanelBackspace": {
+        "default": "#ff8c9197",
+        "night": "#ff6e6e6f"
+      },
+      "chat_emojiPanelEmptyText": {
+        "default": "#ff949ba1",
+        "night": "#ff7d7d7e"
+      },
+      "chat_emojiPanelIcon": {
+        "default": "#ff9da4ab",
+        "night": "#ff6e6e6f"
+      },
+      "chat_emojiPanelIconSelected": {
+        "default": "#ff5e6976",
+        "night": "#ff64b5ef"
+      },
+      "chat_emojiPanelNewTrending": {
+        "default": "#ff4da6ea"
+      },
+      "chat_emojiPanelShadowLine": {
+        "default": "#12000000",
+        "night": "#a0000000"
+      },
+      "chat_emojiPanelStickerPackSelector": {
+        "default": "#ffe2e5e7",
+        "night": "#0acdeaff"
+      },
+      "chat_emojiPanelStickerPackSelectorLine": {
+        "default": "#ff56abf0",
+        "fallback": "chat_emojiPanelIconSelected",
+        "night": "#ff64b5ef"
+      },
+      "chat_emojiPanelStickerSetName": {
+        "default": "#ff828b94"
+      },
+      "chat_emojiPanelStickerSetNameHighlight": {
+        "default": "#ff278ddb",
+        "fallback": "windowBackgroundWhiteBlueText4"
+      },
+      "chat_emojiPanelStickerSetNameIcon": {
+        "default": "#ffb1b6bc"
+      },
+      "chat_emojiPanelTrendingDescription": {
+        "default": "#ff8a8a8a",
+        "night": "#ff7d7d7e"
+      },
+      "chat_emojiPanelTrendingTitle": {
+        "default": "#ff222222",
+        "night": "#ffffffff"
+      },
+      "chat_emojiSearchBackground": {
+        "default": "#ffe5e9ee",
+        "fallback": "chat_emojiPanelStickerPackSelector"
+      },
+      "chat_emojiSearchIcon": {
+        "default": "#ff94a1af",
+        "fallback": "chat_emojiPanelIcon",
+        "night": "#ff737374"
+      },
+      "chat_fieldOverlayText": {
+        "default": "#ff298acf",
+        "night": "#ff64b5ef"
+      },
+      "chat_gifSaveHintBackground": {
+        "default": "#e21f2b38"
+      },
+      "chat_gifSaveHintText": {
+        "default": "#ffffffff"
+      },
+      "chat_goDownButton": {
+        "default": "#ffffffff",
+        "night": "#ff212122"
+      },
+      "chat_goDownButtonCounter": {
+        "default": "#ffffffff",
+        "night": "#ffffffff"
+      },
+      "chat_goDownButtonCounterBackground": {
+        "default": "#ff229af0",
+        "night": "#ff51aaee"
+      },
+      "chat_inArticleCodeBackground": {
+        "default": "#fff1f5f9"
+      },
+      "chat_inArticleCodeScrollbar": {
+        "default": "#ffc5cdd5"
+      },
+      "chat_inArticleCodeScrollbarBackground": {
+        "default": "#ffe1e6eb"
+      },
+      "chat_inArticleDetailsArrow": {
+        "default": "#ff9ea4a8"
+      },
+      "chat_inArticleDetailsLine": {
+        "default": "#ffd8d8d8"
+      },
+      "chat_inAudioCacheSeekbar": {
+        "default": "#3fe4eaf0",
+        "fallback": "chat_inAudioSeekbar",
+        "night": "#ff606060"
+      },
+      "chat_inAudioDurationSelectedText": {
+        "default": "#ff89b4c1",
+        "night": "#ff8db2d3"
+      },
+      "chat_inAudioDurationText": {
+        "default": "#ffa1aab3",
+        "night": "#ff767677"
+      },
+      "chat_inAudioPerfomerSelectedText": {
+        "default": "#ff2f3438",
+        "night": "#ff8db2d3"
+      },
+      "chat_inAudioPerfomerText": {
+        "default": "#ff2f3438",
+        "night": "#ff7a7c7d"
+      },
+      "chat_inAudioProgress": {
+        "default": "#ffffffff",
+        "night": "#ffffffff"
+      },
+      "chat_inAudioSeekbar": {
+        "default": "#ffe4eaf0",
+        "night": "#ff565656"
+      },
+      "chat_inAudioSeekbarFill": {
+        "default": "#ff229af0"
+      },
+      "chat_inAudioSeekbarSelected": {
+        "default": "#ffbcdee8",
+        "night": "#ff7391ab"
+      },
+      "chat_inAudioSelectedProgress": {
+        "default": "#ffeff8fe",
+        "night": "#ffffffff"
+      },
+      "chat_inAudioTitleText": {
+        "default": "#ff4e9ad4",
+        "night": "#ff79c4fc"
+      },
+      "chat_inBubble": {
+        "default": "#ffffffff",
+        "night": "#ff1f2123"
+      },
+      "chat_inBubbleLocationPlaceholder": {
+        "default": "#1e506373"
+      },
+      "chat_inBubbleSelected": {
+        "default": "#ffecf7fd",
+        "night": "#ff314a61"
+      },
+      "chat_inBubbleSelectedOverlay": {},
+      "chat_inBubbleShadow": {
+        "default": "#ff1d3753",
+        "night": "#32000000"
+      },
+      "chat_inCodeBackground": {
+        "default": "#ff6f889e",
+        "night": "#ffffffff"
+      },
+      "chat_inContactBackground": {
+        "default": "#ff229af0",
+        "night": "#ff5099e8"
+      },
+      "chat_inContactIcon": {
+        "default": "#ffffffff",
+        "night": "#ffffffff"
+      },
+      "chat_inContactNameText": {
+        "default": "#ff4e9ad4",
+        "night": "#ff79c4fc"
+      },
+      "chat_inContactPhoneSelectedText": {
+        "default": "#ff2f3438",
+        "night": "#ff8db2d3"
+      },
+      "chat_inContactPhoneText": {
+        "default": "#ff2f3438",
+        "night": "#ff7e8081"
+      },
+      "chat_inDivider": {
+        "default": "#ffe5e5e5"
+      },
+      "chat_inDownCall": {
+        "default": "#ff00c853",
+        "fallback": "calls_callReceivedGreenIcon"
+      },
+      "chat_inFileBackground": {
+        "default": "#ffebf0f5",
+        "night": "#ff2c2c2c"
+      },
+      "chat_inFileBackgroundSelected": {
+        "default": "#ffcbeaf6",
+        "night": "#ff3d5778"
+      },
+      "chat_inFileInfoSelectedText": {
+        "default": "#ff89b4c1",
+        "night": "#ff8db2d3"
+      },
+      "chat_inFileInfoText": {
+        "default": "#ffa1aab3",
+        "night": "#ff767677"
+      },
+      "chat_inFileNameText": {
+        "default": "#ff298acf",
+        "night": "#ffffffff"
+      },
+      "chat_inFileProgress": {
+        "default": "#ffebf0f5",
+        "night": "#ffffffff"
+      },
+      "chat_inFileProgressSelected": {
+        "default": "#ffcbeaf6",
+        "night": "#ffffffff"
+      },
+      "chat_inForwardedNameText": {
+        "default": "#ff3886c7",
+        "night": "#ff77bcfc"
+      },
+      "chat_inInstant": {
+        "default": "#ff298acf",
+        "night": "#ff79c4fc"
+      },
+      "chat_inInstantSelected": {
+        "default": "#ff3079b5",
+        "night": "#ffa9cfee"
+      },
+      "chat_inlineResultIcon": {
+        "default": "#ff5795cc",
+        "night": "#ff79c4fc"
+      },
+      "chat_inLoader": {
+        "default": "#ff229af0",
+        "night": "#ff5098e9"
+      },
+      "chat_inLoaderPhoto": {
+        "default": "#ffa2b8c8",
+        "night": "#ff2c2c2c"
+      },
+      "chat_inLoaderSelected": {
+        "default": "#ff65abe0",
+        "night": "#ff539df1"
+      },
+      "chat_inLocationBackground": {
+        "default": "#ffebf0f5",
+        "night": "#ff3c3c3c"
+      },
+      "chat_inLocationIcon": {
+        "default": "#ffa2b5c7",
+        "night": "#ffffffff"
+      },
+      "chat_inMediaIcon": {
+        "default": "#ffffffff",
+        "fallback": "chat_inBubble",
+        "night": "#ffffffff"
+      },
+      "chat_inMediaIconSelected": {
+        "default": "#ffeff8fe",
+        "fallback": "chat_inBubbleSelected",
+        "night": "#ffffffff"
+      },
+      "chat_inMenu": {
+        "default": "#ffb6bdc5",
+        "night": "#ff5d6364"
+      },
+      "chat_inMenuSelected": {
+        "default": "#ff98c1ce",
+        "night": "#a58db2d3"
+      },
+      "chat_inPollCorrectAnswer": {
+        "default": "#ff60c255",
+        "fallback": "chat_attachLocationBackground"
+      },
+      "chat_inPollWrongAnswer": {
+        "default": "#ffeb6060",
+        "fallback": "chat_attachAudioBackground"
+      },
+      "chat_inPreviewInstantText": {
+        "default": "#ff298acf",
+        "night": "#ff79c4fc"
+      },
+      "chat_inPreviewLine": {
+        "default": "#ff70b4e8",
+        "night": "#ff79c4fc"
+      },
+      "chat_inPsaNameText": {
+        "default": "#ff5a9c39",
+        "fallback": "avatar_nameInMessageGreen"
+      },
+      "chat_inQuote": {
+        "default": "#ff459bd8",
+        "fallback": "featuredStickers_addButtonPressed",
+        "night": "#ff79c4fc"
+      },
+      "chat_inReactionButtonBackground": {
+        "default": "#ff229af0",
+        "fallback": "chat_inLoader"
+      },
+      "chat_inReactionButtonText": {
+        "default": "#ff298acf",
+        "fallback": "chat_inPreviewInstantText",
+        "night": "#ffffffff"
+      },
+      "chat_inReactionButtonTextSelected": {
+        "default": "#ffffffff",
+        "fallback": "windowBackgroundWhite",
+        "night": "#ffffffff"
+      },
+      "chat_inReplyLine": {
+        "default": "#ff599fd8",
+        "night": "#ff79c4fc"
+      },
+      "chat_inReplyMediaMessageSelectedText": {
+        "default": "#ff89b4c1",
+        "night": "#ff8db2d3"
+      },
+      "chat_inReplyMediaMessageText": {
+        "default": "#ffa1aab3",
+        "night": "#ff7f8081"
+      },
+      "chat_inReplyMessageText": {
+        "default": "#ff000000",
+        "night": "#ffffffff"
+      },
+      "chat_inReplyNameText": {
+        "default": "#ff298acf",
+        "night": "#ff79c4fc"
+      },
+      "chat_inSentClock": {
+        "default": "#ffa1aab3",
+        "night": "#ff576063"
+      },
+      "chat_inSentClockSelected": {
+        "default": "#ff93bdca",
+        "night": "#ff8db2d3"
+      },
+      "chat_inSiteNameText": {
+        "default": "#ff298acf",
+        "night": "#ff79c4fc"
+      },
+      "chat_inTableBackground": {
+        "default": "#fff7f7f7",
+        "fallback": "table_background"
+      },
+      "chat_inTableBorder": {
+        "default": "#ffe0e0e0",
+        "fallback": "table_border"
+      },
+      "chat_inTextSelectionHighlight": {
+        "default": "#5062a9e3",
+        "fallback": "chat_textSelectBackground",
+        "night": "#5a4eb4f3"
+      },
+      "chat_inTimeSelectedText": {
+        "default": "#ff89b4c1",
+        "night": "#ff8db2d3"
+      },
+      "chat_inTimeText": {
+        "default": "#ffa1aab3",
+        "night": "#ff7d7f81"
+      },
+      "chat_inVenueInfoSelectedText": {
+        "default": "#ff89b4c1",
+        "night": "#ff8db2d3"
+      },
+      "chat_inVenueInfoText": {
+        "default": "#ffa1aab3",
+        "night": "#ff767677"
+      },
+      "chat_inViaBotNameText": {
+        "default": "#ff298acf",
+        "night": "#ff79c4fc"
+      },
+      "chat_inViews": {
+        "default": "#ffa1aab3",
+        "night": "#ff787c80"
+      },
+      "chat_inViewsSelected": {
+        "default": "#ff93bdca",
+        "night": "#ff8db2d3"
+      },
+      "chat_inVoiceSeekbar": {
+        "default": "#ffdee5eb",
+        "night": "#ff636363"
+      },
+      "chat_inVoiceSeekbarFill": {
+        "default": "#ff229af0",
+        "night": "#ff64b5ef"
+      },
+      "chat_inVoiceSeekbarSelected": {
+        "default": "#ffbcdee8",
+        "night": "#ff7391ab"
+      },
+      "chat_linkSelectBackground": {
+        "default": "#3362a9e3",
+        "night": "#5a62a9e3"
+      },
+      "chat_lockIcon": {
+        "default": "#ff222222",
+        "night": "#ffffffff"
+      },
+      "chat_mediaInfoText": {
+        "default": "#ffffffff"
+      },
+      "chat_mediaLoaderPhoto": {
+        "default": "#66000000"
+      },
+      "chat_mediaLoaderPhotoIcon": {
+        "default": "#ffffffff"
+      },
+      "chat_mediaLoaderPhotoIconSelected": {
+        "default": "#ffd9d9d9"
+      },
+      "chat_mediaLoaderPhotoSelected": {
+        "default": "#7f000000"
+      },
+      "chat_mediaMenu": {
+        "default": "#ffffffff",
+        "night": "#ffffffff"
+      },
+      "chat_mediaProgress": {
+        "default": "#ffffffff"
+      },
+      "chat_mediaSentCheck": {
+        "default": "#ffffffff"
+      },
+      "chat_mediaSentClock": {
+        "default": "#ffffffff",
+        "night": "#b2ffffff"
+      },
+      "chat_mediaTimeBackground": {
+        "default": "#66000000"
+      },
+      "chat_mediaTimeText": {
+        "default": "#ffffffff"
+      },
+      "chat_mediaViews": {
+        "default": "#ffffffff"
+      },
+      "chat_messageLinkIn": {
+        "default": "#ff2678b6",
+        "night": "#ff79c4fc"
+      },
+      "chat_messageLinkOut": {
+        "default": "#ff2678b6",
+        "night": "#ffaedfff"
+      },
+      "chat_messagePanelBackground": {
+        "default": "#ffffffff",
+        "night": "#ff1e1e1f"
+      },
+      "chat_messagePanelCancelInlineBot": {
+        "default": "#ffadadad",
+        "night": "#64ffffff"
+      },
+      "chat_messagePanelCursor": {
+        "default": "#ff54a1db"
+      },
+      "chat_messagePanelHint": {
+        "default": "#ff858a84",
+        "night": "#64ffffff"
+      },
+      "chat_messagePanelIcons": {
+        "default": "#ff8e959b",
+        "night": "#64ffffff"
+      },
+      "chat_messagePanelSend": {
+        "default": "#ff229af0",
+        "night": "#ff229af0"
+      },
+      "chat_messagePanelShadow": {
+        "default": "#ff000000",
+        "night": "#79000000"
+      },
+      "chat_messagePanelText": {
+        "default": "#ff000000",
+        "night": "#ffffffff"
+      },
+      "chat_messagePanelVoiceBackground": {
+        "default": "#ff229af0",
+        "night": "#ff448bcc"
+      },
+      "chat_messagePanelVoiceDelete": {
+        "default": "#ff737373",
+        "night": "#ffffffff"
+      },
+      "chat_messagePanelVoiceDuration": {
+        "default": "#ffffffff",
+        "night": "#ffffffff"
+      },
+      "chat_messagePanelVoicePressed": {
+        "default": "#ffffffff",
+        "night": "#ffffffff"
+      },
+      "chat_messageTextIn": {
+        "default": "#ff000000",
+        "night": "#fffafafa"
+      },
+      "chat_messageTextOut": {
+        "default": "#ff000000",
+        "night": "#fffafafa"
+      },
+      "chat_msgIvButtonDangerIn": {
+        "default": "#fff8eae9"
+      },
+      "chat_msgIvButtonDangerInPressed": {
+        "default": "#fff8eae9"
+      },
+      "chat_msgIvButtonDangerInText": {
+        "default": "#ffcc5049",
+        "fallback": "avatar_nameInMessageRed",
+        "night": "#ffff6d6d"
+      },
+      "chat_msgIvButtonDangerOut": {
+        "default": "#ffeae9cb"
+      },
+      "chat_msgIvButtonDangerOutPressed": {
+        "default": "#ffeae9cb"
+      },
+      "chat_msgIvButtonDangerOutText": {
+        "default": "#ffcc5049"
+      },
+      "chat_msgIvButtonDefaultIn": {
+        "default": "#ffededed"
+      },
+      "chat_msgIvButtonDefaultInlineIn": {
+        "default": "#ffe9f3fa",
+        "night": "#19298acf"
+      },
+      "chat_msgIvButtonDefaultInlineInPressed": {
+        "default": "#ffe9f3fa",
+        "night": "#28298acf"
+      },
+      "chat_msgIvButtonDefaultInlineInText": {
+        "default": "#ff298acf",
+        "fallback": "telegram_color_text",
+        "night": "#ff298acf"
+      },
+      "chat_msgIvButtonDefaultInlineOut": {
+        "default": "#ffdcf4cb"
+      },
+      "chat_msgIvButtonDefaultInlineOutPressed": {
+        "default": "#ffdcf4cb"
+      },
+      "chat_msgIvButtonDefaultInlineOutText": {
+        "default": "#ff53ab49",
+        "fallback": "telegram_color_text"
+      },
+      "chat_msgIvButtonDefaultInPressed": {
+        "default": "#ffededed"
+      },
+      "chat_msgIvButtonDefaultInText": {
+        "default": "#ff1a1d21",
+        "fallback": "chat_messageTextIn"
+      },
+      "chat_msgIvButtonDefaultOut": {
+        "default": "#ffdcf4cb"
+      },
+      "chat_msgIvButtonDefaultOutPressed": {
+        "default": "#ffdcf4cb"
+      },
+      "chat_msgIvButtonDefaultOutText": {
+        "default": "#ff53ab49",
+        "fallback": "chat_messageTextOut"
+      },
+      "chat_msgIvButtonPrimaryIn": {
+        "default": "#ff229af0",
+        "fallback": "featuredStickers_addButton",
+        "night": "#ff229af0"
+      },
+      "chat_msgIvButtonPrimaryInPressed": {
+        "default": "#ff229af0",
+        "fallback": "featuredStickers_addButtonPressed",
+        "night": "#ff4299db"
+      },
+      "chat_msgIvButtonPrimaryInText": {
+        "default": "#fff8fcff",
+        "fallback": "featuredStickers_buttonText",
+        "night": "#ffffffff"
+      },
+      "chat_msgIvButtonPrimaryOut": {
+        "default": "#ff53ab49",
+        "fallback": "featuredStickers_addButton",
+        "night": "#ff229af0"
+      },
+      "chat_msgIvButtonPrimaryOutPressed": {
+        "default": "#ff53ab49",
+        "fallback": "featuredStickers_addButtonPressed",
+        "night": "#ff4299db"
+      },
+      "chat_msgIvButtonPrimaryOutText": {
+        "default": "#fffafcf9",
+        "fallback": "featuredStickers_buttonText",
+        "night": "#ffffffff"
+      },
+      "chat_msgIvButtonSuccessIn": {
+        "default": "#ffe8f4e4"
+      },
+      "chat_msgIvButtonSuccessInPressed": {
+        "default": "#ffe8f4e4"
+      },
+      "chat_msgIvButtonSuccessInText": {
+        "default": "#ff40a920",
+        "night": "#ff78ff7b"
+      },
+      "chat_msgIvButtonSuccessOut": {
+        "default": "#ffdcf4cb"
+      },
+      "chat_msgIvButtonSuccessOutPressed": {
+        "default": "#ffdcf4cb"
+      },
+      "chat_msgIvButtonSuccessOutText": {
+        "default": "#ff40a920"
+      },
+      "chat_muteIcon": {
+        "default": "#ff79817e",
+        "night": "#64a5a5a5"
+      },
+      "chat_outAdminSelectedText": {
+        "default": "#ff70b15c",
+        "fallback": "chat_outTimeSelectedText"
+      },
+      "chat_outAdminText": {
+        "default": "#ff70b15c",
+        "fallback": "chat_outTimeText"
+      },
+      "chat_outArticleCodeBackground": {
+        "fallback": "chat_outCodeBackground"
+      },
+      "chat_outArticleCodeScrollbar": {
+        "default": "#ffccd5c2"
+      },
+      "chat_outArticleCodeScrollbarBackground": {
+        "default": "#ffe4ebdc"
+      },
+      "chat_outArticleDetailsArrow": {
+        "default": "#ff84a37b"
+      },
+      "chat_outArticleDetailsLine": {
+        "default": "#ffcbd8c5"
+      },
+      "chat_outAudioCacheSeekbar": {
+        "default": "#3fbbe3ac",
+        "fallback": "chat_outAudioSeekbar",
+        "night": "#ffffffff"
+      },
+      "chat_outAudioDurationSelectedText": {
+        "default": "#ff65b05b",
+        "night": "#ff94d3f6"
+      },
+      "chat_outAudioDurationText": {
+        "default": "#ff65b05b",
+        "night": "#ff94d3f6"
+      },
+      "chat_outAudioPerfomerSelectedText": {
+        "default": "#ff354234",
+        "night": "#ff94d3f6"
+      },
+      "chat_outAudioPerfomerText": {
+        "default": "#ff354234",
+        "night": "#ff94d3f6"
+      },
+      "chat_outAudioProgress": {
+        "default": "#ffefffde",
+        "night": "#ffffffff"
+      },
+      "chat_outAudioSeekbar": {
+        "default": "#ffbbe3ac",
+        "night": "#df7dc7ff"
+      },
+      "chat_outAudioSeekbarFill": {
+        "default": "#ff78c272",
+        "night": "#ffffffff"
+      },
+      "chat_outAudioSeekbarSelected": {
+        "default": "#ffa9dd96",
+        "night": "#de7dc7ff"
+      },
+      "chat_outAudioSelectedProgress": {
+        "default": "#ffe1f8cf",
+        "night": "#ffffffff"
+      },
+      "chat_outAudioTitleText": {
+        "default": "#ff55ab4f",
+        "night": "#ffffffff"
+      },
+      "chat_outBubble": {
+        "default": "#ffefffde",
+        "night": "#ff366caf"
+      },
+      "chat_outBubbleGradient": {
+        "night": "#ff3b8cb9"
+      },
+      "chat_outBubbleGradient2": {},
+      "chat_outBubbleGradient3": {},
+      "chat_outBubbleGradientAnimated": {},
+      "chat_outBubbleGradientSelectedOverlay": {
+        "default": "#14000000",
+        "night": "#14ffffff"
+      },
+      "chat_outBubbleLocationPlaceholder": {
+        "default": "#1e307311"
+      },
+      "chat_outBubbleSelected": {
+        "default": "#ffd9f7c5",
+        "night": "#ff4b7daf"
+      },
+      "chat_outBubbleSelectedOverlay": {},
+      "chat_outBubbleShadow": {
+        "default": "#ff1e750c",
+        "night": "#32000000"
+      },
+      "chat_outCodeBackground": {
+        "default": "#123c7503",
+        "night": "#333442ca"
+      },
+      "chat_outContactBackground": {
+        "default": "#ff78c272",
+        "night": "#ff68a3d7"
+      },
+      "chat_outContactIcon": {
+        "default": "#ffefffde",
+        "night": "#ffffffff"
+      },
+      "chat_outContactNameText": {
+        "default": "#ff55ab4f",
+        "night": "#ffffffff"
+      },
+      "chat_outContactPhoneSelectedText": {
+        "default": "#ff354234",
+        "night": "#ff94d3f6"
+      },
+      "chat_outContactPhoneText": {
+        "default": "#ff354234",
+        "night": "#ff94d3f6"
+      },
+      "chat_outDivider": {
+        "default": "#336eb969"
+      },
+      "chat_outFileBackground": {
+        "default": "#ffdaf5c3",
+        "night": "#1effffff"
+      },
+      "chat_outFileBackgroundSelected": {
+        "default": "#ffc5eca7",
+        "night": "#1effffff"
+      },
+      "chat_outFileInfoSelectedText": {
+        "default": "#ff65b05b",
+        "night": "#ffbedffa"
+      },
+      "chat_outFileInfoText": {
+        "default": "#ff65b05b",
+        "night": "#ff8fbcdf"
+      },
+      "chat_outFileNameText": {
+        "default": "#ff55ab4f",
+        "night": "#ffffffff"
+      },
+      "chat_outFileProgress": {
+        "default": "#ffdaf5c3",
+        "night": "#ffffffff"
+      },
+      "chat_outFileProgressSelected": {
+        "default": "#ffc5eca7",
+        "night": "#ffffffff"
+      },
+      "chat_outForwardedNameText": {
+        "default": "#ff55ab4f",
+        "night": "#ffacddff"
+      },
+      "chat_outInstant": {
+        "default": "#ff55ab4f",
+        "night": "#ffffffff"
+      },
+      "chat_outInstantSelected": {
+        "default": "#ff489943",
+        "night": "#ffffffff"
+      },
+      "chat_outLinkSelectBackground": {
+        "default": "#3362a9e3",
+        "fallback": "chat_linkSelectBackground"
+      },
+      "chat_outLoader": {
+        "default": "#ff78c272",
+        "night": "#ffffffff"
+      },
+      "chat_outLoaderSelected": {
+        "default": "#ff6ab564",
+        "night": "#ffffffff"
+      },
+      "chat_outLocationIcon": {
+        "default": "#ff87bf78",
+        "night": "#ffffffff"
+      },
+      "chat_outMediaIcon": {
+        "default": "#ffefffde",
+        "fallback": "chat_outBubble",
+        "night": "#ffffffff"
+      },
+      "chat_outMediaIconSelected": {
+        "default": "#ffe1f8cf",
+        "fallback": "chat_outBubbleSelected",
+        "night": "#ffffffff"
+      },
+      "chat_outMenu": {
+        "default": "#ff91ce7e",
+        "night": "#ff8ec4f3"
+      },
+      "chat_outMenuSelected": {
+        "default": "#ff91ce7e",
+        "night": "#dfbedffa"
+      },
+      "chat_outPollCorrectAnswer": {
+        "default": "#ff60c255",
+        "fallback": "chat_attachLocationBackground"
+      },
+      "chat_outPollWrongAnswer": {
+        "default": "#ffeb6060",
+        "fallback": "chat_attachAudioBackground"
+      },
+      "chat_outPreviewInstantText": {
+        "default": "#ff55ab4f",
+        "night": "#ffffffff"
+      },
+      "chat_outPreviewLine": {
+        "default": "#ff88c97b",
+        "night": "#ff9acdff"
+      },
+      "chat_outPsaNameText": {
+        "default": "#ff5a9c39",
+        "fallback": "avatar_nameInMessageGreen"
+      },
+      "chat_outQuote": {
+        "default": "#ff6ab860",
+        "fallback": "chat_outReplyLine"
+      },
+      "chat_outReactionButtonBackground": {
+        "default": "#ff78c272",
+        "fallback": "chat_outLoader"
+      },
+      "chat_outReactionButtonText": {
+        "default": "#ff55ab4f",
+        "fallback": "chat_outPreviewInstantText"
+      },
+      "chat_outReactionButtonTextSelected": {
+        "default": "#ffffffff",
+        "fallback": "windowBackgroundWhite"
+      },
+      "chat_outReplyLine": {
+        "default": "#ff6eb969",
+        "night": "#ff7eceff"
+      },
+      "chat_outReplyLine2": {
+        "default": "#ff40a920",
+        "fallback": "chat_outReplyLine"
+      },
+      "chat_outReplyMediaMessageSelectedText": {
+        "default": "#ff65b05b",
+        "night": "#ff94d3f6"
+      },
+      "chat_outReplyMediaMessageText": {
+        "default": "#ff65b05b",
+        "night": "#ff94d3f6"
+      },
+      "chat_outReplyMessageText": {
+        "default": "#ff000000",
+        "night": "#ffffffff"
+      },
+      "chat_outReplyNameText": {
+        "default": "#ff55ab4f",
+        "night": "#ff9fd9ff"
+      },
+      "chat_outSentCheck": {
+        "default": "#ff5db050",
+        "night": "#e1c9f0ff"
+      },
+      "chat_outSentCheckRead": {
+        "default": "#ff5db050",
+        "fallback": "chat_outSentCheck",
+        "night": "#e1c9f0ff"
+      },
+      "chat_outSentCheckReadSelected": {
+        "default": "#ff5db050",
+        "fallback": "chat_outSentCheckSelected"
+      },
+      "chat_outSentCheckSelected": {
+        "default": "#ff5db050",
+        "night": "#ffa6dbff"
+      },
+      "chat_outSentClock": {
+        "default": "#ff75bd5e",
+        "night": "#ff99c9ef"
+      },
+      "chat_outSentClockSelected": {
+        "default": "#ff75bd5e",
+        "night": "#ffbedffa"
+      },
+      "chat_outSiteNameText": {
+        "default": "#ff55ab4f",
+        "night": "#ffffffff"
+      },
+      "chat_outTableBackground": {
+        "default": "#ffdef0cc",
+        "fallback": "chat_outCodeBackground"
+      },
+      "chat_outTableBorder": {
+        "default": "#ffc9dbb6",
+        "fallback": "table_border"
+      },
+      "chat_outTextSelectionCursor": {
+        "default": "#ff419fe8",
+        "fallback": "chat_TextSelectionCursor"
+      },
+      "chat_outTextSelectionHighlight": {
+        "default": "#2e3f9923",
+        "fallback": "chat_textSelectBackground",
+        "night": "#7e7ec0ed"
+      },
+      "chat_outTimeSelectedText": {
+        "default": "#ff70b15c",
+        "night": "#ff94d3f6"
+      },
+      "chat_outTimeText": {
+        "default": "#ff70b15c",
+        "night": "#ff94d3f6"
+      },
+      "chat_outUpCall": {
+        "default": "#ff00c853",
+        "fallback": "calls_callReceivedGreenIcon",
+        "night": "#ffffffff"
+      },
+      "chat_outVenueInfoSelectedText": {
+        "default": "#ff65b05b",
+        "night": "#ff94d3f6"
+      },
+      "chat_outVenueInfoText": {
+        "default": "#ff65b05b",
+        "night": "#ff94d3f6"
+      },
+      "chat_outViaBotNameText": {
+        "default": "#ff55ab4f",
+        "night": "#ffacddff"
+      },
+      "chat_outViews": {
+        "default": "#ff6eb257",
+        "night": "#ff8fbcdf"
+      },
+      "chat_outViewsSelected": {
+        "default": "#ff6eb257",
+        "night": "#ffbedffa"
+      },
+      "chat_outVoiceSeekbar": {
+        "default": "#ffbbe3ac",
+        "night": "#ff63aae2"
+      },
+      "chat_outVoiceSeekbarFill": {
+        "default": "#ff78c272",
+        "night": "#ffffffff"
+      },
+      "chat_outVoiceSeekbarSelected": {
+        "default": "#ffa9dd96",
+        "night": "#ff72a4dc"
+      },
+      "chat_previewDurationText": {
+        "default": "#ffffffff"
+      },
+      "chat_previewGameText": {
+        "default": "#ffffffff"
+      },
+      "chat_reactionServiceButtonBackgroundSelected": {
+        "default": "#ffffffff",
+        "fallback": "chat_outBubble"
+      },
+      "chat_reactionServiceButtonTextSelected": {
+        "default": "#ff000000",
+        "fallback": "chat_messageTextOut"
+      },
+      "chat_recordedVoiceBackground": {
+        "default": "#ff5dade8",
+        "night": "#ff4d9eee"
+      },
+      "chat_recordedVoiceDarkerBackground": {
+        "default": "#ff1f89db"
+      },
+      "chat_recordedVoiceDot": {
+        "default": "#ffda564d",
+        "night": "#ffed5d54"
+      },
+      "chat_recordedVoicePlayPause": {
+        "default": "#ffffffff"
+      },
+      "chat_recordedVoiceProgress": {
+        "default": "#ffb1deff"
+      },
+      "chat_recordedVoiceProgressInner": {
+        "default": "#ffffffff"
+      },
+      "chat_recordTime": {
+        "default": "#ff8e959b",
+        "night": "#78ffffff"
+      },
+      "chat_recordVoiceCancel": {
+        "default": "#ff3a95d4",
+        "night": "#ff5da9ec"
+      },
+      "chat_replyPanelClose": {
+        "default": "#ff8e959b",
+        "night": "#64ffffff"
+      },
+      "chat_replyPanelIcons": {
+        "default": "#ff229af0",
+        "night": "#ff229af0"
+      },
+      "chat_replyPanelLine": {
+        "default": "#ffe8e8e8",
+        "night": "#32000000"
+      },
+      "chat_replyPanelName": {
+        "default": "#ff298acf",
+        "night": "#ff62b4f9"
+      },
+      "chat_searchPanelIcons": {
+        "default": "#ff676a6f",
+        "night": "#64ffffff"
+      },
+      "chat_searchPanelText": {
+        "default": "#ff676a6f",
+        "night": "#ffffffff"
+      },
+      "chat_secretChatStatusText": {
+        "default": "#ff7f7f7f",
+        "night": "#6effffff"
+      },
+      "chat_secretTimeText": {
+        "default": "#ffe4e2e0",
+        "night": "#ffcdcdce"
+      },
+      "chat_selectedBackground": {
+        "default": "#280a90f0",
+        "night": "#2a5f9de3"
+      },
+      "chat_sentError": {
+        "default": "#ffdb3535",
+        "night": "#fff6574e"
+      },
+      "chat_sentErrorIcon": {
+        "default": "#ffffffff"
+      },
+      "chat_serviceBackground": {
+        "night": "#96373737"
+      },
+      "chat_serviceBackgroundSelected": {
+        "night": "#599ba5ae"
+      },
+      "chat_serviceBackgroundSelector": {
+        "default": "#20ffffff"
+      },
+      "chat_serviceIcon": {
+        "default": "#ffffffff"
+      },
+      "chat_serviceLink": {
+        "default": "#ffffffff"
+      },
+      "chat_serviceText": {
+        "default": "#ffffffff"
+      },
+      "chat_status": {
+        "default": "#ff298acf",
+        "fallback": "actionBarDefaultSubtitle",
+        "night": "#ff74bdf9"
+      },
+      "chat_stickerNameText": {
+        "default": "#ffffffff"
+      },
+      "chat_stickerReplyLine": {
+        "default": "#ffffffff"
+      },
+      "chat_stickerReplyMessageText": {
+        "default": "#ffffffff"
+      },
+      "chat_stickerReplyNameText": {
+        "default": "#ffffffff"
+      },
+      "chat_stickersHintPanel": {
+        "default": "#ffffffff",
+        "night": "#ff212122"
+      },
+      "chat_stickerViaBotNameText": {
+        "default": "#ffffffff"
+      },
+      "chat_tagAdmin": {
+        "default": "#ff40a920"
+      },
+      "chat_tagCreator": {
+        "default": "#ff955cdb"
+      },
+      "chat_textSelectBackground": {
+        "default": "#6662a9e3",
+        "night": "#5a62a9e3"
+      },
+      "chat_TextSelectionCursor": {
+        "default": "#ff419fe8",
+        "fallback": "chat_messagePanelCursor",
+        "night": "#ff57b7ed"
+      },
+      "chat_topPanelBackground": {
+        "default": "#ffffffff",
+        "night": "#ff1a1a1b"
+      },
+      "chat_topPanelClose": {
+        "default": "#ff818786",
+        "night": "#64ffffff"
+      },
+      "chat_topPanelLine": {
+        "default": "#ff3fa8ef",
+        "night": "#ff5ba3e3"
+      },
+      "chat_topPanelMessage": {
+        "default": "#ff767e7c",
+        "night": "#64ffffff"
+      },
+      "chat_topPanelTitle": {
+        "default": "#ff298acf",
+        "night": "#ff60aff4"
+      },
+      "chat_unreadMessagesStartArrowIcon": {
+        "default": "#ffa2b5c7",
+        "night": "#ff6d6d6f"
+      },
+      "chat_unreadMessagesStartBackground": {
+        "default": "#ffffffff",
+        "night": "#ff212122"
+      },
+      "chat_unreadMessagesStartText": {
+        "default": "#ff5695cc",
+        "night": "#daffffff"
+      },
+      "chat_wallpaper": {
+        "night": "#ff0f0f10"
+      },
+      "chat_wallpaper_gradient_to": {},
+      "chats_actionBackground": {
+        "default": "#ff65a9e0",
+        "night": "#ff5ea0db"
+      },
+      "chats_actionIcon": {
+        "default": "#ffffffff"
+      },
+      "chats_actionMessage": {
+        "default": "#ff298acf",
+        "night": "#ff64afe9"
+      },
+      "chats_actionPressedBackground": {
+        "default": "#ff569dd6",
+        "night": "#ff70bce6"
+      },
+      "chats_archiveBackground": {
+        "default": "#ff229af0",
+        "fallback": "chats_actionBackground",
+        "night": "#ff458ad2"
+      },
+      "chats_archiveIcon": {
+        "default": "#ffffffff",
+        "fallback": "chats_actionIcon"
+      },
+      "chats_archivePinBackground": {
+        "default": "#ff9faab3",
+        "fallback": "chats_unreadCounterMuted",
+        "night": "#ff303030"
+      },
+      "chats_archivePullDownBackground": {
+        "default": "#ffc6c9cc",
+        "fallback": "chats_unreadCounterMuted",
+        "night": "#ff282828"
+      },
+      "chats_archivePullDownBackgroundActive": {
+        "default": "#ff229af0",
+        "fallback": "chats_actionBackground"
+      },
+      "chats_archiveText": {
+        "default": "#ffffffff",
+        "fallback": "chats_actionIcon"
+      },
+      "chats_attachMessage": {
+        "default": "#ff298acf",
+        "night": "#ff828282"
+      },
+      "chats_date": {
+        "default": "#ff848688",
+        "night": "#ff787878"
+      },
+      "chats_date_bold": {
+        "default": "#ff919395",
+        "fallback": "chats_date"
+      },
+      "chats_draft": {
+        "default": "#ffdd4b39",
+        "night": "#d9fc474a"
+      },
+      "chats_mentionIcon": {
+        "default": "#ffffffff"
+      },
+      "chats_menuBackground": {
+        "default": "#ffffffff",
+        "night": "#ff242426"
+      },
+      "chats_menuItemCheck": {
+        "default": "#ff598fba"
+      },
+      "chats_menuItemIcon": {
+        "default": "#ff889198",
+        "night": "#ff828282"
+      },
+      "chats_menuItemText": {
+        "default": "#ff444444",
+        "night": "#f4ffffff"
+      },
+      "chats_menuName": {
+        "default": "#ffffffff"
+      },
+      "chats_menuPhone": {
+        "default": "#ffffffff",
+        "night": "#93c8c8c8"
+      },
+      "chats_menuPhoneCats": {
+        "default": "#ffc2e5ff",
+        "night": "#ff828282"
+      },
+      "chats_menuTopBackground": {},
+      "chats_menuTopBackgroundCats": {
+        "default": "#ff598fba",
+        "fallback": "avatar_backgroundActionBarBlue",
+        "night": "#ff1b1b1b"
+      },
+      "chats_menuTopShadow": {
+        "night": "#a41d1d1d"
+      },
+      "chats_menuTopShadowCats": {},
+      "chats_message": {
+        "default": "#ff75787a",
+        "night": "#ff828282"
+      },
+      "chats_message_threeLines": {
+        "default": "#ff8e9091",
+        "fallback": "chats_message",
+        "night": "#ff828282"
+      },
+      "chats_messageArchived": {
+        "default": "#ff919191",
+        "fallback": "chats_message",
+        "night": "#ff828282"
+      },
+      "chats_muteIcon": {
+        "default": "#ffbdc1c4",
+        "night": "#ff555555"
+      },
+      "chats_name": {
+        "default": "#ff1a1d21",
+        "night": "#fff1f1f1"
+      },
+      "chats_nameArchived": {
+        "default": "#ff1a1d21",
+        "fallback": "chats_name",
+        "night": "#ffaaaaaa"
+      },
+      "chats_nameMessage": {
+        "default": "#ff298acf",
+        "night": "#ffebebeb"
+      },
+      "chats_nameMessage_threeLines": {
+        "default": "#ff424449",
+        "fallback": "chats_nameMessage",
+        "night": "#ffebebeb"
+      },
+      "chats_nameMessageArchived": {
+        "default": "#ff8b8d8f",
+        "fallback": "chats_nameMessage",
+        "night": "#ff7d7d7d"
+      },
+      "chats_nameMessageArchived_threeLines": {
+        "default": "#ff5e5e5e",
+        "fallback": "chats_nameMessage"
+      },
+      "chats_onlineCircle": {
+        "default": "#ff4bcb1c",
+        "fallback": "windowBackgroundWhiteBlueText",
+        "night": "#ff37a4f9"
+      },
+      "chats_pinnedIcon": {
+        "default": "#ff919294",
+        "night": "#ff646464"
+      },
+      "chats_pinnedOverlay": {
+        "default": "#08000000",
+        "night": "#0bffffff"
+      },
+      "chats_secretIcon": {
+        "default": "#ff19b126",
+        "night": "#ff71d756"
+      },
+      "chats_secretName": {
+        "default": "#ff00a60e",
+        "night": "#ff71d756"
+      },
+      "chats_sentCheck": {
+        "default": "#ff46aa36",
+        "night": "#ff46adf3"
+      },
+      "chats_sentClock": {
+        "default": "#ff75bd5e",
+        "night": "#ff6e6e6e"
+      },
+      "chats_sentError": {
+        "default": "#ffd55252"
+      },
+      "chats_sentErrorIcon": {
+        "default": "#ffffffff"
+      },
+      "chats_sentReadCheck": {
+        "default": "#ff46aa36",
+        "fallback": "chats_sentCheck",
+        "night": "#ff46adf3"
+      },
+      "chats_tabletSelectedOverlay": {
+        "default": "#0f000000",
+        "night": "#0fffffff"
+      },
+      "chats_tabUnreadActiveBackground": {
+        "default": "#ff66ade1"
+      },
+      "chats_tabUnreadUnactiveBackground": {
+        "default": "#ffc5c9cc"
+      },
+      "chats_unreadCounter": {
+        "default": "#ff229af0",
+        "night": "#ff399ef3"
+      },
+      "chats_unreadCounterMuted": {
+        "default": "#ffbec3c7",
+        "night": "#ff454545"
+      },
+      "chats_unreadCounterText": {
+        "default": "#ffffffff"
+      },
+      "chats_verifiedBackground": {
+        "default": "#ff33a8e6",
+        "night": "#ff46aaf7"
+      },
+      "chats_verifiedCheck": {
+        "default": "#ffffffff"
+      },
+      "checkbox": {
+        "default": "#ff5ec245"
+      },
+      "checkboxCheck": {
+        "default": "#ffffffff"
+      },
+      "checkboxDisabled": {
+        "default": "#ffb0b9c2",
+        "fallback": "chats_unreadCounterMuted"
+      },
+      "checkboxSquareBackground": {
+        "default": "#ff229af0",
+        "night": "#ff64b5e5"
+      },
+      "checkboxSquareCheck": {
+        "default": "#ffffffff"
+      },
+      "checkboxSquareDisabled": {
+        "default": "#ffb0b0b0",
+        "night": "#64445362"
+      },
+      "checkboxSquareUnchecked": {
+        "default": "#ff737373",
+        "night": "#ff546679"
+      },
+      "code_comment": {
+        "default": "#80000000",
+        "night": "#7fffffff"
+      },
+      "code_constant": {
+        "default": "#ff7f79f3",
+        "night": "#ffff9380"
+      },
+      "code_function": {
+        "default": "#fff28c39",
+        "night": "#ffff9380"
+      },
+      "code_keyword": {
+        "default": "#ffe05356",
+        "night": "#ffff9380"
+      },
+      "code_number": {
+        "default": "#ff327fe5",
+        "night": "#ff59ded7"
+      },
+      "code_operator": {
+        "default": "#ff4dbbff",
+        "night": "#7fffffff"
+      },
+      "code_string": {
+        "default": "#ff37c123",
+        "night": "#ff88e378"
+      },
+      "color_blue": {
+        "default": "#ff327fe5",
+        "night": "#ff529fff"
+      },
+      "color_cyan": {
+        "default": "#ff40d0ca"
+      },
+      "color_green": {
+        "default": "#ff61c752",
+        "night": "#ff3dc23f"
+      },
+      "color_lightblue": {
+        "default": "#ff58a8ed",
+        "night": "#ff3c78ec"
+      },
+      "color_lightgreen": {
+        "default": "#ff8fcf39",
+        "night": "#ff8fcf39"
+      },
+      "color_orange": {
+        "default": "#fff28c39",
+        "night": "#fff28c39"
+      },
+      "color_purple": {
+        "default": "#ff9f79e8",
+        "night": "#ff875ce5"
+      },
+      "color_red": {
+        "default": "#ffe05356",
+        "night": "#fff34c44"
+      },
+      "color_yellow": {
+        "default": "#ffeba52d",
+        "night": "#ffdeac1f"
+      },
+      "contacts_inviteBackground": {
+        "default": "#ff55be61"
+      },
+      "contacts_inviteText": {
+        "default": "#ffffffff"
+      },
+      "contextProgressInner1": {
+        "default": "#ffbfdff6",
+        "night": "#5affffff"
+      },
+      "contextProgressInner2": {
+        "default": "#ffbfdff6"
+      },
+      "contextProgressInner3": {
+        "default": "#ffb3b3b3"
+      },
+      "contextProgressInner4": {
+        "default": "#ffcacdd0",
+        "fallback": "contextProgressInner1"
+      },
+      "contextProgressOuter1": {
+        "default": "#ff2b96e2",
+        "night": "#ff4facf8"
+      },
+      "contextProgressOuter2": {
+        "default": "#ffffffff"
+      },
+      "contextProgressOuter3": {
+        "default": "#ffffffff"
+      },
+      "contextProgressOuter4": {
+        "default": "#ff2f3438",
+        "fallback": "contextProgressOuter1"
+      },
+      "dialog_inlineProgress": {
+        "default": "#ff6b7378",
+        "fallback": "chats_menuItemIcon"
+      },
+      "dialog_inlineProgressBackground": {
+        "default": "#f6f0f2f5",
+        "fallback": "windowBackgroundGray"
+      },
+      "dialog_liveLocationProgress": {
+        "default": "#ff359fe5",
+        "night": "#ff68a3d7"
+      },
+      "dialogBackground": {
+        "default": "#ffffffff",
+        "night": "#ff1e1e1e"
+      },
+      "dialogBackgroundGray": {
+        "default": "#fff0f0f0",
+        "night": "#ff2a2a2a"
+      },
+      "dialogButton": {
+        "default": "#ff298acf",
+        "night": "#ff64b5ef"
+      },
+      "dialogButtonSelector": {
+        "default": "#0f000000",
+        "night": "#19ffffff"
+      },
+      "dialogCardShadow": {
+        "default": "#17000000",
+        "night": "#40000000"
+      },
+      "dialogCheckboxSquareBackground": {
+        "default": "#ff229af0"
+      },
+      "dialogCheckboxSquareCheck": {
+        "default": "#ffffffff"
+      },
+      "dialogCheckboxSquareDisabled": {
+        "default": "#ffb0b0b0",
+        "night": "#ff484848"
+      },
+      "dialogCheckboxSquareUnchecked": {
+        "default": "#ff737373",
+        "night": "#ff5a5a5a"
+      },
+      "dialogEmptyImage": {
+        "default": "#ff9fa4a8",
+        "fallback": "player_time"
+      },
+      "dialogEmptyText": {
+        "default": "#ff8c9094",
+        "fallback": "player_time"
+      },
+      "dialogFloatingButton": {
+        "default": "#ff229af0",
+        "fallback": "dialogRoundCheckBox"
+      },
+      "dialogFloatingButtonPressed": {
+        "default": "#0f000000",
+        "fallback": "dialogRoundCheckBox"
+      },
+      "dialogFloatingIcon": {
+        "default": "#ffffffff",
+        "fallback": "dialogRoundCheckBoxCheck"
+      },
+      "dialogGiftsBackground": {
+        "default": "#fff5f6f7",
+        "fallback": "windowBackgroundGray"
+      },
+      "dialogGiftsTabText": {
+        "default": "#ff56595c",
+        "fallback": "windowBackgroundWhiteGrayText2"
+      },
+      "dialogGrayLine": {
+        "default": "#ffd2d2d2",
+        "night": "#ff484848"
+      },
+      "dialogIcon": {
+        "default": "#ff1a1d21",
+        "night": "#ff8c8c8c"
+      },
+      "dialogInputField": {
+        "default": "#ffdbdbdb",
+        "night": "#ff7d7d7d"
+      },
+      "dialogInputFieldActivated": {
+        "default": "#ff229af0"
+      },
+      "dialogLineProgress": {
+        "default": "#ff527da3",
+        "night": "#ff57a8e6"
+      },
+      "dialogLineProgressBackground": {
+        "default": "#ffdbdbdb",
+        "night": "#ff444444"
+      },
+      "dialogLinkSelection": {
+        "default": "#3362a9e3"
+      },
+      "dialogRadioBackground": {
+        "default": "#ffb3b3b3",
+        "night": "#ff5a5a5a"
+      },
+      "dialogRadioBackgroundChecked": {
+        "default": "#ff229af0"
+      },
+      "dialogReactionMentionBackground": {
+        "default": "#ffeb5e5e",
+        "fallback": "voipgroup_mutedByAdminGradient2"
+      },
+      "dialogRoundCheckBox": {
+        "default": "#ff229af0",
+        "night": "#ff64b5ef"
+      },
+      "dialogRoundCheckBoxCheck": {
+        "default": "#ffffffff"
+      },
+      "dialogScrollGlow": {
+        "default": "#fff5f6f7",
+        "night": "#fff5f5f5"
+      },
+      "dialogSearchBackground": {
+        "default": "#fff2f4f5",
+        "fallback": "chat_emojiPanelStickerPackSelector",
+        "night": "#ff2d2d2d"
+      },
+      "dialogSearchHint": {
+        "default": "#ff98a0a7",
+        "fallback": "chat_emojiPanelIcon",
+        "night": "#ff7f7f7f"
+      },
+      "dialogSearchIcon": {
+        "default": "#ffa1a8af",
+        "fallback": "chat_emojiPanelIcon",
+        "night": "#ff787878"
+      },
+      "dialogSearchText": {
+        "default": "#ff222222",
+        "fallback": "windowBackgroundWhiteBlackText",
+        "night": "#ffffffff"
+      },
+      "dialogShadowLine": {
+        "default": "#12000000",
+        "fallback": "chat_emojiPanelShadowLine",
+        "night": "#14000000"
+      },
+      "dialogSwipeRemove": {
+        "default": "#ffe56555",
+        "fallback": "avatar_backgroundRed"
+      },
+      "dialogTextBlack": {
+        "default": "#ff1a1d21",
+        "night": "#fff6f6f6"
+      },
+      "dialogTextBlue": {
+        "default": "#ff2f8cc9",
+        "night": "#ff64b5ef"
+      },
+      "dialogTextBlue2": {
+        "default": "#ff3a95d5",
+        "night": "#ff64b5ef"
+      },
+      "dialogTextBlue4": {
+        "default": "#ff19a7e8",
+        "night": "#ff64b5ef"
+      },
+      "dialogTextGray": {
+        "default": "#ff348bc1",
+        "night": "#ff7d7d7d"
+      },
+      "dialogTextGray2": {
+        "default": "#ff757575",
+        "night": "#ff7d7d7d"
+      },
+      "dialogTextGray3": {
+        "default": "#ff999999",
+        "night": "#ff7d7d7d"
+      },
+      "dialogTextGray4": {
+        "default": "#ffb3b3b3",
+        "night": "#ff7d7d7d"
+      },
+      "dialogTextHint": {
+        "default": "#ff979797",
+        "night": "#ff7d7d7d"
+      },
+      "dialogTextLink": {
+        "default": "#ff2678b6",
+        "night": "#ff64b5ef"
+      },
+      "dialogTopBackground": {
+        "default": "#ff298acf",
+        "night": "#ff326a98"
+      },
+      "divider": {
+        "default": "#ffd9d9d9",
+        "night": "#ff000000"
+      },
+      "emptyListPlaceholder": {
+        "default": "#ff73787b",
+        "night": "#ff7d7d7d"
+      },
+      "fastScrollActive": {
+        "default": "#ff229af0",
+        "night": "#ff229af0"
+      },
+      "fastScrollInactive": {
+        "default": "#ffc9cdd1",
+        "night": "#ff414141"
+      },
+      "fastScrollText": {
+        "default": "#ffffffff"
+      },
+      "featuredStickers_addButton": {
+        "default": "#ff229af0"
+      },
+      "featuredStickers_addButton2": {
+        "default": "#ff56baf0",
+        "fallback": "featuredStickers_addButton"
+      },
+      "featuredStickers_addButtonPressed": {
+        "default": "#ff2288d1"
+      },
+      "featuredStickers_addedIcon": {
+        "default": "#ff229af0",
+        "night": "#ff4ca5ef"
+      },
+      "featuredStickers_buttonProgress": {
+        "default": "#ffffffff"
+      },
+      "featuredStickers_buttonText": {
+        "default": "#ffffffff"
+      },
+      "featuredStickers_removeButtonText": {
+        "default": "#ff5093d3",
+        "fallback": "featuredStickers_addButtonPressed"
+      },
+      "featuredStickers_unread": {
+        "default": "#ff4da6ea"
+      },
+      "files_folderIcon": {
+        "default": "#ffffffff",
+        "night": "#ffffffff"
+      },
+      "files_folderIconBackground": {
+        "default": "#ff5dafeb",
+        "night": "#ff5dafeb"
+      },
+      "files_iconText": {
+        "default": "#ffffffff"
+      },
+      "fill_RedDark": {},
+      "fill_RedNormal": {
+        "default": "#ffeb5e5e"
+      },
+      "gift_ribbon": {
+        "default": "#ff46a4f2",
+        "night": "#ff41607f"
+      },
+      "gift_ribbon_soldout": {
+        "default": "#ffcc4747",
+        "fallback": "text_RedBold",
+        "night": "#ff7e4b41"
+      },
+      "glass_defaultIcon": {
+        "default": "#991b2227",
+        "fallback": "chat_messagePanelIcons",
+        "night": "#a0ffffff"
+      },
+      "glass_defaultText": {
+        "default": "#991b2227",
+        "fallback": "chat_messagePanelText",
+        "night": "#a0ffffff"
+      },
+      "glass_tabSelected": {
+        "default": "#ff1a91e6",
+        "fallback": "chat_messagePanelSend"
+      },
+      "glass_tabSelectedText": {
+        "default": "#ff0d7fcf",
+        "fallback": "chat_messagePanelSend"
+      },
+      "glass_tabUnselected": {
+        "default": "#ff1a1d21",
+        "fallback": "windowBackgroundWhiteBlackText"
+      },
+      "glass_targetMainTabs": {
+        "default": "#ffffffff",
+        "fallback": "dialogBackground",
+        "night": "#ff232324"
+      },
+      "glass_targetMainTopPanel": {
+        "default": "#ffffffff",
+        "fallback": "dialogBackground",
+        "night": "#ff232324"
+      },
+      "graySection": {
+        "default": "#fff5f5f5",
+        "night": "#ff0b0b0c"
+      },
+      "groupcreate_cursor": {
+        "default": "#ff52a3db",
+        "night": "#ff64b5ef"
+      },
+      "groupcreate_hintText": {
+        "default": "#ffa1aab3",
+        "night": "#ff7d7d7d"
+      },
+      "groupcreate_sectionShadow": {
+        "default": "#ff000000"
+      },
+      "groupcreate_sectionText": {
+        "default": "#ff7c8288",
+        "night": "#99ffffff"
+      },
+      "groupcreate_spanBackground": {
+        "default": "#fff2f2f2",
+        "night": "#ff2d2d2d"
+      },
+      "groupcreate_spanDelete": {
+        "default": "#ffffffff",
+        "fallback": "chats_actionIcon"
+      },
+      "groupcreate_spanText": {
+        "default": "#ff222222",
+        "night": "#fff5f5f5"
+      },
+      "inappPlayerBackground": {
+        "default": "#ffffffff",
+        "night": "#ff1a1a1b"
+      },
+      "inappPlayerClose": {
+        "default": "#ff898b86",
+        "night": "#6effffff"
+      },
+      "inappPlayerPerformer": {
+        "default": "#ff1a1d21",
+        "night": "#ffffffff"
+      },
+      "inappPlayerPlayPause": {
+        "default": "#ff229af0",
+        "night": "#ff64b5ef"
+      },
+      "inappPlayerTitle": {
+        "default": "#ff1a1d21",
+        "night": "#6effffff"
+      },
+      "iv_ab_progress": {
+        "default": "#ff229af0",
+        "fallback": "featuredStickers_addButton"
+      },
+      "iv_background": {
+        "default": "#ffffffff",
+        "fallback": "windowBackgroundWhite",
+        "night": "#ff000000"
+      },
+      "iv_backgroundGray": {
+        "default": "#fff0f0f0",
+        "fallback": "windowBackgroundGray",
+        "night": "#ff1f1f1f"
+      },
+      "iv_navigationBackground": {
+        "default": "#fff0f0f0",
+        "fallback": "windowBackgroundGray",
+        "night": "#ff000000"
+      },
+      "key_chat_messagePanelVoiceLock": {
+        "default": "#ffa4a4a4",
+        "night": "#ffffffff"
+      },
+      "key_chat_messagePanelVoiceLockBackground": {
+        "default": "#ffffffff",
+        "night": "#ff212122"
+      },
+      "key_chat_messagePanelVoiceLockShadow": {
+        "default": "#ff000000",
+        "night": "#00000000"
+      },
+      "key_chat_wallpaper_gradient_to2": {},
+      "key_chat_wallpaper_gradient_to3": {},
+      "key_graySectionText": {
+        "default": "#ff82878a",
+        "fallback": "windowBackgroundWhiteGrayText2",
+        "night": "#ff838384"
+      },
+      "key_player_progressCachedBackground": {
+        "default": "#ffc5dcf0",
+        "fallback": "player_progressBackground",
+        "night": "#ff555555"
+      },
+      "key_sheet_other": {
+        "default": "#ffc9cdd3",
+        "fallback": "player_actionBarItems",
+        "night": "#43ffffff"
+      },
+      "key_sheet_scrollUp": {
+        "default": "#ffe1e4e8",
+        "fallback": "chat_emojiPanelStickerPackSelector",
+        "night": "#25ffffff"
+      },
+      "listSelectorSDK21": {
+        "default": "#0f000000",
+        "night": "#0dffffff"
+      },
+      "location_actionActiveIcon": {
+        "default": "#ff4290e6",
+        "fallback": "windowBackgroundWhiteBlueText7"
+      },
+      "location_actionBackground": {
+        "default": "#ffffffff",
+        "fallback": "dialogBackground"
+      },
+      "location_actionIcon": {
+        "default": "#ff3a4045",
+        "fallback": "dialogTextBlack"
+      },
+      "location_actionPressedBackground": {
+        "default": "#fff2f2f2",
+        "fallback": "dialogBackgroundGray"
+      },
+      "location_liveLocationProgress": {
+        "default": "#ff359fe5",
+        "night": "#ff68a3d7"
+      },
+      "location_placeLocationBackground": {
+        "default": "#ff4ca8ea",
+        "night": "#ff68a3d7"
+      },
+      "location_sendLiveLocationBackground": {
+        "default": "#ff4fc244"
+      },
+      "location_sendLiveLocationIcon": {
+        "default": "#ffffffff",
+        "fallback": "location_sendLocationIcon"
+      },
+      "location_sendLiveLocationText": {
+        "default": "#ff36ab24",
+        "fallback": "windowBackgroundWhiteGreenText"
+      },
+      "location_sendLocationBackground": {
+        "default": "#ff469df6",
+        "night": "#ff68a3d7"
+      },
+      "location_sendLocationIcon": {
+        "default": "#ffffffff"
+      },
+      "location_sendLocationText": {
+        "default": "#ff1c8ad8",
+        "fallback": "windowBackgroundWhiteBlueText7"
+      },
+      "login_progressInner": {
+        "default": "#ffe1eaf2"
+      },
+      "login_progressOuter": {
+        "default": "#ff62a0d0"
+      },
+      "passport_authorizeBackground": {
+        "default": "#ff45abef",
+        "night": "#ff4383ba"
+      },
+      "passport_authorizeBackgroundSelected": {
+        "default": "#ff409ddb",
+        "night": "#ff4e93d7"
+      },
+      "passport_authorizeText": {
+        "default": "#ffffffff"
+      },
+      "picker_badge": {
+        "default": "#ff29b6f7",
+        "night": "#ff56abf7"
+      },
+      "picker_badgeText": {
+        "default": "#ffffffff"
+      },
+      "picker_disabledButton": {
+        "default": "#ff999999",
+        "night": "#ff576d80"
+      },
+      "picker_enabledButton": {
+        "default": "#ff19a7e8",
+        "night": "#ff6abfff"
+      },
+      "player_actionBarItems": {
+        "default": "#ff8a8a8a",
+        "night": "#ffffffff"
+      },
+      "player_actionBarSelector": {
+        "default": "#0f000000",
+        "night": "#ff2a2a2a"
+      },
+      "player_actionBarSubtitle": {
+        "default": "#ff8a8a8a",
+        "night": "#64ffffff"
+      },
+      "player_actionBarTitle": {
+        "default": "#ff2f3438",
+        "night": "#ffffffff"
+      },
+      "player_background": {
+        "default": "#ffffffff",
+        "night": "#ff232323"
+      },
+      "player_button": {
+        "default": "#ff333333",
+        "night": "#ffffffff"
+      },
+      "player_buttonActive": {
+        "default": "#ff4ca8ea",
+        "night": "#ff64b5ef"
+      },
+      "player_progress": {
+        "default": "#ff54aaeb",
+        "night": "#ff53afef"
+      },
+      "player_progressBackground": {
+        "default": "#ffebedf0",
+        "night": "#ff3c3c3c"
+      },
+      "player_time": {
+        "default": "#ff8c9296",
+        "night": "#ff7d7d7d"
+      },
+      "pollCreateIcons": {
+        "default": "#ff909599",
+        "fallback": "windowBackgroundWhiteGrayIcon"
+      },
+      "premiumCoinGradient1": {
+        "default": "#ff1473ff"
+      },
+      "premiumCoinGradient2": {
+        "default": "#ffc066fa"
+      },
+      "premiumGradient0": {
+        "default": "#ff4acd43"
+      },
+      "premiumGradient1": {
+        "default": "#ff55a5ff"
+      },
+      "premiumGradient2": {
+        "default": "#ffa767ff"
+      },
+      "premiumGradient3": {
+        "default": "#ffdb5c9d"
+      },
+      "premiumGradient4": {
+        "default": "#fff38926"
+      },
+      "premiumGradientBackground1": {
+        "default": "#ff55a5ff",
+        "night": "#ff03080f"
+      },
+      "premiumGradientBackground2": {
+        "default": "#ffa767ff",
+        "night": "#ff020207"
+      },
+      "premiumGradientBackground3": {
+        "default": "#ffdb5c9d",
+        "night": "#ff000000"
+      },
+      "premiumGradientBackground4": {
+        "default": "#fff38926",
+        "night": "#ff000000"
+      },
+      "premiumGradientBackgroundOverlay": {
+        "default": "#ffffffff"
+      },
+      "premiumGradientBottomSheet1": {
+        "default": "#ff5b9de7"
+      },
+      "premiumGradientBottomSheet2": {
+        "default": "#ffab87dd"
+      },
+      "premiumGradientBottomSheet3": {
+        "default": "#ffe794be"
+      },
+      "premiumStarGradient1": {
+        "default": "#ffffffff",
+        "night": "#ffdc40ea"
+      },
+      "premiumStarGradient2": {
+        "default": "#ffe3ecfa",
+        "night": "#ff6784ff"
+      },
+      "premiumStartSmallStarsColor": {
+        "default": "#5affffff",
+        "night": "#ff8180ff"
+      },
+      "premiumStartSmallStarsColor2": {
+        "default": "#5affffff"
+      },
+      "profile_actionBackground": {
+        "default": "#ffffffff",
+        "night": "#ff4f9adb"
+      },
+      "profile_actionIcon": {
+        "default": "#ff81868a",
+        "night": "#ffffffff"
+      },
+      "profile_actionPressedBackground": {
+        "default": "#121a1d21",
+        "night": "#ff76c0ed"
+      },
+      "profile_creatorIcon": {
+        "default": "#ff3a95d5",
+        "night": "#ff64b5ef"
+      },
+      "profile_status": {
+        "default": "#ff222222",
+        "fallback": "avatar_subtitleInProfileBlue",
+        "night": "#ff69c1fc"
+      },
+      "profile_tabSelectedLine": {
+        "default": "#ff4fa6e9",
+        "fallback": "windowBackgroundWhiteBlueHeader"
+      },
+      "profile_tabSelectedText": {
+        "default": "#ff3a95d5",
+        "fallback": "windowBackgroundWhiteBlueHeader"
+      },
+      "profile_tabSelector": {
+        "default": "#0f000000",
+        "fallback": "listSelectorSDK21",
+        "night": "#0fffffff"
+      },
+      "profile_tabText": {
+        "default": "#ff878c90",
+        "fallback": "windowBackgroundWhiteGrayText",
+        "night": "#78ffffff"
+      },
+      "profile_title": {
+        "default": "#ff222222",
+        "fallback": "windowBackgroundWhiteBlackText",
+        "night": "#ffffffff"
+      },
+      "profile_verifiedBackground": {
+        "default": "#ff229af0",
+        "night": "#ff5db2f8"
+      },
+      "profile_verifiedCheck": {
+        "default": "#ffffffff",
+        "night": "#ffffffff"
+      },
+      "progressCircle": {
+        "default": "#ff1c93e3",
+        "night": "#ff64b5fd"
+      },
+      "radioBackground": {
+        "default": "#ffb3b3b3",
+        "night": "#ff606060"
+      },
+      "radioBackgroundChecked": {
+        "default": "#ff229af0",
+        "night": "#ff48a6ef"
+      },
+      "reactionStarSelector": {
+        "default": "#40f0ab1f"
+      },
+      "returnToCallBackground": {
+        "default": "#ff44a1e3",
+        "night": "#ff5da5e7"
+      },
+      "returnToCallMutedBackground": {
+        "default": "#ff9da7b1",
+        "fallback": "windowBackgroundWhite"
+      },
+      "returnToCallText": {
+        "default": "#ffffffff"
+      },
+      "sessions_devicesImage": {
+        "default": "#ff969696"
+      },
+      "share_icon": {
+        "default": "#ff6e7275",
+        "fallback": "windowBackgroundWhiteBlackText",
+        "night": "#ffffffff"
+      },
+      "share_linkBackground": {
+        "default": "#0f000000",
+        "fallback": "windowBackgroundGray",
+        "night": "#14ffffff"
+      },
+      "share_linkText": {
+        "default": "#ff222222",
+        "fallback": "windowBackgroundWhiteBlackText",
+        "night": "#b7ffffff"
+      },
+      "sharedMedia_linkPlaceholder": {
+        "default": "#fff0f3f5",
+        "night": "#ff232324"
+      },
+      "sharedMedia_linkPlaceholderText": {
+        "default": "#ffb7bec3",
+        "night": "#ff6f6f70"
+      },
+      "sharedMedia_photoPlaceholder": {
+        "default": "#ffedf3f7",
+        "fallback": "windowBackgroundGray"
+      },
+      "sharedMedia_startStopLoadIcon": {
+        "default": "#ff36a2ee",
+        "night": "#ff64b5ef"
+      },
+      "statisticChartActiveLine": {
+        "default": "#33000000"
+      },
+      "statisticChartActivePickerChart": {
+        "default": "#d8baccd9",
+        "night": "#d8596879"
+      },
+      "statisticChartBackZoomColor": {
+        "default": "#ff108be3",
+        "night": "#ff46aaee"
+      },
+      "statisticChartChevronColor": {
+        "default": "#ffd2d5d7",
+        "night": "#ff767c85"
+      },
+      "statisticChartHintLine": {
+        "default": "#1a182d3b",
+        "night": "#1affffff"
+      },
+      "statisticChartInactivePickerChart": {
+        "default": "#99e2eef9",
+        "night": "#d8313a43"
+      },
+      "statisticChartLine_blue": {
+        "default": "#ff327fe5",
+        "fallback": "color_blue",
+        "night": "#ff529fff"
+      },
+      "statisticChartLine_cyan": {
+        "default": "#ff40d0ca",
+        "fallback": "color_cyan"
+      },
+      "statisticChartLine_golden": {
+        "default": "#ffeba52d",
+        "fallback": "color_yellow",
+        "night": "#ffdeac1f"
+      },
+      "statisticChartLine_green": {
+        "default": "#ff61c752",
+        "night": "#ff3dc23f"
+      },
+      "statisticChartLine_indigo": {
+        "default": "#ff7f79f3",
+        "fallback": "color_purple",
+        "night": "#ff875ce5"
+      },
+      "statisticChartLine_lightblue": {
+        "default": "#ff58a8ed",
+        "fallback": "color_lightblue",
+        "night": "#ff3c78ec"
+      },
+      "statisticChartLine_lightgreen": {
+        "default": "#ff8fcf39",
+        "night": "#ff8fcf39"
+      },
+      "statisticChartLine_orange": {
+        "default": "#fff28c39",
+        "fallback": "color_orange",
+        "night": "#fff28c39"
+      },
+      "statisticChartLine_purple": {
+        "default": "#ff9f79e8",
+        "fallback": "color_purple"
+      },
+      "statisticChartLine_red": {
+        "default": "#ffe05356",
+        "fallback": "color_red",
+        "night": "#fff34c44"
+      },
+      "statisticChartLineEmpty": {
+        "default": "#ffeeeeee"
+      },
+      "statisticChartRipple": {
+        "default": "#2c7e9db7",
+        "night": "#2ca4bdd2"
+      },
+      "statisticChartSignature": {
+        "default": "#7f252529",
+        "night": "#b7a3b1c2"
+      },
+      "statisticChartSignatureAlpha": {
+        "default": "#7f252529",
+        "night": "#8bffffff"
+      },
+      "stickers_menu": {
+        "default": "#ffb6bdc5",
+        "night": "#ff5c5c5c"
+      },
+      "stickers_menuSelector": {
+        "default": "#0f000000",
+        "night": "#17ffffff"
+      },
+      "stories_circle_closeFriends1": {
+        "default": "#ff81ce2d",
+        "night": "#ffc9eb38"
+      },
+      "stories_circle_closeFriends2": {
+        "default": "#ff18bd36",
+        "night": "#ff09c167"
+      },
+      "stories_circle_dialog1": {
+        "default": "#ff2c9efc",
+        "night": "#ff4aed55"
+      },
+      "stories_circle_dialog2": {
+        "default": "#ff2fc183",
+        "night": "#ff4dc3ff"
+      },
+      "stories_circle_live1": {
+        "default": "#ffff6b5b"
+      },
+      "stories_circle_live2": {
+        "default": "#fffa4874"
+      },
+      "stories_circle1": {
+        "default": "#ff2c9efc",
+        "night": "#ff39df3c"
+      },
+      "stories_circle2": {
+        "default": "#ff2fc183",
+        "night": "#ff4dbbff"
+      },
+      "switch2Track": {
+        "default": "#fff57e7e"
+      },
+      "switch2TrackChecked": {
+        "default": "#ff229af0"
+      },
+      "switchTrack": {
+        "default": "#ffa6adb3",
+        "night": "#ff606060"
+      },
+      "switchTrackBlue": {
+        "default": "#ff78828a",
+        "fallback": "switchTrack",
+        "night": "#ff68686a"
+      },
+      "switchTrackBlueChecked": {
+        "default": "#ff1079c4",
+        "fallback": "switchTrackChecked",
+        "night": "#ff77d1ff"
+      },
+      "switchTrackBlueSelector": {
+        "default": "#17404a53",
+        "fallback": "listSelectorSDK21",
+        "night": "#19b9ddfa"
+      },
+      "switchTrackBlueSelectorChecked": {
+        "default": "#21024781",
+        "fallback": "listSelectorSDK21",
+        "night": "#328cd7ff"
+      },
+      "switchTrackBlueThumb": {
+        "default": "#ffffffff",
+        "fallback": "windowBackgroundWhite",
+        "night": "#ff1e1e20"
+      },
+      "switchTrackBlueThumbChecked": {
+        "default": "#ffffffff",
+        "fallback": "windowBackgroundWhite",
+        "night": "#ff2d82c3"
+      },
+      "switchTrackChecked": {
+        "default": "#ff229af0",
+        "night": "#ff459ce3"
+      },
+      "table_background": {
+        "default": "#fff7f7f7",
+        "fallback": "graySection",
+        "night": "#0a92c4ff"
+      },
+      "table_border": {
+        "default": "#ffe0e0e0",
+        "fallback": "divider",
+        "night": "#19ffffff"
+      },
+      "telegram_color": {
+        "default": "#ff229af0",
+        "fallback": "chat_messagePanelSend"
+      },
+      "telegram_color_dialogsLogo": {
+        "default": "#ff168bdb",
+        "fallback": "windowBackgroundWhiteBlackText"
+      },
+      "telegram_color_text": {
+        "default": "#ff298acf",
+        "fallback": "windowBackgroundWhiteBlueText4"
+      },
+      "text_RedBold": {
+        "default": "#ffcc4747",
+        "night": "#ffee686f"
+      },
+      "text_RedRegular": {
+        "default": "#ffcc2929",
+        "night": "#ffee686f"
+      },
+      "topics_unreadCounter": {
+        "default": "#ff4ecc5e",
+        "fallback": "chats_unreadCounter"
+      },
+      "topics_unreadCounterMuted": {
+        "default": "#ff8b8d8f",
+        "fallback": "chats_message"
+      },
+      "undo_background": {
+        "default": "#ea272f38",
+        "fallback": "chat_gifSaveHintBackground",
+        "night": "#f5181818"
+      },
+      "undo_cancelColor": {
+        "default": "#ff85caff",
+        "fallback": "chat_gifSaveHintText",
+        "night": "#ff6cb7ff"
+      },
+      "undo_infoColor": {
+        "default": "#ffffffff",
+        "fallback": "chat_gifSaveHintText"
+      },
+      "voipgroup_actionBar": {
+        "default": "#ff0f1317"
+      },
+      "voipgroup_actionBarItems": {
+        "default": "#ffffffff"
+      },
+      "voipgroup_actionBarItemsSelector": {
+        "default": "#1ebadbff"
+      },
+      "voipgroup_actionBarUnscrolled": {
+        "default": "#ff191f26"
+      },
+      "voipgroup_checkMenu": {
+        "default": "#ff6bb6f9"
+      },
+      "voipgroup_connectingProgress": {
+        "default": "#ff28baff"
+      },
+      "voipgroup_dialogBackground": {
+        "default": "#ff1c2229"
+      },
+      "voipgroup_disabledButton": {
+        "default": "#ff1c2229"
+      },
+      "voipgroup_disabledButtonActive": {
+        "default": "#ff2c3a45"
+      },
+      "voipgroup_disabledButtonActiveScrolled": {
+        "default": "#8277a1fc"
+      },
+      "voipgroup_inviteMembersBackground": {
+        "default": "#ff222a33"
+      },
+      "voipgroup_lastSeenText": {
+        "default": "#ff79838a"
+      },
+      "voipgroup_lastSeenTextUnscrolled": {
+        "default": "#ff858d94"
+      },
+      "voipgroup_leaveButton": {
+        "default": "#7df75c5c"
+      },
+      "voipgroup_leaveButtonScrolled": {
+        "default": "#82d14d54"
+      },
+      "voipgroup_leaveCallMenu": {
+        "default": "#ffff7575"
+      },
+      "voipgroup_listeningText": {
+        "default": "#ff4db8ff"
+      },
+      "voipgroup_listSelector": {
+        "default": "#0effffff"
+      },
+      "voipgroup_listViewBackground": {
+        "default": "#ff1c2229"
+      },
+      "voipgroup_listViewBackgroundUnscrolled": {
+        "default": "#ff222a33"
+      },
+      "voipgroup_muteButton": {
+        "default": "#ff77e55c"
+      },
+      "voipgroup_muteButton2": {
+        "default": "#ff7ddcaa"
+      },
+      "voipgroup_muteButton3": {
+        "default": "#ff56c7fe"
+      },
+      "voipgroup_mutedByAdminGradient": {
+        "default": "#ff57a4fe"
+      },
+      "voipgroup_mutedByAdminGradient2": {
+        "default": "#fff05459"
+      },
+      "voipgroup_mutedByAdminGradient3": {
+        "default": "#ff766ee9"
+      },
+      "voipgroup_mutedByAdminIcon": {
+        "default": "#ffff7070"
+      },
+      "voipgroup_mutedByAdminMuteButton": {
+        "default": "#7f78a3ff"
+      },
+      "voipgroup_mutedByAdminMuteButtonDisabled": {
+        "default": "#3378a3ff"
+      },
+      "voipgroup_mutedIcon": {
+        "default": "#ff6f7980"
+      },
+      "voipgroup_mutedIconUnscrolled": {
+        "default": "#ff7e868c"
+      },
+      "voipgroup_nameText": {
+        "default": "#ffffffff"
+      },
+      "voipgroup_overlayAlertGradientMuted": {
+        "default": "#ff236d92"
+      },
+      "voipgroup_overlayAlertGradientMuted2": {
+        "default": "#ff2c4d6b"
+      },
+      "voipgroup_overlayAlertGradientUnmuted": {
+        "default": "#ff0c8a8c"
+      },
+      "voipgroup_overlayAlertGradientUnmuted2": {
+        "default": "#ff284c75"
+      },
+      "voipgroup_overlayAlertMutedByAdmin": {
+        "default": "#ff67709e"
+      },
+      "voipgroup_overlayAlertMutedByAdmin2": {
+        "default": "#ff2f5078"
+      },
+      "voipgroup_overlayBlue1": {
+        "default": "#ff2bceff"
+      },
+      "voipgroup_overlayBlue2": {
+        "default": "#ff0976e3"
+      },
+      "voipgroup_overlayGreen1": {
+        "default": "#ff12b522"
+      },
+      "voipgroup_overlayGreen2": {
+        "default": "#ff00d6c1"
+      },
+      "voipgroup_rtmpButton": {
+        "default": "#ff2a3853"
+      },
+      "voipgroup_scrollUp": {
+        "default": "#ff394654"
+      },
+      "voipgroup_searchBackground": {
+        "default": "#ff303b47"
+      },
+      "voipgroup_searchPlaceholder": {
+        "default": "#ff858d94"
+      },
+      "voipgroup_searchText": {
+        "default": "#ffffffff"
+      },
+      "voipgroup_soundButton": {
+        "default": "#7d2c414d"
+      },
+      "voipgroup_soundButton2": {
+        "default": "#7d28593a"
+      },
+      "voipgroup_soundButtonActive": {
+        "default": "#7d22a4eb"
+      },
+      "voipgroup_soundButtonActive2": {
+        "default": "#7d18b751"
+      },
+      "voipgroup_soundButtonActive2Scrolled": {
+        "default": "#8224bf46"
+      },
+      "voipgroup_soundButtonActiveScrolled": {
+        "default": "#8233b4ff"
+      },
+      "voipgroup_speakingText": {
+        "default": "#ff77ee7d"
+      },
+      "voipgroup_topPanelBlue1": {
+        "default": "#ff60c7fb"
+      },
+      "voipgroup_topPanelBlue2": {
+        "default": "#ff519ff9"
+      },
+      "voipgroup_topPanelGray": {
+        "default": "#ff8599aa"
+      },
+      "voipgroup_topPanelGreen1": {
+        "default": "#ff52ce5d"
+      },
+      "voipgroup_topPanelGreen2": {
+        "default": "#ff00b1c0"
+      },
+      "voipgroup_unmuteButton": {
+        "default": "#ff539ef8"
+      },
+      "voipgroup_unmuteButton2": {
+        "default": "#ff66d4fb"
+      },
+      "voipgroup_windowBackgroundWhiteInputField": {
+        "default": "#ffdbdbdb"
+      },
+      "voipgroup_windowBackgroundWhiteInputFieldActivated": {
+        "default": "#ff229af0"
+      },
+      "wallet_comment": {
+        "default": "#fff5f5f5",
+        "fallback": "dialogBackgroundGray"
+      },
+      "wallet_inputCurrency": {
+        "default": "#ff219949",
+        "fallback": "color_green"
+      },
+      "wallet_out_commentBorder": {
+        "default": "#ffd9d9d9",
+        "fallback": "divider",
+        "night": "#ff495461"
+      },
+      "windowBackgroundChecked": {
+        "default": "#ff229af0",
+        "fallback": "windowBackgroundWhite",
+        "night": "#ff2f76ab"
+      },
+      "windowBackgroundCheckText": {
+        "default": "#ffffffff",
+        "fallback": "windowBackgroundWhite",
+        "night": "#ffffffff"
+      },
+      "windowBackgroundGray": {
+        "default": "#fff1f1f3",
+        "night": "#ff000000"
+      },
+      "windowBackgroundGrayShadow": {
+        "default": "#ff000000"
+      },
+      "windowBackgroundUnchecked": {
+        "default": "#ff96a2ad",
+        "fallback": "windowBackgroundWhite",
+        "night": "#ff1e1e20"
+      },
+      "windowBackgroundWhite": {
+        "default": "#ffffffff",
+        "night": "#ff181819"
+      },
+      "windowBackgroundWhiteBlackText": {
+        "default": "#ff1a1d21",
+        "night": "#ffffffff"
+      },
+      "windowBackgroundWhiteBlueButton": {
+        "default": "#ff1e88d3",
+        "fallback": "windowBackgroundWhiteValueText"
+      },
+      "windowBackgroundWhiteBlueHeader": {
+        "default": "#ff298acf",
+        "night": "#ff6cb6f8"
+      },
+      "windowBackgroundWhiteBlueIcon": {
+        "default": "#ff379de5",
+        "fallback": "windowBackgroundWhiteValueText"
+      },
+      "windowBackgroundWhiteBlueText": {
+        "default": "#ff4092cd",
+        "night": "#ff64b5ef"
+      },
+      "windowBackgroundWhiteBlueText2": {
+        "default": "#ff3a95d5",
+        "night": "#ff3a9fed"
+      },
+      "windowBackgroundWhiteBlueText3": {
+        "default": "#ff2678b6",
+        "night": "#ff4da1ef"
+      },
+      "windowBackgroundWhiteBlueText4": {
+        "default": "#ff1c93e3",
+        "night": "#ff64b5ef"
+      },
+      "windowBackgroundWhiteBlueText5": {
+        "default": "#ff4c8eca",
+        "night": "#ff64b5ef"
+      },
+      "windowBackgroundWhiteBlueText6": {
+        "default": "#ff3a8ccf"
+      },
+      "windowBackgroundWhiteBlueText7": {
+        "default": "#ff377aae",
+        "night": "#ff79c4fc"
+      },
+      "windowBackgroundWhiteGrayIcon": {
+        "default": "#ff1a1d21",
+        "night": "#ff7d7d7d"
+      },
+      "windowBackgroundWhiteGrayText": {
+        "default": "#ff808384",
+        "night": "#6effffff"
+      },
+      "windowBackgroundWhiteGrayText2": {
+        "default": "#ff82868a",
+        "night": "#6efdfdff"
+      },
+      "windowBackgroundWhiteGrayText3": {
+        "default": "#ff999999",
+        "night": "#ff868686"
+      },
+      "windowBackgroundWhiteGrayText4": {
+        "default": "#ff808080",
+        "night": "#ff6a6a6a"
+      },
+      "windowBackgroundWhiteGrayText5": {
+        "default": "#ffa3a3a3",
+        "night": "#ff7d8b99"
+      },
+      "windowBackgroundWhiteGrayText6": {
+        "default": "#ff757575",
+        "night": "#ff7d7d7d"
+      },
+      "windowBackgroundWhiteGrayText7": {
+        "default": "#ffc6c6c6"
+      },
+      "windowBackgroundWhiteGrayText8": {
+        "default": "#ff6d6d72",
+        "night": "#ff7d7d7d"
+      },
+      "windowBackgroundWhiteGreenText": {
+        "default": "#ff26972c",
+        "night": "#ff61bd67"
+      },
+      "windowBackgroundWhiteGreenText2": {
+        "default": "#ff37a818",
+        "night": "#ff61d36b"
+      },
+      "windowBackgroundWhiteHintText": {
+        "default": "#ffa8a8a8",
+        "night": "#ff7d7d7d"
+      },
+      "windowBackgroundWhiteInputField": {
+        "default": "#ffdbdbdb",
+        "night": "#ff505050"
+      },
+      "windowBackgroundWhiteInputFieldActivated": {
+        "default": "#ff229af0",
+        "night": "#ff6eb2ef"
+      },
+      "windowBackgroundWhiteLinkSelection": {
+        "default": "#3362a9e3",
+        "night": "#3d64b5fd"
+      },
+      "windowBackgroundWhiteLinkText": {
+        "default": "#ff298acf",
+        "night": "#ff57a7e0"
+      },
+      "windowBackgroundWhiteValueText": {
+        "default": "#ff298acf",
+        "night": "#e069b6fd"
+      }
+    }
+  },
+  "desktop": {
+    "source": "https://github.com/desktop-app/lib_ui/blob/b4bbb39ff1a7c50299814704aa06b15df6ad3fd0/ui/colors.palette",
+    "night": "https://github.com/telegramdesktop/tdesktop/blob/f985723b552b30fe1c17d377d57f44e61a15a8c4/Telegram/Resources/night.tdesktop-theme",
+    "keys": {
+      "windowBg": {
+        "default": "#ffffff",
+        "note": "white: fallback for background",
+        "night": "#17212b"
+      },
+      "windowFg": {
+        "default": "#000000",
+        "note": "black: fallback for text",
+        "night": "#f5f5f5"
+      },
+      "windowBgOver": {
+        "default": "#f1f1f1",
+        "note": "light gray: fallback for background with mouse over",
+        "night": "#232e3c"
+      },
+      "windowBgRipple": {
+        "default": "#e5e5e5",
+        "note": "darker gray: fallback for ripple effect",
+        "night": "#24303d"
+      },
+      "windowFgOver": {
+        "ref": "windowFg",
+        "note": "black: fallback for text with mouse over",
+        "night": "#e9ecf0"
+      },
+      "windowSubTextFg": {
+        "default": "#999999",
+        "note": "gray: fallback for additional text",
+        "night": "#708499"
+      },
+      "windowSubTextFgOver": {
+        "default": "#919191",
+        "note": "darker gray: fallback for additional text with mouse over",
+        "night": "#7c90a4"
+      },
+      "windowBoldFg": {
+        "default": "#222222",
+        "note": "dark gray: fallback for bold text",
+        "night": "#e9e8e8"
+      },
+      "windowBoldFgOver": {
+        "default": "#222222",
+        "note": "dark gray: fallback for bold text with mouse over",
+        "night": "#e9e9e9"
+      },
+      "windowBgActive": {
+        "default": "#40a7e3",
+        "note": "bright blue: fallback for blue filled active areas",
+        "night": "#5288c1"
+      },
+      "windowFgActive": {
+        "default": "#ffffff",
+        "note": "white: fallback for text on active areas",
+        "night": "#ffffff"
+      },
+      "windowActiveTextFg": {
+        "default": "#168acd",
+        "note": "online blue: fallback for active text like online status",
+        "night": "#6ab3f3"
+      },
+      "windowShadowFg": {
+        "default": "#000000",
+        "note": "black: fallback for shadow",
+        "night": "#000000"
+      },
+      "windowShadowFgFallback": {
+        "default": "#f1f1f1",
+        "note": "gray: fallback for shadow without opacity",
+        "night": "#17212b"
+      },
+      "shadowFg": {
+        "default": "#00000018",
+        "note": "most shadows (including opacity)",
+        "night": "#04080e56"
+      },
+      "slideFadeOutBg": {
+        "default": "#0000003c",
+        "note": "slide animation (chat to profile) fade out filling",
+        "night": "#0000003c"
+      },
+      "slideFadeOutShadowFg": {
+        "ref": "windowShadowFg",
+        "note": "slide animation (chat to profile) fade out right section shadow",
+        "night": "windowShadowFg"
+      },
+      "imageBg": {
+        "default": "#000000",
+        "note": "image background fallback (when photo size is less than minimum allowed)",
+        "night": "#000000"
+      },
+      "imageBgTransparent": {
+        "default": "#ffffff",
+        "note": "image background when displaying an image with opacity where no opacity is needed",
+        "night": "#ffffff"
+      },
+      "activeButtonBg": {
+        "ref": "windowBgActive",
+        "note": "default active button background",
+        "night": "#2f6ea5"
+      },
+      "activeButtonBgOver": {
+        "default": "#39a5db",
+        "note": "default active button background with mouse over",
+        "night": "#3476ab"
+      },
+      "activeButtonBgRipple": {
+        "default": "#2095d0",
+        "note": "default active button ripple effect",
+        "night": "#3b7cb1"
+      },
+      "activeButtonFg": {
+        "ref": "windowFgActive",
+        "note": "default active button text",
+        "night": "#ffffff"
+      },
+      "activeButtonFgOver": {
+        "ref": "activeButtonFg",
+        "note": "default active button text with mouse over",
+        "night": "#ffffff"
+      },
+      "activeButtonSecondaryFg": {
+        "default": "#cceeff",
+        "note": "default active button additional text (selected messages counter in forward / delete buttons)",
+        "night": "#9abfe7"
+      },
+      "activeButtonSecondaryFgOver": {
+        "ref": "activeButtonSecondaryFg",
+        "note": "default active button additional text with mouse over",
+        "night": "activeButtonSecondaryFg"
+      },
+      "activeLineFg": {
+        "default": "#37a1de",
+        "note": "default active line (like code input field bottom border when you log in and field is focused)",
+        "night": "#6396cb"
+      },
+      "activeLineFgError": {
+        "default": "#e48383",
+        "note": "default active line for error state (like code input field bottom border when you log in and you've entered incorrect code)",
+        "night": "#ef5959"
+      },
+      "lightButtonBg": {
+        "ref": "windowBg",
+        "note": "default light button background (like buttons in boxes)",
+        "night": "#17212b"
+      },
+      "lightButtonBgOver": {
+        "default": "#e3f1fa",
+        "note": "default light button background with mouse over",
+        "night": "#1d2a39"
+      },
+      "lightButtonBgRipple": {
+        "default": "#c9e4f6",
+        "note": "default light button ripple effect",
+        "night": "#223143"
+      },
+      "lightButtonFg": {
+        "ref": "windowActiveTextFg",
+        "note": "default light button text",
+        "night": "#6ab2f2"
+      },
+      "lightButtonFgOver": {
+        "ref": "lightButtonFg",
+        "note": "default light button text with mouse over",
+        "night": "lightButtonFg"
+      },
+      "attentionButtonFg": {
+        "default": "#d14e4e",
+        "note": "default attention button text (like confirm button on log out)",
+        "night": "#ec3942"
+      },
+      "attentionButtonFgOver": {
+        "default": "#d14e4e",
+        "note": "default attention button text with mouse over",
+        "night": "#ec3942"
+      },
+      "attentionButtonBgOver": {
+        "default": "#fcdfde",
+        "note": "default attention button background with mouse over",
+        "night": "#592a2a64"
+      },
+      "attentionButtonBgRipple": {
+        "default": "#f4c3c2",
+        "note": "default attention button ripple effect",
+        "night": "#68323264"
+      },
+      "menuBg": {
+        "ref": "windowBg",
+        "note": "default popup menu background",
+        "night": "#17212b"
+      },
+      "menuBgOver": {
+        "ref": "windowBgOver",
+        "note": "default popup menu item background with mouse over",
+        "night": "#ffffff"
+      },
+      "menuBgRipple": {
+        "ref": "windowBgRipple",
+        "note": "default popup menu item ripple effect",
+        "night": "#1f2934"
+      },
+      "menuIconFg": {
+        "default": "#999999",
+        "note": "default popup menu item icon (like main menu)",
+        "night": "#6c7883"
+      },
+      "menuIconFgOver": {
+        "default": "#8a8a8a",
+        "note": "default popup menu item icon with mouse over",
+        "night": "#dcdcdc"
+      },
+      "menuSubmenuArrowFg": {
+        "default": "#373737",
+        "note": "default popup menu submenu arrow icon (like in message field context menu in case of RTL system language)",
+        "night": "#637c95"
+      },
+      "menuFgDisabled": {
+        "default": "#cccccc",
+        "note": "default popup menu item disabled text (like unavailable items in message field context menu)",
+        "night": "#3d4e5c"
+      },
+      "menuSeparatorFg": {
+        "default": "#f1f1f1",
+        "note": "default popup menu separator (like in message field context menu)",
+        "night": "#232f39"
+      },
+      "scrollBarBg": {
+        "default": "#00000053",
+        "note": "default scroll bar current rectangle, the bar itself (like in chats list)",
+        "night": "#ffffff53"
+      },
+      "scrollBarBgOver": {
+        "default": "#0000007a",
+        "note": "default scroll bar current rectangle with mouse over it",
+        "night": "#ffffff7a"
+      },
+      "scrollBg": {
+        "default": "#0000001a",
+        "note": "default scroll bar background",
+        "night": "#ffffff1a"
+      },
+      "scrollBgOver": {
+        "default": "#0000002c",
+        "note": "default scroll bar background with mouse over the scroll bar",
+        "night": "#ffffff2c"
+      },
+      "smallCloseIconFg": {
+        "default": "#c7c7c7",
+        "note": "small X icon (like in Show all sessions box to the right for sessions termination)",
+        "night": "#55616c"
+      },
+      "smallCloseIconFgOver": {
+        "default": "#a3a3a3",
+        "note": "small X icon with mouse over",
+        "night": "#a3a3a3"
+      },
+      "radialFg": {
+        "ref": "windowFgActive",
+        "note": "default radial loader line (like in Media Viewer when loading a photo)",
+        "night": "windowFgActive"
+      },
+      "radialBg": {
+        "default": "#00000056",
+        "note": "default radial loader background (like in Media Viewer when loading a photo)",
+        "night": "#00000056"
+      },
+      "placeholderFg": {
+        "ref": "windowSubTextFg",
+        "note": "default input field placeholder when field is not focused (like in phone input field when you log in)",
+        "night": "#6d7883"
+      },
+      "placeholderFgActive": {
+        "default": "#aaaaaa",
+        "note": "default input field placeholder when field is focused",
+        "night": "#4f5b67"
+      },
+      "inputBorderFg": {
+        "default": "#e0e0e0",
+        "note": "default input field bottom border (like in code input field when you log in and field is not focused)",
+        "night": "#313c49"
+      },
+      "filterInputBorderFg": {
+        "default": "#54c3f3",
+        "note": "default rounded input field border (like in chats list search field when field is focused)",
+        "night": "#242f3d"
+      },
+      "filterInputActiveBg": {
+        "ref": "windowBg",
+        "note": "default rounded input field active background (like in chats list search field when field is focused)",
+        "night": "#242f3d"
+      },
+      "filterInputInactiveBg": {
+        "ref": "windowBgOver",
+        "note": "default rounded input field inactive background (like in chats list search field when field is inactive)",
+        "night": "#242f3d"
+      },
+      "checkboxFg": {
+        "default": "#b3b3b3",
+        "note": "default unchecked checkbox rounded rectangle",
+        "night": "#4f6276"
+      },
+      "botKbBg": {
+        "ref": "menuBgOver",
+        "note": "bot keyboard button background",
+        "night": "#242f3d"
+      },
+      "botKbDownBg": {
+        "ref": "menuBgRipple",
+        "note": "bot keyboard button ripple effect",
+        "night": "#2d3a49"
+      },
+      "botKbColor": {
+        "ref": "windowBoldFgOver",
+        "note": "bot keyboard button text"
+      },
+      "botKbPrimaryBg": {
+        "default": "#298acfcc",
+        "note": "bot keyboard Primary button background"
+      },
+      "botKbDangerBg": {
+        "default": "#e05356cc",
+        "note": "bot keyboard Danger button background"
+      },
+      "botKbSuccessBg": {
+        "default": "#61c752cc",
+        "note": "bot keyboard Success button background"
+      },
+      "botKbInlinePrimaryBg": {
+        "default": "#378eaeb3",
+        "note": "inline bot keyboard Primary button background"
+      },
+      "botKbInlineDangerBg": {
+        "default": "#c9543eb3",
+        "note": "inline bot keyboard Danger button background"
+      },
+      "botKbInlineSuccessBg": {
+        "default": "#489d38b3",
+        "note": "inline bot keyboard Success button background"
+      },
+      "sliderBgInactive": {
+        "default": "#e1eaef",
+        "note": "default slider not active bar (like in Settings when you choose interface scale or custom notifications count)",
+        "night": "#364554"
+      },
+      "sliderBgActive": {
+        "ref": "windowBgActive",
+        "note": "default slider active bar (like in Settings when you choose interface scale or custom notifications count)",
+        "night": "#4a81bc"
+      },
+      "tooltipBg": {
+        "default": "#eef2f5",
+        "note": "tooltip background (like when you put mouse over the message timestamp and wait)",
+        "night": "#16222d"
+      },
+      "tooltipFg": {
+        "default": "#5d6c80",
+        "note": "tooltip text",
+        "night": "#d4e0ea"
+      },
+      "tooltipBorderFg": {
+        "default": "#c9d1db",
+        "note": "tooltip border",
+        "night": "#16222d"
+      },
+      "titleShadow": {
+        "default": "#00000003",
+        "note": "one pixel line shadow at the bottom of custom window title",
+        "night": "#00000000"
+      },
+      "titleBg": {
+        "ref": "windowBgOver",
+        "note": "custom window title background when window is inactive",
+        "night": "#1f2936"
+      },
+      "titleBgActive": {
+        "ref": "titleBg",
+        "note": "custom window title background when window is active",
+        "night": "#242f3d"
+      },
+      "titleButtonBg": {
+        "ref": "titleBg",
+        "note": "custom window title minimize/maximize/restore button background when window is inactive (Windows only)",
+        "night": "titleBg"
+      },
+      "titleButtonFg": {
+        "default": "#ababab",
+        "note": "custom window title minimize/maximize/restore button icon when window is inactive (Windows only)",
+        "night": "#576673"
+      },
+      "titleButtonBgOver": {
+        "default": "#e5e5e5",
+        "note": "custom window title minimize/maximize/restore button background with mouse over when window is inactive (Windows only)",
+        "night": "#25303e"
+      },
+      "titleButtonFgOver": {
+        "default": "#9a9a9a",
+        "note": "custom window title minimize/maximize/restore button icon with mouse over when window is inactive (Windows only)",
+        "night": "#e0e0e0"
+      },
+      "titleButtonBgActive": {
+        "ref": "titleButtonBg",
+        "note": "custom window title minimize/maximize/restore button background when window is active (Windows only)",
+        "night": "#242f3d"
+      },
+      "titleButtonFgActive": {
+        "ref": "titleButtonFg",
+        "note": "custom window title minimize/maximize/restore button icon when window is active (Windows only)",
+        "night": "titleButtonFg"
+      },
+      "titleButtonBgActiveOver": {
+        "ref": "titleButtonBgOver",
+        "note": "custom window title minimize/maximize/restore button background with mouse over when window is active (Windows only)",
+        "night": "#2c3847"
+      },
+      "titleButtonFgActiveOver": {
+        "ref": "titleButtonFgOver",
+        "note": "custom window title minimize/maximize/restore button icon with mouse over when window is active (Windows only)",
+        "night": "titleButtonFgOver"
+      },
+      "titleButtonCloseBg": {
+        "ref": "titleButtonBg",
+        "note": "custom window title close button background when window is inactive (Windows only)",
+        "night": "titleButtonBg"
+      },
+      "titleButtonCloseFg": {
+        "ref": "titleButtonFg",
+        "note": "custom window title close button icon when window is inactive (Windows only)",
+        "night": "titleButtonFg"
+      },
+      "titleButtonCloseBgOver": {
+        "default": "#e81123",
+        "note": "custom window title close button background with mouse over when window is inactive (Windows only)",
+        "night": "#e92539"
+      },
+      "titleButtonCloseFgOver": {
+        "ref": "windowFgActive",
+        "note": "custom window title close button icon with mouse over when window is inactive (Windows only)",
+        "night": "windowFgActive"
+      },
+      "titleButtonCloseBgActive": {
+        "ref": "titleButtonCloseBg",
+        "note": "custom window title close button background when window is active (Windows only)",
+        "night": "#242f3d"
+      },
+      "titleButtonCloseFgActive": {
+        "ref": "titleButtonCloseFg",
+        "note": "custom window title close button icon when window is active (Windows only)",
+        "night": "titleButtonCloseFg"
+      },
+      "titleButtonCloseBgActiveOver": {
+        "ref": "titleButtonCloseBgOver",
+        "note": "custom window title close button background with mouse over when window is active (Windows only)",
+        "night": "#e92539"
+      },
+      "titleButtonCloseFgActiveOver": {
+        "ref": "titleButtonCloseFgOver",
+        "note": "custom window title close button icon with mouse over when window is active (Windows only)",
+        "night": "titleButtonCloseFgOver"
+      },
+      "titleFg": {
+        "default": "#acacac",
+        "note": "custom window title text when window is inactive (Windows 11 and macOS)",
+        "night": "#6a7680"
+      },
+      "titleFgActive": {
+        "default": "#3e3c3e",
+        "note": "custom window title text when window is active (Windows 11 and macOS)",
+        "night": "#91a3b3"
+      },
+      "trayCounterBg": {
+        "default": "#f23c34",
+        "note": "tray icon counter background",
+        "night": "#f23c34"
+      },
+      "trayCounterBgMute": {
+        "default": "#888888",
+        "note": "tray icon counter background if all unread messages are muted",
+        "night": "#888888"
+      },
+      "trayCounterFg": {
+        "default": "#ffffff",
+        "note": "tray icon counter text",
+        "night": "#ffffff"
+      },
+      "trayCounterBgMacInvert": {
+        "default": "#ffffff",
+        "note": "tray icon counter background when tray icon is pressed or when dark theme of macOS is used (macOS only)",
+        "night": "#ffffff"
+      },
+      "trayCounterFgMacInvert": {
+        "default": "#ffffff01",
+        "note": "tray icon counter text when tray icon is pressed or when dark theme of macOS is used (macOS only)",
+        "night": "#ffffff01"
+      },
+      "layerBg": {
+        "default": "#0000007f",
+        "note": "box and main menu background layer fade",
+        "night": "#0000007f"
+      },
+      "cancelIconFg": {
+        "ref": "menuIconFg",
+        "note": "default for settings close icon and box search cancel icon",
+        "night": "#737e87"
+      },
+      "cancelIconFgOver": {
+        "ref": "menuIconFgOver",
+        "note": "default for settings close icon and box search cancel icon with mouse over",
+        "night": "#dcdcdc"
+      },
+      "boxBg": {
+        "ref": "windowBg",
+        "note": "box background",
+        "night": "#17212b"
+      },
+      "boxTextFg": {
+        "ref": "windowFg",
+        "note": "box text",
+        "night": "windowFg"
+      },
+      "boxTextFgGood": {
+        "default": "#4ab44a",
+        "note": "accepted box text (like when choosing username that is not occupied)",
+        "night": "#5598db"
+      },
+      "boxTextFgError": {
+        "default": "#d84d4d",
+        "note": "rejecting box text (like when choosing username that is occupied)",
+        "night": "#dc3d3d"
+      },
+      "boxTitleFg": {
+        "default": "#404040",
+        "note": "box title text",
+        "night": "#ebebeb"
+      },
+      "boxSearchBg": {
+        "ref": "boxBg",
+        "note": "box search field background (like in contacts box)",
+        "night": "#17212b"
+      },
+      "boxTitleAdditionalFg": {
+        "default": "#808080",
+        "note": "box title additional text (like in create group box when you see chosen members count)",
+        "night": "#6d7f8f"
+      },
+      "boxTitleCloseFg": {
+        "ref": "cancelIconFg",
+        "note": "settings close icon and box search cancel icon (like in contacts box)",
+        "night": "cancelIconFg"
+      },
+      "boxTitleCloseFgOver": {
+        "ref": "cancelIconFgOver",
+        "note": "settings close icon and box search cancel icon (like in contacts box) with mouse over",
+        "night": "cancelIconFgOver"
+      },
+      "boxDividerBg": {
+        "ref": "windowBgOver",
+        "note": "gray divider in boxes and layers"
+      },
+      "boxDividerFg": {
+        "ref": "windowShadowFg",
+        "note": "gray divider shadow in boxes and layers"
+      },
+      "paymentsTipActive": {
+        "default": "#01ad0f",
+        "note": "tip button text in payments checkout form"
+      },
+      "membersAboutLimitFg": {
+        "ref": "windowSubTextFgOver",
+        "note": "text in channel members box about the limit (max 200 last members are shown)",
+        "night": "#677a8b"
+      },
+      "contactsBg": {
+        "ref": "windowBg",
+        "note": "contacts (and some other) box row background",
+        "night": "#17212b"
+      },
+      "contactsBgOver": {
+        "ref": "windowBgOver",
+        "note": "contacts (and some other) box row background with mouse over",
+        "night": "#1f2c39"
+      },
+      "contactsNameFg": {
+        "ref": "boxTextFg",
+        "note": "contacts (and some other) box row name text",
+        "night": "boxTextFg"
+      },
+      "contactsStatusFg": {
+        "ref": "windowSubTextFg",
+        "note": "contacts (and some other) box row additional text (like last seen stamp)",
+        "night": "#677a8b"
+      },
+      "contactsStatusFgOver": {
+        "ref": "windowSubTextFgOver",
+        "note": "contacts (and some other) box row additional text (like last seen stamp) with mouse over",
+        "night": "#677a8b"
+      },
+      "contactsStatusFgOnline": {
+        "ref": "windowActiveTextFg",
+        "note": "contacts (and some other) box row active additional text (like online status)",
+        "night": "#559be0"
+      },
+      "photoCropFadeBg": {
+        "ref": "layerBg",
+        "note": "avatar crop box fade background (when choosing a new photo in Settings or for a group)",
+        "night": "layerBg"
+      },
+      "photoCropPointFg": {
+        "default": "#ffffff7f",
+        "note": "avatar crop box corner rectangles (when choosing a new photo in Settings or for a group)",
+        "night": "#ffffff7f"
+      },
+      "callArrowFg": {
+        "default": "#2dad2d",
+        "fallback": "boxTextFgGood",
+        "note": "received phone call arrow (in calls list box)",
+        "night": "#49a2f0"
+      },
+      "callArrowMissedFg": {
+        "default": "#dd5b4a",
+        "fallback": "boxTextFgError",
+        "note": "missed phone call arrow (in calls list box)",
+        "night": "#ed5050"
+      },
+      "introBg": {
+        "ref": "windowBg",
+        "note": "login background",
+        "night": "windowBg"
+      },
+      "introTitleFg": {
+        "ref": "windowBoldFg",
+        "note": "login title text",
+        "night": "#eeeeee"
+      },
+      "introDescriptionFg": {
+        "ref": "windowSubTextFg",
+        "note": "login description text",
+        "night": "#72879b"
+      },
+      "introCoverTopBg": {
+        "default": "#0f89d0",
+        "note": "intro gradient top (from)",
+        "night": "#124a82"
+      },
+      "introCoverBottomBg": {
+        "default": "#39b0f0",
+        "note": "intro gradient bottom (to)",
+        "night": "#23659f"
+      },
+      "introCoverIconsFg": {
+        "default": "#5ec6ff",
+        "note": "intro cloud graphics",
+        "night": "#3b7cbd"
+      },
+      "introCoverPlaneTrace": {
+        "default": "#5ec6ff69",
+        "note": "intro plane traces",
+        "night": "#3870a8"
+      },
+      "introCoverPlaneInner": {
+        "default": "#c6d8e8",
+        "note": "intro plane part",
+        "night": "#ced9e2"
+      },
+      "introCoverPlaneOuter": {
+        "default": "#a1bed4",
+        "note": "intro plane part",
+        "night": "#97a9b5"
+      },
+      "introCoverPlaneTop": {
+        "default": "#ffffff",
+        "note": "intro plane part",
+        "night": "#ffffff"
+      },
+      "dialogsMenuIconFg": {
+        "ref": "menuIconFg",
+        "note": "main menu and passcode lock icon",
+        "night": "menuIconFg"
+      },
+      "dialogsMenuIconFgOver": {
+        "ref": "menuIconFgOver",
+        "note": "main menu and passcode lock icon with mouse over",
+        "night": "menuIconFgOver"
+      },
+      "dialogsBg": {
+        "ref": "windowBg",
+        "note": "chat list background",
+        "night": "windowBg"
+      },
+      "dialogsNameFg": {
+        "ref": "windowBoldFg",
+        "note": "chat list name text",
+        "night": "#f5f5f5"
+      },
+      "dialogsChatIconFg": {
+        "ref": "dialogsNameFg",
+        "note": "chat list group or channel icon",
+        "night": "dialogsNameFg"
+      },
+      "dialogsDateFg": {
+        "ref": "windowSubTextFg",
+        "note": "chat list date text",
+        "night": "#8696a8"
+      },
+      "dialogsTextFg": {
+        "ref": "windowSubTextFg",
+        "note": "chat list message text",
+        "night": "#7f91a4"
+      },
+      "dialogsTextFgService": {
+        "ref": "windowActiveTextFg",
+        "note": "chat list group sender name text (or media message type text)",
+        "night": "#73b9f5"
+      },
+      "dialogsDraftFg": {
+        "default": "#dd4b39",
+        "note": "chat list draft label",
+        "night": "#ff525d"
+      },
+      "dialogsVerifiedIconBg": {
+        "ref": "windowBgActive",
+        "note": "chat list verified icon background",
+        "night": "#6ab3f3"
+      },
+      "dialogsVerifiedIconFg": {
+        "ref": "windowFgActive",
+        "note": "chat list verified icon check",
+        "night": "#17212b"
+      },
+      "dialogsSendingIconFg": {
+        "default": "#c1c1c1",
+        "note": "chat list sending message icon (clock)",
+        "night": "#647d96"
+      },
+      "dialogsSentIconFg": {
+        "default": "#5dc452",
+        "note": "chat list sent message tick / double tick icon",
+        "night": "#72bcfd"
+      },
+      "dialogsUnreadBg": {
+        "ref": "windowBgActive",
+        "note": "chat list unread badge background for not muted chat",
+        "night": "#4082bc"
+      },
+      "dialogsUnreadBgMuted": {
+        "default": "#bbbbbb",
+        "note": "chat list unread badge background for muted chat",
+        "night": "#3e546a"
+      },
+      "dialogsUnreadFg": {
+        "ref": "windowFgActive",
+        "note": "chat list unread badge text",
+        "night": "#ffffff"
+      },
+      "dialogsArchiveFg": {
+        "default": "#525252",
+        "fallback": "dialogsNameFg",
+        "note": "chat list archive name text"
+      },
+      "dialogsOnlineBadgeFg": {
+        "default": "#4dc920",
+        "fallback": "dialogsUnreadBg",
+        "note": "chat list online status",
+        "night": "#63b6ff"
+      },
+      "dialogsScamFg": {
+        "ref": "dialogsDraftFg",
+        "note": "chat list scam label"
+      },
+      "dialogsBgOver": {
+        "ref": "windowBgOver",
+        "note": "chat list background with mouse over",
+        "night": "#202b36"
+      },
+      "dialogsNameFgOver": {
+        "ref": "windowBoldFgOver",
+        "note": "chat list name text with mouse over",
+        "night": "windowBoldFgOver"
+      },
+      "dialogsChatIconFgOver": {
+        "ref": "dialogsNameFgOver",
+        "note": "chat list group or channel icon with mouse over",
+        "night": "dialogsNameFgOver"
+      },
+      "dialogsDateFgOver": {
+        "ref": "windowSubTextFgOver",
+        "note": "chat list date text with mouse over",
+        "night": "#8495a9"
+      },
+      "dialogsTextFgOver": {
+        "ref": "windowSubTextFgOver",
+        "note": "chat list message text with mouse over",
+        "night": "#91a3b5"
+      },
+      "dialogsTextFgServiceOver": {
+        "ref": "dialogsTextFgService",
+        "note": "chat list group sender name text with mouse over",
+        "night": "#73b9f5"
+      },
+      "dialogsDraftFgOver": {
+        "ref": "dialogsDraftFg",
+        "note": "chat list draft label with mouse over",
+        "night": "dialogsDraftFg"
+      },
+      "dialogsVerifiedIconBgOver": {
+        "ref": "dialogsVerifiedIconBg",
+        "note": "chat list verified icon background with mouse over",
+        "night": "#6ab3f3"
+      },
+      "dialogsVerifiedIconFgOver": {
+        "ref": "dialogsVerifiedIconFg",
+        "note": "chat list verified icon check with mouse over",
+        "night": "dialogsVerifiedIconFg"
+      },
+      "dialogsSendingIconFgOver": {
+        "ref": "dialogsSendingIconFg",
+        "note": "chat list sending message icon (clock) with mouse over",
+        "night": "dialogsSendingIconFg"
+      },
+      "dialogsSentIconFgOver": {
+        "default": "#58b84d",
+        "note": "chat list sent message tick / double tick icon with mouse over",
+        "night": "#72bcfd"
+      },
+      "dialogsUnreadBgOver": {
+        "ref": "dialogsUnreadBg",
+        "note": "chat list unread badge background for not muted chat with mouse over",
+        "night": "#4082bc"
+      },
+      "dialogsUnreadBgMutedOver": {
+        "ref": "dialogsUnreadBgMuted",
+        "note": "chat list unread badge background for muted chat with mouse over",
+        "night": "#4d5762"
+      },
+      "dialogsUnreadFgOver": {
+        "ref": "dialogsUnreadFg",
+        "note": "chat list unread badge text with mouse over",
+        "night": "dialogsUnreadFg"
+      },
+      "dialogsArchiveFgOver": {
+        "default": "#525252",
+        "fallback": "dialogsNameFgOver",
+        "note": "chat list archive name text with mouse over"
+      },
+      "dialogsScamFgOver": {
+        "ref": "dialogsDraftFgOver",
+        "note": "chat list scam label with mouse over"
+      },
+      "dialogsBgActive": {
+        "default": "#419fd9",
+        "note": "chat list background for current (active) chat",
+        "night": "#2b5278"
+      },
+      "dialogsNameFgActive": {
+        "ref": "windowFgActive",
+        "note": "chat list name text for current (active) chat",
+        "night": "windowFgActive"
+      },
+      "dialogsChatIconFgActive": {
+        "ref": "dialogsNameFgActive",
+        "note": "chat list group or channel icon for current (active) chat",
+        "night": "dialogsNameFgActive"
+      },
+      "dialogsDateFgActive": {
+        "ref": "windowFgActive",
+        "note": "chat list date text for current (active) chat",
+        "night": "windowFgActive"
+      },
+      "dialogsTextFgActive": {
+        "ref": "windowFgActive",
+        "note": "chat list message text for current (active) chat",
+        "night": "windowFgActive"
+      },
+      "dialogsTextFgServiceActive": {
+        "ref": "dialogsTextFgActive",
+        "note": "chat list group sender name text for current (active) chat",
+        "night": "dialogsTextFgActive"
+      },
+      "dialogsDraftFgActive": {
+        "default": "#c6e1f7",
+        "note": "chat list draft label for current (active) chat",
+        "night": "#a9caf0"
+      },
+      "dialogsVerifiedIconBgActive": {
+        "ref": "dialogsTextFgActive",
+        "note": "chat list verified icon background for current (active) chat",
+        "night": "dialogsTextFgActive"
+      },
+      "dialogsVerifiedIconFgActive": {
+        "ref": "dialogsBgActive",
+        "note": "chat list verified icon check for current (active) chat",
+        "night": "dialogsBgActive"
+      },
+      "dialogsSendingIconFgActive": {
+        "default": "#ffffff99",
+        "note": "chat list sending message icon (clock) for current (active) chat",
+        "night": "#ffffff99"
+      },
+      "dialogsSentIconFgActive": {
+        "ref": "dialogsTextFgActive",
+        "note": "chat list sent message tick / double tick icon for current (active) chat",
+        "night": "dialogsTextFgActive"
+      },
+      "dialogsUnreadBgActive": {
+        "ref": "dialogsTextFgActive",
+        "note": "chat list unread badge background for not muted chat for current (active) chat",
+        "night": "dialogsTextFgActive"
+      },
+      "dialogsUnreadBgMutedActive": {
+        "ref": "dialogsDraftFgActive",
+        "note": "chat list unread badge background for muted chat for current (active) chat",
+        "night": "#7aa3ca"
+      },
+      "dialogsUnreadFgActive": {
+        "ref": "dialogsBgActive",
+        "note": "chat list unread badge text for current (active) chat",
+        "night": "#2a5378"
+      },
+      "dialogsOnlineBadgeFgActive": {
+        "default": "#ffffff",
+        "note": "chat list online status for current (active) chat",
+        "night": "#ffffff"
+      },
+      "dialogsScamFgActive": {
+        "ref": "dialogsDraftFgActive",
+        "note": "chat list scam label for current (active) chat"
+      },
+      "dialogsRippleBg": {
+        "ref": "windowBgRipple",
+        "note": "chat list background ripple effect",
+        "night": "#25313d"
+      },
+      "dialogsRippleBgActive": {
+        "ref": "activeButtonBgRipple",
+        "note": "chat list background ripple effect for current (active) chat",
+        "night": "#315a80"
+      },
+      "searchedBarBg": {
+        "ref": "windowBgOver",
+        "note": "search results bar background (in chats list, contacts box..)",
+        "night": "#202b38"
+      },
+      "searchedBarFg": {
+        "ref": "windowSubTextFgOver",
+        "note": "search results bar text (in chats list, contacts box..)",
+        "night": "#8c98a4"
+      },
+      "searchedTextMatchBg": {
+        "default": "#fffc67",
+        "note": "in-page search results highlight background (Instant View, markdown editor)"
+      },
+      "searchedTextMatchFg": {
+        "default": "#000000",
+        "note": "in-page search results highlight text (Instant View, markdown editor)"
+      },
+      "searchedTextCurrentMatchBg": {
+        "default": "#f5ab5c",
+        "note": "in-page search current result highlight background (Instant View, markdown editor)"
+      },
+      "searchedTextCurrentMatchFg": {
+        "default": "#000000",
+        "note": "in-page search current result highlight text (Instant View, markdown editor)"
+      },
+      "topBarBg": {
+        "ref": "windowBg",
+        "note": "top bar background (in chat view, media overview..)",
+        "night": "#17212b"
+      },
+      "emojiPanBg": {
+        "ref": "windowBg",
+        "note": "emoji panel background",
+        "night": "windowBg"
+      },
+      "emojiPanCategories": {
+        "default": "#f7f7f7",
+        "fallback": "windowBg",
+        "note": "emoji panel categories background",
+        "night": "#17212b"
+      },
+      "emojiPanHeaderFg": {
+        "ref": "windowSubTextFg",
+        "note": "emoji panel section header text",
+        "night": "#7c8d9e"
+      },
+      "emojiPanHeaderBg": {
+        "default": "#fffffff2",
+        "fallback": "emojiPanBg",
+        "note": "emoji panel section header background",
+        "night": "#fffffff2"
+      },
+      "emojiIconFg": {
+        "default": "#999999",
+        "note": "emoji category icon",
+        "night": "#6c7883"
+      },
+      "emojiSubIconFgActive": {
+        "default": "#666666",
+        "fallback": "windowBoldFg",
+        "note": "active emoji subcategory icon"
+      },
+      "stickerPanDeleteBg": {
+        "default": "#000000ff",
+        "note": "delete X button background for custom sent stickers in stickers panel (legacy)",
+        "night": "#000000cc"
+      },
+      "stickerPanDeleteFg": {
+        "ref": "windowFgActive",
+        "note": "delete X button icon for custom sent stickers in stickers panel (legacy)",
+        "night": "windowFgActive"
+      },
+      "stickerPreviewBg": {
+        "default": "#ffffffb0",
+        "note": "sticker and GIF preview background (when you press and hold on a sticker)",
+        "night": "#000000b0"
+      },
+      "stickerPanPremium1": {
+        "default": "#5a99ff",
+        "note": "premium sticker pack icon gradient 1"
+      },
+      "stickerPanPremium2": {
+        "default": "#45b9f3",
+        "note": "premium sticker pack icon gradient 2"
+      },
+      "historyTextInFg": {
+        "ref": "windowFg",
+        "note": "inbox message text",
+        "night": "windowFg"
+      },
+      "historyTextInFgSelected": {
+        "ref": "historyTextInFg",
+        "note": "inbox message selected text or text in a selected message",
+        "night": "#ffffff"
+      },
+      "historyTextOutFg": {
+        "ref": "windowFg",
+        "note": "outbox message text",
+        "night": "#e4ecf2"
+      },
+      "historyTextOutFgSelected": {
+        "ref": "historyTextOutFg",
+        "note": "outbox message selected text or text in a selected message",
+        "night": "#ffffff"
+      },
+      "historyLinkInFg": {
+        "ref": "windowActiveTextFg",
+        "note": "inbox message link",
+        "night": "#70baf5"
+      },
+      "historyLinkInFgSelected": {
+        "ref": "historyLinkInFg",
+        "note": "inbox message link in a selected text or message",
+        "night": "#aadcff"
+      },
+      "historyLinkOutFg": {
+        "ref": "windowActiveTextFg",
+        "note": "outbox message link",
+        "night": "#83caff"
+      },
+      "historyLinkOutFgSelected": {
+        "ref": "historyLinkOutFg",
+        "note": "outbox message link in a selected text or message",
+        "night": "#aadcff"
+      },
+      "historyFileNameInFg": {
+        "ref": "historyTextInFg",
+        "note": "inbox media filename text",
+        "night": "historyTextInFg"
+      },
+      "historyFileNameInFgSelected": {
+        "ref": "historyFileNameInFg",
+        "note": "inbox media filename text in a selected message",
+        "night": "#ffffff"
+      },
+      "historyFileNameOutFg": {
+        "ref": "historyTextOutFg",
+        "note": "outbox media filename text",
+        "night": "historyTextOutFg"
+      },
+      "historyFileNameOutFgSelected": {
+        "ref": "historyFileNameOutFg",
+        "note": "outbox media filename text in a selected message",
+        "night": "#ffffff"
+      },
+      "historyOutIconFg": {
+        "default": "#57b84c",
+        "note": "outbox message tick / double tick icon",
+        "night": "#6bbfff"
+      },
+      "historyOutIconFgSelected": {
+        "default": "#45a3aa",
+        "note": "outbox message tick / double tick icon in a selected message",
+        "night": "#ffffff"
+      },
+      "historyIconFgInverted": {
+        "ref": "windowFgActive",
+        "note": "media message tick / double tick icon (like in sent photo)",
+        "night": "#ffffffe5"
+      },
+      "historySendingOutIconFg": {
+        "default": "#98d292",
+        "note": "outbox sending message icon (clock)",
+        "night": "#70a4d2"
+      },
+      "historySendingInIconFg": {
+        "default": "#a0adb5",
+        "note": "inbox sending message icon (clock) (like in sent messages to yourself or in sent messages to a channel)",
+        "night": "#76838b"
+      },
+      "historySendingInvertedIconFg": {
+        "default": "#ffffffc8",
+        "note": "media sending message icon (clock) (like in sent photo)",
+        "night": "#ffffffc8"
+      },
+      "historyCallArrowInFg": {
+        "default": "#32b032",
+        "note": "received phone call arrow",
+        "night": "#5093d6"
+      },
+      "historyCallArrowInFgSelected": {
+        "default": "#2592a8",
+        "note": "received phone call arrow in a selected message",
+        "night": "#ffffff"
+      },
+      "historyCallArrowMissedInFg": {
+        "ref": "callArrowMissedFg",
+        "note": "missed phone call arrow",
+        "night": "callArrowMissedFg"
+      },
+      "historyCallArrowMissedInFgSelected": {
+        "ref": "callArrowMissedFg",
+        "note": "missed phone call arrow in a selected message",
+        "night": "#ffffff"
+      },
+      "historyCallArrowOutFg": {
+        "ref": "historyCallArrowInFg",
+        "note": "outgoing phone call arrow",
+        "night": "#ffffff"
+      },
+      "historyCallArrowOutFgSelected": {
+        "ref": "historyCallArrowInFgSelected",
+        "note": "outgoing phone call arrow",
+        "night": "#ffffff"
+      },
+      "historyUnreadBarBg": {
+        "default": "#fcfbfa",
+        "note": "new unread messages bar background",
+        "night": "#182433"
+      },
+      "historyUnreadBarBorder": {
+        "ref": "shadowFg",
+        "note": "new unread messages bar shadow",
+        "night": "#03080d00"
+      },
+      "historyUnreadBarFg": {
+        "default": "#538bb4",
+        "note": "new unread messages bar text",
+        "night": "#ffffff"
+      },
+      "historyForwardChooseBg": {
+        "default": "#0000004c",
+        "note": "forwarding messages in a large window size \"choose recipient\" background",
+        "night": "#0000004c"
+      },
+      "historyForwardChooseFg": {
+        "ref": "windowFgActive",
+        "note": "forwarding messages in a large window size \"choose recipient\" text",
+        "night": "windowFgActive"
+      },
+      "historyPeer1NameFg": {
+        "default": "#c03d33",
+        "note": "red group member name",
+        "night": "#fb6169"
+      },
+      "historyPeer1NameFgSelected": {
+        "ref": "historyPeer1NameFg",
+        "note": "red group member name in a selected message",
+        "night": "#ffffff"
+      },
+      "historyPeer1UserpicBg": {
+        "default": "#ff845e",
+        "note": "red userpic background",
+        "night": "#ff845e"
+      },
+      "historyPeer2NameFg": {
+        "default": "#4fad2d",
+        "note": "green group member name",
+        "night": "#85de85"
+      },
+      "historyPeer2NameFgSelected": {
+        "ref": "historyPeer2NameFg",
+        "note": "green group member name in a selected message",
+        "night": "#ffffff"
+      },
+      "historyPeer2UserpicBg": {
+        "default": "#9ad164",
+        "note": "green userpic background",
+        "night": "#9ad164"
+      },
+      "historyPeer3NameFg": {
+        "default": "#d09306",
+        "note": "yellow group member name (actually unused)",
+        "night": "#f3bc5c"
+      },
+      "historyPeer3NameFgSelected": {
+        "ref": "historyPeer3NameFg",
+        "note": "yellow group member name in a selected message (actually unused)",
+        "night": "#ffffff"
+      },
+      "historyPeer3UserpicBg": {
+        "default": "#e5ca77",
+        "note": "yellow userpic background (actually unused)",
+        "night": "#e5ca77"
+      },
+      "historyPeer4NameFg": {
+        "ref": "windowActiveTextFg",
+        "note": "blue group member name",
+        "night": "#65bdf3"
+      },
+      "historyPeer4NameFgSelected": {
+        "ref": "historyPeer4NameFg",
+        "note": "blue group member name in a selected message",
+        "night": "#ffffff"
+      },
+      "historyPeer4UserpicBg": {
+        "default": "#5caffa",
+        "note": "blue userpic background",
+        "night": "#5caffa"
+      },
+      "historyPeer5NameFg": {
+        "default": "#8544d6",
+        "note": "purple group member name",
+        "night": "#b48bf2"
+      },
+      "historyPeer5NameFgSelected": {
+        "ref": "historyPeer5NameFg",
+        "note": "purple group member name in a selected message",
+        "night": "#ffffff"
+      },
+      "historyPeer5UserpicBg": {
+        "default": "#b694f9",
+        "note": "purple userpic background",
+        "night": "#b694f9"
+      },
+      "historyPeer6NameFg": {
+        "default": "#cd4073",
+        "note": "pink group member name",
+        "night": "#ff5694"
+      },
+      "historyPeer6NameFgSelected": {
+        "ref": "historyPeer6NameFg",
+        "note": "pink group member name in a selected message",
+        "night": "#ffffff"
+      },
+      "historyPeer6UserpicBg": {
+        "default": "#ff8aac",
+        "note": "pink userpic background",
+        "night": "#ff8aac"
+      },
+      "historyPeer7NameFg": {
+        "default": "#2996ad",
+        "note": "sea group member name",
+        "night": "#62d4e3"
+      },
+      "historyPeer7NameFgSelected": {
+        "ref": "historyPeer7NameFg",
+        "note": "sea group member name in a selected message",
+        "night": "#ffffff"
+      },
+      "historyPeer7UserpicBg": {
+        "default": "#5bcbe3",
+        "note": "sea userpic background",
+        "night": "#5bcbe3"
+      },
+      "historyPeer8NameFg": {
+        "default": "#ce671b",
+        "note": "orange group member name",
+        "night": "#faa357"
+      },
+      "historyPeer8NameFgSelected": {
+        "ref": "historyPeer8NameFg",
+        "note": "orange group member name in a selected message",
+        "night": "#ffffff"
+      },
+      "historyPeer8UserpicBg": {
+        "default": "#febb5b",
+        "note": "orange userpic background",
+        "night": "#febb5b"
+      },
+      "historyPeerUserpicFg": {
+        "ref": "windowFgActive",
+        "note": "default userpic initials",
+        "night": "windowFgActive"
+      },
+      "historyPeerSavedMessagesBg": {
+        "ref": "historyPeer4UserpicBg",
+        "note": "saved messages userpic background"
+      },
+      "historyPeerArchiveUserpicBg": {
+        "ref": "dialogsUnreadBgMuted",
+        "note": "archive folder userpic background"
+      },
+      "historyPeer1UserpicBg2": {
+        "default": "#d45246",
+        "fallback": "historyPeer1UserpicBg",
+        "note": "the second red userpic background",
+        "night": "#d45246"
+      },
+      "historyPeer2UserpicBg2": {
+        "default": "#46ba43",
+        "fallback": "historyPeer2UserpicBg",
+        "note": "the second green userpic background",
+        "night": "#46ba43"
+      },
+      "historyPeer3UserpicBg2": {
+        "default": "#e5ca77",
+        "fallback": "historyPeer3UserpicBg",
+        "note": "the second yellow userpic background (actually unused)",
+        "night": "#e5ca77"
+      },
+      "historyPeer4UserpicBg2": {
+        "default": "#408acf",
+        "fallback": "historyPeer4UserpicBg",
+        "note": "the second blue userpic background",
+        "night": "#408acf"
+      },
+      "historyPeer5UserpicBg2": {
+        "default": "#6c61df",
+        "fallback": "historyPeer5UserpicBg",
+        "note": "the second purple userpic background",
+        "night": "#6c61df"
+      },
+      "historyPeer6UserpicBg2": {
+        "default": "#d95574",
+        "fallback": "historyPeer6UserpicBg",
+        "note": "the second pink userpic background",
+        "night": "#d95574"
+      },
+      "historyPeer7UserpicBg2": {
+        "default": "#359ad4",
+        "fallback": "historyPeer7UserpicBg",
+        "note": "the second sea userpic background",
+        "night": "#359ad4"
+      },
+      "historyPeer8UserpicBg2": {
+        "default": "#f68136",
+        "fallback": "historyPeer8UserpicBg",
+        "note": "the second orange userpic background",
+        "night": "#f68136"
+      },
+      "historyPeerSavedMessagesBg2": {
+        "ref": "historyPeer4UserpicBg2",
+        "note": "the second saved messages userpic background",
+        "night": "historyPeer4UserpicBg2"
+      },
+      "settingsIconBg1": {
+        "default": "#f06964",
+        "note": "red settings icon background"
+      },
+      "settingsIconBg2": {
+        "default": "#6dc534",
+        "note": "green settings icon background"
+      },
+      "settingsIconBg3": {
+        "default": "#ed9f20",
+        "note": "light-orange settings icon background"
+      },
+      "settingsIconBg4": {
+        "default": "#56b3f5",
+        "note": "light-blue settings icon background"
+      },
+      "settingsIconBg5": {
+        "default": "#7595ff",
+        "note": "dark-blue settings icon background"
+      },
+      "settingsIconBg6": {
+        "default": "#b580e2",
+        "note": "purple settings icon background"
+      },
+      "settingsIconBg8": {
+        "default": "#f2925b",
+        "note": "dark-orange settings icon background"
+      },
+      "settingsIconBgArchive": {
+        "default": "#9da2b0",
+        "note": "archive main menu icon background"
+      },
+      "settingsIconFg": {
+        "default": "#ffffff",
+        "note": "settings icon shape"
+      },
+      "historyScrollBarBg": {
+        "default": "#517c417a",
+        "note": "scroll bar current rectangle, the bar itself in the chat view (adjusted)",
+        "night": "#7f84897a"
+      },
+      "historyScrollBarBgOver": {
+        "default": "#517c41bc",
+        "note": "scroll bar current rectangle with mouse over it in the chat view (adjusted)",
+        "night": "#64686cbc"
+      },
+      "historyScrollBg": {
+        "default": "#517c414c",
+        "note": "scroll bar background (adjusted)",
+        "night": "#565a5e4c"
+      },
+      "historyScrollBgOver": {
+        "default": "#517c416b",
+        "note": "scroll bar background with mouse over the scroll bar (adjusted)",
+        "night": "#5a5d616b"
+      },
+      "msgInBg": {
+        "ref": "windowBg",
+        "note": "inbox message background",
+        "night": "#182533"
+      },
+      "msgInBgSelected": {
+        "default": "#c2dcf2",
+        "note": "inbox selected message background (and background of selected text in those messages)",
+        "night": "#2e70a5"
+      },
+      "msgOutBg": {
+        "default": "#effdde",
+        "note": "outbox message background",
+        "night": "#2b5278"
+      },
+      "msgOutBgSelected": {
+        "default": "#b7dbdb",
+        "note": "outbox selected message background (and background of selected text in those messages)",
+        "night": "#2e70a5"
+      },
+      "msgSelectOverlay": {
+        "default": "#358cd44c",
+        "note": "overlay which is filling the media parts of selected messages (like in selected photo message)",
+        "night": "#3585d44c"
+      },
+      "msgStickerOverlay": {
+        "default": "#358cd47f",
+        "note": "overlay which is filling the selected sticker message",
+        "night": "#3585d47f"
+      },
+      "msgInServiceFg": {
+        "ref": "windowActiveTextFg",
+        "note": "inbox message information text (like information about a forwarded message original sender)",
+        "night": "#71bafa"
+      },
+      "msgInServiceFgSelected": {
+        "ref": "windowActiveTextFg",
+        "note": "inbox selected message information text (like information about a forwarded message original sender)",
+        "night": "#ffffff"
+      },
+      "msgOutServiceFg": {
+        "default": "#45a32d",
+        "note": "outbox message information text (like information about a forwarded message original sender)",
+        "night": "#90caff"
+      },
+      "msgOutServiceFgSelected": {
+        "default": "#469992",
+        "note": "outbox message information text (like information about a forwarded message original sender)",
+        "night": "#ffffff"
+      },
+      "msgInShadow": {
+        "default": "#748ea229",
+        "note": "inbox message shadow (below the bubble)",
+        "night": "#748ea200"
+      },
+      "msgInShadowSelected": {
+        "default": "#548dbb29",
+        "note": "inbox selected message shadow (below the bubble)",
+        "night": "#538ebb00"
+      },
+      "msgOutShadow": {
+        "default": "#3ac3461d",
+        "note": "outbox message shadow (below the bubble)",
+        "night": "#00000000"
+      },
+      "msgOutShadowSelected": {
+        "default": "#37a78d22",
+        "note": "outbox selected message shadow (below the bubble)",
+        "night": "#366ea600"
+      },
+      "msgInDateFg": {
+        "default": "#a0acb6",
+        "note": "inbox message time text",
+        "night": "#6d7f8f"
+      },
+      "msgInDateFgSelected": {
+        "default": "#6a9cc5",
+        "note": "inbox selected message time text",
+        "night": "#ffffff"
+      },
+      "msgOutDateFg": {
+        "default": "#6db566",
+        "note": "outbox message time text",
+        "night": "#7da8d3"
+      },
+      "msgOutDateFgSelected": {
+        "default": "#56b2a6",
+        "note": "outbox selected message time text",
+        "night": "#ffffff"
+      },
+      "msgServiceFg": {
+        "ref": "windowFgActive",
+        "note": "service message text (like date dividers or service message about the group title being changed)",
+        "night": "windowFgActive"
+      },
+      "msgServiceBg": {
+        "default": "#517c417f",
+        "note": "service message background (like in a service message about group title being changed) (adjusted)",
+        "night": "#213040d5"
+      },
+      "msgServiceBgSelected": {
+        "default": "#96b38ba2",
+        "note": "service message selected text background (like in a service message about group title being changed) (adjusted)",
+        "night": "#2e7ab4"
+      },
+      "msgInReplyBarColor": {
+        "ref": "activeLineFg",
+        "note": "inbox message reply outline",
+        "night": "#429bdb"
+      },
+      "msgInReplyBarSelColor": {
+        "ref": "activeLineFg",
+        "note": "inbox selected message reply outline",
+        "night": "#ffffff"
+      },
+      "msgOutReplyBarColor": {
+        "default": "#5eb854",
+        "note": "outbox message reply outline",
+        "night": "#65b9f4"
+      },
+      "msgOutReplyBarSelColor": {
+        "ref": "historyOutIconFgSelected",
+        "note": "outbox selected message reply outline",
+        "night": "#ffffff"
+      },
+      "msgImgReplyBarColor": {
+        "ref": "msgServiceFg",
+        "note": "sticker message reply outline",
+        "night": "msgServiceFg"
+      },
+      "msgInMonoFg": {
+        "default": "#4e7391",
+        "note": "inbox message monospace text (like a message sent with `test` text)",
+        "night": "#5a8cb7"
+      },
+      "msgOutMonoFg": {
+        "default": "#459866",
+        "note": "outbox message monospace text",
+        "night": "#aed1f3"
+      },
+      "msgInMonoFgSelected": {
+        "ref": "msgInMonoFg",
+        "note": "inbox message monospace text in a selected text or message",
+        "night": "#a3cdf7"
+      },
+      "msgOutMonoFgSelected": {
+        "ref": "msgOutMonoFg",
+        "note": "outbox message monospace text in a selected text or message",
+        "night": "#a3cdf7"
+      },
+      "msgDateImgFg": {
+        "ref": "msgServiceFg",
+        "note": "media message time text (like time text in a sent photo)",
+        "night": "#fffffff2"
+      },
+      "msgDateImgBg": {
+        "default": "#00000054",
+        "note": "media message time bubble background (like time bubble in a sent photo) or file with thumbnail download icon circle background",
+        "night": "#00000054"
+      },
+      "msgDateImgBgOver": {
+        "default": "#00000074",
+        "note": "media message download icon circle background with mouse over (like file with thumbnail download icon)",
+        "night": "#00000074"
+      },
+      "msgDateImgBgSelected": {
+        "default": "#1c4a7187",
+        "note": "selected media message time bubble background",
+        "night": "#204f7887"
+      },
+      "msgFileThumbLinkInFg": {
+        "ref": "lightButtonFg",
+        "note": "inbox media file message with thumbnail download / open with button text",
+        "night": "lightButtonFg"
+      },
+      "msgFileThumbLinkInFgSelected": {
+        "ref": "lightButtonFgOver",
+        "note": "inbox selected media file message with thumbnail download / open with button text",
+        "night": "#ffffff"
+      },
+      "msgFileThumbLinkOutFg": {
+        "default": "#4ba831",
+        "note": "outbox media file message with thumbnail download / open with button text",
+        "night": "#6c9ecf"
+      },
+      "msgFileThumbLinkOutFgSelected": {
+        "default": "#31a298",
+        "note": "outbox selected media file message with thumbnail download / open with button text",
+        "night": "#ffffff"
+      },
+      "msgFileInBg": {
+        "ref": "windowBgActive",
+        "note": "inbox audio file download circle background",
+        "night": "#3f96d0"
+      },
+      "msgFileInBgOver": {
+        "default": "#4eade3",
+        "note": "inbox audio file download circle background with mouse over",
+        "night": "#489ed7"
+      },
+      "msgFileInBgSelected": {
+        "default": "#51a3d3",
+        "note": "inbox selected audio file download circle background",
+        "night": "#6ab4f4"
+      },
+      "msgFileOutBg": {
+        "default": "#5fbe67",
+        "note": "outbox audio file download circle background",
+        "night": "#4c9ce2"
+      },
+      "msgFileOutBgSelected": {
+        "default": "#50ac9b",
+        "note": "outbox selected audio file download circle background",
+        "night": "#58abf3"
+      },
+      "msgFile1Bg": {
+        "default": "#72b1df",
+        "note": "blue shared links / files without image square thumbnail",
+        "night": "#3e7eba"
+      },
+      "msgFile1BgDark": {
+        "default": "#5c9ece",
+        "note": "blue shared files without image download circle background",
+        "night": "#24679e"
+      },
+      "msgFile1BgOver": {
+        "default": "#5294c4",
+        "note": "blue shared files without image download circle background with mouse over",
+        "night": "#1d5e93"
+      },
+      "msgFile1BgSelected": {
+        "default": "#5099d0",
+        "note": "blue shared files without image download circle background if file is selected",
+        "night": "#ffffff"
+      },
+      "msgFile2Bg": {
+        "default": "#5fbe67",
+        "note": "green shared links / shared files without image square thumbnail",
+        "night": "#3ea34a"
+      },
+      "msgFile2BgDark": {
+        "default": "#4da859",
+        "note": "green shared files without image download circle background",
+        "night": "#298835"
+      },
+      "msgFile2BgOver": {
+        "default": "#44a050",
+        "note": "green shared files without image download circle background with mouse over",
+        "night": "#1b7725"
+      },
+      "msgFile2BgSelected": {
+        "default": "#50ac9b",
+        "note": "green shared files without image download circle background if file is selected",
+        "night": "#1b7725"
+      },
+      "msgFile3Bg": {
+        "default": "#e47272",
+        "note": "red shared links / shared files without image square thumbnail",
+        "night": "#d6454c"
+      },
+      "msgFile3BgDark": {
+        "default": "#cd5b5e",
+        "note": "red shared files without image download circle background",
+        "night": "#bf333a"
+      },
+      "msgFile3BgOver": {
+        "default": "#c35154",
+        "note": "red shared files without image download circle background with mouse over",
+        "night": "#b2282f"
+      },
+      "msgFile3BgSelected": {
+        "default": "#9f6a82",
+        "note": "red shared files without image download circle background if file is selected",
+        "night": "#b2282f"
+      },
+      "msgFile4Bg": {
+        "default": "#efc274",
+        "note": "yellow shared links / shared files without image square thumbnail",
+        "night": "#d99546"
+      },
+      "msgFile4BgDark": {
+        "default": "#e6a561",
+        "note": "yellow shared files without image download circle background",
+        "night": "#c17d39"
+      },
+      "msgFile4BgOver": {
+        "default": "#dc9c5a",
+        "note": "yellow shared files without image download circle background with mouse over",
+        "night": "#ac6b29"
+      },
+      "msgFile4BgSelected": {
+        "default": "#b19d84",
+        "note": "yellow shared files without image download circle background if file is selected",
+        "night": "#ac6b29"
+      },
+      "historyFileInIconFg": {
+        "ref": "msgInBg",
+        "note": "inbox file without thumbnail (like audio file) download arrow icon",
+        "night": "#ffffff"
+      },
+      "historyFileInIconFgSelected": {
+        "ref": "msgInBgSelected",
+        "note": "inbox selected file without thumbnail (like audio file) download arrow icon",
+        "night": "#ffffff"
+      },
+      "historyFileInRadialFg": {
+        "ref": "historyFileInIconFg",
+        "note": "inbox file without thumbnail (like audio file) radial download animation line",
+        "night": "#ffffff"
+      },
+      "historyFileInRadialFgSelected": {
+        "ref": "historyFileInIconFgSelected",
+        "note": "inbox selected file without thumbnail (like audio file) radial download animation line",
+        "night": "historyFileInIconFgSelected"
+      },
+      "historyFileOutIconFg": {
+        "ref": "msgOutBg",
+        "note": "outbox file without thumbnail (like audio file) download arrow icon",
+        "night": "#ffffff"
+      },
+      "historyFileOutIconFgSelected": {
+        "ref": "msgOutBgSelected",
+        "note": "outbox selected file without thumbnail (like audio file) download arrow icon",
+        "night": "#ffffff"
+      },
+      "historyFileOutRadialFg": {
+        "ref": "historyFileOutIconFg",
+        "note": "outbox file without thumbnail (like audio file) radial download animation line",
+        "night": "#ffffff"
+      },
+      "historyFileOutRadialFgSelected": {
+        "ref": "historyFileOutIconFgSelected",
+        "note": "outbox selected file without thumbnail (like audio file) radial download animation line",
+        "night": "#ffffff"
+      },
+      "historyFileThumbIconFg": {
+        "ref": "msgInBg",
+        "note": "file with thumbnail (or photo / video) download arrow icon",
+        "night": "#efefef"
+      },
+      "historyFileThumbIconFgSelected": {
+        "ref": "msgInBgSelected",
+        "note": "selected file with thumbnail (or photo / video) download arrow icon",
+        "night": "#ffffff"
+      },
+      "historyFileThumbRadialFg": {
+        "ref": "historyFileThumbIconFg",
+        "note": "file with thumbnail (or photo / video) radial download animation line",
+        "night": "historyFileThumbIconFg"
+      },
+      "historyFileThumbRadialFgSelected": {
+        "ref": "historyFileThumbIconFgSelected",
+        "note": "selected file with thumbnail (or photo / video) radial download animation line",
+        "night": "#ffffff"
+      },
+      "historyVideoMessageProgressFg": {
+        "ref": "historyFileThumbIconFg",
+        "note": "radial playback progress in round video messages",
+        "night": "historyFileThumbIconFg"
+      },
+      "msgWaveformInActive": {
+        "ref": "windowBgActive",
+        "note": "inbox voice message active waveform lines (like played part of currently playing voice message)",
+        "night": "#549cd7"
+      },
+      "msgWaveformInActiveSelected": {
+        "default": "#51a3d3",
+        "note": "inbox selected voice message active waveform lines (like played part of currently playing voice message)",
+        "night": "#ffffff"
+      },
+      "msgWaveformInInactive": {
+        "default": "#d4dee6",
+        "note": "inbox voice message inactive waveform lines (like upcoming part of currently playing voice message)",
+        "night": "#3a4d61"
+      },
+      "msgWaveformInInactiveSelected": {
+        "default": "#9cc1e1",
+        "note": "inbox selected voice message inactive waveform lines (like upcoming part of currently playing voice message)",
+        "night": "#6fa5d4"
+      },
+      "msgWaveformOutActive": {
+        "default": "#5ebd66",
+        "note": "outbox voice message active waveform lines (like played part of currently playing voice message)",
+        "night": "#62b2fd"
+      },
+      "msgWaveformOutActiveSelected": {
+        "default": "#6badad",
+        "note": "outbox selected voice message active waveform lines (like played part of currently playing voice message)",
+        "night": "#ffffff"
+      },
+      "msgWaveformOutInactive": {
+        "default": "#b3e2b4",
+        "note": "outbox voice message inactive waveform lines (like upcoming part of currently playing voice message)",
+        "night": "#4b7fb3"
+      },
+      "msgWaveformOutInactiveSelected": {
+        "default": "#91c3c3",
+        "note": "outbox selected voice message inactive waveform lines (like upcoming part of currently playing voice message)",
+        "night": "#6fa5d4"
+      },
+      "msgBotKbOverBgAdd": {
+        "default": "#ffffff20",
+        "note": "this is painted over a bot inline keyboard button (which has msgServiceBg background) when mouse is over that button",
+        "night": "#80b1db0f"
+      },
+      "msgBotKbIconFg": {
+        "ref": "msgServiceFg",
+        "note": "bot inline keyboard button icon in the top-right corner (like in @vote bot when a poll is ready to be shared)",
+        "night": "msgServiceFg"
+      },
+      "msgBotKbRippleBg": {
+        "default": "#00000020",
+        "note": "bot inline keyboard button ripple effect",
+        "night": "#92c0e50b"
+      },
+      "mediaInFg": {
+        "ref": "msgInDateFg",
+        "note": "inbox media message status text (like in file that is being downloaded)",
+        "night": "msgInDateFg"
+      },
+      "mediaInFgSelected": {
+        "ref": "msgInDateFgSelected",
+        "note": "inbox selected media message status text (like in file that is being downloaded)",
+        "night": "msgInDateFgSelected"
+      },
+      "mediaOutFg": {
+        "ref": "msgOutDateFg",
+        "note": "outbox media message status text (like in file that is being downloaded)",
+        "night": "msgOutDateFg"
+      },
+      "mediaOutFgSelected": {
+        "ref": "msgOutDateFgSelected",
+        "note": "outbox selected media message status text (like in file that is being downloaded)",
+        "night": "msgOutDateFgSelected"
+      },
+      "youtubePlayIconBg": {
+        "default": "#e83131c8",
+        "note": "youtube play icon background (when a link to a youtube video with a webpage preview is sent)",
+        "night": "#e83131c8"
+      },
+      "youtubePlayIconFg": {
+        "ref": "windowFgActive",
+        "note": "youtube play icon arrow (when a link to a youtube video with a webpage preview is sent)",
+        "night": "windowFgActive"
+      },
+      "videoPlayIconBg": {
+        "default": "#0000007f",
+        "note": "other video play icon background (like when a link to a vimeo video with a webpage preview is sent)",
+        "night": "#0000007f"
+      },
+      "videoPlayIconFg": {
+        "default": "#ffffff",
+        "note": "other video play icon arrow (like when a link to a vimeo video with a webpage preview is sent)",
+        "night": "#ffffff"
+      },
+      "toastBg": {
+        "default": "#2c3033e5",
+        "note": "toast notification background (like when you click on your t.me link when editing your username)",
+        "night": "#000000b2"
+      },
+      "toastFg": {
+        "default": "#ffffff",
+        "note": "toast notification text (like when you click on your t.me link when editing your username)",
+        "night": "windowFgActive"
+      },
+      "historyToDownBg": {
+        "ref": "windowBg",
+        "note": "arrow button background (to scroll to the end of the viewed chat)",
+        "night": "#1d2b3a"
+      },
+      "historyToDownBgOver": {
+        "ref": "windowBgOver",
+        "note": "arrow button background with mouse over",
+        "night": "#243446"
+      },
+      "historyToDownBgRipple": {
+        "ref": "windowBgRipple",
+        "note": "arrow button ripple effect",
+        "night": "#2b3c4f"
+      },
+      "historyToDownFg": {
+        "ref": "menuIconFg",
+        "note": "arrow button icon",
+        "night": "#adb4ba"
+      },
+      "historyToDownFgOver": {
+        "ref": "menuIconFgOver",
+        "note": "arrow button icon with mouse over",
+        "night": "menuIconFgOver"
+      },
+      "historyToDownShadow": {
+        "default": "#00000040",
+        "note": "arrow button shadow",
+        "night": "#00000040"
+      },
+      "historyComposeAreaBg": {
+        "ref": "msgInBg",
+        "note": "history compose area background (message write area / reply information / forwarding information)",
+        "night": "#17212b"
+      },
+      "historyComposeAreaFg": {
+        "ref": "historyTextInFg",
+        "note": "history compose area text",
+        "night": "historyTextInFg"
+      },
+      "historyComposeAreaFgService": {
+        "ref": "msgInDateFg",
+        "note": "history compose area text when replying to a media message",
+        "night": "msgInDateFg"
+      },
+      "historyComposeIconFg": {
+        "ref": "menuIconFg",
+        "note": "history compose area icon (like emoji, attach, bot command..)",
+        "night": "menuIconFg"
+      },
+      "historyComposeIconFgOver": {
+        "ref": "menuIconFgOver",
+        "note": "history compose area icon with mouse over",
+        "night": "menuIconFgOver"
+      },
+      "historySendIconFg": {
+        "ref": "windowBgActive",
+        "note": "send message icon",
+        "night": "windowBgActive"
+      },
+      "historySendIconFgOver": {
+        "ref": "windowBgActive",
+        "note": "send message icon with mouse over",
+        "night": "windowBgActive"
+      },
+      "historyPinnedBg": {
+        "ref": "historyComposeAreaBg",
+        "note": "pinned message area background",
+        "night": "#1b2734"
+      },
+      "historyReplyBg": {
+        "ref": "historyComposeAreaBg",
+        "note": "reply / forward / edit message area background",
+        "night": "historyComposeAreaBg"
+      },
+      "historyReplyIconFg": {
+        "ref": "windowBgActive",
+        "note": "reply / forward / edit message left icon",
+        "night": "windowBgActive"
+      },
+      "historyReplyCancelFg": {
+        "ref": "cancelIconFg",
+        "note": "reply / forward / edit message cancel button",
+        "night": "cancelIconFg"
+      },
+      "historyReplyCancelFgOver": {
+        "ref": "cancelIconFgOver",
+        "note": "reply / forward / edit message cancel button with mouse over",
+        "night": "cancelIconFgOver"
+      },
+      "historyComposeButtonBg": {
+        "ref": "historyComposeAreaBg",
+        "note": "unblock / join channel / mute channel button background",
+        "night": "historyComposeAreaBg"
+      },
+      "historyComposeButtonBgOver": {
+        "ref": "windowBgOver",
+        "note": "unblock / join channel / mute channel button background with mouse over",
+        "night": "#1c2835"
+      },
+      "historyComposeButtonBgRipple": {
+        "ref": "windowBgRipple",
+        "note": "unblock / join channel / mute channel button ripple effect",
+        "night": "#222f3e"
+      },
+      "mapPointDrop": {
+        "default": "#fd4444",
+        "note": "geo location marker background"
+      },
+      "mapPointDot": {
+        "default": "#ffffff",
+        "note": "geo location marker point"
+      },
+      "overviewCheckBg": {
+        "default": "#00000040",
+        "note": "shared media / files / links checkbox background for not selected rows when some rows are selected",
+        "night": "#00000040"
+      },
+      "overviewCheckBgActive": {
+        "ref": "windowBgActive",
+        "note": "shared media / files / links checkbox background for selected rows"
+      },
+      "overviewCheckBorder": {
+        "ref": "windowBg",
+        "note": "shared media round checkbox border",
+        "night": "#e4eaef"
+      },
+      "overviewCheckFgActive": {
+        "ref": "windowBg",
+        "note": "shared files / links checkbox icon for selected rows",
+        "night": "#ffffff"
+      },
+      "overviewPhotoSelectOverlay": {
+        "default": "#40ace333",
+        "note": "shared photos / videos / links fill for selected rows",
+        "night": "#3fa2e333"
+      },
+      "profileStatusFgOver": {
+        "default": "#7c99b2",
+        "note": "group members list in group profile user last seen text with mouse over",
+        "night": "#677a8b"
+      },
+      "profileVerifiedCheckBg": {
+        "ref": "windowBgActive",
+        "note": "profile verified check icon background",
+        "night": "windowBgActive"
+      },
+      "profileVerifiedCheckFg": {
+        "ref": "windowFgActive",
+        "note": "profile verified check icon tick",
+        "night": "#ffffff"
+      },
+      "profileAdminStartFg": {
+        "ref": "windowBgActive",
+        "note": "group members list creator star icon",
+        "night": "#62a9e6"
+      },
+      "notificationsBoxMonitorFg": {
+        "ref": "windowFg",
+        "note": "custom notifications settings box monitor color",
+        "night": "windowFg"
+      },
+      "notificationsBoxScreenBg": {
+        "ref": "dialogsBgActive",
+        "note": "#6389a8; // custom notifications settings box monitor screen background",
+        "night": "dialogsBgActive"
+      },
+      "notificationSampleUserpicFg": {
+        "ref": "windowBgActive",
+        "note": "custom notifications settings box small sample userpic placeholder",
+        "night": "windowBgActive"
+      },
+      "notificationSampleCloseFg": {
+        "default": "#d7d7d7",
+        "fallback": "windowSubTextFg",
+        "note": "custom notifications settings box small sample close button placeholder",
+        "night": "#d7d7d7"
+      },
+      "notificationSampleTextFg": {
+        "default": "#d7d7d7",
+        "fallback": "windowSubTextFg",
+        "note": "custom notifications settings box small sample text placeholder",
+        "night": "#d7d7d7"
+      },
+      "notificationSampleNameFg": {
+        "default": "#939393",
+        "fallback": "windowSubTextFg",
+        "note": "custom notifications settings box small sample name placeholder",
+        "night": "#939393"
+      },
+      "mainMenuBg": {
+        "ref": "windowBg",
+        "note": "main menu background",
+        "night": "windowBg"
+      },
+      "mainMenuCoverBg": {
+        "ref": "dialogsBgActive",
+        "note": "main menu top cover background",
+        "night": "#276899"
+      },
+      "mainMenuCloudFg": {
+        "ref": "activeButtonFg",
+        "note": "main menu top cover saved messages / archive button icon",
+        "night": "activeButtonFg"
+      },
+      "mainMenuCloudBg": {
+        "default": "#2785bf",
+        "fallback": "activeButtonBgRipple",
+        "note": "main menu top cover saved messages / archive button background",
+        "night": "#185680"
+      },
+      "mediaPlayerBg": {
+        "ref": "windowBg",
+        "note": "audio file player background",
+        "night": "windowBg"
+      },
+      "mediaPlayerActiveFg": {
+        "ref": "windowBgActive",
+        "note": "audio file player playback progress already played part",
+        "night": "windowBgActive"
+      },
+      "mediaPlayerInactiveFg": {
+        "ref": "sliderBgInactive",
+        "note": "audio file player playback progress upcoming (not played yet) part with mouse over",
+        "night": "sliderBgInactive"
+      },
+      "mediaPlayerDisabledFg": {
+        "default": "#9dd1ef",
+        "note": "audio file player loading progress (when you're playing an audio file and switch to the previous one which is not loaded yet)",
+        "night": "#9dd1ef"
+      },
+      "mediaviewFileBg": {
+        "ref": "windowBg",
+        "note": "file rectangle background (when you view a png file in Media Viewer and go to a previous, not loaded yet, file)",
+        "night": "windowBg"
+      },
+      "mediaviewFileNameFg": {
+        "ref": "windowFg",
+        "note": "file name in file rectangle",
+        "night": "windowFg"
+      },
+      "mediaviewFileSizeFg": {
+        "ref": "windowSubTextFg",
+        "note": "file size text in file rectangle",
+        "night": "windowSubTextFg"
+      },
+      "mediaviewFileRedCornerFg": {
+        "default": "#d55959",
+        "note": "red file thumbnail placeholder corner in file rectangle (for a file without thumbnail, like .pdf)",
+        "night": "#d55959"
+      },
+      "mediaviewFileYellowCornerFg": {
+        "default": "#e8a659",
+        "note": "yellow file thumbnail placeholder corner in file rectangle (for a file without thumbnail, like .zip)",
+        "night": "#e8a659"
+      },
+      "mediaviewFileGreenCornerFg": {
+        "default": "#49a957",
+        "note": "green file thumbnail placeholder corner in file rectangle (for a file without thumbnail, like .exe)",
+        "night": "#49a957"
+      },
+      "mediaviewFileBlueCornerFg": {
+        "default": "#599dcf",
+        "note": "blue file thumbnail placeholder corner in file rectangle (for a file without thumbnail, like .dmg)",
+        "night": "#599dcf"
+      },
+      "mediaviewFileExtFg": {
+        "ref": "activeButtonFg",
+        "note": "file extension text in file thumbnail placeholder in file rectangle",
+        "night": "activeButtonFg"
+      },
+      "mediaviewMenuBg": {
+        "default": "#383838",
+        "note": "context menu in Media Viewer background",
+        "night": "#383838"
+      },
+      "mediaviewMenuBgOver": {
+        "default": "#505050",
+        "note": "context menu item background with mouse over",
+        "night": "#505050"
+      },
+      "mediaviewMenuBgRipple": {
+        "default": "#676767",
+        "note": "context menu item ripple effect",
+        "night": "#676767"
+      },
+      "mediaviewMenuFg": {
+        "ref": "windowFgActive",
+        "note": "context menu item text",
+        "night": "windowFgActive"
+      },
+      "mediaviewBg": {
+        "default": "#222222eb",
+        "note": "Media Viewer background",
+        "night": "#222222eb"
+      },
+      "mediaviewVideoBg": {
+        "ref": "imageBg",
+        "note": "Media Viewer background when viewing a video in full screen",
+        "night": "imageBg"
+      },
+      "mediaviewControlBg": {
+        "default": "#0000003c",
+        "note": "controls background (like next photo / previous photo)",
+        "night": "#0000003c"
+      },
+      "mediaviewControlFg": {
+        "default": "#ffffff",
+        "note": "controls icon (like next photo / previous photo)",
+        "night": "windowFgActive"
+      },
+      "mediaviewCaptionBg": {
+        "default": "#11111180",
+        "note": "caption text background (when viewing photo with caption)",
+        "night": "#11111180"
+      },
+      "mediaviewCaptionFg": {
+        "ref": "mediaviewControlFg",
+        "note": "caption text",
+        "night": "mediaviewControlFg"
+      },
+      "mediaviewTextLinkFg": {
+        "default": "#4db8ff",
+        "note": "caption text link",
+        "night": "#70baf5"
+      },
+      "mediaviewSaveMsgBg": {
+        "ref": "toastBg",
+        "note": "save to file toast message background in Media Viewer",
+        "night": "toastBg"
+      },
+      "mediaviewSaveMsgFg": {
+        "ref": "toastFg",
+        "note": "save to file toast message text",
+        "night": "toastFg"
+      },
+      "mediaviewPlaybackActive": {
+        "default": "#c7c7c7",
+        "note": "video playback progress already played part",
+        "night": "#c7c7c7"
+      },
+      "mediaviewPlaybackInactive": {
+        "default": "#252525",
+        "note": "video playback progress upcoming (not played yet) part",
+        "night": "#252525"
+      },
+      "mediaviewPlaybackActiveOver": {
+        "default": "#ffffff",
+        "note": "video playback progress already played part with mouse over",
+        "night": "#ffffff"
+      },
+      "mediaviewPlaybackInactiveOver": {
+        "default": "#474747",
+        "note": "video playback progress upcoming (not played yet) part with mouse over",
+        "night": "#474747"
+      },
+      "mediaviewPlaybackProgressFg": {
+        "default": "#ffffffc7",
+        "note": "video playback progress text",
+        "night": "#ffffffc7"
+      },
+      "mediaviewPlaybackIconFg": {
+        "ref": "mediaviewPlaybackActive",
+        "note": "video playback controls icon",
+        "night": "mediaviewPlaybackActive"
+      },
+      "mediaviewPlaybackIconFgOver": {
+        "ref": "mediaviewPlaybackActiveOver",
+        "note": "video playback controls icon with mouse over",
+        "night": "mediaviewPlaybackActiveOver"
+      },
+      "mediaviewPlaybackIconRipple": {
+        "default": "#ffffff14",
+        "note": "video playback controls ripple effect"
+      },
+      "mediaviewPipControlsFg": {
+        "default": "#ffffffd9",
+        "note": "picture-in-picture controls"
+      },
+      "mediaviewPipControlsFgOver": {
+        "default": "#ffffff",
+        "note": "picture-in-picture controls with mouse over"
+      },
+      "mediaviewPipPlaybackActive": {
+        "default": "#ffffffda",
+        "note": "picture-in-picture playback progress already played part"
+      },
+      "mediaviewPipPlaybackInactive": {
+        "default": "#ffffff26",
+        "note": "picture-in-picture playback progress upcoming (not played yet) part"
+      },
+      "mediaviewTransparentBg": {
+        "default": "#ffffff",
+        "note": "transparent filling part (when viewing a transparent .png file in Media Viewer)",
+        "night": "#ffffff"
+      },
+      "mediaviewTransparentFg": {
+        "default": "#cccccc",
+        "note": "another transparent filling part",
+        "night": "#cccccc"
+      },
+      "notificationBg": {
+        "ref": "windowBg",
+        "note": "custom notification window background",
+        "night": "windowBg"
+      },
+      "callBg": {
+        "default": "#26282cf2",
+        "note": "old phone call popup background",
+        "night": "#14191ff5"
+      },
+      "callBgOpaque": {
+        "default": "#1b1f23",
+        "note": "phone call popup background"
+      },
+      "callBgButton": {
+        "default": "#1b1f237f",
+        "note": "phone call window control buttons bg"
+      },
+      "callNameFg": {
+        "default": "#ffffff",
+        "note": "phone call popup name text",
+        "night": "#ffffff"
+      },
+      "callStatusFg": {
+        "default": "#aaabac",
+        "note": "phone call popup status text",
+        "night": "#aaabac"
+      },
+      "callIconBg": {
+        "default": "#ffffff1f",
+        "note": "phone call mute mic and camera button background"
+      },
+      "callIconFg": {
+        "default": "#ffffff",
+        "note": "phone call popup answer, hangup, mute mic and camera icon",
+        "night": "#ffffff"
+      },
+      "callIconBgActive": {
+        "default": "#ffffffe5",
+        "note": "phone call line busy cancel, muted mic and camera button background"
+      },
+      "callIconFgActive": {
+        "default": "#222222",
+        "note": "phone call line busy cancel, muted mic and camera icon"
+      },
+      "callIconActiveRipple": {
+        "default": "#f1f1f1",
+        "note": "phone call line busy cancel, muted mic and camera ripple effect"
+      },
+      "callAnswerBg": {
+        "default": "#66c95b",
+        "note": "phone call popup answer button background",
+        "night": "#488fc9"
+      },
+      "callAnswerRipple": {
+        "default": "#52b149",
+        "note": "phone call popup answer button ripple effect",
+        "night": "#4286c2"
+      },
+      "callAnswerBgOuter": {
+        "default": "#50eb4126",
+        "note": "phone call popup answer button outer ripple effect",
+        "night": "#3f95eb26"
+      },
+      "callHangupBg": {
+        "default": "#d75a5a",
+        "note": "phone call popup hangup button background",
+        "night": "#cc4646"
+      },
+      "callHangupRipple": {
+        "default": "#c04646",
+        "note": "phone call popup hangup button ripple effect",
+        "night": "#ca4141"
+      },
+      "callMuteRipple": {
+        "default": "#ffffff12",
+        "note": "phone call popup mute mic and camera ripple effect",
+        "night": "#ffffff12"
+      },
+      "groupCallBg": {
+        "default": "#1a2026",
+        "note": "group call popup background"
+      },
+      "groupCallActiveFg": {
+        "default": "#4db8ff",
+        "note": "group call active controls text"
+      },
+      "groupCallMembersBg": {
+        "default": "#2c333d",
+        "note": "group call members list background"
+      },
+      "groupCallMembersBgOver": {
+        "default": "#323a45",
+        "note": "group call members list row with mouse over"
+      },
+      "groupCallMembersBgRipple": {
+        "default": "#39424f",
+        "note": "group call member row ripple effect"
+      },
+      "groupCallMembersFg": {
+        "default": "#ffffff",
+        "note": "group call member name text"
+      },
+      "groupCallMemberActiveIcon": {
+        "default": "#8deb90",
+        "note": "group call active member icon"
+      },
+      "groupCallMemberActiveStatus": {
+        "default": "#8deb90",
+        "note": "group call active member status text"
+      },
+      "groupCallMemberInactiveIcon": {
+        "default": "#84888f",
+        "note": "group call inactive member icon"
+      },
+      "groupCallMemberInactiveStatus": {
+        "default": "#61c0ff",
+        "note": "group call inactive member status text"
+      },
+      "groupCallMemberMutedIcon": {
+        "default": "#ed7372",
+        "note": "group call muted by admin member icon"
+      },
+      "groupCallMemberNotJoinedStatus": {
+        "default": "#91979e",
+        "note": "group call non joined member status text"
+      },
+      "groupCallIconFg": {
+        "default": "#ffffff",
+        "note": "group call mute / settings / leave icon"
+      },
+      "groupCallLive1": {
+        "default": "#0dcc39",
+        "note": "group call live button color1"
+      },
+      "groupCallLive2": {
+        "default": "#0bb6bd",
+        "note": "group call live button color2"
+      },
+      "groupCallMuted1": {
+        "default": "#0992ef",
+        "note": "group call muted button color1"
+      },
+      "groupCallMuted2": {
+        "default": "#16ccfb",
+        "note": "group call muted button color2"
+      },
+      "groupCallForceMutedBar1": {
+        "default": "#c65493",
+        "note": "group call force muted top bar color1"
+      },
+      "groupCallForceMutedBar2": {
+        "default": "#7a6af1",
+        "note": "group call force muted top bar color2"
+      },
+      "groupCallForceMutedBar3": {
+        "default": "#5f95e8",
+        "note": "group call force muted top bar color3"
+      },
+      "groupCallForceMuted1": {
+        "default": "#4f9cff",
+        "note": "group call force muted button color1"
+      },
+      "groupCallForceMuted2": {
+        "default": "#9b52e9",
+        "note": "group call force muted button color2"
+      },
+      "groupCallForceMuted3": {
+        "default": "#eb5353",
+        "note": "group call force muted button color3"
+      },
+      "groupCallMenuBg": {
+        "default": "#292d33",
+        "note": "group call popup menu background"
+      },
+      "groupCallMenuBgOver": {
+        "default": "#343940",
+        "note": "group call popup menu with mouse over"
+      },
+      "groupCallMenuBgRipple": {
+        "default": "#3a4047",
+        "note": "group call popup menu ripple effect"
+      },
+      "groupCallLeaveBg": {
+        "default": "#f75c5c7f",
+        "note": "group call leave button background"
+      },
+      "groupCallLeaveBgRipple": {
+        "default": "#f75c5c9e",
+        "note": "group call leave button ripple effect"
+      },
+      "groupCallVideoTextFg": {
+        "default": "#ffffffe0",
+        "note": "group call text over video"
+      },
+      "groupCallVideoSubTextFg": {
+        "default": "#ffffffc0",
+        "note": "group call additional text over video"
+      },
+      "callBarBg": {
+        "ref": "dialogsBgActive",
+        "note": "active phone call bar background",
+        "night": "#366693"
+      },
+      "callBarMuteRipple": {
+        "ref": "dialogsRippleBgActive",
+        "note": "active phone call bar mute and hangup button ripple effect",
+        "night": "#4b7dab"
+      },
+      "callBarBgMuted": {
+        "default": "#8f8f8f",
+        "fallback": "dialogsUnreadBgMuted",
+        "note": "phone call bar with muted mic background",
+        "night": "#35495d"
+      },
+      "callBarFg": {
+        "ref": "dialogsNameFgActive",
+        "note": "phone call bar text and icons",
+        "night": "dialogsNameFgActive"
+      },
+      "importantTooltipBg": {
+        "ref": "toastBg",
+        "note": "group call important tooltip background color",
+        "night": "toastBg"
+      },
+      "importantTooltipFg": {
+        "ref": "toastFg",
+        "note": "group call important tooltip text color",
+        "night": "toastFg"
+      },
+      "importantTooltipFgLink": {
+        "ref": "mediaviewTextLinkFg",
+        "note": "group call important tooltip text link color",
+        "night": "#65b6fc"
+      },
+      "outdatedFg": {
+        "default": "#ffffff",
+        "note": "operating system version is outdated bar text"
+      },
+      "outdateSoonBg": {
+        "default": "#e08543",
+        "note": "operating system version is soon outdated bar background"
+      },
+      "outdatedBg": {
+        "default": "#e05745",
+        "note": "operating system version is already outdated bar background"
+      },
+      "spellUnderline": {
+        "default": "#ff000088",
+        "fallback": "attentionButtonFg",
+        "note": "misspelled words"
+      },
+      "walletTitleBg": {
+        "default": "#121213",
+        "note": "wallet window title background when window is inactive"
+      },
+      "walletTitleBgActive": {
+        "ref": "walletTitleBg",
+        "note": "wallet window title background when window is active"
+      },
+      "walletTitleButtonBg": {
+        "ref": "walletTitleBg",
+        "note": "wallet window title minimize/maximize/restore button background when window is inactive (Windows only)"
+      },
+      "walletTitleButtonFg": {
+        "default": "#5a5a5b",
+        "note": "wallet window title minimize/maximize/restore button icon when window is inactive (Windows only)"
+      },
+      "walletTitleButtonBgOver": {
+        "default": "#373738",
+        "note": "wallet window title minimize/maximize/restore button background with mouse over when window is inactive (Windows only)"
+      },
+      "walletTitleButtonFgOver": {
+        "default": "#747475",
+        "note": "wallet window title minimize/maximize/restore button icon with mouse over when window is inactive (Windows only)"
+      },
+      "walletTitleButtonBgActive": {
+        "ref": "walletTitleButtonBg",
+        "note": "wallet window title minimize/maximize/restore button background when window is active (Windows only)"
+      },
+      "walletTitleButtonFgActive": {
+        "ref": "walletTitleButtonFg",
+        "note": "wallet window title minimize/maximize/restore button icon when window is active (Windows only)"
+      },
+      "walletTitleButtonBgActiveOver": {
+        "ref": "walletTitleButtonBgOver",
+        "note": "wallet window title minimize/maximize/restore button background with mouse over when window is active (Windows only)"
+      },
+      "walletTitleButtonFgActiveOver": {
+        "ref": "walletTitleButtonFgOver",
+        "note": "wallet window title minimize/maximize/restore button icon with mouse over when window is active (Windows only)"
+      },
+      "walletTitleButtonCloseBg": {
+        "ref": "walletTitleButtonBg",
+        "note": "wallet window title close button background when window is inactive (Windows only)"
+      },
+      "walletTitleButtonCloseFg": {
+        "ref": "walletTitleButtonFg",
+        "note": "wallet window title close button icon when window is inactive (Windows only)"
+      },
+      "walletTitleButtonCloseBgOver": {
+        "ref": "titleButtonCloseBgOver",
+        "note": "wallet window title close button background with mouse over when window is inactive (Windows only)"
+      },
+      "walletTitleButtonCloseFgOver": {
+        "ref": "titleButtonCloseFgOver",
+        "note": "wallet window title close button icon with mouse over when window is inactive (Windows only)"
+      },
+      "walletTitleButtonCloseBgActive": {
+        "ref": "walletTitleButtonCloseBg",
+        "note": "wallet window title close button background when window is active (Windows only)"
+      },
+      "walletTitleButtonCloseFgActive": {
+        "ref": "walletTitleButtonCloseFg",
+        "note": "wallet window title close button icon when window is active (Windows only)"
+      },
+      "walletTitleButtonCloseBgActiveOver": {
+        "ref": "walletTitleButtonCloseBgOver",
+        "note": "wallet window title close button background with mouse over when window is active (Windows only)"
+      },
+      "walletTitleButtonCloseFgActiveOver": {
+        "ref": "walletTitleButtonCloseFgOver",
+        "note": "wallet window title close button icon with mouse over when window is active (Windows only)"
+      },
+      "walletTopBg": {
+        "default": "#1e1f21",
+        "note": "wallet top part background"
+      },
+      "walletBalanceFg": {
+        "default": "#ffffff",
+        "note": "wallet balance text"
+      },
+      "walletSubBalanceFg": {
+        "default": "#f9f9f9",
+        "note": "wallet balance label text"
+      },
+      "walletTopLabelFg": {
+        "default": "#999999",
+        "note": "wallet top updated label text"
+      },
+      "walletTopIconFg": {
+        "ref": "walletTopLabelFg",
+        "note": "wallet top refresh and menu icons"
+      },
+      "walletTopIconRipple": {
+        "default": "#ffffff12",
+        "note": "wallet top menu icon ripple effect"
+      },
+      "sideBarBg": {
+        "default": "#293a4c",
+        "note": "filters side bar background",
+        "night": "#0e1621"
+      },
+      "sideBarBgActive": {
+        "default": "#17212b",
+        "note": "filters side bar active background",
+        "night": "#25303e"
+      },
+      "sideBarBgRipple": {
+        "default": "#1e2b38",
+        "note": "filters side bar ripple effect",
+        "night": "#1e2733"
+      },
+      "sideBarTextFg": {
+        "default": "#8897a6",
+        "note": "filters side bar text",
+        "night": "#768c9e"
+      },
+      "sideBarTextFgActive": {
+        "default": "#64b9fa",
+        "note": "filters side bar active item text",
+        "night": "#64b9fa"
+      },
+      "sideBarIconFg": {
+        "default": "#8393a3",
+        "note": "filters side bar icon",
+        "night": "#768c9e"
+      },
+      "sideBarIconFgActive": {
+        "default": "#5eb5f7",
+        "note": "filters side bar active item icon",
+        "night": "#5eb5f7"
+      },
+      "sideBarBadgeBg": {
+        "default": "#5eb5f7",
+        "note": "filters side bar badge background",
+        "night": "#5eb5f7"
+      },
+      "sideBarBadgeBgActive": {
+        "ref": "sideBarBadgeBg",
+        "note": "filters side bar badge background when folder is open"
+      },
+      "sideBarBadgeBgMuted": {
+        "default": "#8393a3",
+        "note": "filters side bar unimportant badge background",
+        "night": "#768c9e"
+      },
+      "sideBarBadgeBgMutedActive": {
+        "ref": "sideBarBadgeBg",
+        "note": "filters side bar unimportant badge background when folder is open"
+      },
+      "sideBarBadgeFg": {
+        "default": "#ffffff",
+        "note": "filters side bar badge text"
+      },
+      "songCoverOverlayFg": {
+        "default": "#00000066",
+        "note": "song cover overlay"
+      },
+      "photoEditorItemBaseHandleFg": {
+        "default": "#3ccaef",
+        "note": "photo editor handle circle"
+      },
+      "premiumButtonBg1": {
+        "default": "#55a5ff",
+        "note": "upgrade to premium button gradient 1"
+      },
+      "premiumButtonBg2": {
+        "default": "#a767ff",
+        "note": "upgrade to premium button gradient 2"
+      },
+      "premiumButtonBg3": {
+        "default": "#db5c9d",
+        "note": "upgrade to premium button gradient 3"
+      },
+      "premiumButtonFg": {
+        "default": "#ffffff",
+        "note": "upgrade to premium button text"
+      },
+      "premiumIconBg1": {
+        "default": "#f38926",
+        "note": "icon in premium settings gradient 1"
+      },
+      "premiumIconBg2": {
+        "default": "#e44456",
+        "note": "icon in premium settings gradient 2"
+      },
+      "premiumIconBg3": {
+        "default": "#4acd43",
+        "note": "icon in premium settings gradient 3"
+      },
+      "statisticsChartInactive": {
+        "default": "#e2eef999",
+        "note": "inactive area in footer of statistic charts",
+        "night": "#313d4cc8"
+      },
+      "statisticsChartActive": {
+        "default": "#baccd9d8",
+        "note": "sides in footer of statistic charts",
+        "night": "#526679d8"
+      },
+      "statisticsChartLineBlue": {
+        "default": "#327fe5",
+        "note": "represents blue color on statistical charts"
+      },
+      "statisticsChartLineGreen": {
+        "default": "#61c752",
+        "note": "represents green color on statistical charts"
+      },
+      "statisticsChartLineRed": {
+        "default": "#e05356",
+        "note": "represents red color on statistical charts"
+      },
+      "statisticsChartLineGolden": {
+        "default": "#eba52d",
+        "note": "represents golden color on statistical charts"
+      },
+      "statisticsChartLineLightblue": {
+        "default": "#58a8ed",
+        "note": "represents lightblue color on statistical charts"
+      },
+      "statisticsChartLineLightgreen": {
+        "default": "#8fcf39",
+        "note": "represents lightgreen color on statistical charts"
+      },
+      "statisticsChartLineOrange": {
+        "default": "#f28c39",
+        "note": "represents orange color on statistical charts"
+      },
+      "statisticsChartLineIndigo": {
+        "default": "#7f79f3",
+        "note": "represents indigo color on statistical charts"
+      },
+      "statisticsChartLinePurple": {
+        "default": "#9f79e8",
+        "note": "represents purple color on statistical charts"
+      },
+      "statisticsChartLineCyan": {
+        "default": "#40d0ca",
+        "note": "represents cyan color on statistical charts"
+      },
+      "creditsBg1": {
+        "default": "#ffb222",
+        "note": "credits icon gradient 1, normal"
+      },
+      "creditsBg2": {
+        "default": "#ffd951",
+        "note": "credits icon gradient 2, light"
+      },
+      "creditsBg3": {
+        "default": "#f0b400",
+        "note": "credits icon gradient 3, dark"
+      },
+      "creditsFg": {
+        "default": "#ba7000",
+        "note": "credits text on light background"
+      },
+      "creditsStroke": {
+        "default": "#da8735",
+        "note": "credits icon stroke"
+      },
+      "currencyFg": {
+        "default": "#168acd",
+        "note": "currency icon, blue"
+      },
+      "rankAdminFg": {
+        "default": "#49a355",
+        "note": "admin badge text and pill, green"
+      },
+      "rankOwnerFg": {
+        "default": "#956ac8",
+        "note": "owner badge text and pill, purple"
+      },
+      "rankUserFg": {
+        "ref": "windowSubTextFg",
+        "note": "regular user badge text, gray"
+      },
+      "dialogsMentionIconFg": {
+        "default": "#40a7e3",
+        "fallback": "dialogsVerifiedIconBg",
+        "note": "chat list mention icon"
+      },
+      "dialogsReactionIconFg": {
+        "default": "#e05356",
+        "fallback": "attentionButtonFg",
+        "note": "chat list reaction icon"
+      },
+      "dialogsPollIconFg": {
+        "default": "#997be1",
+        "fallback": "historyPeer5NameFg",
+        "note": "chat list poll icon"
+      }
+    }
+  }
+}
