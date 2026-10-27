@@ -1,6 +1,6 @@
 import { contrast, parseRgba, rgbaHex, withAlpha, type Rgba } from "./color";
 import { KEYS } from "./keys";
-import { rampStep, selectionOn, type Palette } from "./palette";
+import { hoverOn, selectionOn, type Palette } from "./palette";
 import { familyColor, familyOf, isColored, LIGHT_ONLY, remap, type Axis } from "./remap";
 
 const keys = KEYS.desktop.keys;
@@ -20,12 +20,14 @@ function axisOf(night: boolean): Axis {
 /** The colors that carry the look. Everything else follows Telegram's own design, recolored. */
 export function desktopRoles(p: Palette): Record<string, Rgba> {
   const a = (c: Rgba, alpha: number) => withAlpha(c, alpha);
-  const over = rampStep(p, p.bg, 1);
+  // Hover, then press and the open chat: two steps of the same accent-leaning tint.
+  const over = hoverOn(p, p.bg);
+  const press = selectionOn(p, p.bg);
   const r: Record<string, Rgba> = {
     windowBg: p.bg,
     windowFg: p.fg,
     windowBgOver: over,
-    windowBgRipple: rampStep(p, p.bg, 2),
+    windowBgRipple: press,
     windowSubTextFg: p.muted,
     windowSubTextFgOver: p.muted,
     windowBoldFg: p.fg,
@@ -53,8 +55,8 @@ export function desktopRoles(p: Palette): Record<string, Rgba> {
     attentionButtonBgRipple: a(p.red, 0x33),
 
     menuBg: p.surface,
-    menuBgOver: over,
-    menuBgRipple: rampStep(p, p.bg, 2),
+    menuBgOver: hoverOn(p, p.surface),
+    menuBgRipple: selectionOn(p, p.surface),
     menuIconFg: p.muted,
     menuIconFgOver: p.fg,
     menuSubmenuArrowFg: p.muted,
@@ -106,7 +108,7 @@ export function desktopRoles(p: Palette): Record<string, Rgba> {
     boxDividerFg: p.line,
 
     sideBarBg: p.alt,
-    sideBarBgActive: p.secondary,
+    sideBarBgActive: selectionOn(p, p.alt),
     sideBarTextFg: p.muted,
     sideBarTextFgActive: p.accent,
     sideBarIconFg: p.muted,
@@ -117,9 +119,9 @@ export function desktopRoles(p: Palette): Record<string, Rgba> {
 
     dialogsBg: p.bg,
     dialogsBgOver: over,
-    dialogsBgActive: p.secondary,
-    dialogsRippleBg: rampStep(p, p.bg, 2),
-    dialogsRippleBgActive: rampStep(p, p.secondary, 1),
+    dialogsBgActive: press,
+    dialogsRippleBg: press,
+    dialogsRippleBgActive: press,
     dialogsNameFg: p.fg,
     dialogsNameFgActive: p.fg,
     dialogsTextFg: p.muted,
@@ -202,7 +204,7 @@ export function desktopRoles(p: Palette): Record<string, Rgba> {
     historyComposeIconFgOver: p.accent,
     historyComposeButtonBg: p.alt,
     historyComposeButtonBgOver: over,
-    historyComposeButtonBgRipple: rampStep(p, p.bg, 2),
+    historyComposeButtonBgRipple: press,
     historySendIconFg: p.accent,
     historySendIconFgOver: p.accentHover,
 
@@ -283,6 +285,15 @@ export function desktopColors(p: Palette): Map<string, Rgba> {
     const under = out.get(/Out/.test(k) ? "msgOutBgSelected" : "msgInBgSelected")!;
     const c = out.get(k)!;
     if (c.a === 255 && contrast(c, under) < 3) out.set(k, p.fg);
+  }
+  // The open chat and the open folder sit on the press shade; their captions follow the same rule.
+  for (const [prefix, bgKey] of [["dialogs", "dialogsBgActive"], ["sideBar", "sideBarBgActive"]] as const) {
+    const under = out.get(bgKey)!;
+    for (const k of Object.keys(keys)) {
+      if (!k.startsWith(prefix) || !/FgActive$/.test(k)) continue;
+      const c = out.get(k)!;
+      if (c.a === 255 && contrast(c, under) < 3) out.set(k, p.fg);
+    }
   }
   return out;
 }
