@@ -3,6 +3,7 @@ import { bodyDetails, bumpOf, bumpVersion, htmlNotes, markdownSection, parseComm
 import { PORTS, versionDrift } from "./ports";
 import { readFileSync } from "node:fs";
 import { authHeader, jwt, publish } from "./amo";
+import { APPS, stableName } from "./hub";
 import { mdToText, sectionOf, splitChangelog } from "./release";
 
 const c = (msg: string) => parseCommit("abc1234", msg)!;
@@ -105,6 +106,26 @@ describe("amo", () => {
     expect(polls).toBe(1);
     expect([...readFileSync(out)]).toEqual([1, 2, 3]);
   }, 30000);
+});
+
+describe("hub", () => {
+  test("builds get names without their version", () => {
+    expect(stableName("dist/hatsune-miku-vsc-0.2.3.vsix")).toBe("hatsune-miku-vsc.vsix");
+    expect(stableName("zed-0.2.3.zip")).toBe("hatsune-miku-zed.zip");
+    expect(stableName("hatsune-miku-colorful-browser-miku-dark-0.2.3.zip")).toBe("hatsune-miku-colorful-browser-miku-dark.zip");
+    expect(stableName("hatsune-miku-editor-firefox-0.3.1.xpi")).toBe("hatsune-miku-editor-firefox.xpi");
+    expect(stableName("HatsuneMikuSakuraDark.attheme")).toBe("HatsuneMikuSakuraDark.attheme");
+  });
+
+  test("every hub link names a file the release builds", () => {
+    const built = new Set([
+      "hatsune-miku-vsc.vsix", "hatsune-miku-jetbrains.zip", "hatsune-miku-zed.zip", "hatsune-miku-neovim.zip", "hatsune-miku-sublime.zip",
+      "hatsune-miku-notepadpp.zip", "hatsune-miku-editor-firefox.xpi", "hatsune-miku-editor-chromium.zip", "hatsune-miku-zen-mod.zip",
+      ...["miku-dark", "miku-light", "sakura-dark", "sakura-light"].map((v) => `hatsune-miku-colorful-browser-${v}.zip`),
+      ...["Dark", "Light", "SakuraDark", "SakuraLight"].flatMap((l) => [`HatsuneMiku${l}.attheme`, `HatsuneMiku${l}.tdesktop-theme`]),
+    ]);
+    for (const a of APPS) for (const f of a.files) expect(built.has(f.file)).toBe(true);
+  });
 });
 
 describe("ports", () => {
