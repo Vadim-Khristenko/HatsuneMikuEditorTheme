@@ -1,10 +1,11 @@
 import { describe, expect, test } from "bun:test";
-import { androidColors, attheme, WALLPAPER_KEYS } from "./android";
+import { androidColors, attheme, DERIVED_KEYS, WALLPAPER_KEYS } from "./android";
 import { renderArt } from "./art";
 import { argbHex, contrast, over, rgbaHex, rgbHex, type Rgba } from "./color";
 import { desktopColors, tdesktopColors } from "./desktop";
 import { KEYS } from "./keys";
 import { paletteOf, VARIANTS } from "./palette";
+import SOURCE_PAIRS from "./pairs.json";
 import { encodePng } from "./png";
 import { parseAttheme, parseTdesktopColors } from "./sync-keys";
 import { crc32, readZip, writeZip } from "./zip";
@@ -52,6 +53,10 @@ const ANDROID_PAIRS: Pair[] = [
   ["featuredStickers_buttonText", "featuredStickers_addButton", 3],
   ["profile_actionIcon", "profile_actionBackground", 3],
   ["checkboxSquareCheck", "checkboxSquareBackground", 3],
+  ["chat_msgIvButtonPrimaryInText", "chat_msgIvButtonPrimaryIn", 3],
+  ["chat_msgIvButtonPrimaryOutText", "chat_msgIvButtonPrimaryOut", 3],
+  ["chat_inMediaIcon", "chat_inLoader", 3],
+  ["chat_outMediaIcon", "chat_outLoader", 3],
   ["avatar_text", "avatar_backgroundRed", 3],
   ["avatar_text", "avatar_backgroundOrange", 3],
   ["avatar_text", "avatar_backgroundViolet", 3],
@@ -182,11 +187,17 @@ for (const v of VARIANTS) {
   describe(`android ${v.id}`, () => {
     const colors = androidColors(p);
     test("covers every color key Telegram reads", () => {
-      const want = Object.keys(KEYS.android.keys).filter((k) => !WALLPAPER_KEYS.has(k) && !/^chat_outBubbleGradient/.test(k));
+      const want = Object.keys(KEYS.android.keys).filter((k) => !WALLPAPER_KEYS.has(k) && !DERIVED_KEYS.has(k) && !/^chat_outBubbleGradient/.test(k));
       expect(want.filter((k) => !colors.has(k))).toEqual([]);
     });
     test("uses only the canonical palette", () => expect(offPalette(colors, p.canon)).toEqual([]));
     test("text holds its contrast", () => expect(checkPairs(colors, p.bg, ANDROID_PAIRS)).toEqual([]));
+    test("every pair Telegram draws holds 3:1, a progress fill 2:1", () => {
+      const pairs: Pair[] = SOURCE_PAIRS.android
+        .filter((x) => !DERIVED_KEYS.has(x.fg) && !DERIVED_KEYS.has(x.bg))
+        .map((x) => [x.fg, x.bg, x.kind === "progress" ? 2 : 3]);
+      expect(checkPairs(colors, p.bg, pairs)).toEqual([]);
+    });
     test("reads as dark or light the way Telegram decides it", () => {
       const bg = colors.get("windowBackgroundWhite")!;
       expect(contrast(bg, { r: 0, g: 0, b: 0, a: 255 }) < contrast(bg, { r: 255, g: 255, b: 255, a: 255 })).toBe(v.dark);
