@@ -91,7 +91,7 @@ jobs:
           v=$(node -p "require('./release.json').ports.browser")
           bun tools/release/release.ts section --port browser --format text > /tmp/amo-notes.txt
           # AMO reviews the human-readable source of bundled code: the browser port and what it imports.
-          git archive --format=zip -o /tmp/source.zip HEAD browser tools/jb-palette.json package.json bun.lock release.json
+          git archive --format=zip -o /tmp/source.zip HEAD browser tools/jb-palette.json palette/palette.json package.json bun.lock release.json
           set +e
           bun tools/release/amo.ts --addon hatsune-miku-tab@vai-rice.space \
             --file "dist/hatsune-miku-editor-firefox-$v.zip" --source /tmp/source.zip \
