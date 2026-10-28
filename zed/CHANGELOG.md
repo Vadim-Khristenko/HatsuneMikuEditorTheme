@@ -5,6 +5,14 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-10-28
+
+### Added
+
+- Snow Miku and Kasane Teto families, livelier syntax colors
+  - Two new theme families, each with a dark and a light theme.
+  - More saturated syntax colors in Hatsune Miku and Sakura Miku with the same backgrounds and accent.
+
 ## [0.2.3] - 2026-10-20
 
 Up to this version every port was released together; see the [GitHub releases](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/releases).

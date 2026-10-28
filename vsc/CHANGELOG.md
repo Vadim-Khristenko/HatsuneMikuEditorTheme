@@ -5,6 +5,14 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-10-28
+
+### Added
+
+- Snow Miku and Kasane Teto, livelier syntax colors
+  - Four new themes: Snow Miku Dark and Light, Kasane Teto Dark and Light.
+  - Keywords, strings, numbers and types in the original looks are more saturated and keep their contrast; backgrounds and the accent are unchanged, and theme names stay the same so your choice is kept.
+
 ## [0.2.3] - 2026-10-20
 
 Up to this version every port was released together; see the [GitHub releases](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/releases).
