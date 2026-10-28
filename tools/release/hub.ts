@@ -4,7 +4,9 @@
 //
 //   bun tools/release/hub.ts assets --dir dist --out hub   copy builds to stable names
 //   bun tools/release/hub.ts notes --tag vX.Y.Z            the hub page in Markdown
-import { copyFileSync, mkdirSync, readdirSync, statSync } from "node:fs";
+//   bun tools/release/hub.ts branch --dir hub --out themes --tag vX.Y.Z
+//                                                          the "themes" branch: files by app, README with links
+import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { basename, join } from "node:path";
 import { rgbHex } from "../telegram/color";
 import { paletteOf, VARIANTS } from "../telegram/palette";
@@ -15,6 +17,9 @@ import { sectionOf } from "./release";
 const REPO = process.env.GITHUB_REPOSITORY ?? "Vadim-Khristenko/HatsuneMikuEditorTheme";
 const dl = (file: string) => `https://github.com/${REPO}/releases/latest/download/${file}`;
 const blob = (path: string) => `https://github.com/${REPO}/blob/master/${path}`;
+/** A file on the "themes" branch, as a direct download. */
+const raw = (path: string) => `https://github.com/${REPO}/raw/${BRANCH}/${path}`;
+export const BRANCH = "themes";
 
 /** A build's name without its version: zed-0.2.3.zip becomes hatsune-miku-zed.zip. */
 export function stableName(file: string): string {
@@ -45,6 +50,18 @@ interface App {
   store?: { label: string; url: string };
   steps: string[];
   guide: string;
+  /** One-tap links that need no file, like Telegram cloud themes. */
+  cloud?: { label: string; url: string }[];
+}
+
+/** Telegram cloud themes from tools/telegram/cloud.yml: one t.me/addtheme link per look, for every device. */
+function cloudThemes(): { label: string; url: string }[] {
+  const file = join(import.meta.dir, "..", "telegram", "cloud.yml");
+  if (!existsSync(file)) return [];
+  const list = Bun.YAML.parse(readFileSync(file, "utf8")) as { slug: string; title?: string }[];
+  const titles = new Map<string, string>();
+  for (const t of list) if (t.title || !titles.has(t.slug)) titles.set(t.slug, t.title ?? t.slug);
+  return [...titles].map(([slug, title]) => ({ label: title, url: `https://t.me/addtheme/${slug}` }));
 }
 
 const LOOKS = ["Dark", "Light", "SakuraDark", "SakuraLight"];
@@ -101,12 +118,14 @@ export const APPS: App[] = [
   },
   {
     port: "telegram", group: "Chat", name: "Telegram for Android", files: LOOKS.map((l) => ({ label: l, file: `HatsuneMiku${l}.attheme` })),
-    steps: ["Send the `.attheme` to Saved Messages.", "Tap the file → Apply."],
+    cloud: cloudThemes(),
+    steps: ["Easiest: open a cloud theme link on your phone; Telegram applies it and keeps it updated.", "Or send the `.attheme` to Saved Messages, tap the file → Apply."],
     guide: "README.md#telegram",
   },
   {
     port: "telegram", group: "Chat", name: "Telegram Desktop", files: LOOKS.map((l) => ({ label: l, file: `HatsuneMiku${l}.tdesktop-theme` })),
-    steps: ["Open the `.tdesktop-theme` in Telegram (or send it to Saved Messages and click it).", "Apply."],
+    cloud: cloudThemes(),
+    steps: ["Easiest: open a cloud theme link in Telegram Desktop; it applies and keeps it updated.", "Or open the `.tdesktop-theme` in Telegram (or send it to Saved Messages and click it) → Apply."],
     guide: "README.md#telegram",
   },
 ];
@@ -148,10 +167,24 @@ function whatsNew(tag: string, ports: Record<string, string>): string[] {
   return out.length > 2 ? out : [];
 }
 
-export function hubNotes(tag: string): string {
+/** Where a file lives on the "themes" branch: one folder per port. */
+export const branchPath = (port: string, file: string) => `${port}/${file}`;
+
+/** The hub page: for the "latest" release, or as the README of the "themes" branch with links into it. */
+export function hubNotes(tag: string, where: "release" | "branch" = "release", missing = new Set<string>()): string {
   const ports: Record<string, string> = JSON.parse(showAt(tag, "release.json") ?? "null")?.ports ?? {};
+  const link = (a: App, file: string) => (where === "release" ? dl(file) : raw(branchPath(a.port, file)));
+  const release = `[${tag}](https://github.com/${REPO}/releases/tag/${tag})`;
+  const intro =
+    where === "release"
+      ? [`Every Hatsune Miku theme in one place, from release ${release}. The download links always point at the newest build: bookmark them, they never change.`]
+      : [
+          "# Hatsune Miku themes, ready to download",
+          "",
+          `Every theme from release ${release}, one folder per app. Every release rebuilds this branch, so these links always give the newest build. Sources, docs and issues live on [master](https://github.com/${REPO}).`,
+        ];
   const out = [
-    `Every Hatsune Miku theme in one place, from release [${tag}](https://github.com/${REPO}/releases/tag/${tag}). The download links always point at the newest build: bookmark them, they never change.`,
+    ...intro,
     "",
     ...looks(),
     "",
@@ -161,11 +194,13 @@ export function hubNotes(tag: string): string {
   for (const group of ["Editors", "Browsers", "Chat"] as Group[]) {
     out.push(`### ${group}`, "", "| App | Version | Get it |", "|---|---|---|");
     for (const a of APPS.filter((x) => x.group === group)) {
-      const files = a.files.map((f) => `[${f.label}](${dl(f.file)})`).join(" · ");
-      const store = a.store ? `**[${a.store.label}](${a.store.url})** · ` : "";
-      out.push(`| **${a.name}** | \`${ports[a.port] ?? "?"}\` | ${store}${files} |`);
+      const files = a.files.filter((f) => !missing.has(f.file)).map((f) => `[${f.label}](${link(a, f.file)})`).join(" · ");
+      const store = a.store ? `**[${a.store.label}](${a.store.url})**` : "";
+      out.push(`| **${a.name}** | \`${ports[a.port] ?? "?"}\` | ${[store, files].filter(Boolean).join(" · ")} |`);
     }
     out.push("");
+    const cloud = APPS.find((x) => x.group === group && x.cloud?.length)?.cloud;
+    if (cloud) out.push(`**Telegram cloud themes**, one link for Android and Desktop, updated with every release: ${cloud.map((c) => `[${c.label}](${c.url})`).join(" · ")}`, "");
   }
   out.push("## Install", "");
   for (const a of APPS) {
@@ -182,6 +217,27 @@ export function hubNotes(tag: string): string {
   return out.join("\n");
 }
 
+/**
+ * Lays out the "themes" branch: every app's files in its port folder, and the hub page as README.md
+ * with links into the branch. Returns the files the apps list but the release did not have.
+ */
+export function writeBranch(dir: string, out: string, tag: string): string[] {
+  const missing: string[] = [];
+  for (const a of APPS) {
+    for (const f of a.files) {
+      const from = join(dir, f.file);
+      if (!existsSync(from)) {
+        missing.push(f.file);
+        continue;
+      }
+      mkdirSync(join(out, a.port), { recursive: true });
+      copyFileSync(from, join(out, branchPath(a.port, f.file)));
+    }
+  }
+  writeFileSync(join(out, "README.md"), hubNotes(tag, "branch", new Set(missing)));
+  return missing;
+}
+
 if (import.meta.main) {
   const arg = (n: string) => {
     const i = process.argv.indexOf(`--${n}`);
@@ -190,8 +246,10 @@ if (import.meta.main) {
   const cmd = process.argv[2];
   if (cmd === "assets") for (const f of copyStable(arg("dir") ?? "dist", arg("out") ?? "hub")) console.log(f);
   else if (cmd === "notes") process.stdout.write(hubNotes(arg("tag") ?? "HEAD"));
-  else {
-    console.error("usage: hub.ts assets --dir D --out O | notes --tag T");
+  else if (cmd === "branch") {
+    for (const m of writeBranch(arg("dir") ?? "hub", arg("out") ?? BRANCH, arg("tag") ?? "HEAD")) console.error(`not in this release: ${m}`);
+  } else {
+    console.error("usage: hub.ts assets --dir D --out O | notes --tag T | branch --dir D --out O --tag T");
     process.exit(2);
   }
 }

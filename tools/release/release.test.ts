@@ -1,9 +1,11 @@
 import { describe, expect, test } from "bun:test";
 import { bodyDetails, bumpOf, bumpVersion, htmlNotes, markdownSection, parseCommit } from "./commits";
 import { PORTS, versionDrift } from "./ports";
-import { readFileSync } from "node:fs";
+import { existsSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { authHeader, jwt, publish } from "./amo";
-import { APPS, stableName } from "./hub";
+import { APPS, branchPath, stableName, writeBranch } from "./hub";
 import { mdToText, sectionOf, splitChangelog } from "./release";
 
 const c = (msg: string) => parseCommit("abc1234", msg)!;
@@ -125,6 +127,19 @@ describe("hub", () => {
       ...["Dark", "Light", "SakuraDark", "SakuraLight"].flatMap((l) => [`HatsuneMiku${l}.attheme`, `HatsuneMiku${l}.tdesktop-theme`]),
     ]);
     for (const a of APPS) for (const f of a.files) expect(built.has(f.file)).toBe(true);
+  });
+
+  test("the themes branch puts files by app and links only what it has", () => {
+    const src = mkdtempSync(join(tmpdir(), "hub-src-"));
+    const out = mkdtempSync(join(tmpdir(), "hub-out-"));
+    writeFileSync(join(src, "HatsuneMikuDark.attheme"), "windowBackgroundWhite=#ff0d0e1a\n");
+    const missing = writeBranch(src, out, "HEAD");
+    expect(existsSync(join(out, branchPath("telegram", "HatsuneMikuDark.attheme")))).toBe(true);
+    expect(missing).toContain("hatsune-miku-vsc.vsix");
+    const readme = readFileSync(join(out, "README.md"), "utf8");
+    expect(readme).toContain("/raw/themes/telegram/HatsuneMikuDark.attheme");
+    expect(readme).not.toContain("hatsune-miku-vsc.vsix");
+    expect(readme).toContain("https://t.me/addtheme/HatsuneMikuEditorDark");
   });
 });
 
