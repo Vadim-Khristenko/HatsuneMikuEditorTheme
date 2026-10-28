@@ -42,6 +42,26 @@
         "label": "Hatsune Miku Sakura Light",
         "uiTheme": "vs",
         "path": "./themes/sakuraV1-light.json"
+      },
+      {
+        "label": "Snow Miku Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/snowV1-dark.json"
+      },
+      {
+        "label": "Snow Miku Light",
+        "uiTheme": "vs",
+        "path": "./themes/snowV1-light.json"
+      },
+      {
+        "label": "Kasane Teto Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/tetoV1-dark.json"
+      },
+      {
+        "label": "Kasane Teto Light",
+        "uiTheme": "vs",
+        "path": "./themes/tetoV1-light.json"
       }
     ]
   }
