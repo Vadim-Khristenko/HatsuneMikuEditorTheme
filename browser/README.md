@@ -1,6 +1,19 @@
 # HatsuneMikuEditor for browsers
 
-The same four palettes, now for the browser. A new tab page with four layouts, real widgets and Helium style !bangs, plus browser frame themes for Chromium, Firefox and Zen.
+The same eight looks, now for the browser. A new tab page with four layouts, real widgets and Helium style !bangs, plus browser frame themes for Chromium, Firefox and Zen.
+
+## Looks
+
+|Look|Browser name|Background / accent|
+|---|---|---|
+|Hatsune Miku Dark|Miku Dark|`#0d0e1a` / `#39c5bb`|
+|Hatsune Miku Light|Miku Light|`#f0fafa` / `#007a72`|
+|Hatsune Miku Sakura Dark|Sakura Dark|`#130d14` / `#e87ea1`|
+|Hatsune Miku Sakura Light|Sakura Light|`#fff5f8` / `#cc4477`|
+|Snow Miku Dark|Snow Dark|`#031121` / `#95caed`|
+|Snow Miku Light|Snow Light|`#f5faff` / `#05598b`|
+|Kasane Teto Dark|Teto Dark|`#160e0e` / `#da646a`|
+|Kasane Teto Light|Teto Light|`#fff7f6` / `#c13c51`|
 
 ## What is inside
 
@@ -122,4 +135,4 @@ browser/
   test/              bun test browser
 ```
 
-`bun test browser` checks the bang logic, custom engines and bangs, settings migration, every locale key and greeting bank, birthdays and occasions, the wallpaper carousel, contrast in all four themes, and that the committed Zen mod matches the palette. `bun run typecheck:browser` runs strict TypeScript. Both are part of `bun run validate`.
+`bun test browser` checks the bang logic, custom engines and bangs, settings migration, every locale key and greeting bank, birthdays and occasions, the wallpaper carousel, contrast in all eight looks, and that the committed Zen mod matches the palette. `bun run typecheck:browser` runs strict TypeScript. Both are part of `bun run validate`.
