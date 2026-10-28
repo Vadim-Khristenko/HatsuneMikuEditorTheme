@@ -245,7 +245,13 @@ if (import.meta.main) {
   };
   const cmd = process.argv[2];
   if (cmd === "assets") for (const f of copyStable(arg("dir") ?? "dist", arg("out") ?? "hub")) console.log(f);
-  else if (cmd === "notes") process.stdout.write(hubNotes(arg("tag") ?? "HEAD"));
+  else if (cmd === "notes") {
+    // --have: a file listing every asset the hub will carry; links to anything else are left out.
+    const have = arg("have");
+    const present = have ? new Set(readFileSync(have, "utf8").split(/\r?\n/).map((l) => basename(l.trim())).filter(Boolean)) : null;
+    const missing = present ? APPS.flatMap((a) => a.files.map((f) => f.file)).filter((f) => !present.has(f)) : [];
+    process.stdout.write(hubNotes(arg("tag") ?? "HEAD", "release", new Set(missing)));
+  }
   else if (cmd === "branch") {
     for (const m of writeBranch(arg("dir") ?? "hub", arg("out") ?? BRANCH, arg("tag") ?? "HEAD")) console.error(`not in this release: ${m}`);
   } else {
