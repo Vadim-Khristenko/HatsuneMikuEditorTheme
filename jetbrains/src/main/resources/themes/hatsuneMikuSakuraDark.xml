@@ -17,8 +17,8 @@
     <option name="DOCUMENTATION_COLOR" value="7a5870" />
     <option name="TEARLINE_COLOR" value="2a1a2e" />
     <option name="ADDED_LINES_COLOR" value="39c5bb26" />
-    <option name="MODIFIED_LINES_COLOR" value="99aaff26" />
-    <option name="DELETED_LINES_COLOR" value="ff557726" />
+    <option name="MODIFIED_LINES_COLOR" value="8597ff26" />
+    <option name="DELETED_LINES_COLOR" value="ff567726" />
   </colors>
   <attributes>
       <option name="TEXT">
@@ -68,7 +68,7 @@
       </option>
       <option name="DEFAULT_STRING">
         <value>
-        <option name="FOREGROUND" value="ffcc88" />
+        <option name="FOREGROUND" value="ffb091" />
         </value>
       </option>
       <option name="DEFAULT_VALID_STRING_ESCAPE">
@@ -78,7 +78,7 @@
       </option>
       <option name="DEFAULT_INVALID_STRING_ESCAPE">
         <value>
-        <option name="FOREGROUND" value="ff5577" />
+        <option name="FOREGROUND" value="ff5677" />
         </value>
       </option>
       <option name="DEFAULT_CONSTANT">
@@ -109,12 +109,12 @@
       </option>
       <option name="DEFAULT_CLASS_NAME">
         <value>
-        <option name="FOREGROUND" value="99aaff" />
+        <option name="FOREGROUND" value="8597ff" />
         </value>
       </option>
       <option name="DEFAULT_CLASS_REFERENCE">
         <value>
-        <option name="FOREGROUND" value="99aaff" />
+        <option name="FOREGROUND" value="8597ff" />
         </value>
       </option>
       <option name="DEFAULT_IDENTIFIER">
@@ -144,12 +144,12 @@
       </option>
       <option name="DEFAULT_PARAMETER">
         <value>
-        <option name="FOREGROUND" value="e8c8b0" />
+        <option name="FOREGROUND" value="ddb4ae" />
         </value>
       </option>
       <option name="DEFAULT_METADATA">
         <value>
-        <option name="FOREGROUND" value="ffcc88" />
+        <option name="FOREGROUND" value="ffb091" />
         <option name="FONT_TYPE" value="2" />
         </value>
       </option>
@@ -190,7 +190,7 @@
       </option>
       <option name="DEFAULT_LABEL">
         <value>
-        <option name="FOREGROUND" value="99aaff" />
+        <option name="FOREGROUND" value="8597ff" />
         </value>
       </option>
       <option name="DEFAULT_TEMPLATE_LANGUAGE_COLOR">

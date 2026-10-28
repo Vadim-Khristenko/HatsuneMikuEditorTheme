@@ -5,7 +5,7 @@
   <vendor url="https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme" email="vadim@vai-rice.space">Vadim Khristenko</vendor>
   <idea-version since-build="242" until-build="262.*"/>
   <description><![CDATA[
-    Hatsune Miku color themes (Miku Dark/Light, Sakura Dark/Light) for
+    Hatsune Miku color themes (Miku, Sakura, Snow Miku and Kasane Teto, each in Dark and Light) for
     IntelliJ Platform IDEs. Inspired by Hatsune Miku.
     <br/><br/>
     Wallpapers too: <b>Settings | Appearance &amp; Behavior | Hatsune Miku</b> puts the drawn Miku art,
@@ -19,6 +19,10 @@
     <themeProvider id="hatsunemiku.light" path="/themes/hatsuneMikuLight.theme.json"/>
     <themeProvider id="hatsunemiku.sakuradark" path="/themes/hatsuneMikuSakuraDark.theme.json"/>
     <themeProvider id="hatsunemiku.sakuralight" path="/themes/hatsuneMikuSakuraLight.theme.json"/>
+    <themeProvider id="hatsunemiku.snowdark" path="/themes/snowMikuDark.theme.json"/>
+    <themeProvider id="hatsunemiku.snowlight" path="/themes/snowMikuLight.theme.json"/>
+    <themeProvider id="hatsunemiku.tetodark" path="/themes/kasaneTetoDark.theme.json"/>
+    <themeProvider id="hatsunemiku.tetolight" path="/themes/kasaneTetoLight.theme.json"/>
     <applicationConfigurable parentId="appearance" id="hatsunemiku.wallpaper" key="settings.title"
                              instance="com.github.vadimkhristenko.hatsunemikutheme.wallpaper.WallpaperConfigurable"/>
   </extensions>

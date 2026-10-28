@@ -16,9 +16,9 @@
     <option name="RIGHT_MARGIN_COLOR" value="f0d0dc" />
     <option name="DOCUMENTATION_COLOR" value="a87090" />
     <option name="TEARLINE_COLOR" value="f0d0dc" />
-    <option name="ADDED_LINES_COLOR" value="22776626" />
-    <option name="MODIFIED_LINES_COLOR" value="2244aa26" />
-    <option name="DELETED_LINES_COLOR" value="cc224426" />
+    <option name="ADDED_LINES_COLOR" value="00786526" />
+    <option name="MODIFIED_LINES_COLOR" value="1230d026" />
+    <option name="DELETED_LINES_COLOR" value="d4004026" />
   </colors>
   <attributes>
       <option name="TEXT">
@@ -58,63 +58,63 @@
       </option>
       <option name="DEFAULT_KEYWORD">
         <value>
-        <option name="FOREGROUND" value="cc2244" />
+        <option name="FOREGROUND" value="d40040" />
         </value>
       </option>
       <option name="DEFAULT_NUMBER">
         <value>
-        <option name="FOREGROUND" value="aa2255" />
+        <option name="FOREGROUND" value="b11155" />
         </value>
       </option>
       <option name="DEFAULT_STRING">
         <value>
-        <option name="FOREGROUND" value="996600" />
+        <option name="FOREGROUND" value="c04900" />
         </value>
       </option>
       <option name="DEFAULT_VALID_STRING_ESCAPE">
         <value>
-        <option name="FOREGROUND" value="ee3366" />
+        <option name="FOREGROUND" value="e00057" />
         </value>
       </option>
       <option name="DEFAULT_INVALID_STRING_ESCAPE">
         <value>
-        <option name="FOREGROUND" value="cc2244" />
+        <option name="FOREGROUND" value="d40040" />
         </value>
       </option>
       <option name="DEFAULT_CONSTANT">
         <value>
-        <option name="FOREGROUND" value="aa2255" />
+        <option name="FOREGROUND" value="b11155" />
         <option name="FONT_TYPE" value="1" />
         </value>
       </option>
       <option name="DEFAULT_FUNCTION_DECLARATION">
         <value>
-        <option name="FOREGROUND" value="227766" />
+        <option name="FOREGROUND" value="007865" />
         </value>
       </option>
       <option name="DEFAULT_FUNCTION_CALL">
         <value>
-        <option name="FOREGROUND" value="227766" />
+        <option name="FOREGROUND" value="007865" />
         </value>
       </option>
       <option name="DEFAULT_INSTANCE_METHOD">
         <value>
-        <option name="FOREGROUND" value="227766" />
+        <option name="FOREGROUND" value="007865" />
         </value>
       </option>
       <option name="DEFAULT_STATIC_METHOD">
         <value>
-        <option name="FOREGROUND" value="227766" />
+        <option name="FOREGROUND" value="007865" />
         </value>
       </option>
       <option name="DEFAULT_CLASS_NAME">
         <value>
-        <option name="FOREGROUND" value="2244aa" />
+        <option name="FOREGROUND" value="1230d0" />
         </value>
       </option>
       <option name="DEFAULT_CLASS_REFERENCE">
         <value>
-        <option name="FOREGROUND" value="2244aa" />
+        <option name="FOREGROUND" value="1230d0" />
         </value>
       </option>
       <option name="DEFAULT_IDENTIFIER">
@@ -149,13 +149,13 @@
       </option>
       <option name="DEFAULT_METADATA">
         <value>
-        <option name="FOREGROUND" value="996600" />
+        <option name="FOREGROUND" value="c04900" />
         <option name="FONT_TYPE" value="2" />
         </value>
       </option>
       <option name="DEFAULT_OPERATION_SIGN">
         <value>
-        <option name="FOREGROUND" value="2244aa" />
+        <option name="FOREGROUND" value="1230d0" />
         </value>
       </option>
       <option name="DEFAULT_PARENTHS">
@@ -190,7 +190,7 @@
       </option>
       <option name="DEFAULT_LABEL">
         <value>
-        <option name="FOREGROUND" value="2244aa" />
+        <option name="FOREGROUND" value="1230d0" />
         </value>
       </option>
       <option name="DEFAULT_TEMPLATE_LANGUAGE_COLOR">

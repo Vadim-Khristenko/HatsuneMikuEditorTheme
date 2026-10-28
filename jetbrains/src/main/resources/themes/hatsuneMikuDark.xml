@@ -17,8 +17,8 @@
     <option name="DOCUMENTATION_COLOR" value="5a6490" />
     <option name="TEARLINE_COLOR" value="1e2035" />
     <option name="ADDED_LINES_COLOR" value="39c5bb26" />
-    <option name="MODIFIED_LINES_COLOR" value="86a8ff26" />
-    <option name="DELETED_LINES_COLOR" value="ff6e8a26" />
+    <option name="MODIFIED_LINES_COLOR" value="7399ff26" />
+    <option name="DELETED_LINES_COLOR" value="ff6a8826" />
   </colors>
   <attributes>
       <option name="TEXT">
@@ -58,32 +58,32 @@
       </option>
       <option name="DEFAULT_KEYWORD">
         <value>
-        <option name="FOREGROUND" value="ff6e8a" />
+        <option name="FOREGROUND" value="ff6a88" />
         </value>
       </option>
       <option name="DEFAULT_NUMBER">
         <value>
-        <option name="FOREGROUND" value="d4a0ff" />
+        <option name="FOREGROUND" value="cb87ff" />
         </value>
       </option>
       <option name="DEFAULT_STRING">
         <value>
-        <option name="FOREGROUND" value="ffd580" />
+        <option name="FOREGROUND" value="ffbf12" />
         </value>
       </option>
       <option name="DEFAULT_VALID_STRING_ESCAPE">
         <value>
-        <option name="FOREGROUND" value="ff8fa3" />
+        <option name="FOREGROUND" value="ff708e" />
         </value>
       </option>
       <option name="DEFAULT_INVALID_STRING_ESCAPE">
         <value>
-        <option name="FOREGROUND" value="ff6e8a" />
+        <option name="FOREGROUND" value="ff6a88" />
         </value>
       </option>
       <option name="DEFAULT_CONSTANT">
         <value>
-        <option name="FOREGROUND" value="d4a0ff" />
+        <option name="FOREGROUND" value="cb87ff" />
         <option name="FONT_TYPE" value="1" />
         </value>
       </option>
@@ -109,12 +109,12 @@
       </option>
       <option name="DEFAULT_CLASS_NAME">
         <value>
-        <option name="FOREGROUND" value="86a8ff" />
+        <option name="FOREGROUND" value="7399ff" />
         </value>
       </option>
       <option name="DEFAULT_CLASS_REFERENCE">
         <value>
-        <option name="FOREGROUND" value="86a8ff" />
+        <option name="FOREGROUND" value="7399ff" />
         </value>
       </option>
       <option name="DEFAULT_IDENTIFIER">
@@ -124,17 +124,17 @@
       </option>
       <option name="DEFAULT_GLOBAL_VARIABLE">
         <value>
-        <option name="FOREGROUND" value="a8c0ff" />
+        <option name="FOREGROUND" value="97b2fb" />
         </value>
       </option>
       <option name="DEFAULT_INSTANCE_FIELD">
         <value>
-        <option name="FOREGROUND" value="a8c0ff" />
+        <option name="FOREGROUND" value="97b2fb" />
         </value>
       </option>
       <option name="DEFAULT_STATIC_FIELD">
         <value>
-        <option name="FOREGROUND" value="a8c0ff" />
+        <option name="FOREGROUND" value="97b2fb" />
         </value>
       </option>
       <option name="DEFAULT_LOCAL_VARIABLE">
@@ -144,18 +144,18 @@
       </option>
       <option name="DEFAULT_PARAMETER">
         <value>
-        <option name="FOREGROUND" value="e8c0a0" />
+        <option name="FOREGROUND" value="e2ad81" />
         </value>
       </option>
       <option name="DEFAULT_METADATA">
         <value>
-        <option name="FOREGROUND" value="ffd580" />
+        <option name="FOREGROUND" value="ffbf12" />
         <option name="FONT_TYPE" value="2" />
         </value>
       </option>
       <option name="DEFAULT_OPERATION_SIGN">
         <value>
-        <option name="FOREGROUND" value="86a8ff" />
+        <option name="FOREGROUND" value="7399ff" />
         </value>
       </option>
       <option name="DEFAULT_PARENTHS">
@@ -190,7 +190,7 @@
       </option>
       <option name="DEFAULT_LABEL">
         <value>
-        <option name="FOREGROUND" value="86a8ff" />
+        <option name="FOREGROUND" value="7399ff" />
         </value>
       </option>
       <option name="DEFAULT_TEMPLATE_LANGUAGE_COLOR">
