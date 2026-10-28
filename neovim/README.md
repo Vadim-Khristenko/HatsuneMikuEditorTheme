@@ -2,14 +2,18 @@
 
 [![CI](https://img.shields.io/github/actions/workflow/status/Vadim-Khristenko/HatsuneMikuEditorTheme/ci.yml?label=CI&labelColor=0d0e1a&color=39c5bb&style=for-the-badge)](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/actions/workflows/ci.yml)
 
-Neovim ≥0.8 port — 4 colorschemes, Treesitter + LSP + terminal ANSI. Part of [HatsuneMikuEditorTheme](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme) monorepo. All themes are distributed under the **same MIT license** (root `LICENSE`).
+Neovim ≥0.8 port: 8 colorschemes, Treesitter + LSP + terminal ANSI. Part of [HatsuneMikuEditorTheme](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme) monorepo. All themes are distributed under the **same MIT license** (root `LICENSE`).
 
 ## Variants
 
-- `hatsune-miku` — Miku Dark
-- `hatsune-miku-light` — Miku Light
-- `hatsune-miku-sakura` — Sakura Dark
-- `hatsune-miku-sakura-light` — Sakura Light
+- `hatsune-miku`: Miku Dark
+- `hatsune-miku-light`: Miku Light
+- `hatsune-miku-sakura`: Sakura Dark
+- `hatsune-miku-sakura-light`: Sakura Light
+- `snow-miku`: Snow Miku Dark
+- `snow-miku-light`: Snow Miku Light
+- `kasane-teto`: Kasane Teto Dark
+- `kasane-teto-light`: Kasane Teto Light
 
 ## Installation
 
@@ -39,4 +43,4 @@ bun tools/package.ts neovim
 
 ## Author
 
-Vadim Khristenko — `vadim@vai-rice.space` — MIT
+Vadim Khristenko, `vadim@vai-rice.space`, MIT

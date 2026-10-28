@@ -1,4 +1,4 @@
--- Hatsune Miku Dark — Neovim colorscheme
+-- Hatsune Miku Dark: Neovim colorscheme
 -- Part of HatsuneMikuEditorTheme. Generated from VS Code canonical palette.
 vim.cmd("hi clear")
 if vim.fn.exists("syntax_on") == 1 then vim.cmd("syntax reset") end
@@ -21,25 +21,25 @@ local c = {
   hover = "#00e5d6",
   comment = "#4a5280",
   comment_doc = "#5a6490",
-  keyword = "#ff6e8a",
-  operator = "#86a8ff",
+  keyword = "#ff6a88",
+  operator = "#7399ff",
   fn = "#39c5bb",
-  str = "#ffd580",
-  escape = "#ff8fa3",
-  num = "#d4a0ff",
-  type = "#86a8ff",
-  prop = "#a8c0ff",
-  param = "#e8c0a0",
-  builtin = "#ff8fa3",
-  attr = "#d4a0ff",
-  decor = "#ffd580",
-  err = "#ff6e8a",
-  warn = "#ffd580",
-  info = "#86a8ff",
+  str = "#ffbf12",
+  escape = "#ff708e",
+  num = "#cb87ff",
+  type = "#7399ff",
+  prop = "#97b2fb",
+  param = "#e2ad81",
+  builtin = "#ff708e",
+  attr = "#cb87ff",
+  decor = "#ffbf12",
+  err = "#ff6a88",
+  warn = "#ffbf12",
+  info = "#7399ff",
   hint = "#7079a8",
   git_add = "#39c5bb",
-  git_mod = "#86a8ff",
-  git_del = "#ff6e8a",
+  git_mod = "#7399ff",
+  git_del = "#ff6a88",
   invisible = "#2a2f50",
 }
 local hi = vim.api.nvim_set_hl
@@ -218,18 +218,18 @@ L("@lsp.type.operator", "Operator")
 
 -- Terminal ANSI
 vim.g["terminal_color_0"] = "#1a1b2e"
-vim.g["terminal_color_1"] = "#ff6e8a"
+vim.g["terminal_color_1"] = "#ff6a88"
 vim.g["terminal_color_2"] = "#39c5bb"
-vim.g["terminal_color_3"] = "#ffd580"
-vim.g["terminal_color_4"] = "#86a8ff"
-vim.g["terminal_color_5"] = "#d4a0ff"
+vim.g["terminal_color_3"] = "#ffbf12"
+vim.g["terminal_color_4"] = "#7399ff"
+vim.g["terminal_color_5"] = "#cb87ff"
 vim.g["terminal_color_6"] = "#00e5d6"
 vim.g["terminal_color_7"] = "#ccd6f6"
 vim.g["terminal_color_8"] = "#4a5280"
-vim.g["terminal_color_9"] = "#ff8fa3"
+vim.g["terminal_color_9"] = "#ff708e"
 vim.g["terminal_color_10"] = "#5df5e8"
-vim.g["terminal_color_11"] = "#ffe8a0"
-vim.g["terminal_color_12"] = "#a8c0ff"
-vim.g["terminal_color_13"] = "#e0b8ff"
+vim.g["terminal_color_11"] = "#f9d561"
+vim.g["terminal_color_12"] = "#97b2fb"
+vim.g["terminal_color_13"] = "#d5a2fb"
 vim.g["terminal_color_14"] = "#40f0e8"
 vim.g["terminal_color_15"] = "#ffffff"
