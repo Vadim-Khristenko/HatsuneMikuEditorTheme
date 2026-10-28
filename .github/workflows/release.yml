@@ -130,6 +130,38 @@ jobs:
             gh release create latest /tmp/hub/* --title "$title" --notes-file /tmp/hub.md --latest --target "$GITHUB_SHA"
           fi
 
+      - name: Refresh the themes branch
+        run: |
+          # Files of ports this tag did not rebuild stay as they are; new builds go on top.
+          mkdir -p /tmp/all
+          if git fetch origin themes:themes 2>/dev/null; then
+            git worktree add /tmp/themes themes
+            find /tmp/themes -mindepth 2 -type f -not -path '*/.git/*' -exec cp {} /tmp/all/ \;
+            git -C /tmp/themes rm -rq .
+          else
+            git worktree add --orphan -b themes /tmp/themes
+          fi
+          cp /tmp/hub/* /tmp/all/
+          bun tools/release/hub.ts branch --dir /tmp/all --out /tmp/themes --tag "$GITHUB_REF_NAME"
+          cd /tmp/themes
+          git add -A
+          if git diff --cached --quiet; then
+            echo "The themes branch already matches $GITHUB_REF_NAME"
+          else
+            git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+              commit -q -m "themes: downloads from $GITHUB_REF_NAME"
+            git push origin themes
+          fi
+
+      - name: Telegram cloud themes
+        if: contains(fromJSON(needs.plan.outputs.changed), 'telegram')
+        uses: Vadim-Khristenko/telegram-theme-action@v1
+        with:
+          session: ${{ secrets.TELEGRAM_THEME_SESSION }}
+          themes: tools/telegram/cloud.yml
+          # A Telegram hiccup should not undo a release that is already out.
+          fail-on-error: "false"
+
       - name: Publish to Open VSX
         if: contains(fromJSON(needs.plan.outputs.changed), 'vsc')
         env:
