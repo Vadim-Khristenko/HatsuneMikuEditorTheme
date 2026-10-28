@@ -2,9 +2,11 @@
   "name": "hatsune-miku-themes",
   "private": true,
   "version": "0.3.0",
-  "workspaces": ["vsc"],
+  "workspaces": [
+    "vsc"
+  ],
   "scripts": {
-    "check": "node tools/check-themes.mjs && bun tools/release/release.ts check && bun test tools",
+    "check": "bun tools/palette/build.ts --check && node tools/check-themes.mjs && bun tools/release/release.ts check && bun test tools",
     "validate": "bun tools/validate.ts",
     "package:vsc": "bun tools/package.ts vsc",
     "package:zed": "bun tools/package.ts zed",
@@ -23,7 +25,10 @@
     "test:telegram": "bun test tools/telegram",
     "typecheck:telegram": "tsc -p tools/telegram/tsconfig.json",
     "release:plan": "bun tools/release/release.ts plan",
-    "release:prepare": "bun tools/release/release.ts prepare"
+    "release:prepare": "bun tools/release/release.ts prepare",
+    "build:palette": "bun tools/palette/build.ts",
+    "package:spicetify": "bun tools/package.ts spicetify",
+    "typecheck:palette": "tsc -p tools/palette/tsconfig.json"
   },
   "devDependencies": {
     "@types/archiver": "^8.0.0",
