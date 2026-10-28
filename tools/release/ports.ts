@@ -77,7 +77,7 @@ export const PORTS: Port[] = [
   {
     id: "browser",
     title: "Browser",
-    paths: ["browser/src", "browser/static", "browser/data", "browser/zen", "browser/build.ts", "browser/wallpapers", "tools/jb-palette.json"],
+    paths: ["browser/src", "browser/static", "browser/data", "browser/zen", "browser/build.ts", "browser/wallpapers", "tools/jb-palette.json", "palette/palette.json"],
     versions: [{ file: "browser/zen/theme.json", pattern: /^ {2}"version": "([^"]+)"/m }],
     changelog: "browser/CHANGELOG.md",
     stores: ["amo"],
@@ -85,9 +85,17 @@ export const PORTS: Port[] = [
   {
     id: "telegram",
     title: "Telegram",
-    paths: ["tools/telegram/android.ts", "tools/telegram/desktop.ts", "tools/telegram/art.ts", "tools/telegram/palette.ts", "tools/telegram/remap.ts", "tools/telegram/color.ts", "tools/telegram/keys.json", "tools/telegram/png.ts", "tools/telegram/zip.ts", "tools/telegram/build.ts", "tools/telegram/cloud.yml", "vsc/themes", "tools/jb-palette.json"],
+    paths: ["tools/telegram/android.ts", "tools/telegram/desktop.ts", "tools/telegram/art.ts", "tools/telegram/palette.ts", "tools/telegram/remap.ts", "tools/telegram/color.ts", "tools/telegram/keys.json", "tools/telegram/png.ts", "tools/telegram/zip.ts", "tools/telegram/build.ts", "tools/telegram/cloud.yml", "tools/palette", "vsc/themes", "tools/jb-palette.json"],
     versions: [],
     changelog: "tools/telegram/CHANGELOG.md",
+    stores: [],
+  },
+  {
+    id: "spicetify",
+    title: "Spicetify",
+    paths: ["spicetify"],
+    versions: [],
+    changelog: "spicetify/CHANGELOG.md",
     stores: [],
   },
 ];

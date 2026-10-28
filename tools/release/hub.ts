@@ -9,6 +9,7 @@
 import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { basename, join } from "node:path";
 import { rgbHex } from "../telegram/color";
+import { LOOKS as PALETTE_LOOKS } from "../palette/looks";
 import { paletteOf, VARIANTS } from "../telegram/palette";
 import { showAt } from "./git";
 import { PORTS } from "./ports";
@@ -25,7 +26,8 @@ export const BRANCH = "themes";
 export function stableName(file: string): string {
   const name = basename(file);
   const bare = name.replace(/-\d+\.\d+\.\d+(?=\.[a-z]+$)/i, "");
-  return /^(hatsune-miku|HatsuneMiku)/.test(bare) ? bare : `hatsune-miku-${bare}`;
+  // Telegram files carry the look in a capitalized name (SnowMikuDark.attheme) and stay as they are.
+  return /^(hatsune-miku|[A-Z])/.test(bare) ? bare : `hatsune-miku-${bare}`;
 }
 
 export function copyStable(dir: string, out: string): string[] {
@@ -40,7 +42,7 @@ export function copyStable(dir: string, out: string): string[] {
   return done.sort();
 }
 
-type Group = "Editors" | "Browsers" | "Chat";
+type Group = "Editors" | "Browsers" | "Chat" | "Music";
 
 interface App {
   port: string;
@@ -64,7 +66,8 @@ function cloudThemes(): { label: string; url: string }[] {
   return [...titles].map(([slug, title]) => ({ label: title, url: `https://t.me/addtheme/${slug}` }));
 }
 
-const LOOKS = ["Dark", "Light", "SakuraDark", "SakuraLight"];
+/** Telegram files are named after the look: HatsuneMikuSakuraDark, SnowMikuDark. */
+const TG = VARIANTS.map((v) => ({ label: v.title.replace(/^Hatsune Miku /, ""), base: v.title.replace(/\s+/g, "") }));
 
 export const APPS: App[] = [
   {
@@ -107,7 +110,7 @@ export const APPS: App[] = [
   },
   {
     port: "browser", group: "Browsers", name: "Chrome, Edge, Helium, any Chromium",
-    files: [{ label: "new tab", file: "hatsune-miku-editor-chromium.zip" }, ...["miku-dark", "miku-light", "sakura-dark", "sakura-light"].map((v) => ({ label: `frame ${v}`, file: `hatsune-miku-colorful-browser-${v}.zip` }))],
+    files: [{ label: "new tab", file: "hatsune-miku-editor-chromium.zip" }, ...VARIANTS.map((v) => ({ label: `frame ${v.id}`, file: `hatsune-miku-colorful-browser-${v.id}.zip` }))],
     steps: ["Unpack the `.zip`.", "`chrome://extensions` → Developer mode on → Load unpacked → pick the folder.", "Frame colors are separate extensions, one per look."],
     guide: "browser/README.md",
   },
@@ -117,32 +120,35 @@ export const APPS: App[] = [
     guide: "browser/zen/readme.md",
   },
   {
-    port: "telegram", group: "Chat", name: "Telegram for Android", files: LOOKS.map((l) => ({ label: l, file: `HatsuneMiku${l}.attheme` })),
+    port: "telegram", group: "Chat", name: "Telegram for Android", files: TG.map((t) => ({ label: t.label, file: `${t.base}.attheme` })),
     cloud: cloudThemes(),
     steps: ["Easiest: open a cloud theme link on your phone; Telegram applies it and keeps it updated.", "Or send the `.attheme` to Saved Messages, tap the file → Apply."],
     guide: "README.md#telegram",
   },
   {
-    port: "telegram", group: "Chat", name: "Telegram Desktop", files: LOOKS.map((l) => ({ label: l, file: `HatsuneMiku${l}.tdesktop-theme` })),
+    port: "telegram", group: "Chat", name: "Telegram Desktop", files: TG.map((t) => ({ label: t.label, file: `${t.base}.tdesktop-theme` })),
     cloud: cloudThemes(),
     steps: ["Easiest: open a cloud theme link in Telegram Desktop; it applies and keeps it updated.", "Or open the `.tdesktop-theme` in Telegram (or send it to Saved Messages and click it) → Apply."],
     guide: "README.md#telegram",
+  },
+  {
+    port: "spicetify", group: "Music", name: "Spotify (Spicetify)", files: [{ label: ".zip", file: "hatsune-miku-spicetify.zip" }],
+    steps: ["Install Spicetify and run `spicetify backup apply` once.", "Unpack the `.zip` into the Spicetify Themes folder (`spicetify path userdata` shows where).", "`spicetify config current_theme HatsuneMiku color_scheme MikuDark`, then `spicetify apply`. Schemes: MikuDark, MikuLight, SakuraDark, SakuraLight, SnowDark, SnowLight, TetoDark, TetoLight."],
+    guide: "spicetify/README.md",
   },
 ];
 
 /** What comes next, so people know where the themes are heading. */
 export const COMING = [
-  "**Palette 1.0**: a new canon with full scales and tokens for every part of an interface, the base of every port.",
-  "**Snow Miku** and **Kasane Teto**: two more families, dark and light, eight looks in all.",
-  "**Spotify** through Spicetify, in every look.",
   "**Discord**, desktop and mobile, for clients that take themes.",
-  "**Telegram for iOS**, and Telegram themes that update themselves from the cloud.",
+  "**Telegram for iOS**.",
+  "**Palette tokens**: full scales and named tokens for every part of an interface, so new apps start from roles instead of hex.",
 ];
 
 /** A colored chip with its hex, rendered by shields.io; GitHub shows it inline. */
 const chip = (label: string, hex: string) => `![${label} ${hex}](https://img.shields.io/badge/${encodeURIComponent(label)}-${hex.slice(1)}-${hex.slice(1)}?style=flat-square)`;
 
-const NAMES: Record<string, string> = { MD: "Hatsune Miku Dark", ML: "Hatsune Miku Light", SD: "Sakura Miku Dark", SL: "Sakura Miku Light" };
+const NAMES: Record<string, string> = Object.fromEntries(PALETTE_LOOKS.map((l) => [l.code, l.title]));
 
 function looks(): string[] {
   const out = ["## Looks", "", "| Look | Background | Text | Accent | Error | Warning | Info |", "|---|---|---|---|---|---|---|"];
@@ -191,7 +197,7 @@ export function hubNotes(tag: string, where: "release" | "branch" = "release", m
     "## Download",
     "",
   ];
-  for (const group of ["Editors", "Browsers", "Chat"] as Group[]) {
+  for (const group of ["Editors", "Browsers", "Chat", "Music"] as Group[]) {
     out.push(`### ${group}`, "", "| App | Version | Get it |", "|---|---|---|");
     for (const a of APPS.filter((x) => x.group === group)) {
       const files = a.files.filter((f) => !missing.has(f.file)).map((f) => `[${f.label}](${link(a, f.file)})`).join(" · ");

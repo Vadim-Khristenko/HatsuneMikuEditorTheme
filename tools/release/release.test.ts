@@ -120,13 +120,23 @@ describe("hub", () => {
   });
 
   test("every hub link names a file the release builds", () => {
+    const ids = ["miku-dark", "miku-light", "sakura-dark", "sakura-light", "snow-dark", "snow-light", "teto-dark", "teto-light"];
+    const tg = ["HatsuneMikuDark", "HatsuneMikuLight", "HatsuneMikuSakuraDark", "HatsuneMikuSakuraLight", "SnowMikuDark", "SnowMikuLight", "KasaneTetoDark", "KasaneTetoLight"];
     const built = new Set([
       "hatsune-miku-vsc.vsix", "hatsune-miku-jetbrains.zip", "hatsune-miku-zed.zip", "hatsune-miku-neovim.zip", "hatsune-miku-sublime.zip",
       "hatsune-miku-notepadpp.zip", "hatsune-miku-editor-firefox.xpi", "hatsune-miku-editor-chromium.zip", "hatsune-miku-zen-mod.zip",
-      ...["miku-dark", "miku-light", "sakura-dark", "sakura-light"].map((v) => `hatsune-miku-colorful-browser-${v}.zip`),
-      ...["Dark", "Light", "SakuraDark", "SakuraLight"].flatMap((l) => [`HatsuneMiku${l}.attheme`, `HatsuneMiku${l}.tdesktop-theme`]),
+      "hatsune-miku-spicetify.zip",
+      ...ids.map((v) => `hatsune-miku-colorful-browser-${v}.zip`),
+      ...tg.flatMap((l) => [`${l}.attheme`, `${l}.tdesktop-theme`]),
     ]);
-    for (const a of APPS) for (const f of a.files) expect(built.has(f.file)).toBe(true);
+    const listed = APPS.flatMap((a) => a.files.map((f) => f.file));
+    for (const f of listed) expect(built.has(f)).toBe(true);
+    for (const f of built) expect(listed).toContain(f);
+  });
+
+  test("Telegram and Spotify builds keep their names", () => {
+    expect(stableName("SnowMikuDark.attheme")).toBe("SnowMikuDark.attheme");
+    expect(stableName("dist/spicetify-0.4.0.zip")).toBe("hatsune-miku-spicetify.zip");
   });
 
   test("the themes branch puts files by app and links only what it has", () => {
