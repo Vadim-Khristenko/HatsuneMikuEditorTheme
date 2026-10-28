@@ -1,4 +1,4 @@
--- Hatsune Miku Sakura Dark — Neovim colorscheme
+-- Sakura Miku Dark: Neovim colorscheme
 -- Part of HatsuneMikuEditorTheme. Generated from VS Code canonical palette.
 vim.cmd("hi clear")
 if vim.fn.exists("syntax_on") == 1 then vim.cmd("syntax reset") end
@@ -24,22 +24,22 @@ local c = {
   keyword = "#ff7799",
   operator = "#e87ea1",
   fn = "#39c5bb",
-  str = "#ffcc88",
+  str = "#ffb091",
   escape = "#ff99bb",
   num = "#ffaacc",
-  type = "#99aaff",
+  type = "#8597ff",
   prop = "#d4b0cc",
-  param = "#e8c8b0",
+  param = "#ddb4ae",
   builtin = "#ff99bb",
   attr = "#ffaacc",
-  decor = "#ffcc88",
-  err = "#ff5577",
-  warn = "#ffcc88",
-  info = "#99aaff",
+  decor = "#ffb091",
+  err = "#ff5677",
+  warn = "#ffb091",
+  info = "#8597ff",
   hint = "#6a4860",
   git_add = "#39c5bb",
-  git_mod = "#99aaff",
-  git_del = "#ff5577",
+  git_mod = "#8597ff",
+  git_del = "#ff5677",
   invisible = "#2a1a2e",
 }
 local hi = vim.api.nvim_set_hl
@@ -218,18 +218,18 @@ L("@lsp.type.operator", "Operator")
 
 -- Terminal ANSI
 vim.g["terminal_color_0"] = "#1a1020"
-vim.g["terminal_color_1"] = "#ff5577"
+vim.g["terminal_color_1"] = "#ff5677"
 vim.g["terminal_color_2"] = "#39c5bb"
-vim.g["terminal_color_3"] = "#ffcc88"
-vim.g["terminal_color_4"] = "#99aaff"
+vim.g["terminal_color_3"] = "#ffb091"
+vim.g["terminal_color_4"] = "#8597ff"
 vim.g["terminal_color_5"] = "#e87ea1"
-vim.g["terminal_color_6"] = "#88ddcc"
+vim.g["terminal_color_6"] = "#00eace"
 vim.g["terminal_color_7"] = "#f0d6e8"
 vim.g["terminal_color_8"] = "#6a4860"
 vim.g["terminal_color_9"] = "#ff7799"
-vim.g["terminal_color_10"] = "#5df5e8"
-vim.g["terminal_color_11"] = "#ffe0aa"
-vim.g["terminal_color_12"] = "#bbccff"
+vim.g["terminal_color_10"] = "#32f9ea"
+vim.g["terminal_color_11"] = "#ffc6a8"
+vim.g["terminal_color_12"] = "#a5bbff"
 vim.g["terminal_color_13"] = "#ffaacc"
-vim.g["terminal_color_14"] = "#aaeedd"
+vim.g["terminal_color_14"] = "#71fadd"
 vim.g["terminal_color_15"] = "#ffffff"
