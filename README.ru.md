@@ -1,4 +1,4 @@
-# Hatsune Miku — темы для редакторов
+# Hatsune Miku: темы для редакторов
 
 [![CI](https://img.shields.io/github/actions/workflow/status/Vadim-Khristenko/HatsuneMikuEditorTheme/ci.yml?branch=main&label=CI&labelColor=0d0e1a&color=39c5bb&style=for-the-badge)](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/actions/workflows/ci.yml)
 [![Релиз](https://img.shields.io/github/v/release/Vadim-Khristenko/HatsuneMikuEditorTheme?label=релиз&labelColor=0d0e1a&color=ff6e8a&style=for-the-badge)](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/releases)
@@ -6,9 +6,15 @@
 
 Мне хотелось, чтобы Мику была рядом и в коде. Спокойная, читаемая, без кричащих цветов. Получилось четыре варианта на шесть редакторов. Одна палитра, одна идея.
 
-Я держу темы VS Code как основу, остальные повторяют её. Лицензия одна на всё — MIT в корне, без отдельных оговорок на редактор.
+Я держу темы VS Code как основу, остальные повторяют её. Лицензия одна на всё: MIT в корне, без отдельных оговорок на редактор.
 
 [English version](README.md)
+
+## Скачать
+
+Всё готовое к установке лежит в [ветке `themes`](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/tree/themes): по папке на приложение, прямые ссылки на скачивание и шаги установки. Каждый релиз пересобирает её, так что ссылки всегда ведут на свежую сборку.
+
+В Telegram файлы вообще не нужны: открой [Hatsune Miku Dark](https://t.me/addtheme/HatsuneMikuEditorDark), [Hatsune Miku Light](https://t.me/addtheme/HatsuneMikuEditorLight), [Sakura Miku Dark](https://t.me/addtheme/SakuraMikuEditorDark) или [Sakura Miku Light](https://t.me/addtheme/SakuraMikuEditorLight). Одна ссылка работает и на Android, и на Desktop, а тема сама обновляется с каждым релизом.
 
 ## Что внутри
 
@@ -38,7 +44,7 @@ CI на каждый пуш, релиз по тегу `v*`.
 | Sublime | `sublime/` | `dist/sublime-*.zip` | Preferences → Color Scheme |
 | Notepad++ | `notepadpp/` | `dist/notepadpp-*.zip` | Опции → Импорт → Импортировать тему |
 
-Каждая папка — та же лицензия MIT. См. `LICENSE` в корне.
+У каждой папки та же лицензия MIT. См. `LICENSE` в корне.
 
 ## Браузеры
 
@@ -61,6 +67,8 @@ CI на каждый пуш, релиз по тегу `v*`.
 |---|---|---|
 | Telegram для Android | `dist/HatsuneMiku*.attheme` | Отправить в Избранное, тапнуть, Применить |
 | Telegram Desktop | `dist/HatsuneMiku*.tdesktop-theme` | Открыть файл в Telegram, Применить |
+
+Облачные темы из раздела [Скачать](#скачать) это те же файлы. Их на каждом релизе синхронизирует [telegram-theme-action](https://github.com/Vadim-Khristenko/telegram-theme-action), список лежит в `tools/telegram/cloud.yml`.
 
 Собрать: `bun run build:telegram`. Генератор лежит в `tools/telegram/`. Он берёт дневную и ночную темы самого Telegram и перекрашивает их, так что расстановка света и тени остаётся телеграмовской, а каждый цвет приходит из палитры. Когда в Telegram появляются новые ключи, `bun run sync:telegram` снимает их заново.
 
@@ -85,4 +93,4 @@ bun run package:all
 
 ## Автор
 
-Vadim Khristenko — `vadim@vai-rice.space` — MIT
+Vadim Khristenko · `vadim@vai-rice.space` · MIT
