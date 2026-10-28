@@ -2,15 +2,13 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { contrast, hueSat, lightness, parseRgba, rgbHex, type Rgba } from "./color";
 import { familyOf, isColored } from "./remap";
+import { LOOKS } from "../palette/looks";
+import { namesOf } from "../palette/names";
 
 const ROOT = join(import.meta.dir, "..", "..");
 
-export const VARIANTS = [
-  { code: "MD", id: "miku-dark", vsc: "mikuV1-dark", title: "Hatsune Miku Dark", dark: true },
-  { code: "ML", id: "miku-light", vsc: "mikuV1-light", title: "Hatsune Miku Light", dark: false },
-  { code: "SD", id: "sakura-dark", vsc: "sakuraV1-dark", title: "Hatsune Miku Sakura Dark", dark: true },
-  { code: "SL", id: "sakura-light", vsc: "sakuraV1-light", title: "Hatsune Miku Sakura Light", dark: false },
-] as const;
+/** Every look of palette 1.0; Telegram names its files after the VS Code label: HatsuneMikuSakuraDark. */
+export const VARIANTS = LOOKS.map((l) => ({ code: l.code, id: l.id, family: l.family, vsc: namesOf(l).vsc, title: namesOf(l).label, dark: l.dark, slug: l.slug }));
 
 export type Variant = (typeof VARIANTS)[number];
 
