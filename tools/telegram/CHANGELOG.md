@@ -5,6 +5,20 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-10-28
+
+### Added
+
+- Snow Miku and Kasane Teto for Android and Desktop
+  - SnowMikuDark, SnowMikuLight, KasaneTetoDark and KasaneTetoLight, with the chat wallpaper drawn in each look's colors, Teto's in red and gold. Snow Miku is sampled from her official key visuals, Kasane Teto from her official Synthesizer V art.
+  - Cloud themes for the new looks: SnowMikuEditorDark, SnowMikuEditorLight, KasaneTetoEditorDark and KasaneTetoEditorLight, one link for Android and Desktop.
+
+### Changed
+
+- Livelier colors in Hatsune Miku and Sakura Miku
+  - Links, code blocks, peer names and status colors carry as much color as their hue holds without losing contrast. Backgrounds, text and the accent stay as they were.
+- Voice and music seekbars keep 2:1 between the played part and the track in every look.
+
 ## [0.1.0] - 2026-10-27
 
 ### Added
