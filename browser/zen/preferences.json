@@ -14,6 +14,14 @@
         "value": "sakura-auto"
       },
       {
+        "label": "Snow Miku, follow system",
+        "value": "snow-auto"
+      },
+      {
+        "label": "Kasane Teto, follow system",
+        "value": "teto-auto"
+      },
+      {
         "label": "Miku Dark",
         "value": "miku-dark"
       },
@@ -28,6 +36,22 @@
       {
         "label": "Sakura Light",
         "value": "sakura-light"
+      },
+      {
+        "label": "Snow Dark",
+        "value": "snow-dark"
+      },
+      {
+        "label": "Snow Light",
+        "value": "snow-light"
+      },
+      {
+        "label": "Teto Dark",
+        "value": "teto-dark"
+      },
+      {
+        "label": "Teto Light",
+        "value": "teto-light"
       }
     ]
   }

@@ -1,8 +1,10 @@
-import jb from "../../tools/jb-palette.json";
+import jbPalette from "../../tools/jb-palette.json";
+import canon from "../../palette/palette.json";
 
-export const THEME_IDS = ["miku-dark", "miku-light", "sakura-dark", "sakura-light"] as const;
+export const THEME_IDS = ["miku-dark", "miku-light", "sakura-dark", "sakura-light", "snow-dark", "snow-light", "teto-dark", "teto-light"] as const;
 export type ThemeId = (typeof THEME_IDS)[number];
-export type Family = "miku" | "sakura";
+export type Family = "miku" | "sakura" | "snow" | "teto";
+export const FAMILIES: Family[] = ["miku", "sakura", "snow", "teto"];
 
 export interface Palette {
   id: ThemeId;
@@ -24,16 +26,20 @@ export interface Palette {
   ink: string;
 }
 
-type JbEntry = (typeof jb)["MD"];
+type JbEntry = (typeof jbPalette)["MD"];
+const jb = jbPalette as Record<string, JbEntry>;
+const looks = canon.looks as { id: string; code: string; family: Family; dark: boolean; roles: Record<string, string> }[];
+const lookOf = (id: ThemeId) => looks.find((l) => l.id === id)!;
 
 // Editor `muted` is tuned for code comments; text on a page needs AA contrast, so a few are lifted here.
-function fromEditor(id: ThemeId, src: JbEntry, over: Partial<Palette>): Palette {
-  const dark = id.endsWith("dark");
+function fromEditor(id: ThemeId, name: string, over: Partial<Palette> = {}): Palette {
+  const look = lookOf(id);
+  const src = jb[look.code];
   return {
     id,
-    name: src.name.replace("Hatsune Miku ", ""),
-    family: id.startsWith("miku") ? "miku" : "sakura",
-    dark,
+    name,
+    family: look.family,
+    dark: look.dark,
     bg: src.bg,
     alt: src.alt,
     card: src.elevated,
@@ -44,29 +50,34 @@ function fromEditor(id: ThemeId, src: JbEntry, over: Partial<Palette>): Palette 
     accent: src.accent,
     accent2: src.keyword,
     fill: src.accent,
-    ink: dark ? src.bg : "#ffffff",
+    ink: look.dark ? src.bg : "#ffffff",
     ...over,
   };
 }
 
+// Snow Miku and Kasane Teto carry their second color from the art: strawberry pink and Teto's gold.
+const second = (id: ThemeId) => lookOf(id).roles.second;
+
 export const PALETTES: Record<ThemeId, Palette> = {
-  "miku-dark": fromEditor("miku-dark", jb.MD, { name: "Miku Dark", muted: "#8a93c0" }),
-  "miku-light": fromEditor("miku-light", jb.ML, { name: "Miku Light", line2: "#6f9896" }),
-  "sakura-dark": fromEditor("sakura-dark", jb.SD, { name: "Sakura Dark", muted: "#b08aa6", accent2: jb.SD.fn, line2: "#7a5870" }),
-  "sakura-light": fromEditor("sakura-light", jb.SL, {
-    name: "Sakura Light",
+  "miku-dark": fromEditor("miku-dark", "Miku Dark", { muted: "#8a93c0" }),
+  "miku-light": fromEditor("miku-light", "Miku Light", { line2: "#6f9896" }),
+  "sakura-dark": fromEditor("sakura-dark", "Sakura Dark", { muted: "#b08aa6", accent2: jb.SD.fn, line2: "#7a5870" }),
+  "sakura-light": fromEditor("sakura-light", "Sakura Light", {
     muted: "#8a4a68",
     accent: "#bd3b6e",
     accent2: jb.SL.fn,
     line2: "#c08aa0",
     fill: "#b5366a",
   }),
+  "snow-dark": fromEditor("snow-dark", "Snow Dark", { accent2: second("snow-dark") }),
+  "snow-light": fromEditor("snow-light", "Snow Light", { accent2: second("snow-light") }),
+  "teto-dark": fromEditor("teto-dark", "Teto Dark", { accent2: second("teto-dark") }),
+  "teto-light": fromEditor("teto-light", "Teto Light", { accent2: second("teto-light") }),
 };
 
 export function pairOf(id: ThemeId): { dark: ThemeId; light: ThemeId } {
-  return PALETTES[id].family === "miku"
-    ? { dark: "miku-dark", light: "miku-light" }
-    : { dark: "sakura-dark", light: "sakura-light" };
+  const f = PALETTES[id].family;
+  return { dark: `${f}-dark` as ThemeId, light: `${f}-light` as ThemeId };
 }
 
 export function hexToRgb(hex: string): [number, number, number] {
