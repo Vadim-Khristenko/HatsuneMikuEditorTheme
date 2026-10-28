@@ -1,0 +1,65 @@
+name: Something looks off
+description: A color, a contrast or a part of an app that does not look right in one of the themes.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for the report. A screenshot helps more than anything else, so please add one if you can.
+  - type: dropdown
+    id: app
+    attributes:
+      label: App
+      options:
+        - VS Code, Cursor or VSCodium
+        - Zed
+        - JetBrains IDE
+        - Neovim
+        - Sublime Text
+        - Notepad++
+        - Browser new tab (Chrome, Edge, Helium, Firefox)
+        - Chromium frame colors
+        - Zen
+        - Telegram for Android
+        - Telegram Desktop
+        - Spotify (Spicetify)
+    validations:
+      required: true
+  - type: dropdown
+    id: look
+    attributes:
+      label: Look
+      multiple: true
+      options:
+        - Hatsune Miku Dark
+        - Hatsune Miku Light
+        - Sakura Miku Dark
+        - Sakura Miku Light
+        - Snow Miku Dark
+        - Snow Miku Light
+        - Kasane Teto Dark
+        - Kasane Teto Light
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Theme version
+      description: From the extension or plugin page, or the file name you installed. For Telegram cloud themes, write "cloud".
+      placeholder: 0.4.0
+  - type: textarea
+    id: what
+    attributes:
+      label: What looks wrong
+      description: Where it is (which panel, screen or element) and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Screenshot
+      description: Drag an image here.
+  - type: input
+    id: app-version
+    attributes:
+      label: App version and OS
+      placeholder: Telegram Desktop 6.2, Windows 11

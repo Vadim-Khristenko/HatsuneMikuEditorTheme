@@ -4,9 +4,9 @@
 [![Релиз](https://img.shields.io/github/v/release/Vadim-Khristenko/HatsuneMikuEditorTheme?label=релиз&labelColor=0d0e1a&color=ff6e8a&style=for-the-badge)](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/releases)
 [![Лицензия](https://img.shields.io/github/license/Vadim-Khristenko/HatsuneMikuEditorTheme?label=лицензия&labelColor=0d0e1a&color=86a8ff&style=for-the-badge)](LICENSE)
 
-Мне хотелось, чтобы Мику была рядом и в коде. Спокойная, читаемая, без кричащих цветов. Получилось четыре варианта на шесть редакторов. Одна палитра, одна идея.
+Мне хотелось, чтобы Мику была рядом и в коде. Спокойная, читаемая, без кричащих цветов. Потом идея выросла: любое приложение, которым я пользуюсь, в стиле Мику. Восемь образов, редакторы, браузеры, Telegram и Spotify. Одна палитра, одна идея.
 
-Я держу темы VS Code как основу, остальные повторяют её. Лицензия одна на всё: MIT в корне, без отдельных оговорок на редактор.
+Основа одна: палитра, и каждый порт генерируется из неё, так что цвет не расходится между приложениями. Лицензия одна на всё: MIT в корне, без отдельных оговорок на редактор.
 
 [English version](README.md)
 
@@ -14,20 +14,33 @@
 
 Всё готовое к установке лежит в [ветке `themes`](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/tree/themes): по папке на приложение, прямые ссылки на скачивание и шаги установки. Каждый релиз пересобирает её, так что ссылки всегда ведут на свежую сборку.
 
-В Telegram файлы вообще не нужны: открой [Hatsune Miku Dark](https://t.me/addtheme/HatsuneMikuEditorDark), [Hatsune Miku Light](https://t.me/addtheme/HatsuneMikuEditorLight), [Sakura Miku Dark](https://t.me/addtheme/SakuraMikuEditorDark) или [Sakura Miku Light](https://t.me/addtheme/SakuraMikuEditorLight). Одна ссылка работает и на Android, и на Desktop, а тема сама обновляется с каждым релизом.
+В Telegram файлы вообще не нужны. Одна ссылка работает и на Android, и на Desktop, а тема сама обновляется с каждым релизом:
+
+| | Тёмная | Светлая |
+|---|---|---|
+| Hatsune Miku | [HatsuneMikuEditorDark](https://t.me/addtheme/HatsuneMikuEditorDark) | [HatsuneMikuEditorLight](https://t.me/addtheme/HatsuneMikuEditorLight) |
+| Sakura Miku | [SakuraMikuEditorDark](https://t.me/addtheme/SakuraMikuEditorDark) | [SakuraMikuEditorLight](https://t.me/addtheme/SakuraMikuEditorLight) |
+| Snow Miku | [SnowMikuEditorDark](https://t.me/addtheme/SnowMikuEditorDark) | [SnowMikuEditorLight](https://t.me/addtheme/SnowMikuEditorLight) |
+| Kasane Teto | [KasaneTetoEditorDark](https://t.me/addtheme/KasaneTetoEditorDark) | [KasaneTetoEditorLight](https://t.me/addtheme/KasaneTetoEditorLight) |
 
 ## Что внутри
 
-Одна палитра, шесть портов. VS Code, Zed, JetBrains, Neovim, Sublime, Notepad++. Цвета одинаковые, ощущения тоже.
+Одна палитра, много портов: VS Code, Zed, JetBrains, Neovim, Sublime, Notepad++, браузер, Telegram и Spotify. Цвета одинаковые, ощущения тоже.
 
-Четыре образа:
+Восемь образов:
 
-- Miku Dark `#0d0e1a` с `#39c5bb`. Мой основной.
-- Miku Light `#f0fafa` с `#007a72`. Для светлых комнат.
-- Sakura Dark `#130d14` с `#e87ea1`.
-- Sakura Light `#fff5f8` с `#cc4477`.
+- Hatsune Miku Dark `#0d0e1a` с `#39c5bb`. Мой основной.
+- Hatsune Miku Light `#f0fafa` с `#007a72`. Для светлых комнат.
+- Sakura Miku Dark `#130d14` с `#e87ea1`.
+- Sakura Miku Light `#fff5f8` с `#cc4477`.
+- Snow Miku Dark `#031121` с `#95caed`. Ледяной голубой в зимней ночи.
+- Snow Miku Light `#f5faff` с `#05598b`.
+- Kasane Teto Dark `#160e0e` с `#da646a`. Красные дрели на тёплом чёрном.
+- Kasane Teto Light `#fff7f6` с `#c13c51`.
 
-Контраст я проверяю скриптом `tools/check-themes.mjs`, а не на глаз.
+Цвета Snow Miku и Kasane Teto сняты с официальных артов. Цвета подсветки в каждом образе сочные настолько, насколько позволяет их тон, без потери контраста: от 4.5:1 на светлом фоне и до 7:1 на тёмном. Контраст я проверяю скриптом `tools/check-themes.mjs` и тестами палитры, а не на глаз.
+
+Как палитра превращается в порты, описано в [palette/README.md](palette/README.md): правишь шаблон, запускаешь `bun run build:palette`, и правка попадает во все образы всех приложений.
 
 Сборка простая. Bun, TypeScript и `archiver` в `tools/package.ts`, проверка в `tools/validate.ts`. Старался без магии.
 
@@ -40,7 +53,7 @@ CI на каждый пуш, релиз по тегу `v*`.
 | VS Code | `vsc/` | `dist/hatsune-miku-vsc-*.vsix` | Установить из VSIX |
 | Zed | `zed/` | `dist/zed-*.zip` | Распаковать архив, затем Zed → Install Dev Extension и выбрать папку. Скоро попробую публикацию в маркетплейс Zed. |
 | JetBrains | `jetbrains/` | `dist/jetbrains-*.zip` | Install Plugin from Disk. Есть обои: Settings → Appearance & Behavior → Hatsune Miku |
-| Neovim | `neovim/` | `dist/neovim-*.zip` | `:colorscheme hatsune-miku` |
+| Neovim | `neovim/` | `dist/neovim-*.zip` | `:colorscheme hatsune-miku` (или `snow-miku`, `kasane-teto`, с `-light` для светлых) |
 | Sublime | `sublime/` | `dist/sublime-*.zip` | Preferences → Color Scheme |
 | Notepad++ | `notepadpp/` | `dist/notepadpp-*.zip` | Опции → Импорт → Импортировать тему |
 
@@ -53,7 +66,7 @@ CI на каждый пуш, релиз по тегу `v*`.
 | Браузер | Папка | Файл | Как поставить |
 |---|---|---|---|
 | Chrome, Helium, любой Chromium | `browser/` | `dist/hatsune-miku-editor-chromium-*.zip` | Распаковать, `chrome://extensions` → Загрузить распакованное |
-| Цвета рамки Chromium | `browser/` | `dist/hatsune-miku-colorful-browser-*.zip` | По одному на вариант, тоже распакованным |
+| Цвета рамки Chromium | `browser/` | `dist/hatsune-miku-colorful-browser-*.zip` | По одному на образ, тоже распакованным |
 | Firefox | `browser/` | `dist/hatsune-miku-editor-firefox-*.zip` | `about:debugging` → Загрузить временное дополнение |
 | Zen | `browser/zen/` | `dist/hatsune-miku-zen-mod-*.zip` | См. `browser/zen/readme.md` |
 
@@ -61,22 +74,31 @@ CI на каждый пуш, релиз по тегу `v*`.
 
 ## Telegram
 
-Палитра добралась и до чатов. Значение есть у каждого цветового ключа Telegram: 812 на Android, 586 на Desktop, так что ничего не откатывается к стоковому синему. Фон чата это нарисованный арт с Мику из плагина JetBrains, в цветах каждого варианта.
+Палитра добралась и до чатов. Значение есть у каждого цветового ключа Telegram: 812 на Android, 586 на Desktop, так что ничего не откатывается к стоковому синему. Фон чата это нарисованный арт с Мику из плагина JetBrains, в цветах каждого образа.
 
 | Приложение | Файл | Как поставить |
 |---|---|---|
-| Telegram для Android | `dist/HatsuneMiku*.attheme` | Отправить в Избранное, тапнуть, Применить |
-| Telegram Desktop | `dist/HatsuneMiku*.tdesktop-theme` | Открыть файл в Telegram, Применить |
+| Telegram для Android | `dist/*.attheme` | Отправить в Избранное, тапнуть, Применить |
+| Telegram Desktop | `dist/*.tdesktop-theme` | Открыть файл в Telegram, Применить |
 
 Облачные темы из раздела [Скачать](#скачать) это те же файлы. Их на каждом релизе синхронизирует [telegram-theme-action](https://github.com/Vadim-Khristenko/telegram-theme-action), список лежит в `tools/telegram/cloud.yml`.
 
 Собрать: `bun run build:telegram`. Генератор лежит в `tools/telegram/`. Он берёт дневную и ночную темы самого Telegram и перекрашивает их, так что расстановка света и тени остаётся телеграмовской, а каждый цвет приходит из палитры. Когда в Telegram появляются новые ключи, `bun run sync:telegram` снимает их заново.
 
+## Spotify
+
+Spotify получает палитру через [Spicetify](https://spicetify.app): восемь цветовых схем в `spicetify/HatsuneMiku/color.ini`, сгенерированных из палитры, и один `user.css`, который берёт каждый цвет из выбранной схемы. Бирюзовое свечение на кнопке и прогрессе, второй цвет образа на лайках и шаффле, а собственные поверхности Spotify держатся палитры и не перекрашиваются под обложки.
+
+| Приложение | Файл | Установка |
+|---|---|---|
+| Spotify | `dist/spicetify-*.zip` | Распаковать в папку Themes Spicetify, `spicetify config current_theme HatsuneMiku color_scheme MikuDark`, `spicetify apply`. Подробности и решения проблем в `spicetify/README.md` |
+
 ## Разработка
 
 ```bash
 bun install --frozen-lockfile
-bun run check
+bun run build:palette   # все порты всех образов из palette/templates
+bun run check           # дрейф палитры, контраст, JSON, тесты
 bun run validate
 bun run package:all
 ```
@@ -89,7 +111,7 @@ bun run package:all
 
 ## Участие
 
-См. `CONTRIBUTING.md`. Держите `vsc/themes/*.json` как канон и прогоняйте `bun run validate` перед PR.
+См. `CONTRIBUTING.md`. Цвета меняйте в `palette/templates` или `tools/palette`, а не в сгенерированных файлах портов, потом `bun run build:palette` и `bun run validate` перед PR.
 
 ## Автор
 
