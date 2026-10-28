@@ -1,13 +1,13 @@
 {
   "ports": {
-    "vsc": "0.2.3",
-    "zed": "0.2.3",
-    "jetbrains": "0.2.3",
-    "neovim": "0.2.3",
-    "sublime": "0.2.3",
-    "notepadpp": "0.2.3",
-    "browser": "0.2.3",
-    "telegram": "0.1.0",
-    "spicetify": "0.0.0"
+    "vsc": "0.4.0",
+    "zed": "0.4.0",
+    "jetbrains": "0.4.0",
+    "neovim": "0.4.0",
+    "sublime": "0.4.0",
+    "notepadpp": "0.4.0",
+    "browser": "0.4.0",
+    "telegram": "0.4.0",
+    "spicetify": "0.4.0"
   }
 }
