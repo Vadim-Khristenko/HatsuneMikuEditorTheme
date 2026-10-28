@@ -93,6 +93,24 @@ async function packageNotepadpp() {
   await zipFiles(files, `${outDir}/notepadpp-${v("notepadpp")}.zip`); console.log(`→ ${outDir}/notepadpp-${v("notepadpp")}.zip`);
 }
 
+/** Spicetify: the zip holds HatsuneMiku/ so it unpacks straight into the Themes folder. */
+async function packageSpicetify() {
+  if (!existsSync(outDir)) mkdirSync(outDir, { recursive: true });
+  const out = `${outDir}/spicetify-${v("spicetify")}.zip`;
+  await new Promise<void>((resolve, reject) => {
+    const output = createWriteStream(out);
+    const archive = archiver("zip", { zlib: { level: 9 } });
+    output.on("close", () => resolve());
+    archive.on("error", reject);
+    archive.pipe(output);
+    archive.directory("spicetify/HatsuneMiku/", "HatsuneMiku");
+    archive.file("spicetify/README.md", { name: "HatsuneMiku/README.md" });
+    archive.file("LICENSE", { name: "HatsuneMiku/LICENSE" });
+    archive.finalize();
+  });
+  console.log(`→ ${out}`);
+}
+
 const target = process.argv[2] ?? "all";
 switch (target) {
   case "vsc": await packageVSC(); break;
@@ -103,6 +121,7 @@ switch (target) {
   case "notepadpp": await packageNotepadpp(); break;
   case "browser": await packageBrowser(); break;
   case "telegram": await packageTelegram(); break;
+  case "spicetify": await packageSpicetify(); break;
   case "all":
     try { await packageVSC(); } catch(e){ console.error(e); console.log("vsc failed, continuing..."); }
     await packageZed();
@@ -111,6 +130,7 @@ switch (target) {
     await packageSublime();
     await packageNotepadpp();
     await packageTelegram();
+    await packageSpicetify();
     await packageBrowser();
     break;
   default: console.error(`unknown target ${target}`); process.exit(1);
