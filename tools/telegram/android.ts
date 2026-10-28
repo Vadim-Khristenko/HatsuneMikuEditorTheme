@@ -1,6 +1,7 @@
 import { argbHex, parseArgb, withAlpha, type Rgba } from "./color";
 import { KEYS } from "./keys";
-import { selectedOf, type Palette } from "./palette";
+import { contrast } from "./color";
+import { rampStep, selectedOf, type Palette } from "./palette";
 import { familyOf, isColored, LIGHT_ONLY, position, remap, type Axis } from "./remap";
 
 const keys = KEYS.android.keys;
@@ -21,6 +22,9 @@ export function androidRoles(p: Palette): Record<string, Rgba> {
   const a = (c: Rgba, alpha: number) => withAlpha(c, alpha);
   const inBubble = p.raised;
   const outBubble = p.secondary;
+  // A seekbar track: the faint gray, or the first neutral toward the background the accent fill holds 2:1 on.
+  let track = p.faint;
+  for (let s = 1; contrast(p.accent, track) < 2 && s < p.ramp.length; s++) track = rampStep(p, p.faint, -s);
   const peer = { Red: p.red, Orange: p.orange, Violet: p.violet, Green: p.green, Cyan: p.cyan, Blue: p.blue, Pink: p.pink };
 
   const r: Record<string, Rgba> = {
@@ -163,18 +167,18 @@ export function androidRoles(p: Palette): Record<string, Rgba> {
     chat_outFileProgressSelected: outBubble,
     chat_outAudioProgress: outBubble,
     chat_outAudioSelectedProgress: outBubble,
-    chat_inAudioSeekbar: p.faint,
+    chat_inAudioSeekbar: track,
     chat_inAudioCacheSeekbar: p.muted,
     chat_inAudioSeekbarFill: p.accent,
     chat_inAudioSeekbarSelected: p.accent,
-    chat_outAudioSeekbar: p.faint,
+    chat_outAudioSeekbar: track,
     chat_outAudioCacheSeekbar: p.muted,
     chat_outAudioSeekbarFill: p.accent,
     chat_outAudioSeekbarSelected: p.accent,
-    chat_inVoiceSeekbar: p.faint,
+    chat_inVoiceSeekbar: track,
     chat_inVoiceSeekbarFill: p.accent,
     chat_inVoiceSeekbarSelected: p.accent,
-    chat_outVoiceSeekbar: p.faint,
+    chat_outVoiceSeekbar: track,
     chat_outVoiceSeekbarFill: p.accent,
     chat_outVoiceSeekbarSelected: p.accent,
 
