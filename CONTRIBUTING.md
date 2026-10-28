@@ -15,14 +15,14 @@ bun run package:all
 
 ## Palette Contract
 
-Canonical palette is `vsc/themes/mikuV1-dark.json` (and 3 variants). All ports must use exact hex values from the spec `docs/superpowers/specs/2026-08-24-editor-themes-design.md` (ignored in git, see local docs). Terminal ANSI taken verbatim from VSC.
+The palette lives in `tools/palette` and `palette/`; `palette/README.md` explains where every color comes from. `palette/templates` holds the hand-written v1 files of the four original looks, and `bun run build:palette` writes every port of all eight looks from them: VS Code, Zed, Neovim, Sublime Text, Notepad++, JetBrains (`tools/jb-palette.json`, then the JetBrains generators), the browser palettes, Telegram and the Spicetify schemes. Generated files are never edited by hand: `bun run check` fails when one differs from what the templates give.
 
-## Adding a Theme Variant
+## Changing Colors or Adding a Look
 
-1. Edit `vsc/themes/*.json` and `zed/themes/*.json`
-2. Run `bun run check` — must be `ALL PASS`
-3. Update generators in `tools/` if adding new editor
-4. Keep JSON formatting (2 spaces), describe visual intent in PR
+1. Edit a template in `palette/templates`, or the rules in `tools/palette/looks.ts` (a new look is one entry in `LOOKS` plus its names in `tools/palette/names.ts`).
+2. Run `bun run build:palette`, then `bun run check`: it must end in `ALL PASS` and green tests.
+3. A new look also needs a Telegram cloud theme in `tools/telegram/cloud.yml`; check the name is free at `t.me/addtheme/<name>` first.
+4. Describe the visual intent in the PR, a screenshot helps.
 
 ## Releasing
 
@@ -30,7 +30,7 @@ Every port has its own version in `release.json`, and a release bumps only the p
 
 1. Write [Conventional Commits](https://www.conventionalcommits.org/) in English: `feat(browser): ...`, `fix(telegram): ...`. A port changes when a commit touches its paths (see `tools/release/ports.ts`); `feat` bumps minor, `fix`, `perf`, `refactor`, `style`, `ui` and `docs` bump patch, `chore`, `ci`, `test` and `release` ship nothing. Bullets in the commit body become the details of the changelog entry, so write them for users.
 2. `bun run release:plan` shows what the next release bumps and why.
-3. `bun run release:prepare` bumps those versions in every file of the port, writes the section of each port's `CHANGELOG.md` (anything waiting under `[Unreleased]` joins it) and the JetBrains change notes.
+3. `bun run release:prepare` (or `--version X.Y.Z` to put every port on one version) bumps those versions in every file of the port, writes the section of each port's `CHANGELOG.md` (anything waiting under `[Unreleased]` joins it) and the JetBrains change notes.
 4. Review, commit as `release: X.Y.Z`, tag `vX.Y.Z`, push the tag.
 
 CI builds every port for the GitHub release, but publishes to Open VSX, JetBrains Marketplace and addons.mozilla.org only the ports whose version moved. The release notes come from the changelogs. Firefox goes to the listed channel with the changelog as release notes and its source code; once Mozilla signs it, the signed `.xpi` joins the release. Secrets: `OVSX_TOKEN`, `JB_TOKEN`, `FIREFOX_JWT_USER` and `FIREFOX_JWT_TOKEN` (the AMO API key and secret).
@@ -43,4 +43,4 @@ CI builds every port for the GitHub release, but publishes to Open VSX, JetBrain
 
 ## Author
 
-Vadim Khristenko — `vadim@vai-rice.space`
+Vadim Khristenko · `vadim@vai-rice.space`
