@@ -20,3 +20,23 @@
   title: Sakura Miku Light
 - file: dist/HatsuneMikuSakuraLight.tdesktop-theme
   slug: SakuraMikuEditorLight
+- file: dist/SnowMikuDark.attheme
+  slug: SnowMikuEditorDark
+  title: Snow Miku Dark
+- file: dist/SnowMikuDark.tdesktop-theme
+  slug: SnowMikuEditorDark
+- file: dist/SnowMikuLight.attheme
+  slug: SnowMikuEditorLight
+  title: Snow Miku Light
+- file: dist/SnowMikuLight.tdesktop-theme
+  slug: SnowMikuEditorLight
+- file: dist/KasaneTetoDark.attheme
+  slug: KasaneTetoEditorDark
+  title: Kasane Teto Dark
+- file: dist/KasaneTetoDark.tdesktop-theme
+  slug: KasaneTetoEditorDark
+- file: dist/KasaneTetoLight.attheme
+  slug: KasaneTetoEditorLight
+  title: Kasane Teto Light
+- file: dist/KasaneTetoLight.tdesktop-theme
+  slug: KasaneTetoEditorLight
