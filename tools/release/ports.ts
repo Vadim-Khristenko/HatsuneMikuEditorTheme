@@ -85,7 +85,7 @@ export const PORTS: Port[] = [
   {
     id: "telegram",
     title: "Telegram",
-    paths: ["tools/telegram/android.ts", "tools/telegram/desktop.ts", "tools/telegram/art.ts", "tools/telegram/palette.ts", "tools/telegram/remap.ts", "tools/telegram/color.ts", "tools/telegram/keys.json", "tools/telegram/png.ts", "tools/telegram/zip.ts", "tools/telegram/build.ts", "vsc/themes", "tools/jb-palette.json"],
+    paths: ["tools/telegram/android.ts", "tools/telegram/desktop.ts", "tools/telegram/art.ts", "tools/telegram/palette.ts", "tools/telegram/remap.ts", "tools/telegram/color.ts", "tools/telegram/keys.json", "tools/telegram/png.ts", "tools/telegram/zip.ts", "tools/telegram/build.ts", "tools/telegram/cloud.yml", "vsc/themes", "tools/jb-palette.json"],
     versions: [],
     changelog: "tools/telegram/CHANGELOG.md",
     stores: [],
