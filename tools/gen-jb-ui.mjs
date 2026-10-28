@@ -1,15 +1,10 @@
 import { readFileSync, writeFileSync } from "node:fs";
 
 const P = JSON.parse(readFileSync("tools/jb-palette.json", "utf8"));
-const extra = {
-  MD: { surface: "#11121f", hover: "#00e5d6", warn: "#ffd580", info: "#86a8ff" },
-  ML: { surface: "#f0fafa", hover: "#00a89e", warn: "#b07800", info: "#2255aa" },
-  SD: { surface: "#1a1020", hover: "#ff99bb", warn: "#ffcc88", info: "#99aaff" },
-  SL: { surface: "#fff5f8", hover: "#ee6699", warn: "#996600", info: "#2244aa" },
-};
 
 for (const code of Object.keys(P)) {
-  const t = { ...P[code], ...extra[code] };
+  // surface, hover, warn and info live in jb-palette.json with the rest, written by tools/palette/build.ts.
+  const t = P[code];
   const path = `jetbrains/src/main/resources/themes/${t.file}.theme.json`;
   const j = JSON.parse(readFileSync(path, "utf8"));
   const a = t.accent, b = t.border, alt = t.alt, elev = t.elevated, fg = t.fg;
