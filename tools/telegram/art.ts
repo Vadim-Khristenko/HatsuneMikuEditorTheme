@@ -59,9 +59,10 @@ function ellipse(cx: number, cy: number, a: number, b: number, deg: number, colo
   };
 }
 
-/** The second color of the art: the editor's keyword red for Miku, the Miku teal for Sakura. */
+/** The second color of the art: red for Miku and Snow Miku, the Miku teal for Sakura, Teto's gold. */
 export function artColors(p: Palette): { accent: Rgba; accent2: Rgba } {
-  return { accent: p.accent, accent2: p.variant.id.startsWith("miku") ? p.red : p.green };
+  const second = { miku: p.red, snow: p.red, sakura: p.green, teto: p.yellow }[p.variant.family];
+  return { accent: p.accent, accent2: second };
 }
 
 /** Same proportions as MikuArt.render on a wide screen; a tall screen gets the tails across its middle. */
