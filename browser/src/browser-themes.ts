@@ -1,4 +1,4 @@
-import { alpha, hexToRgb, PALETTES, type Palette, type ThemeId } from "./palette";
+import { alpha, FAMILIES, type Family, hexToRgb, PALETTES, type Palette, THEME_IDS, type ThemeId } from "./palette";
 
 /** `theme` block of a Chromium theme manifest (HatsuneMikuEditor Colorful Browser). */
 export function chromeThemeColors(p: Palette): Record<string, [number, number, number]> {
@@ -93,12 +93,8 @@ export function firefoxTheme(p: Palette) {
   };
 }
 
-const ZEN_VARIANTS: { value: string; label: string; id: ThemeId }[] = [
-  { value: "miku-dark", label: "Miku Dark", id: "miku-dark" },
-  { value: "miku-light", label: "Miku Light", id: "miku-light" },
-  { value: "sakura-dark", label: "Sakura Dark", id: "sakura-dark" },
-  { value: "sakura-light", label: "Sakura Light", id: "sakura-light" },
-];
+const ZEN_VARIANTS: { value: string; label: string; id: ThemeId }[] = THEME_IDS.map((id) => ({ value: id, label: PALETTES[id].name, id }));
+const FAMILY_LABEL: Record<Family, string> = { miku: "Miku", sakura: "Sakura", snow: "Snow Miku", teto: "Kasane Teto" };
 
 function zenBlock(p: Palette): string {
   const v: [string, string][] = [
@@ -136,7 +132,7 @@ export function zenChromeCss(): string {
   for (const z of ZEN_VARIANTS) {
     parts.push(`@media (-moz-pref("mod.hatsunemiku.variant", "${z.value}")) {\n${zenBlock(PALETTES[z.id])}\n}`);
   }
-  for (const fam of ["miku", "sakura"] as const) {
+  for (const fam of FAMILIES) {
     parts.push(`@media (-moz-pref("mod.hatsunemiku.variant", "${fam}-auto")) and (prefers-color-scheme: dark) {\n${zenBlock(PALETTES[`${fam}-dark`])}\n}`);
     parts.push(`@media (-moz-pref("mod.hatsunemiku.variant", "${fam}-auto")) and (prefers-color-scheme: light) {\n${zenBlock(PALETTES[`${fam}-light`])}\n}`);
   }
@@ -151,8 +147,7 @@ export function zenPreferences() {
       type: "dropdown",
       defaultValue: "miku-auto",
       options: [
-        { label: "Miku, follow system", value: "miku-auto" },
-        { label: "Sakura, follow system", value: "sakura-auto" },
+        ...FAMILIES.map((f) => ({ label: `${FAMILY_LABEL[f]}, follow system`, value: `${f}-auto` })),
         ...ZEN_VARIANTS.map(({ label, value }) => ({ label, value })),
       ],
     },
