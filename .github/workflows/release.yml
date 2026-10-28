@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        pkg: [vsc, zed, jetbrains, neovim, sublime, notepadpp, telegram, browser]
+        pkg: [vsc, zed, jetbrains, neovim, sublime, notepadpp, telegram, spicetify, browser]
     steps:
       - uses: actions/checkout@v7
       - uses: oven-sh/setup-bun@v2
