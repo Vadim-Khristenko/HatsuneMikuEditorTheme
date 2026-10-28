@@ -1,0 +1,138 @@
+{
+  "miku-dark": {
+    "roles": {
+      "bg": "#0d0e1a",
+      "alt": "#0a0b18",
+      "surface": "#11121f",
+      "raised": "#161728",
+      "hover": "#161728",
+      "line": "#1e2035",
+      "secondary": "#252840",
+      "faint": "#4a5280",
+      "muted": "#7079a8",
+      "fg": "#ccd6f6",
+      "accent": "#39c5bb",
+      "onAccent": "#0d0e1a",
+      "accentHover": "#00e5d6",
+      "red": "#ff6e8a",
+      "orange": "#ffb86c",
+      "yellow": "#ffd580",
+      "green": "#39c5bb",
+      "cyan": "#00e5d6",
+      "blue": "#86a8ff",
+      "violet": "#d4a0ff",
+      "pink": "#ff8fa3"
+    },
+    "code": {
+      "keyword": "#ff6e8a",
+      "operator": "#86a8ff",
+      "constant": "#d4a0ff",
+      "string": "#ffd580",
+      "number": "#d4a0ff",
+      "comment": "#4a5280",
+      "function": "#39c5bb"
+    }
+  },
+  "miku-light": {
+    "roles": {
+      "bg": "#f0fafa",
+      "alt": "#eaf8f7",
+      "surface": "#f0fafa",
+      "raised": "#ffffff",
+      "hover": "#d8f0ee",
+      "line": "#c8e8e6",
+      "secondary": "#d8f0ee",
+      "faint": "#88b0ae",
+      "muted": "#4a7070",
+      "fg": "#1a3a3a",
+      "accent": "#007a72",
+      "onAccent": "#ffffff",
+      "accentHover": "#00a89e",
+      "red": "#cc2244",
+      "orange": "#b07800",
+      "yellow": "#b07800",
+      "green": "#007a72",
+      "cyan": "#339988",
+      "blue": "#2255aa",
+      "violet": "#8833bb",
+      "pink": "#cc4466"
+    },
+    "code": {
+      "keyword": "#cc2244",
+      "operator": "#2255aa",
+      "constant": "#8833bb",
+      "string": "#b07800",
+      "number": "#8833bb",
+      "comment": "#88b0ae",
+      "function": "#007a72"
+    }
+  },
+  "sakura-dark": {
+    "roles": {
+      "bg": "#130d14",
+      "alt": "#100b12",
+      "surface": "#1a1020",
+      "raised": "#221428",
+      "hover": "#1e1228",
+      "line": "#2a1a2e",
+      "secondary": "#2e1c38",
+      "faint": "#6a4860",
+      "muted": "#9a7090",
+      "fg": "#f0d6e8",
+      "accent": "#e87ea1",
+      "onAccent": "#130d14",
+      "accentHover": "#ff99bb",
+      "red": "#ff5577",
+      "orange": "#ffcc88",
+      "yellow": "#ffcc88",
+      "green": "#39c5bb",
+      "cyan": "#88ddcc",
+      "blue": "#99aaff",
+      "violet": "#bbccff",
+      "pink": "#ff99bb"
+    },
+    "code": {
+      "keyword": "#ff7799",
+      "operator": "#e87ea1",
+      "constant": "#ffaacc",
+      "string": "#ffcc88",
+      "number": "#ffaacc",
+      "comment": "#6a4860",
+      "function": "#39c5bb"
+    }
+  },
+  "sakura-light": {
+    "roles": {
+      "bg": "#fff5f8",
+      "alt": "#fdeaf0",
+      "surface": "#fff5f8",
+      "raised": "#ffffff",
+      "hover": "#f5d8e4",
+      "line": "#f0d0dc",
+      "secondary": "#f5d8e4",
+      "faint": "#ddb0c0",
+      "muted": "#7a4460",
+      "fg": "#3a1428",
+      "accent": "#cc4477",
+      "onAccent": "#ffffff",
+      "accentHover": "#ee6699",
+      "red": "#cc2244",
+      "orange": "#996600",
+      "yellow": "#996600",
+      "green": "#227766",
+      "cyan": "#226655",
+      "blue": "#2244aa",
+      "violet": "#4466cc",
+      "pink": "#ee3366"
+    },
+    "code": {
+      "keyword": "#cc2244",
+      "operator": "#2244aa",
+      "constant": "#aa2255",
+      "string": "#996600",
+      "number": "#aa2255",
+      "comment": "#c088a0",
+      "function": "#227766"
+    }
+  }
+}
