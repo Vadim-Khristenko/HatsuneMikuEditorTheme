@@ -1,0 +1,22 @@
+# Cloud themes on Telegram, kept in sync by Vadim-Khristenko/telegram-theme-action.
+# One slug holds every format, so one t.me/addtheme link works on Android and Desktop.
+- file: dist/HatsuneMikuDark.attheme
+  slug: HatsuneMikuEditorDark
+  title: Hatsune Miku Dark
+- file: dist/HatsuneMikuDark.tdesktop-theme
+  slug: HatsuneMikuEditorDark
+- file: dist/HatsuneMikuLight.attheme
+  slug: HatsuneMikuEditorLight
+  title: Hatsune Miku Light
+- file: dist/HatsuneMikuLight.tdesktop-theme
+  slug: HatsuneMikuEditorLight
+- file: dist/HatsuneMikuSakuraDark.attheme
+  slug: SakuraMikuEditorDark
+  title: Sakura Miku Dark
+- file: dist/HatsuneMikuSakuraDark.tdesktop-theme
+  slug: SakuraMikuEditorDark
+- file: dist/HatsuneMikuSakuraLight.attheme
+  slug: SakuraMikuEditorLight
+  title: Sakura Miku Light
+- file: dist/HatsuneMikuSakuraLight.tdesktop-theme
+  slug: SakuraMikuEditorLight
