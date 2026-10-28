@@ -19,16 +19,16 @@
     "keyword": "#ff7799",
     "operator": "#e87ea1",
     "fn": "#39c5bb",
-    "str": "#ffcc88",
+    "str": "#ffb091",
     "escape": "#ff99bb",
     "num": "#ffaacc",
-    "type": "#99aaff",
+    "type": "#8597ff",
     "prop": "#d4b0cc",
-    "param": "#e8c8b0",
+    "param": "#ddb4ae",
     "builtin": "#ff99bb",
     "attr": "#ffaacc",
-    "decor": "#ffcc88",
-    "err": "#ff5577"
+    "decor": "#ffb091",
+    "err": "#ff5677"
   },
   "globals": {
     "background": "var(bg)",

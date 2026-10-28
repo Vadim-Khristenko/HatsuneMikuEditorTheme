@@ -1,0 +1,190 @@
+{
+  "name": "Snow Miku Dark",
+  "author": "Vadim Khristenko <vadim@vai-rice.space>",
+  "variables": {
+    "bg": "#031121",
+    "alt": "#010d1c",
+    "surface": "#061626",
+    "elevated": "#0b1c2c",
+    "linehl": "#061a2b",
+    "border": "#172839",
+    "fg": "#cce4fe",
+    "muted": "#738fad",
+    "faint": "#4a5d71",
+    "linenr": "#384f66",
+    "accent": "#95caed",
+    "hover": "#abddff",
+    "comment": "#4a5d71",
+    "comment_doc": "#5d7389",
+    "keyword": "#ff6d89",
+    "operator": "#759aff",
+    "fn": "#95caed",
+    "str": "#ffbf12",
+    "escape": "#ff708e",
+    "num": "#cb87ff",
+    "type": "#759aff",
+    "prop": "#98b3fc",
+    "param": "#e2ad81",
+    "builtin": "#ff708e",
+    "attr": "#cb87ff",
+    "decor": "#ffbf12",
+    "err": "#ff6d89"
+  },
+  "globals": {
+    "background": "var(bg)",
+    "foreground": "var(fg)",
+    "caret": "#95caed",
+    "invisibles": "#4a5d71",
+    "line_highlight": "var(linehl)",
+    "selection": "#95caed22",
+    "selection_border": "var(border)",
+    "find_highlight": "#95caed44",
+    "find_highlight_foreground": "#031121",
+    "gutter": "var(bg)",
+    "gutter_foreground": "var(linenr)",
+    "gutter_foreground_highlight": "#95caed",
+    "guide": "var(border)",
+    "active_guide": "#95caed55",
+    "stack_guide": "var(border)",
+    "brackets_options": "underline",
+    "brackets_foreground": "var(accent)",
+    "bracket_contents_options": "underline",
+    "bracket_contents_foreground": "var(accent)",
+    "tags_options": "stippled_underline",
+    "tags_foreground": "var(accent)",
+    "highlight": "#95caed44",
+    "shadow": "#03112140",
+    "shadow_width": "4"
+  },
+  "rules": [
+    {
+      "scope": "comment, punctuation.definition.comment",
+      "foreground": "var(comment)",
+      "font_style": "italic"
+    },
+    {
+      "scope": "comment.block.documentation, comment.line.documentation",
+      "foreground": "var(comment_doc)",
+      "font_style": "italic"
+    },
+    {
+      "scope": "string",
+      "foreground": "var(str)"
+    },
+    {
+      "scope": "constant.character.escape",
+      "foreground": "var(escape)"
+    },
+    {
+      "scope": "string.regexp",
+      "foreground": "var(hover)"
+    },
+    {
+      "scope": "constant.numeric, constant.language",
+      "foreground": "var(num)"
+    },
+    {
+      "scope": "constant.other.symbol",
+      "foreground": "var(accent)"
+    },
+    {
+      "scope": "keyword, storage",
+      "foreground": "var(keyword)"
+    },
+    {
+      "scope": "keyword.control.flow, keyword.control.return",
+      "foreground": "var(keyword)",
+      "font_style": "bold"
+    },
+    {
+      "scope": "keyword.operator",
+      "foreground": "var(operator)"
+    },
+    {
+      "scope": "entity.name.function, variable.function, support.function",
+      "foreground": "var(fn)"
+    },
+    {
+      "scope": "support.function.builtin",
+      "foreground": "var(hover)",
+      "font_style": "italic"
+    },
+    {
+      "scope": "entity.name.function.decorator, punctuation.decorator",
+      "foreground": "var(decor)",
+      "font_style": "italic"
+    },
+    {
+      "scope": "variable.language",
+      "foreground": "var(builtin)",
+      "font_style": "italic"
+    },
+    {
+      "scope": "variable.parameter",
+      "foreground": "var(param)"
+    },
+    {
+      "scope": "entity.name.type, entity.name.class, support.class",
+      "foreground": "var(type)"
+    },
+    {
+      "scope": "support.type, storage.type",
+      "foreground": "var(type)"
+    },
+    {
+      "scope": "entity.name.tag",
+      "foreground": "var(keyword)"
+    },
+    {
+      "scope": "entity.other.attribute-name",
+      "foreground": "var(attr)"
+    },
+    {
+      "scope": "variable.other.member, variable.other.property, meta.object-literal.key",
+      "foreground": "var(prop)"
+    },
+    {
+      "scope": "punctuation, punctuation.definition.tag, punctuation.separator, meta.brace",
+      "foreground": "var(muted)"
+    },
+    {
+      "scope": "invalid, invalid.illegal",
+      "foreground": "var(err)"
+    },
+    {
+      "scope": "markup.heading",
+      "foreground": "var(accent)",
+      "font_style": "bold"
+    },
+    {
+      "scope": "markup.italic",
+      "font_style": "italic"
+    },
+    {
+      "scope": "markup.bold",
+      "font_style": "bold"
+    },
+    {
+      "scope": "markup.underline",
+      "font_style": "underline"
+    },
+    {
+      "scope": "string.other.link",
+      "foreground": "var(accent)",
+      "font_style": "underline"
+    },
+    {
+      "scope": "markup.raw",
+      "foreground": "var(num)"
+    },
+    {
+      "scope": "markup.quote",
+      "foreground": "var(muted)",
+      "font_style": "italic"
+    },
+    {
+      "scope": "punctuation.definition.list_item",
+      "foreground": "var(accent)"
+    }
+  ]
+}
