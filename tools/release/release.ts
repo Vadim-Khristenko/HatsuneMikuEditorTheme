@@ -3,7 +3,9 @@
 // their changelogs from those commits.
 //
 //   bun tools/release/release.ts plan                  what the next release would bump
-//   bun tools/release/release.ts prepare [--date D]    bump versions, write changelogs and change notes
+//   bun tools/release/release.ts prepare [--date D] [--version V]
+//                                                     bump versions, write changelogs and change notes;
+//                                                     --version puts every port on V (a release for everything)
 //   bun tools/release/release.ts check [--tag vX.Y.Z]  versions agree with release.json (and the tag)
 //   bun tools/release/release.ts changed --tag vX.Y.Z  JSON list of ports this tag releases
 //   bun tools/release/release.ts notes --tag vX.Y.Z    GitHub release notes for the tag
@@ -11,6 +13,7 @@
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { bumpOf, bumpVersion, htmlNotes, markdownSection, maxBump, type Bump, type Commit } from "./commits";
+import { LOOKS, rolesOf } from "../palette/looks";
 import { commitsTouching, previousTag, showAt } from "./git";
 import {
   PORTS, ROOT, portById, readRelease, readRootVersion, versionDrift, writeNativeVersions, writeRelease, writeRootVersion, type Port,
@@ -56,10 +59,14 @@ export function sectionOf(text: string, version: string): string | null {
   return m ? m[1].trim() : null;
 }
 
-function prepare(date: string): void {
+function prepare(date: string, version?: string): void {
   const p = plan();
   const release = readRelease();
-  const bumped = p.ports.filter((x) => x.bump);
+  if (version) {
+    for (const x of p.ports) x.to = version;
+    p.root.to = version;
+  }
+  const bumped = p.ports.filter((x) => (version ? x.from !== version : x.bump));
   if (!bumped.length) {
     console.log("nothing to release: no shipping commits since " + (p.tag ?? "the start"));
     return;
@@ -98,13 +105,17 @@ const INSTALL: Record<string, string> = {
   notepadpp: "Notepad++: `notepadpp-*.zip` → Settings → Import → Import style theme(s)",
   browser:
     "Browser: Chromium `hatsune-miku-editor-chromium-*.zip` → Load unpacked; frame colors `hatsune-miku-colorful-browser-*.zip`; Firefox from [addons.mozilla.org](https://addons.mozilla.org/firefox/addon/hatsunemikueditor/) or `hatsune-miku-editor-firefox-*.xpi`; Zen `hatsune-miku-zen-mod-*.zip`",
-  telegram: "Telegram: `HatsuneMiku*.attheme` for Android and `HatsuneMiku*.tdesktop-theme` for Desktop → open the file in Telegram, Apply",
+  telegram: "Telegram: one link per look on [the themes branch](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/tree/themes), or the `.attheme` for Android and `.tdesktop-theme` for Desktop → open the file in Telegram, Apply",
+  spicetify: "Spotify: `spicetify-*.zip` → unpack into the Spicetify Themes folder, then `spicetify config current_theme HatsuneMiku color_scheme MikuDark` and `spicetify apply`",
 };
+
+/** One line naming every look with its background and accent. */
+const looksLine = () => `${LOOKS.length} looks, one palette: ${LOOKS.map((l) => `${l.title} \`${rolesOf(l).bg}\`/\`${rolesOf(l).accent}\``).join(", ")}.`;
 
 function notes(tag: string): string {
   const changed = new Set(changedAt(tag));
   const ports = JSON.parse(showAt(tag, "release.json") ?? "null")?.ports ?? {};
-  const out = [`## Hatsune Miku themes ${tag.replace(/^v/, "")}`, "", "Four looks, one palette: Miku Dark `#0d0e1a`/`#39c5bb`, Miku Light `#f0fafa`/`#007a72`, Sakura Dark `#130d14`/`#e87ea1`, Sakura Light `#fff5f8`/`#cc4477`.", ""];
+  const out = [`## Hatsune Miku themes ${tag.replace(/^v/, "")}`, "", looksLine(), ""];
   for (const port of PORTS.filter((p) => changed.has(p.id))) {
     const v = ports[port.id];
     const text = showAt(tag, port.changelog);
@@ -136,7 +147,7 @@ if (import.meta.main) {
       break;
     }
     case "prepare":
-      prepare(arg("date") ?? new Date().toISOString().slice(0, 10));
+      prepare(arg("date") ?? new Date().toISOString().slice(0, 10), arg("version"));
       break;
     case "check": {
       const bad = versionDrift();
