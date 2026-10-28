@@ -121,7 +121,10 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           bun tools/release/hub.ts assets --dir dist --out /tmp/hub
-          bun tools/release/hub.ts notes --tag "$GITHUB_REF_NAME" > /tmp/hub.md
+          # Link only what the hub will hold: this release's builds plus what it already carries.
+          ls /tmp/hub > /tmp/have.txt
+          gh release view latest --json assets -q '.assets[].name' >> /tmp/have.txt 2>/dev/null || true
+          bun tools/release/hub.ts notes --tag "$GITHUB_REF_NAME" --have /tmp/have.txt > /tmp/hub.md
           title="Hatsune Miku themes: every app, newest build"
           if gh release view latest >/dev/null 2>&1; then
             gh release upload latest /tmp/hub/* --clobber
