@@ -1,0 +1,29 @@
+name: A new app in Miku style
+description: Ask for an app that does not have a Hatsune Miku theme yet.
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: The goal is any app, in a Miku-like style. Discord and Telegram for iOS are already planned.
+  - type: input
+    id: app
+    attributes:
+      label: App
+      placeholder: Obsidian, Windows Terminal, Discord...
+    validations:
+      required: true
+  - type: textarea
+    id: themes
+    attributes:
+      label: How does it take themes?
+      description: A link to its theme docs, a theme store, or a popular theme for it helps a lot.
+  - type: dropdown
+    id: looks
+    attributes:
+      label: Looks you would use
+      multiple: true
+      options:
+        - Hatsune Miku
+        - Sakura Miku
+        - Snow Miku
+        - Kasane Teto

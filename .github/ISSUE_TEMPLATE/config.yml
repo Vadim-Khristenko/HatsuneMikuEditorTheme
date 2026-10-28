@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Download a theme
+    url: https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/tree/themes
+    about: Every theme, ready to install, with install steps for each app.
