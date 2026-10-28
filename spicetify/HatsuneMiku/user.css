@@ -1,0 +1,511 @@
+/* Hatsune Miku for Spicetify, every look of palette 1.0.
+ * Colors come from the scheme picked in color.ini: MikuDark, SakuraLight, SnowDark, TetoDark and so on.
+ * Generated schemes live in color.ini; this file only says where each color goes. */
+
+:root {
+    --miku-teal: var(--spice-button);
+    --miku-teal-rgb: var(--spice-rgb-button);
+    --miku-pink: var(--spice-accent2);
+    --miku-pink-rgb: var(--spice-rgb-accent2);
+    --miku-dark: var(--spice-misc);
+    --miku-bg: var(--spice-main);
+    --miku-bg-light: var(--spice-card);
+    --miku-bg-lighter: var(--spice-misc);
+    --miku-on-accent: var(--spice-on-button);
+}
+
+/* ═══════════════════════════════════════════════
+ *  LAYOUT: borders, separators
+ * ═══════════════════════════════════════════════ */
+
+/* Sidebar: teal accent line */
+.Root__nav-bar {
+    border-right: 1px solid rgba(var(--miku-teal-rgb), 0.12) !important;
+}
+
+/* Now Playing bar: top glow line */
+.Root__now-playing-bar {
+    border-top: 1px solid rgba(var(--miku-teal-rgb), 0.2) !important;
+    background: linear-gradient(
+        180deg,
+        rgba(var(--miku-teal-rgb), 0.03) 0%,
+        var(--spice-player) 30%
+    ) !important;
+}
+
+/* Right sidebar */
+.Root__right-sidebar {
+    border-left: 1px solid rgba(var(--miku-teal-rgb), 0.12) !important;
+}
+
+/* Top bar: subtle gradient */
+.main-topBar-container {
+    background: linear-gradient(
+        180deg,
+        rgba(var(--miku-teal-rgb), 0.06) 0%,
+        transparent 100%
+    ) !important;
+}
+
+/* ═══════════════════════════════════════════════
+ *  SCROLLBAR
+ * ═══════════════════════════════════════════════ */
+
+::-webkit-scrollbar {
+    width: 6px !important;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--miku-bg-lighter) !important;
+    border-radius: 3px !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--miku-teal) !important;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent !important;
+}
+
+/* ═══════════════════════════════════════════════
+ *  PLAYER CONTROLS
+ * ═══════════════════════════════════════════════ */
+
+/* Play/Pause: teal glow */
+.player-controls__buttons button[data-testid="control-button-playpause"] {
+    filter: drop-shadow(0 0 8px rgba(var(--miku-teal-rgb), 0.4));
+    transition: filter 0.25s ease, transform 0.15s ease !important;
+}
+
+.player-controls__buttons button[data-testid="control-button-playpause"]:hover {
+    filter: drop-shadow(0 0 16px rgba(var(--miku-teal-rgb), 0.6));
+    transform: scale(1.08);
+}
+
+/* Shuffle/Repeat active: pink glow */
+.player-controls__buttons button[aria-checked="true"],
+.player-controls__buttons button.control-button--active {
+    color: var(--miku-pink) !important;
+    filter: drop-shadow(0 0 4px rgba(var(--miku-pink-rgb), 0.4));
+}
+
+/* Skip/Prev buttons hover */
+.player-controls__buttons button[data-testid="control-button-skip-forward"]:hover,
+.player-controls__buttons button[data-testid="control-button-skip-back"]:hover {
+    color: var(--miku-teal) !important;
+    transition: color 0.15s ease !important;
+}
+
+/* ── Progress bar ─────────────────────────────── */
+.playback-bar .progress-bar__slider {
+    background: var(--miku-teal) !important;
+    box-shadow: 0 0 8px rgba(var(--miku-teal-rgb), 0.5);
+}
+
+.playback-bar .progress-bar__fg {
+    background: linear-gradient(
+        90deg,
+        var(--miku-teal),
+        var(--miku-pink)
+    ) !important;
+}
+
+/* ── Volume slider ────────────────────────────── */
+.volume-bar .progress-bar__fg {
+    background: var(--miku-teal) !important;
+}
+
+.volume-bar .progress-bar__slider {
+    background: var(--miku-teal) !important;
+    box-shadow: 0 0 4px rgba(var(--miku-teal-rgb), 0.4);
+}
+
+/* ── Now Playing cover art ────────────────────── */
+.main-nowPlayingWidget-coverArt .cover-art img {
+    border-radius: 6px !important;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.4),
+                0 0 20px rgba(var(--miku-teal-rgb), 0.08) !important;
+    transition: box-shadow 0.3s ease, transform 0.3s ease !important;
+}
+
+.main-nowPlayingWidget-coverArt:hover .cover-art img {
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5),
+                0 0 30px rgba(var(--miku-teal-rgb), 0.15) !important;
+    transform: scale(1.03);
+}
+
+/* ── Now Playing song title ───────────────────── */
+.main-nowPlayingWidget-nowPlaying a:first-child {
+    color: var(--spice-text) !important;
+}
+
+.main-nowPlayingWidget-nowPlaying a:first-child:hover {
+    color: var(--miku-teal) !important;
+}
+
+/* ═══════════════════════════════════════════════
+ *  TRACK LIST
+ * ═══════════════════════════════════════════════ */
+
+/* Row hover: subtle teal */
+.main-trackList-trackListRow:hover {
+    background-color: rgba(var(--miku-teal-rgb), 0.05) !important;
+}
+
+/* Currently playing track: teal text */
+.main-trackList-trackListRow[aria-selected="true"] td:first-child {
+    color: var(--miku-teal) !important;
+}
+
+/* Playing animation icon color */
+.main-trackList-playingIcon {
+    color: var(--miku-teal) !important;
+}
+
+/* Track number on hover → play icon */
+.main-trackList-trackListRow:hover .main-trackList-rowPlayPauseButton {
+    color: var(--miku-teal) !important;
+}
+
+/* ═══════════════════════════════════════════════
+ *  CARDS (albums, playlists, artists)
+ * ═══════════════════════════════════════════════ */
+
+.main-card-card {
+    background: var(--miku-bg-light) !important;
+    border-radius: 8px !important;
+    transition: box-shadow 0.25s ease, transform 0.2s ease, background 0.2s ease !important;
+}
+
+.main-card-card:hover {
+    background: var(--miku-bg-lighter) !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(var(--miku-teal-rgb), 0.1) !important;
+    transform: translateY(-3px) !important;
+}
+
+/* Card play button: teal */
+.main-card-card button[data-testid="play-button"],
+.main-card-PlayButtonContainer button {
+    background-color: var(--miku-teal) !important;
+    transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+.main-card-card button[data-testid="play-button"]:hover,
+.main-card-PlayButtonContainer button:hover {
+    background-color: var(--miku-teal) !important;
+    transform: scale(1.06) !important;
+    box-shadow: 0 4px 12px rgba(var(--miku-teal-rgb), 0.4) !important;
+}
+
+/* ═══════════════════════════════════════════════
+ *  SIDEBAR / NAVIGATION
+ * ═══════════════════════════════════════════════ */
+
+/* Active nav link */
+.main-navBar-navBarLink--active,
+.main-navBar-navBarLink--active .main-navBar-navBarLinkContent {
+    color: var(--miku-teal) !important;
+}
+
+/* Sidebar playlist item hover */
+.main-rootlist-rootlistItem:hover {
+    background: rgba(var(--miku-teal-rgb), 0.06) !important;
+}
+
+/* Create playlist button */
+.main-createPlaylistButton-button:hover {
+    color: var(--miku-teal) !important;
+}
+
+/* Library filter chips */
+.x-filterBox-filterBoxButton {
+    border-radius: 16px !important;
+    transition: background-color 0.15s ease, color 0.15s ease !important;
+}
+
+.x-filterBox-filterBoxButton:hover {
+    background-color: rgba(var(--miku-teal-rgb), 0.12) !important;
+}
+
+.x-filterBox-filterBoxButton[aria-checked="true"] {
+    background-color: var(--miku-teal) !important;
+    color: var(--miku-on-accent) !important;
+}
+
+/* ═══════════════════════════════════════════════
+ *  BUTTONS
+ * ═══════════════════════════════════════════════ */
+
+/* Primary buttons (Follow, Save, etc.) */
+.main-buttonPrimary-buttonPrimary {
+    background-color: var(--miku-teal) !important;
+    border-radius: 20px !important;
+    transition: background-color 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease !important;
+}
+
+.main-buttonPrimary-buttonPrimary:hover {
+    background-color: var(--miku-dark) !important;
+    transform: scale(1.03);
+    box-shadow: 0 2px 8px rgba(var(--miku-teal-rgb), 0.3) !important;
+}
+
+/* Heart/Like button */
+button[data-testid="add-button"][aria-checked="true"],
+.main-addButton-active {
+    color: var(--miku-pink) !important;
+    filter: drop-shadow(0 0 4px rgba(var(--miku-pink-rgb), 0.4));
+}
+
+/* ═══════════════════════════════════════════════
+ *  SEARCH
+ * ═══════════════════════════════════════════════ */
+
+.x-searchInput-searchInputInput {
+    border-radius: 20px !important;
+    transition: box-shadow 0.2s ease !important;
+}
+
+.x-searchInput-searchInputInput:focus {
+    box-shadow: 0 0 0 2px rgba(var(--miku-teal-rgb), 0.4) !important;
+}
+
+/* Search category chips */
+.x-categoryCard-CategoryCard {
+    border-radius: 8px !important;
+    transition: transform 0.15s ease !important;
+}
+
+.x-categoryCard-CategoryCard:hover {
+    transform: scale(1.02) !important;
+}
+
+/* ═══════════════════════════════════════════════
+ *  PLAYLIST / ALBUM HEADER
+ * ═══════════════════════════════════════════════ */
+
+/* Header play button */
+.main-actionBar-ActionBar button[data-testid="play-button"] {
+    background-color: var(--miku-teal) !important;
+    transition: transform 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+.main-actionBar-ActionBar button[data-testid="play-button"]:hover {
+    transform: scale(1.06) !important;
+    box-shadow: 0 4px 16px rgba(var(--miku-teal-rgb), 0.45) !important;
+}
+
+/* Playlist description links */
+.main-entityHeader-metaData a {
+    color: var(--spice-subtext) !important;
+}
+
+.main-entityHeader-metaData a:hover {
+    color: var(--miku-teal) !important;
+}
+
+/* ═══════════════════════════════════════════════
+ *  CONTEXT MENU
+ * ═══════════════════════════════════════════════ */
+
+.main-contextMenu-menu {
+    background: var(--miku-bg-light) !important;
+    border: 1px solid rgba(var(--miku-teal-rgb), 0.12) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
+    backdrop-filter: blur(12px);
+}
+
+.main-contextMenu-menuItem:hover,
+.main-contextMenu-menuItem:focus {
+    background: rgba(var(--miku-teal-rgb), 0.1) !important;
+    color: var(--miku-teal) !important;
+}
+
+.main-contextMenu-menuItemButton:hover {
+    background: rgba(var(--miku-teal-rgb), 0.1) !important;
+    color: var(--miku-teal) !important;
+}
+
+/* ═══════════════════════════════════════════════
+ *  TOOLTIPS
+ * ═══════════════════════════════════════════════ */
+
+.main-contextMenu-tippy .tippy-content,
+[data-tippy-root] .tippy-box {
+    background: var(--miku-bg-light) !important;
+    border: 1px solid rgba(var(--miku-teal-rgb), 0.15) !important;
+    border-radius: 6px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* ═══════════════════════════════════════════════
+ *  BADGES & CHIPS
+ * ═══════════════════════════════════════════════ */
+
+/* "E" explicit badge */
+.main-tag-container {
+    background: rgba(var(--miku-pink-rgb), 0.15) !important;
+    color: var(--miku-pink) !important;
+    border-radius: 3px !important;
+}
+
+/* ═══════════════════════════════════════════════
+ *  LYRICS
+ * ═══════════════════════════════════════════════ */
+
+.lyrics-lyricsContainer-LyricsContainer {
+    background: transparent !important;
+}
+
+/* Active lyric line */
+.lyrics-lyricsContainer-LyricsLine-active {
+    color: var(--miku-teal) !important;
+    text-shadow: 0 0 20px rgba(var(--miku-teal-rgb), 0.3);
+}
+
+/* Inactive lyrics */
+.lyrics-lyricsContainer-LyricsLine-inactive {
+    color: rgba(var(--miku-teal-rgb), 0.35) !important;
+}
+
+/* ═══════════════════════════════════════════════
+ *  QUEUE PANEL
+ * ═══════════════════════════════════════════════ */
+
+.main-queue-queueHeader {
+    border-bottom: 1px solid rgba(var(--miku-teal-rgb), 0.1) !important;
+}
+
+/* ═══════════════════════════════════════════════
+ *  CONNECT BAR (device picker)
+ * ═══════════════════════════════════════════════ */
+
+.main-connectBar-connectBar {
+    background: linear-gradient(
+        90deg,
+        var(--miku-teal),
+        var(--miku-pink)
+    ) !important;
+    border-radius: 0 !important;
+}
+
+/* ═══════════════════════════════════════════════
+ *  ARTIST PAGE
+ * ═══════════════════════════════════════════════ */
+
+/* Monthly listeners text */
+.main-entityHeader-subtitle span {
+    color: var(--spice-subtext) !important;
+}
+
+/* Verified artist badge */
+.main-entityHeader-verifiedBadge svg {
+    fill: var(--miku-teal) !important;
+}
+
+/* ═══════════════════════════════════════════════
+ *  HOME PAGE
+ * ═══════════════════════════════════════════════ */
+
+/* Greeting text */
+.main-shelf-shelf h2 a {
+    transition: color 0.15s ease !important;
+}
+
+.main-shelf-shelf h2 a:hover {
+    color: var(--miku-teal) !important;
+}
+
+/* Recently played row - subtle hover */
+.main-shelf-shelf .main-card-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+/* ═══════════════════════════════════════════════
+ *  NOTIFICATION TOAST
+ * ═══════════════════════════════════════════════ */
+
+.main-toast-toast {
+    background: var(--miku-bg-light) !important;
+    border: 1px solid rgba(var(--miku-teal-rgb), 0.2) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* ═══════════════════════════════════════════════
+ *  DIALOG / MODAL
+ * ═══════════════════════════════════════════════ */
+
+.main-trackCreditsModal-container,
+[role="dialog"] > div {
+    background: var(--miku-bg) !important;
+    border: 1px solid rgba(var(--miku-teal-rgb), 0.15) !important;
+    border-radius: 12px !important;
+}
+
+/* ═══════════════════════════════════════════════
+ *  MISC
+ * ═══════════════════════════════════════════════ */
+
+/* Generic link hover */
+a:hover {
+    color: var(--miku-teal) !important;
+}
+
+/* Selection color */
+::selection {
+    background: rgba(var(--miku-teal-rgb), 0.3) !important;
+    color: var(--spice-text) !important;
+}
+
+/* Drag handle on reorderable lists */
+.main-trackList-trackListRowGrid [draggable="true"] {
+    cursor: grab;
+}
+
+/* Friend feed online dot */
+.main-buddyFeed-onlineIndicator {
+    background: var(--miku-teal) !important;
+}
+
+/* Loading spinner */
+.main-spinnerContainer-spinnerContainer svg circle {
+    stroke: var(--miku-teal) !important;
+}
+
+/* ═══════════════════════════════════════════════
+ *  PALETTE LOCK
+ *  Spotify's own surfaces and artwork tints, held to the scheme
+ * ═══════════════════════════════════════════════ */
+
+/* Encore surfaces that spicetify does not map */
+.encore-dark-theme,
+.encore-dark-theme .encore-base-set,
+.encore-light-theme,
+.encore-light-theme .encore-base-set {
+    --background-base: var(--spice-main) !important;
+    --background-highlight: var(--spice-misc) !important;
+    --background-press: var(--spice-highlight) !important;
+    --background-elevated-base: var(--spice-card) !important;
+    --background-elevated-highlight: var(--spice-misc) !important;
+    --background-elevated-press: var(--spice-highlight) !important;
+    --text-base: var(--spice-text) !important;
+    --text-subdued: var(--spice-subtext) !important;
+    --essential-base: var(--spice-text) !important;
+    --essential-subdued: var(--spice-button-disabled) !important;
+    --decorative-base: var(--spice-text) !important;
+    --decorative-subdued: var(--spice-misc) !important;
+}
+
+/* Home header: Spotify paints it with the top artwork color (grey, yellow, red...) */
+.main-view-container__scroll-node-child > main > div > div[style*="background-color"] {
+    background-color: rgba(var(--miku-teal-rgb), 0.22) !important;
+}
+
+/* Hover preview cards on shelves, also artwork-tinted */
+.main-view-container__scroll-node-child [data-encore-id="box"][style*="background-color"],
+.main-view-container__scroll-node-child [data-encore-id="box"] [style*="background-color"] {
+    background-color: var(--spice-card) !important;
+}
