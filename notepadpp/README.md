@@ -2,7 +2,7 @@
 
 [![CI](https://img.shields.io/github/actions/workflow/status/Vadim-Khristenko/HatsuneMikuEditorTheme/ci.yml?label=CI&labelColor=0d0e1a&color=39c5bb&style=for-the-badge)](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/actions/workflows/ci.yml)
 
-Notepad++ port — 4 themes, 21 lexers + Global Styles. Part of [HatsuneMikuEditorTheme](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme) monorepo. All themes are distributed under the **same MIT license** (root `LICENSE`).
+Notepad++ port: 8 themes, 21 lexers + Global Styles. Part of [HatsuneMikuEditorTheme](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme) monorepo. All themes are distributed under the **same MIT license** (root `LICENSE`).
 
 ## Variants
 
@@ -10,6 +10,10 @@ Notepad++ port — 4 themes, 21 lexers + Global Styles. Part of [HatsuneMikuEdit
 - Hatsune Miku Light (`HatsuneMikuLight.xml`)
 - Hatsune Miku Sakura Dark (`HatsuneMikuSakuraDark.xml`)
 - Hatsune Miku Sakura Light (`HatsuneMikuSakuraLight.xml`)
+- Snow Miku Dark (`SnowMikuDark.xml`)
+- Snow Miku Light (`SnowMikuLight.xml`)
+- Kasane Teto Dark (`KasaneTetoDark.xml`)
+- Kasane Teto Light (`KasaneTetoLight.xml`)
 
 Covers C++, Java, C#, Python, JavaScript, JSON, HTML, XML, CSS/SCSS, SQL, Bash, Ruby, PHP, Go, Rust, YAML, Markdown, INI, Makefile, Lua + Global Styles.
 
@@ -30,4 +34,4 @@ bun tools/package.ts notepadpp
 
 ## Author
 
-Vadim Khristenko — `vadim@vai-rice.space` — MIT
+Vadim Khristenko, `vadim@vai-rice.space`, MIT
