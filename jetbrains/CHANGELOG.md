@@ -5,6 +5,14 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-10-28
+
+### Added
+
+- Snow Miku and Kasane Teto with their own wallpaper art
+  - Four new themes with editor schemes; the drawn wallpaper paints itself in each look's accent and second color.
+  - More saturated syntax colors in the original looks, same backgrounds.
+
 ## [0.2.3] - 2026-10-20
 
 Up to this version every port was released together; see the [GitHub releases](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/releases).
