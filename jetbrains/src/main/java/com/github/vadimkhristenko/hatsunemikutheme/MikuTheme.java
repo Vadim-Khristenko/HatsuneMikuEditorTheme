@@ -6,12 +6,16 @@ import org.jetbrains.annotations.Nullable;
 
 import java.awt.Color;
 
-/** The four looks. Accents are the new tab's (browser/src/palette.ts); browser/test/palette-sync.test.ts keeps them equal. */
+/** The 8 looks. Accents are the new tab's (browser/src/palette.ts); browser/test/palette-sync.test.ts keeps them equal. */
 public enum MikuTheme {
-    MIKU_DARK("Hatsune Miku Dark", "miku-dark", true, 0x39c5bb, 0xff6e8a),
-    MIKU_LIGHT("Hatsune Miku Light", "miku-light", false, 0x007a72, 0xcc2244),
+    MIKU_DARK("Hatsune Miku Dark", "miku-dark", true, 0x39c5bb, 0xff6a88),
+    MIKU_LIGHT("Hatsune Miku Light", "miku-light", false, 0x007a72, 0xd40040),
     SAKURA_DARK("Hatsune Miku Sakura Dark", "sakura-dark", true, 0xe87ea1, 0x39c5bb),
-    SAKURA_LIGHT("Hatsune Miku Sakura Light", "sakura-light", false, 0xbd3b6e, 0x227766);
+    SAKURA_LIGHT("Hatsune Miku Sakura Light", "sakura-light", false, 0xbd3b6e, 0x007865),
+    SNOW_DARK("Snow Miku Dark", "snow-dark", true, 0x95caed, 0xefa7b5),
+    SNOW_LIGHT("Snow Miku Light", "snow-light", false, 0x05598b, 0xb8456a),
+    TETO_DARK("Kasane Teto Dark", "teto-dark", true, 0xda646a, 0xe3b56a),
+    TETO_LIGHT("Kasane Teto Light", "teto-light", false, 0xc13c51, 0x8f6420);
 
     public final String themeName;
     public final String id;

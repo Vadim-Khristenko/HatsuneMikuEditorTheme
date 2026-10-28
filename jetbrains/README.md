@@ -2,7 +2,7 @@
 
 [![CI](https://img.shields.io/github/actions/workflow/status/Vadim-Khristenko/HatsuneMikuEditorTheme/ci.yml?label=CI&labelColor=0d0e1a&color=39c5bb&style=for-the-badge)](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/actions/workflows/ci.yml)
 
-JetBrains port (IntelliJ IDEA, PyCharm, WebStorm, CLion, Rider and the rest), four looks and a wallpaper. Part of the [HatsuneMikuEditorTheme](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme) monorepo, MIT like everything there (root `LICENSE`).
+JetBrains port (IntelliJ IDEA, PyCharm, WebStorm, CLion, Rider and the rest), eight looks and a wallpaper. Part of the [HatsuneMikuEditorTheme](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme) monorepo, MIT like everything there (root `LICENSE`).
 
 Works on 2024.2 and newer.
 
@@ -12,6 +12,10 @@ Works on 2024.2 and newer.
 - **Miku Light** `#f0fafa` / `#007a72`
 - **Sakura Dark** `#130d14` / `#e87ea1`
 - **Sakura Light** `#fff5f8` / `#cc4477`
+- **Snow Miku Dark** `#031121` / `#95caed`
+- **Snow Miku Light** `#f5faff` / `#05598b`
+- **Kasane Teto Dark** `#160e0e` / `#da646a`
+- **Kasane Teto Light** `#fff7f6` / `#c13c51`
 
 ## Wallpaper
 
@@ -24,7 +28,7 @@ Works on 2024.2 and newer.
 | Opacity | 0 to 100 %, 12 is a quiet default that keeps code readable |
 | Fill and position | Scale to cover, tile, or as is, anchored to any corner or side |
 
-The drawn art is the one from the browser new tab: a sun, two twin tails and a thin third one, a staff with notes. It is painted for each of the four themes in its own colors and is drawn again when you switch themes. Under a theme that is not Hatsune Miku the art steps aside, your own picture stays.
+The drawn art is the one from the browser new tab: a sun, two twin tails and a thin third one, a staff with notes. It is painted for each of the eight looks in its own colors and is drawn again when you switch themes. Under a theme that is not one of these eight looks the art steps aside, your own picture stays.
 
 **View | Appearance | Hatsune Miku Wallpaper** turns it on and off from the menu or Find Action.
 
@@ -34,7 +38,7 @@ The plugin uses the IDE's own background slots, the same ones as View | Appearan
 
 1. Build: `bun run package:jetbrains`, the result is `dist/jetbrains-*.zip`
 2. IDE: Settings, Plugins, the gear, Install Plugin from Disk, select the zip
-3. Appearance, Theme: pick a Hatsune Miku variant
+3. Appearance, Theme: pick any of the eight looks
 
 Marketplace publishing via `JB_TOKEN` is optional (free, `plugins.jetbrains.com`).
 
