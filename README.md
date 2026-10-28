@@ -10,6 +10,12 @@ This repo holds all of them together. I keep the VS Code themes as the source of
 
 [Русская версия](README.ru.md)
 
+## Download
+
+Everything ready to install lives on the [`themes` branch](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/tree/themes): one folder per app, direct download links, install steps. Every release rebuilds it, so the links always give the newest build.
+
+On Telegram you can skip files altogether: open [Hatsune Miku Dark](https://t.me/addtheme/HatsuneMikuEditorDark), [Hatsune Miku Light](https://t.me/addtheme/HatsuneMikuEditorLight), [Sakura Miku Dark](https://t.me/addtheme/SakuraMikuEditorDark) or [Sakura Miku Light](https://t.me/addtheme/SakuraMikuEditorLight). One link works on Android and Desktop, and the theme updates itself with every release.
+
 ## What you get
 
 I built this around a single palette contract. Six ports grow from it. VS Code, Zed, JetBrains, Neovim, Sublime, Notepad++. Same colors, same intent.
@@ -62,6 +68,8 @@ Chats get the palette too. Every color key Telegram has gets a value: 812 on And
 | Telegram for Android | `dist/HatsuneMiku*.attheme` | Send it to Saved Messages, tap it, Apply |
 | Telegram Desktop | `dist/HatsuneMiku*.tdesktop-theme` | Open the file in Telegram, Apply |
 
+The cloud themes from [Download](#download) are the same files, kept in sync by [telegram-theme-action](https://github.com/Vadim-Khristenko/telegram-theme-action) on every release; the list is `tools/telegram/cloud.yml`.
+
 Build them with `bun run build:telegram`. The generator lives in `tools/telegram/`. It starts from Telegram's own day and night themes and recolors them, so the layout of light and shade stays Telegram's while every color comes from the palette. When Telegram adds keys, `bun run sync:telegram` takes a fresh snapshot of them.
 
 ## How to develop
@@ -85,4 +93,4 @@ See `CONTRIBUTING.md`. Keep `vsc/themes/*.json` canonical and run `bun run valid
 
 ## Author
 
-Vadim Khristenko — `vadim@vai-rice.space` — MIT — https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme
+Vadim Khristenko · `vadim@vai-rice.space` · MIT · https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme
