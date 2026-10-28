@@ -2,7 +2,7 @@
 
 [![CI](https://img.shields.io/github/actions/workflow/status/Vadim-Khristenko/HatsuneMikuEditorTheme/ci.yml?label=CI&labelColor=0d0e1a&color=39c5bb&style=for-the-badge)](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/actions/workflows/ci.yml)
 
-Sublime Text port (Build 3152+, `is_light` 4075+) — 4 color schemes. Part of [HatsuneMikuEditorTheme](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme) monorepo. All themes are distributed under the **same MIT license** (root `LICENSE`).
+Sublime Text port (Build 3152+, `is_light` 4075+): 8 color schemes. Part of [HatsuneMikuEditorTheme](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme) monorepo. All themes are distributed under the **same MIT license** (root `LICENSE`).
 
 ## Variants
 
@@ -10,6 +10,10 @@ Sublime Text port (Build 3152+, `is_light` 4075+) — 4 color schemes. Part of [
 - Hatsune Miku Light (`is_light: true`)
 - Hatsune Miku Sakura Dark
 - Hatsune Miku Sakura Light (`is_light: true`)
+- Snow Miku Dark
+- Snow Miku Light (`is_light: true`)
+- Kasane Teto Dark
+- Kasane Teto Light (`is_light: true`)
 
 Only editor colors are themed (no global UI chrome).
 
@@ -28,4 +32,4 @@ bun tools/package.ts sublime
 
 ## Author
 
-Vadim Khristenko — `vadim@vai-rice.space` — MIT
+Vadim Khristenko, `vadim@vai-rice.space`, MIT
