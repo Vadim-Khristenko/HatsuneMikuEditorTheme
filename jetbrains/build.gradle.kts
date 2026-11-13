@@ -54,7 +54,8 @@ intellijPlatform {
     pluginVerification {
         ides {
             create(IntelliJPlatformType.IntellijIdeaCommunity, providers.gradleProperty("verifyOldest"))
-            create(IntelliJPlatformType.IntellijIdeaCommunity, providers.gradleProperty("verifyNewest"))
+            // From 2025.3 IntelliJ IDEA ships as one distribution, without a separate Community build.
+            create(IntelliJPlatformType.IntellijIdea, providers.gradleProperty("verifyNewest"))
         }
         failureLevel.set(
             listOf(
