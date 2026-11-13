@@ -5,6 +5,14 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+## [0.4.1] - 2026-11-13
+
+### Fixed
+
+- Stay available on IDE 263 and later
+  - No upper until-build any more: 0.4.0 stopped at 262.*, so the Marketplace hid it from the 263 IDEs.
+  - The wallpaper settings label their combo boxes with the customizer form of SimpleListCellRenderer.create; the (String, Function) form is scheduled for removal.
+
 ## [0.4.0] - 2026-10-28
 
 ### Added
