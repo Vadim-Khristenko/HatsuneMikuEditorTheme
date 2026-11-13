@@ -107,6 +107,7 @@ const INSTALL: Record<string, string> = {
     "Browser: Chromium `hatsune-miku-editor-chromium-*.zip` → Load unpacked; frame colors `hatsune-miku-colorful-browser-*.zip`; Firefox from [addons.mozilla.org](https://addons.mozilla.org/firefox/addon/hatsunemikueditor/) or `hatsune-miku-editor-firefox-*.xpi`; Zen `hatsune-miku-zen-mod-*.zip`",
   telegram: "Telegram: one link per look on [the themes branch](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/tree/themes), or the `.attheme` for Android and `.tdesktop-theme` for Desktop → open the file in Telegram, Apply",
   spicetify: "Spotify: `spicetify-*.zip` → unpack into the Spicetify Themes folder, then `spicetify config current_theme HatsuneMiku color_scheme MikuDark` and `spicetify apply`",
+  mangadex: "MangaDex: open the link for your look from [the themes branch](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/tree/themes) or `mangadex/README.md`, then avatar → Theme → the gear next to Custom → Save theme",
 };
 
 /** One line naming every look with its background and accent. */

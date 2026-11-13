@@ -98,6 +98,14 @@ export const PORTS: Port[] = [
     changelog: "spicetify/CHANGELOG.md",
     stores: [],
   },
+  {
+    id: "mangadex",
+    title: "MangaDex",
+    paths: ["mangadex", "tools/mangadex", "tools/palette"],
+    versions: [],
+    changelog: "mangadex/CHANGELOG.md",
+    stores: [],
+  },
 ];
 
 export const portById = (id: string): Port => {
