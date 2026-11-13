@@ -22,6 +22,7 @@ import javax.swing.JSlider;
 import java.awt.BorderLayout;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.function.Function;
 
 /** Settings | Appearance & Behavior | Hatsune Miku: a wallpaper for the editor or the whole window. */
 public final class WallpaperConfigurable implements Configurable {
@@ -46,7 +47,7 @@ public final class WallpaperConfigurable implements Configurable {
     @Override
     public @Nullable JComponent createComponent() {
         source = new ComboBox<>(WallpaperSettings.Source.values());
-        source.setRenderer(SimpleListCellRenderer.create("", s -> MikuBundle.message("source." + s.name().toLowerCase(Locale.ROOT))));
+        source.setRenderer(named(s -> MikuBundle.message("source." + s.name().toLowerCase(Locale.ROOT))));
 
         // The plain constructor reads the same on 2024.2 and on today's IDEs, unlike the factory helpers.
         FileChooserDescriptor images = new FileChooserDescriptor(true, false, false, false, false, false)
@@ -59,7 +60,7 @@ public final class WallpaperConfigurable implements Configurable {
         });
 
         target = new ComboBox<>(WallpaperSettings.Target.values());
-        target.setRenderer(SimpleListCellRenderer.create("", t -> MikuBundle.message("target." + t.name().toLowerCase(Locale.ROOT))));
+        target.setRenderer(named(t -> MikuBundle.message("target." + t.name().toLowerCase(Locale.ROOT))));
 
         opacity = new JSlider(0, 100, 12);
         opacity.setMajorTickSpacing(25);
@@ -71,9 +72,9 @@ public final class WallpaperConfigurable implements Configurable {
         opacityRow.add(opacityValue, BorderLayout.EAST);
 
         fill = new ComboBox<>(FILLS);
-        fill.setRenderer(SimpleListCellRenderer.create("", f -> MikuBundle.message("fill." + f)));
+        fill.setRenderer(named(f -> MikuBundle.message("fill." + f)));
         anchor = new ComboBox<>(ANCHORS);
-        anchor.setRenderer(SimpleListCellRenderer.create("", a -> MikuBundle.message("anchor." + a)));
+        anchor.setRenderer(named(a -> MikuBundle.message("anchor." + a)));
 
         status = new JBLabel();
         status.setForeground(UIUtil.getContextHelpForeground());
@@ -163,5 +164,10 @@ public final class WallpaperConfigurable implements Configurable {
     @Override
     public void disposeUIResources() {
         panel = null;
+    }
+
+    /** A combo box renderer showing each value by its name; the customizer form is the one that stays. */
+    private static <T> SimpleListCellRenderer<T> named(Function<? super T, String> name) {
+        return SimpleListCellRenderer.create((label, value, index) -> label.setText(value == null ? "" : name.apply(value)));
     }
 }
