@@ -1,6 +1,6 @@
 # Hatsune Miku themes, ready to download
 
-Every theme from release [v0.4.0](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/releases/tag/v0.4.0), one folder per app. Every release rebuilds this branch, so these links always give the newest build. Sources, docs and issues live on [master](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme).
+Every theme from release [v0.5.0](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/releases/tag/v0.5.0), one folder per app. Every release rebuilds this branch, so these links always give the newest build. Sources, docs and issues live on [master](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme).
 
 ## Looks
 
@@ -22,7 +22,7 @@ Every theme from release [v0.4.0](https://github.com/Vadim-Khristenko/HatsuneMik
 | App | Version | Get it |
 |---|---|---|
 | **VS Code, Cursor, VSCodium** | `0.4.0` | **[Open VSX](https://open-vsx.org/extension/Vadim-Khristenko/hatsune-miku-by-vai-theme)** · [.vsix](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/raw/themes/vsc/hatsune-miku-vsc.vsix) |
-| **JetBrains IDEs** | `0.4.0` | **[JetBrains Marketplace](https://plugins.jetbrains.com/plugin/33785-hatsune-miku-theme)** · [plugin .zip](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/raw/themes/jetbrains/hatsune-miku-jetbrains.zip) |
+| **JetBrains IDEs** | `0.4.1` | **[JetBrains Marketplace](https://plugins.jetbrains.com/plugin/33785-hatsune-miku-theme)** · [plugin .zip](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/raw/themes/jetbrains/hatsune-miku-jetbrains.zip) |
 | **Zed** | `0.4.0` | [.zip](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/raw/themes/zed/hatsune-miku-zed.zip) |
 | **Neovim** | `0.4.0` | [.zip](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/raw/themes/neovim/hatsune-miku-neovim.zip) |
 | **Sublime Text** | `0.4.0` | [.zip](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/raw/themes/sublime/hatsune-miku-sublime.zip) |
@@ -50,6 +50,12 @@ Every theme from release [v0.4.0](https://github.com/Vadim-Khristenko/HatsuneMik
 | App | Version | Get it |
 |---|---|---|
 | **Spotify (Spicetify)** | `0.4.0` | [.zip](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/raw/themes/spicetify/hatsune-miku-spicetify.zip) |
+
+### Web
+
+| App | Version | Get it |
+|---|---|---|
+| **MangaDex** | `0.5.0` | [Hatsune Miku Dark](https://mangadex.org/?theme=AAMxLjEBAQIAA_bWzP8EGg4N_wUwHRv_BkAoJf8HHREQ_whFKyj_CVQ1Mf8KKhgX_wtbOjX_DHtPR_8NJBUU_w5nQjz_D4RWTv8QRiwo_xFtRj__EntPR_8TPSYj_xR5TUb_FYxeVv8WQikm_xeoeXD_GFs6Nf8ZWzo1_xpnQjz_G1s6Nf8cMB0b_x27xTn_Hqu0Pv8fkJdA_yCIav__IbvFOf8iEr___yP_mXP_JKh5cP8l_4fL_yb_mXP_J4hq__8odFnd_yljSsL_) · [Hatsune Miku Light](https://mangadex.org/?theme=AAMxLjEBAAIAAzo6Gv8E-vrw_wXv8dr_Bt_hv_8H0NKv_wjq7M__Cd3fvv8K0tSx_wvl58f_DNTXtP8Nx8mk_w7f4cD_D8rMqP8QvsCb_xHZ27n_EsHDnv8Tq6yF_xTS1LL_Fa-xif8WoqR8_xdwcEr_GAQEAP8Z7_Ha_xrl58f_G-_x2v8c5efH_x1yegD_HmRrBv8fTFIK_yBAANT_IXJ6AP8iAGiZ_yPDUAD_JHBwSv8lyRyO_ybDUAD_J0AA1P8oMwSt_ykoAI__) · [Sakura Miku Dark](https://mangadex.org/?theme=AAMxLjEBAQIAA-jW8P8EFA0T_wUtGSj_Bj4iNv8HGg4X_whBJTv_CUovSP8KKBQj_wtPNE__DGFJa_8NJBEc_w5VO1n_D2lQc_8QQiY8_xFZQF__EmFJa_8TPCA0_xRfR2n_FXJXfP8WPyM4_xeQcJr_GE80T_8ZTzRP_xpVO1n_G080T_8cLRko_x2hfuj_HpN10v8ffGWt_yB3Vv__IbvFOf8iRrX__yP_l4X_JJBwmv8l_7ul_yb_l4X_J3dW__8oZEbc_ylUN8H_) · [Sakura Miku Light](https://mangadex.org/?theme=AAMxLjEBAAIAAygUOv8E-PX__wXr4_r_BtjL7f8Hx7ji_wjm2_b_CdfK7P8Kyrvk_wvf0_L_DMy-5f8Nva3a_w7YzO3_D8Cw3f8QtKLR_xHRxOn_Erem1P8Tn4u8_xTKu-T_FaSRwf8WloGz_xdgRHr_GAAAAP8Z6-P6_xrf0_L_G-vj-v8c39Py_x13RMz_Hmo_tf8fVTSP_yBAANT_IWV4AP8iAGaZ_yPQMBL_JGBEev8l91gy_ybQMBL_J0AA1P8oMwSt_ykoAI__) · [Snow Miku Dark](https://mangadex.org/?theme=AAMxLjEBAQIAA_7kzP8EIRED_wUyIhH_Bj8uHf8HJBQF_whDMSD_CU88K_8KLR0M_wtVQjD_DG1ZRv8NKRkI_w5dSjj_D3VgTf8QRDIh_xFiTzz_Em1ZRv8TPSwb_xRrV0T_FX9pVP8WQS8e_xetj3P_GFVCMP8ZVUIw_xpdSjj_G1VCMP8cMiIR_x3typX_Htq7jP8fuKB8_yCJbf__IbvFOf8iEr___yP_mnX_JK2Pc_8l_4fL_yb_mnX_J4lt__8odVzd_ylkTcP_) · [Snow Miku Light](https://mangadex.org/?theme=AAMxLjEBAAIAAzYoGv8E__r1_wX77eH_BufZzP8H18m8_wj159n_CebYy_8K2cu__wvu4NP_DNzOwf8NzL-y_w7o2s3_D8_Ctf8QwrWp_xHg08b_Esa4rP8TrJ-T_xTZzL__FbGkmP8WpJaJ_xdzYlL_GAEAAP8Z--3h_xru4NP_G_vt4f8c7uDT_x2LWQX_HnhMBP8fVzYC_yBAANT_IXJ6AP8iAGmb_yPDUAD_JHNiUv8lyRyO_ybDUAD_J0AA1P8oMwSt_ykoAI__) · [Kasane Teto Dark](https://mangadex.org/?theme=AAMxLjEBAQIAA9vd7v8EDg4W_wUdHif_BikqM_8HEREZ_wgtLTf_CTg4Qv8KGRki_ws9PUj_DFNUX_8NFRUe_w5FRlD_D1pbZ_8QLi44_xFJSlX_ElNUX_8TJygx_xRRUl3_FWJjb_8WKys1_xeHiJj_GD09SP8ZPT1I_xpFRlD_Gz09SP8cHR4n_x1qZNr_HmFcxP8fUU6e_yCJbf__IbvFOf8iEr___yP_mXP_JIeImP8l_4fL_yb_mXP_J4lt__8odVzd_ylkTcP_) · [Kasane Teto Light](https://mangadex.org/?theme=AAMxLjEBAAIAAyQkLP8E9vf__wXp6fH_BtXV3f8HxMXM_wji4-r_CdPU2_8Kx8jP_wvc3eT_DMnK0f8NurvC_w7V1t3_D72-xf8QsbG5_xHOz9b_ErS0vP8Tm5uj_xTHyM__FaCgqP8WkpKa_xddXmf_GAAAAP8Z6enx_xrc3eT_G-np8f8c3N3k_x1RPMH_Hkg2qv8fOSyF_yBAANT_IXJ6AP8iAGmb_yPDUAD_JF1eZ_8lyRyO_ybDUAD_J0AA1P8oMwSt_ykoAI__) |
 
 ## Install
 
@@ -154,6 +160,15 @@ More in the [guide](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/b
 More in the [guide](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/blob/master/spicetify/README.md).
 
 </details>
+<details><summary><b>MangaDex</b></summary>
+
+1. Open the link for your look; MangaDex puts it on for now.
+2. To keep it: avatar in the top right → **Theme** → the gear next to **Custom** (on a phone, tap the dark area to close the menu).
+3. The Theme Builder shows the look from the link: **Save theme**. The guide has screenshots for a computer and a phone.
+
+More in the [guide](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/blob/master/mangadex/README.md).
+
+</details>
 
 ## What's new
 
@@ -161,7 +176,7 @@ More in the [guide](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/b
 
 **Zed 0.4.0**: Snow Miku and Kasane Teto families, livelier syntax colors. [Changelog](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/blob/master/zed/CHANGELOG.md)
 
-**JetBrains 0.4.0**: Snow Miku and Kasane Teto with their own wallpaper art. [Changelog](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/blob/master/jetbrains/CHANGELOG.md)
+**JetBrains 0.4.1**: Stay available on IDE 263 and later. [Changelog](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/blob/master/jetbrains/CHANGELOG.md)
 
 **Neovim 0.4.0**: Snow-miku and kasane-teto colorschemes. [Changelog](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/blob/master/neovim/CHANGELOG.md)
 
@@ -175,6 +190,8 @@ More in the [guide](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/b
 
 **Spicetify 0.4.0**: Hatsune Miku for Spotify in all eight looks. [Changelog](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/blob/master/spicetify/CHANGELOG.md)
 
+**MangaDex 0.5.0**: Hatsune Miku themes for MangaDex as share links; MangaDex in the hub, with a step by step guide to keep a theme. [Changelog](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/blob/master/mangadex/CHANGELOG.md)
+
 ## Coming next
 
 - **Discord**, desktop and mobile, for clients that take themes.
@@ -183,4 +200,4 @@ More in the [guide](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/b
 
 ## Help
 
-Something looks off? [Open an issue](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/issues/new/choose) and pick the app; a screenshot helps most. Every port has its own changelog: [VS Code](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/blob/master/vsc/CHANGELOG.md), [Zed](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/blob/master/zed/CHANGELOG.md), [JetBrains](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/blob/master/jetbrains/CHANGELOG.md), [Neovim](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/blob/master/neovim/CHANGELOG.md), [Sublime Text](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/blob/master/sublime/CHANGELOG.md), [Notepad++](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/blob/master/notepadpp/CHANGELOG.md), [Browser](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/blob/master/browser/CHANGELOG.md), [Telegram](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/blob/master/tools/telegram/CHANGELOG.md), [Spicetify](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/blob/master/spicetify/CHANGELOG.md).
+Something looks off? [Open an issue](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/issues/new/choose) and pick the app; a screenshot helps most. Every port has its own changelog: [VS Code](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/blob/master/vsc/CHANGELOG.md), [Zed](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/blob/master/zed/CHANGELOG.md), [JetBrains](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/blob/master/jetbrains/CHANGELOG.md), [Neovim](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/blob/master/neovim/CHANGELOG.md), [Sublime Text](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/blob/master/sublime/CHANGELOG.md), [Notepad++](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/blob/master/notepadpp/CHANGELOG.md), [Browser](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/blob/master/browser/CHANGELOG.md), [Telegram](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/blob/master/tools/telegram/CHANGELOG.md), [Spicetify](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/blob/master/spicetify/CHANGELOG.md), [MangaDex](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/blob/master/mangadex/CHANGELOG.md).
