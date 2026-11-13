@@ -39,7 +39,9 @@ intellijPlatform {
 
         ideaVersion {
             sinceBuild.set(providers.gradleProperty("pluginSinceBuild"))
-            untilBuild.set(providers.gradleProperty("pluginUntilBuild"))
+            // No upper bound: a theme plugin keeps working on new IDEs, and the Marketplace verifier
+            // reports any API it loses. `provider { null }` drops until-build from plugin.xml.
+            untilBuild.set(provider { null })
         }
     }
 
