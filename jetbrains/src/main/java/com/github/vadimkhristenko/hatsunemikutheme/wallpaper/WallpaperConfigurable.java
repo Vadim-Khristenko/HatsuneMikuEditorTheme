@@ -14,9 +14,11 @@ import com.intellij.util.ui.FormBuilder;
 import com.intellij.util.ui.JBUI;
 import com.intellij.util.ui.UIUtil;
 import org.jetbrains.annotations.Nls;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.JComponent;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import java.awt.BorderLayout;
@@ -166,8 +168,16 @@ public final class WallpaperConfigurable implements Configurable {
         panel = null;
     }
 
-    /** A combo box renderer showing each value by its name; the customizer form is the one that stays. */
+    /**
+     * A combo box renderer showing each value by its name. A subclass, not SimpleListCellRenderer.create:
+     * every create overload is scheduled for removal since 2026.2, the class and customize are not.
+     */
     private static <T> SimpleListCellRenderer<T> named(Function<? super T, String> name) {
-        return SimpleListCellRenderer.create((label, value, index) -> label.setText(value == null ? "" : name.apply(value)));
+        return new SimpleListCellRenderer<>() {
+            @Override
+            public void customize(@NotNull JList<? extends T> list, T value, int index, boolean selected, boolean hasFocus) {
+                setText(value == null ? "" : name.apply(value));
+            }
+        };
     }
 }

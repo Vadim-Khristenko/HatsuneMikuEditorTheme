@@ -1,3 +1,6 @@
+import org.jetbrains.intellij.platform.gradle.IntelliJPlatformType
+import org.jetbrains.intellij.platform.gradle.tasks.VerifyPluginTask.FailureLevel
+
 plugins {
     // Java support
     id("java")
@@ -18,6 +21,7 @@ repositories {
 dependencies {
     intellijPlatform {
         create(providers.gradleProperty("platformType"), providers.gradleProperty("platformVersion"))
+        pluginVerifier()
     }
 }
 
@@ -43,6 +47,26 @@ intellijPlatform {
             // reports any API it loses. `provider { null }` drops until-build from plugin.xml.
             untilBuild.set(provider { null })
         }
+    }
+
+    // `./gradlew verifyPlugin`: the Marketplace's own verifier on the oldest IDE we support and the newest one.
+    // It fails on what the Marketplace only warns about, like API scheduled for removal, so we hear first.
+    pluginVerification {
+        ides {
+            create(IntelliJPlatformType.IntellijIdeaCommunity, providers.gradleProperty("verifyOldest"))
+            create(IntelliJPlatformType.IntellijIdeaCommunity, providers.gradleProperty("verifyNewest"))
+        }
+        failureLevel.set(
+            listOf(
+                FailureLevel.COMPATIBILITY_PROBLEMS,
+                FailureLevel.SCHEDULED_FOR_REMOVAL_API_USAGES,
+                FailureLevel.DEPRECATED_API_USAGES,
+                FailureLevel.INTERNAL_API_USAGES,
+                FailureLevel.OVERRIDE_ONLY_API_USAGES,
+                FailureLevel.NON_EXTENDABLE_API_USAGES,
+                FailureLevel.INVALID_PLUGIN,
+            ),
+        )
     }
 
     signing {
