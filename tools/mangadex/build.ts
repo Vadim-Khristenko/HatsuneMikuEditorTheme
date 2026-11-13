@@ -53,7 +53,8 @@ export function readme(): string {
 if (import.meta.main) {
   const text = readme();
   if (process.argv.includes("--check")) {
-    if (!existsSync(OUT) || readFileSync(OUT, "utf8") !== text) {
+    // Git on Windows may check the file out with CRLF; only the text counts.
+    if (!existsSync(OUT) || readFileSync(OUT, "utf8").replace(/\r\n/g, "\n") !== text) {
       console.error("FAIL mangadex/README.md is out of date: bun tools/mangadex/build.ts");
       process.exit(1);
     }
