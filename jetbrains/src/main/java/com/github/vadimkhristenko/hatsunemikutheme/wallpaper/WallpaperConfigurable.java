@@ -8,19 +8,18 @@ import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.ui.ComboBox;
 import com.intellij.openapi.ui.TextFieldWithBrowseButton;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.ui.SimpleListCellRenderer;
 import com.intellij.ui.components.JBLabel;
+import com.intellij.ui.dsl.listCellRenderer.BuilderKt;
 import com.intellij.util.ui.FormBuilder;
 import com.intellij.util.ui.JBUI;
 import com.intellij.util.ui.UIUtil;
 import org.jetbrains.annotations.Nls;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.JComponent;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
+import javax.swing.ListCellRenderer;
 import java.awt.BorderLayout;
 import java.util.Locale;
 import java.util.Objects;
@@ -169,15 +168,11 @@ public final class WallpaperConfigurable implements Configurable {
     }
 
     /**
-     * A combo box renderer showing each value by its name. A subclass, not SimpleListCellRenderer.create:
-     * every create overload is scheduled for removal since 2026.2, the class and customize are not.
+     * A combo box renderer showing each value by its name. textListCellRenderer is what the platform asks for
+     * instead of SimpleListCellRenderer.create (deprecated for removal since 2026.2); its one-argument form is
+     * public and unmarked from 2024.2 on. The form with a null value is internal in 2025.2, so it stays unused.
      */
-    private static <T> SimpleListCellRenderer<T> named(Function<? super T, String> name) {
-        return new SimpleListCellRenderer<>() {
-            @Override
-            public void customize(@NotNull JList<? extends T> list, T value, int index, boolean selected, boolean hasFocus) {
-                setText(value == null ? "" : name.apply(value));
-            }
-        };
+    private static <T> ListCellRenderer<T> named(Function<? super T, String> name) {
+        return BuilderKt.textListCellRenderer(value -> value == null ? "" : name.apply(value));
     }
 }
