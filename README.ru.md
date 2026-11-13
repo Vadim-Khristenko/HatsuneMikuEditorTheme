@@ -93,11 +93,18 @@ Spotify получает палитру через [Spicetify](https://spicetify
 |---|---|---|
 | Spotify | `dist/spicetify-*.zip` | Распаковать в папку Themes Spicetify, `spicetify config current_theme HatsuneMiku color_scheme MikuDark`, `spicetify apply`. Подробности и решения проблем в `spicetify/README.md` |
 
+## MangaDex
+
+MangaDex хранит свою тему прямо в ссылке, поэтому каждый образ это одна ссылка. Ссылка включает тему на [mangadex.org](https://mangadex.org) временно. Чтобы оставить её: аватар → Theme → шестерёнка у Custom → Save theme; в [`mangadex/README.md`](mangadex/README.md) каждый шаг показан на скриншотах для компьютера и телефона. Ссылки лежат там же, и в [ветке themes](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/tree/themes).
+
+`bun run build:mangadex` пишет их из палитры через `tools/mangadex/` в собственном формате тем сайта: слои карточек стоят там же, где у MangaDex, только в цветах образа.
+
 ## Разработка
 
 ```bash
 bun install --frozen-lockfile
 bun run build:palette   # все порты всех образов из palette/templates
+bun run build:mangadex  # ссылки MangaDex из палитры
 bun run check           # дрейф палитры, контраст, JSON, тесты
 bun run validate
 bun run package:all

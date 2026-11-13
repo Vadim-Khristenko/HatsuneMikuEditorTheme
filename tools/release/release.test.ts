@@ -5,7 +5,7 @@ import { existsSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { authHeader, jwt, publish } from "./amo";
-import { APPS, branchPath, stableName, writeBranch } from "./hub";
+import { APPS, branchPath, hubNotes, stableName, writeBranch } from "./hub";
 import { mdToText, sectionOf, splitChangelog } from "./release";
 
 const c = (msg: string) => parseCommit("abc1234", msg)!;
@@ -150,6 +150,14 @@ describe("hub", () => {
     expect(readme).toContain("/raw/themes/telegram/HatsuneMikuDark.attheme");
     expect(readme).not.toContain("hatsune-miku-vsc.vsix");
     expect(readme).toContain("https://t.me/addtheme/HatsuneMikuEditorDark");
+  });
+
+  test("MangaDex is all links, one per look, right in its row", () => {
+    const md = APPS.find((a) => a.port === "mangadex")!;
+    expect(md.files).toEqual([]);
+    expect(md.cloud?.length).toBe(8);
+    const row = hubNotes("HEAD").split(/\r?\n/).find((l) => l.startsWith("| **MangaDex**"))!;
+    expect(row.match(/https:\/\/mangadex\.org\/\?theme=/g)?.length).toBe(8);
   });
 });
 
