@@ -2,13 +2,13 @@
   "ports": {
     "vsc": "0.4.0",
     "zed": "0.4.0",
-    "jetbrains": "0.4.0",
+    "jetbrains": "0.4.1",
     "neovim": "0.4.0",
     "sublime": "0.4.0",
     "notepadpp": "0.4.0",
     "browser": "0.4.0",
     "telegram": "0.4.0",
     "spicetify": "0.4.0",
-    "mangadex": "0.4.0"
+    "mangadex": "0.5.0"
   }
 }
