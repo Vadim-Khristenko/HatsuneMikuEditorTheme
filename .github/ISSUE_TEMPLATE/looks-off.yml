@@ -22,6 +22,7 @@ body:
         - Telegram for Android
         - Telegram Desktop
         - Spotify (Spicetify)
+        - MangaDex
     validations:
       required: true
   - type: dropdown
