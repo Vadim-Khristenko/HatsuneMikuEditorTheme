@@ -93,11 +93,18 @@ Spotify gets the palette through [Spicetify](https://spicetify.app): eight color
 |---|---|---|
 | Spotify | `dist/spicetify-*.zip` | Unpack into the Spicetify Themes folder, `spicetify config current_theme HatsuneMiku color_scheme MikuDark`, `spicetify apply`. Details and fixes in `spicetify/README.md` |
 
+## MangaDex
+
+MangaDex keeps a custom theme in a link, so every look is one link away. Opening it on [mangadex.org](https://mangadex.org) puts the theme on for now. To keep it: avatar → Theme → the gear next to Custom → Save theme; [`mangadex/README.md`](mangadex/README.md) shows every step with screenshots for a computer and a phone. The links are there too, and on the [themes branch](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/tree/themes).
+
+`bun run build:mangadex` writes them from the palette with `tools/mangadex/`, in the site's own theme format: the card layers sit where MangaDex puts its own, in the look's colors.
+
 ## How to develop
 
 ```bash
 bun install --frozen-lockfile
 bun run build:palette   # write every port of every look from palette/templates
+bun run build:mangadex  # MangaDex theme links from the palette
 bun run check           # palette drift, contrast, JSON, tests
 bun run validate        # check plus dry package
 bun run package:all

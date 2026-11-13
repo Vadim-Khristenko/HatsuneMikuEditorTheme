@@ -9,6 +9,7 @@
 import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { basename, join } from "node:path";
 import { rgbHex } from "../telegram/color";
+import { link as mangadexLink, themeOf } from "../mangadex/mangadex";
 import { LOOKS as PALETTE_LOOKS } from "../palette/looks";
 import { paletteOf, VARIANTS } from "../telegram/palette";
 import { showAt } from "./git";
@@ -42,7 +43,7 @@ export function copyStable(dir: string, out: string): string[] {
   return done.sort();
 }
 
-type Group = "Editors" | "Browsers" | "Chat" | "Music";
+type Group = "Editors" | "Browsers" | "Chat" | "Music" | "Web";
 
 interface App {
   port: string;
@@ -52,7 +53,7 @@ interface App {
   store?: { label: string; url: string };
   steps: string[];
   guide: string;
-  /** One-tap links that need no file, like Telegram cloud themes. */
+  /** One-tap links that need no file, like Telegram cloud themes or MangaDex theme links. */
   cloud?: { label: string; url: string }[];
 }
 
@@ -136,6 +137,12 @@ export const APPS: App[] = [
     steps: ["Install Spicetify and run `spicetify backup apply` once.", "Unpack the `.zip` into the Spicetify Themes folder (`spicetify path userdata` shows where).", "`spicetify config current_theme HatsuneMiku color_scheme MikuDark`, then `spicetify apply`. Schemes: MikuDark, MikuLight, SakuraDark, SakuraLight, SnowDark, SnowLight, TetoDark, TetoLight."],
     guide: "spicetify/README.md",
   },
+  {
+    port: "mangadex", group: "Web", name: "MangaDex", files: [],
+    cloud: PALETTE_LOOKS.map((l) => ({ label: l.title, url: mangadexLink(themeOf(l)) })),
+    steps: ["Open the link for your look; MangaDex puts it on for now.", "To keep it: avatar in the top right → **Theme** → the gear next to **Custom** (on a phone, tap the dark area to close the menu).", "The Theme Builder shows the look from the link: **Save theme**. The guide has screenshots for a computer and a phone."],
+    guide: "mangadex/README.md",
+  },
 ];
 
 /** What comes next, so people know where the themes are heading. */
@@ -197,15 +204,17 @@ export function hubNotes(tag: string, where: "release" | "branch" = "release", m
     "## Download",
     "",
   ];
-  for (const group of ["Editors", "Browsers", "Chat", "Music"] as Group[]) {
+  for (const group of ["Editors", "Browsers", "Chat", "Music", "Web"] as Group[]) {
     out.push(`### ${group}`, "", "| App | Version | Get it |", "|---|---|---|");
     for (const a of APPS.filter((x) => x.group === group)) {
       const files = a.files.filter((f) => !missing.has(f.file)).map((f) => `[${f.label}](${link(a, f.file)})`).join(" · ");
       const store = a.store ? `**[${a.store.label}](${a.store.url})**` : "";
-      out.push(`| **${a.name}** | \`${ports[a.port] ?? "?"}\` | ${[store, files].filter(Boolean).join(" · ")} |`);
+      // An app with no files is all links, and they go right in its row.
+      const links = a.files.length ? "" : (a.cloud ?? []).map((c) => `[${c.label}](${c.url})`).join(" · ");
+      out.push(`| **${a.name}** | \`${ports[a.port] ?? "?"}\` | ${[store, files, links].filter(Boolean).join(" · ")} |`);
     }
     out.push("");
-    const cloud = APPS.find((x) => x.group === group && x.cloud?.length)?.cloud;
+    const cloud = APPS.find((x) => x.group === group && x.files.length && x.cloud?.length)?.cloud;
     if (cloud) out.push(`**Telegram cloud themes**, one link for Android and Desktop, updated with every release: ${cloud.map((c) => `[${c.label}](${c.url})`).join(" · ")}`, "");
   }
   out.push("## Install", "");
