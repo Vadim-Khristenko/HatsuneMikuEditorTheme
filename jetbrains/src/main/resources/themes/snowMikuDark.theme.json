@@ -1,7 +1,7 @@
 {
   "name": "Snow Miku Dark",
   "dark": true,
-  "author": "Vadim Khristenko <vadim@vai-rice.space>",
+  "author": "VAI_PROG (Vadim) <miku@vai-rice.space>",
   "editorScheme": "/themes/snowMikuDark.xml",
   "ui": {
     "*": {

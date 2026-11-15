@@ -158,7 +158,7 @@ jobs:
 
       - name: Telegram cloud themes
         if: contains(fromJSON(needs.plan.outputs.changed), 'telegram')
-        uses: Vadim-Khristenko/telegram-theme-action@v1
+        uses: VAIPROG/telegram-theme-action@v1
         with:
           session: ${{ secrets.TELEGRAM_THEME_SESSION }}
           themes: tools/telegram/cloud.yml

@@ -1,8 +1,8 @@
 # Hatsune Miku Theme for Neovim
 
-[![CI](https://img.shields.io/github/actions/workflow/status/Vadim-Khristenko/HatsuneMikuEditorTheme/ci.yml?label=CI&labelColor=0d0e1a&color=39c5bb&style=for-the-badge)](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/actions/workflows/ci.yml)
+[![CI](https://img.shields.io/github/actions/workflow/status/VAIPROG/HatsuneMikuEditorTheme/ci.yml?label=CI&labelColor=0d0e1a&color=39c5bb&style=for-the-badge)](https://github.com/VAIPROG/HatsuneMikuEditorTheme/actions/workflows/ci.yml)
 
-Neovim ≥0.8 port: 8 colorschemes, Treesitter + LSP + terminal ANSI. Part of [HatsuneMikuEditorTheme](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme) monorepo. All themes are distributed under the **same MIT license** (root `LICENSE`).
+Neovim ≥0.8 port: 8 colorschemes, Treesitter + LSP + terminal ANSI. Part of [HatsuneMikuEditorTheme](https://github.com/VAIPROG/HatsuneMikuEditorTheme) monorepo. All themes are distributed under the **same MIT license** (root `LICENSE`).
 
 ## Variants
 
@@ -43,4 +43,4 @@ bun tools/package.ts neovim
 
 ## Author
 
-Vadim Khristenko, `vadim@vai-rice.space`, MIT
+VAI_PROG (Vadim), `miku@vai-rice.space`, MIT

@@ -26,4 +26,4 @@ The services above have their own privacy policies. The add-on sends them nothin
 
 ## Contact
 
-Questions go to the issue tracker: https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/issues
+Questions go to the issue tracker: https://github.com/VAIPROG/HatsuneMikuEditorTheme/issues

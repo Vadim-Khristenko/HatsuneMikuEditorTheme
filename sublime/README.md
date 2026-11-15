@@ -1,8 +1,8 @@
 # Hatsune Miku Theme for Sublime Text
 
-[![CI](https://img.shields.io/github/actions/workflow/status/Vadim-Khristenko/HatsuneMikuEditorTheme/ci.yml?label=CI&labelColor=0d0e1a&color=39c5bb&style=for-the-badge)](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/actions/workflows/ci.yml)
+[![CI](https://img.shields.io/github/actions/workflow/status/VAIPROG/HatsuneMikuEditorTheme/ci.yml?label=CI&labelColor=0d0e1a&color=39c5bb&style=for-the-badge)](https://github.com/VAIPROG/HatsuneMikuEditorTheme/actions/workflows/ci.yml)
 
-Sublime Text port (Build 3152+, `is_light` 4075+): 8 color schemes. Part of [HatsuneMikuEditorTheme](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme) monorepo. All themes are distributed under the **same MIT license** (root `LICENSE`).
+Sublime Text port (Build 3152+, `is_light` 4075+): 8 color schemes. Part of [HatsuneMikuEditorTheme](https://github.com/VAIPROG/HatsuneMikuEditorTheme) monorepo. All themes are distributed under the **same MIT license** (root `LICENSE`).
 
 ## Variants
 
@@ -32,4 +32,4 @@ bun tools/package.ts sublime
 
 ## Author
 
-Vadim Khristenko, `vadim@vai-rice.space`, MIT
+VAI_PROG (Vadim), `miku@vai-rice.space`, MIT

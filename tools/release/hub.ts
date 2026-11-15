@@ -16,7 +16,7 @@ import { showAt } from "./git";
 import { PORTS } from "./ports";
 import { sectionOf } from "./release";
 
-const REPO = process.env.GITHUB_REPOSITORY ?? "Vadim-Khristenko/HatsuneMikuEditorTheme";
+const REPO = process.env.GITHUB_REPOSITORY ?? "VAIPROG/HatsuneMikuEditorTheme";
 const dl = (file: string) => `https://github.com/${REPO}/releases/latest/download/${file}`;
 const blob = (path: string) => `https://github.com/${REPO}/blob/master/${path}`;
 /** A file on the "themes" branch, as a direct download. */
@@ -73,7 +73,7 @@ const TG = VARIANTS.map((v) => ({ label: v.title.replace(/^Hatsune Miku /, ""), 
 export const APPS: App[] = [
   {
     port: "vsc", group: "Editors", name: "VS Code, Cursor, VSCodium", files: [{ label: ".vsix", file: "hatsune-miku-vsc.vsix" }],
-    store: { label: "Open VSX", url: "https://open-vsx.org/extension/Vadim-Khristenko/hatsune-miku-by-vai-theme" },
+    store: { label: "Open VSX", url: "https://open-vsx.org/extension/VAIPROG/hatsune-miku-by-vai-theme" },
     steps: ["Install from Open VSX, or download the `.vsix`.", "For the `.vsix`: Extensions → `⋯` → Install from VSIX.", "Ctrl+K Ctrl+T and pick a Hatsune Miku look."],
     guide: "vsc/README.md",
   },

@@ -87,7 +87,7 @@ The page ships Onest, Unbounded, JetBrains Mono and M PLUS Rounded 1c locally, n
 
 ## Install
 
-- **Firefox and Zen:** from addons.mozilla.org once the listing is approved, or the `hatsune-miku-editor-firefox-*.zip` from [the releases](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/releases/latest) through `about:debugging`, Load Temporary Add-on.
+- **Firefox and Zen:** from addons.mozilla.org once the listing is approved, or the `hatsune-miku-editor-firefox-*.zip` from [the releases](https://github.com/VAIPROG/HatsuneMikuEditorTheme/releases/latest) through `about:debugging`, Load Temporary Add-on.
 - **Firefox for Android:** from addons.mozilla.org on the phone. Android does not let add-ons replace the new tab, so the page opens from the menu: Extensions, HatsuneMikuEditor. Browser search and window colors are desktop only there; the page searches with the engine picked in its settings.
 - **Chrome, Helium, Edge, Brave:** unpack `hatsune-miku-editor-chromium-*.zip`, open `chrome://extensions`, turn on Developer mode, Load unpacked. For frame colors also load one `hatsune-miku-colorful-browser-*` package.
 - **Zen window colors:** the Zen mod through Sine, step by step with fixes for a failing installer in [zen/readme.md](zen/readme.md) (по-русски: [zen/readme.ru.md](zen/readme.ru.md)).

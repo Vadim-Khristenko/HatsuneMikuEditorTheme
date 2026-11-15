@@ -32,7 +32,7 @@ Zen's own mod store was archived in July 2026. [Sine](https://github.com/CosmoCr
 5. In the field for installing from GitHub, paste the path below and install:
 
    ```
-   Vadim-Khristenko/HatsuneMikuEditorTheme/tree/master/browser/zen
+   VAIPROG/HatsuneMikuEditorTheme/tree/master/browser/zen
    ```
 
    The `tree/master/browser/zen` part matters. Without it Sine looks for the `main` branch at the top of the repository and finds nothing.
@@ -76,7 +76,7 @@ This way there are no settings and no updates; copy the file again after a new r
 
 ## The new tab
 
-The window colors come from this mod; the Miku new tab comes from the HatsuneMikuEditor add-on for Firefox. Install it from addons.mozilla.org, or from the `hatsune-miku-editor-firefox-*.zip` in the [releases](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/releases/latest) through `about:debugging`, Load Temporary Add-on. With the add-on installed, "Paint the browser too" in its settings recolors the window too, so the mod is optional.
+The window colors come from this mod; the Miku new tab comes from the HatsuneMikuEditor add-on for Firefox. Install it from addons.mozilla.org, or from the `hatsune-miku-editor-firefox-*.zip` in the [releases](https://github.com/VAIPROG/HatsuneMikuEditorTheme/releases/latest) through `about:debugging`, Load Temporary Add-on. With the add-on installed, "Paint the browser too" in its settings recolors the window too, so the mod is optional.
 
 ## Editing
 

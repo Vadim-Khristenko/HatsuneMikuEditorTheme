@@ -1,8 +1,8 @@
 # Hatsune Miku: темы для редакторов
 
-[![CI](https://img.shields.io/github/actions/workflow/status/Vadim-Khristenko/HatsuneMikuEditorTheme/ci.yml?branch=main&label=CI&labelColor=0d0e1a&color=39c5bb&style=for-the-badge)](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/actions/workflows/ci.yml)
-[![Релиз](https://img.shields.io/github/v/release/Vadim-Khristenko/HatsuneMikuEditorTheme?label=релиз&labelColor=0d0e1a&color=ff6e8a&style=for-the-badge)](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/releases)
-[![Лицензия](https://img.shields.io/github/license/Vadim-Khristenko/HatsuneMikuEditorTheme?label=лицензия&labelColor=0d0e1a&color=86a8ff&style=for-the-badge)](LICENSE)
+[![CI](https://img.shields.io/github/actions/workflow/status/VAIPROG/HatsuneMikuEditorTheme/ci.yml?branch=main&label=CI&labelColor=0d0e1a&color=39c5bb&style=for-the-badge)](https://github.com/VAIPROG/HatsuneMikuEditorTheme/actions/workflows/ci.yml)
+[![Релиз](https://img.shields.io/github/v/release/VAIPROG/HatsuneMikuEditorTheme?label=релиз&labelColor=0d0e1a&color=ff6e8a&style=for-the-badge)](https://github.com/VAIPROG/HatsuneMikuEditorTheme/releases)
+[![Лицензия](https://img.shields.io/github/license/VAIPROG/HatsuneMikuEditorTheme?label=лицензия&labelColor=0d0e1a&color=86a8ff&style=for-the-badge)](LICENSE)
 
 Мне хотелось, чтобы Мику была рядом и в коде. Спокойная, читаемая, без кричащих цветов. Потом идея выросла: любое приложение, которым я пользуюсь, в стиле Мику. Восемь образов, редакторы, браузеры, Telegram и Spotify. Одна палитра, одна идея.
 
@@ -12,7 +12,7 @@
 
 ## Скачать
 
-Всё готовое к установке лежит в [ветке `themes`](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/tree/themes): по папке на приложение, прямые ссылки на скачивание и шаги установки. Каждый релиз пересобирает её, так что ссылки всегда ведут на свежую сборку.
+Всё готовое к установке лежит в [ветке `themes`](https://github.com/VAIPROG/HatsuneMikuEditorTheme/tree/themes): по папке на приложение, прямые ссылки на скачивание и шаги установки. Каждый релиз пересобирает её, так что ссылки всегда ведут на свежую сборку.
 
 В Telegram файлы вообще не нужны. Одна ссылка работает и на Android, и на Desktop, а тема сама обновляется с каждым релизом:
 
@@ -81,7 +81,7 @@ CI на каждый пуш, релиз по тегу `v*`.
 | Telegram для Android | `dist/*.attheme` | Отправить в Избранное, тапнуть, Применить |
 | Telegram Desktop | `dist/*.tdesktop-theme` | Открыть файл в Telegram, Применить |
 
-Облачные темы из раздела [Скачать](#скачать) это те же файлы. Их на каждом релизе синхронизирует [telegram-theme-action](https://github.com/Vadim-Khristenko/telegram-theme-action), список лежит в `tools/telegram/cloud.yml`.
+Облачные темы из раздела [Скачать](#скачать) это те же файлы. Их на каждом релизе синхронизирует [telegram-theme-action](https://github.com/VAIPROG/telegram-theme-action), список лежит в `tools/telegram/cloud.yml`.
 
 Собрать: `bun run build:telegram`. Генератор лежит в `tools/telegram/`. Он берёт дневную и ночную темы самого Telegram и перекрашивает их, так что расстановка света и тени остаётся телеграмовской, а каждый цвет приходит из палитры. Когда в Telegram появляются новые ключи, `bun run sync:telegram` снимает их заново.
 
@@ -95,7 +95,7 @@ Spotify получает палитру через [Spicetify](https://spicetify
 
 ## MangaDex
 
-MangaDex хранит свою тему прямо в ссылке, поэтому каждый образ это одна ссылка. Ссылка включает тему на [mangadex.org](https://mangadex.org) временно. Чтобы оставить её: аватар → Theme → шестерёнка у Custom → Save theme; в [`mangadex/README.md`](mangadex/README.md) каждый шаг показан на скриншотах для компьютера и телефона. Ссылки лежат там же, и в [ветке themes](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/tree/themes).
+MangaDex хранит свою тему прямо в ссылке, поэтому каждый образ это одна ссылка. Ссылка включает тему на [mangadex.org](https://mangadex.org) временно. Чтобы оставить её: аватар → Theme → шестерёнка у Custom → Save theme; в [`mangadex/README.md`](mangadex/README.md) каждый шаг показан на скриншотах для компьютера и телефона. Ссылки лежат там же, и в [ветке themes](https://github.com/VAIPROG/HatsuneMikuEditorTheme/tree/themes).
 
 `bun run build:mangadex` пишет их из палитры через `tools/mangadex/` в собственном формате тем сайта: слои карточек стоят там же, где у MangaDex, только в цветах образа.
 
@@ -122,4 +122,4 @@ bun run package:all
 
 ## Автор
 
-Vadim Khristenko · `vadim@vai-rice.space` · MIT
+VAI_PROG (Vadim) · `miku@vai-rice.space` · MIT

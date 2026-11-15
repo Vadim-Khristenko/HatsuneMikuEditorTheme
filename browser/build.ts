@@ -138,11 +138,11 @@ function zenMod(): string {
     name: "HatsuneMikuEditor",
     description: "Miku and Sakura colors for Zen: sidebar, tabs, toolbar and URL bar. Pairs with the HatsuneMikuEditor new tab.",
     // Sine fetches updates from `${homepage}/theme.json`, so this has to name the branch and the folder.
-    homepage: "https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/tree/master/browser/zen",
+    homepage: "https://github.com/VAIPROG/HatsuneMikuEditorTheme/tree/master/browser/zen",
     style: "chrome.css",
     readme: "readme.md",
     preferences: "preferences.json",
-    author: "Vadim Khristenko",
+    author: "VAI_PROG (Vadim)",
     version,
     tags: ["miku", "vocaloid", "teal", "pink", "dark", "light"],
   });

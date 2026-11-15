@@ -1,7 +1,7 @@
 {
   "name": "Hatsune Miku Light",
   "dark": false,
-  "author": "Vadim Khristenko <vadim@vai-rice.space>",
+  "author": "VAI_PROG (Vadim) <miku@vai-rice.space>",
   "editorScheme": "/themes/hatsuneMikuLight.xml",
   "ui": {
     "*": {

@@ -1,8 +1,8 @@
 # Hatsune Miku Theme for Zed
 
-[![CI](https://img.shields.io/github/actions/workflow/status/Vadim-Khristenko/HatsuneMikuEditorTheme/ci.yml?label=CI&labelColor=0d0e1a&color=39c5bb&style=for-the-badge)](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/actions/workflows/ci.yml)
+[![CI](https://img.shields.io/github/actions/workflow/status/VAIPROG/HatsuneMikuEditorTheme/ci.yml?label=CI&labelColor=0d0e1a&color=39c5bb&style=for-the-badge)](https://github.com/VAIPROG/HatsuneMikuEditorTheme/actions/workflows/ci.yml)
 
-Zed port: 8 variants (Miku, Sakura, Snow Miku and Kasane Teto, each in Dark and Light). Part of [HatsuneMikuEditorTheme](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme) monorepo. All themes are distributed under the **same MIT license** (root `LICENSE`).
+Zed port: 8 variants (Miku, Sakura, Snow Miku and Kasane Teto, each in Dark and Light). Part of [HatsuneMikuEditorTheme](https://github.com/VAIPROG/HatsuneMikuEditorTheme) monorepo. All themes are distributed under the **same MIT license** (root `LICENSE`).
 
 ## Variants
 
@@ -34,4 +34,4 @@ Every port is generated from one palette by `bun run build:palette` (tools/palet
 
 ## Author
 
-Vadim Khristenko, `vadim@vai-rice.space`, MIT
+VAI_PROG (Vadim), `miku@vai-rice.space`, MIT

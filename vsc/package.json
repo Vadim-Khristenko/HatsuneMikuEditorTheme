@@ -2,8 +2,8 @@
   "name": "hatsune-miku-by-vai-theme",
   "publisher": "Vadim-Khristenko",
   "author": {
-    "name": "Vadim Khristenko",
-    "email": "vadim@vai-rice.space"
+    "name": "VAI_PROG (Vadim)",
+    "email": "miku@vai-rice.space"
   },
   "displayName": "HatsuneMikuEditorTheme",
   "icon": "icon.png",
@@ -12,7 +12,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme.git",
+    "url": "https://github.com/VAIPROG/HatsuneMikuEditorTheme.git",
     "directory": "themes"
   },
   "engines": {

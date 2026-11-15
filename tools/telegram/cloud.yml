@@ -1,4 +1,4 @@
-# Cloud themes on Telegram, kept in sync by Vadim-Khristenko/telegram-theme-action.
+# Cloud themes on Telegram, kept in sync by VAIPROG/telegram-theme-action.
 # One slug holds every format, so one t.me/addtheme link works on Android and Desktop.
 - file: dist/HatsuneMikuDark.attheme
   slug: HatsuneMikuEditorDark

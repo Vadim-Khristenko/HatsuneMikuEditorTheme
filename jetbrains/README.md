@@ -1,8 +1,8 @@
 # Hatsune Miku Theme for JetBrains IDEs
 
-[![CI](https://img.shields.io/github/actions/workflow/status/Vadim-Khristenko/HatsuneMikuEditorTheme/ci.yml?label=CI&labelColor=0d0e1a&color=39c5bb&style=for-the-badge)](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/actions/workflows/ci.yml)
+[![CI](https://img.shields.io/github/actions/workflow/status/VAIPROG/HatsuneMikuEditorTheme/ci.yml?label=CI&labelColor=0d0e1a&color=39c5bb&style=for-the-badge)](https://github.com/VAIPROG/HatsuneMikuEditorTheme/actions/workflows/ci.yml)
 
-JetBrains port (IntelliJ IDEA, PyCharm, WebStorm, CLion, Rider and the rest), eight looks and a wallpaper. Part of the [HatsuneMikuEditorTheme](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme) monorepo, MIT like everything there (root `LICENSE`).
+JetBrains port (IntelliJ IDEA, PyCharm, WebStorm, CLion, Rider and the rest), eight looks and a wallpaper. Part of the [HatsuneMikuEditorTheme](https://github.com/VAIPROG/HatsuneMikuEditorTheme) monorepo, MIT like everything there (root `LICENSE`).
 
 Works on 2024.2 and newer.
 
@@ -53,4 +53,4 @@ Java sources live in `src/main/java`, compiled for Java 21 against the platform 
 
 ## Author
 
-Vadim Khristenko, `vadim@vai-rice.space`, MIT
+VAI_PROG (Vadim), `miku@vai-rice.space`, MIT

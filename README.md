@@ -1,8 +1,8 @@
 # Hatsune Miku editor themes
 
-[![CI](https://img.shields.io/github/actions/workflow/status/Vadim-Khristenko/HatsuneMikuEditorTheme/ci.yml?branch=main&label=CI&labelColor=0d0e1a&color=39c5bb&style=for-the-badge)](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/actions/workflows/ci.yml)
-[![Release](https://img.shields.io/github/v/release/Vadim-Khristenko/HatsuneMikuEditorTheme?label=release&labelColor=0d0e1a&color=ff6e8a&style=for-the-badge)](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/releases)
-[![License](https://img.shields.io/github/license/Vadim-Khristenko/HatsuneMikuEditorTheme?label=license&labelColor=0d0e1a&color=86a8ff&style=for-the-badge)](LICENSE)
+[![CI](https://img.shields.io/github/actions/workflow/status/VAIPROG/HatsuneMikuEditorTheme/ci.yml?branch=main&label=CI&labelColor=0d0e1a&color=39c5bb&style=for-the-badge)](https://github.com/VAIPROG/HatsuneMikuEditorTheme/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/github/v/release/VAIPROG/HatsuneMikuEditorTheme?label=release&labelColor=0d0e1a&color=ff6e8a&style=for-the-badge)](https://github.com/VAIPROG/HatsuneMikuEditorTheme/releases)
+[![License](https://img.shields.io/github/license/VAIPROG/HatsuneMikuEditorTheme?label=license&labelColor=0d0e1a&color=86a8ff&style=for-the-badge)](LICENSE)
 
 I wanted a Miku theme that feels right in everyday coding. Not too flashy, not washed out. It grew into something bigger: any app I use, in a Miku-like style. Eight looks, editors, browsers, Telegram and Spotify, one palette. That is the whole idea here.
 
@@ -12,7 +12,7 @@ This repo holds all of them together. One palette is the source of truth and eve
 
 ## Download
 
-Everything ready to install lives on the [`themes` branch](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/tree/themes): one folder per app, direct download links, install steps. Every release rebuilds it, so the links always give the newest build.
+Everything ready to install lives on the [`themes` branch](https://github.com/VAIPROG/HatsuneMikuEditorTheme/tree/themes): one folder per app, direct download links, install steps. Every release rebuilds it, so the links always give the newest build.
 
 On Telegram you can skip files altogether. One link works on Android and Desktop, and the theme updates itself with every release:
 
@@ -81,7 +81,7 @@ Chats get the palette too. Every color key Telegram has gets a value: 812 on And
 | Telegram for Android | `dist/*.attheme` | Send it to Saved Messages, tap it, Apply |
 | Telegram Desktop | `dist/*.tdesktop-theme` | Open the file in Telegram, Apply |
 
-The cloud themes from [Download](#download) are the same files, kept in sync by [telegram-theme-action](https://github.com/Vadim-Khristenko/telegram-theme-action) on every release; the list is `tools/telegram/cloud.yml`.
+The cloud themes from [Download](#download) are the same files, kept in sync by [telegram-theme-action](https://github.com/VAIPROG/telegram-theme-action) on every release; the list is `tools/telegram/cloud.yml`.
 
 Build them with `bun run build:telegram`. The generator lives in `tools/telegram/`. It starts from Telegram's own day and night themes and recolors them, so the layout of light and shade stays Telegram's while every color comes from the palette. When Telegram adds keys, `bun run sync:telegram` takes a fresh snapshot of them.
 
@@ -95,7 +95,7 @@ Spotify gets the palette through [Spicetify](https://spicetify.app): eight color
 
 ## MangaDex
 
-MangaDex keeps a custom theme in a link, so every look is one link away. Opening it on [mangadex.org](https://mangadex.org) puts the theme on for now. To keep it: avatar → Theme → the gear next to Custom → Save theme; [`mangadex/README.md`](mangadex/README.md) shows every step with screenshots for a computer and a phone. The links are there too, and on the [themes branch](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/tree/themes).
+MangaDex keeps a custom theme in a link, so every look is one link away. Opening it on [mangadex.org](https://mangadex.org) puts the theme on for now. To keep it: avatar → Theme → the gear next to Custom → Save theme; [`mangadex/README.md`](mangadex/README.md) shows every step with screenshots for a computer and a phone. The links are there too, and on the [themes branch](https://github.com/VAIPROG/HatsuneMikuEditorTheme/tree/themes).
 
 `bun run build:mangadex` writes them from the palette with `tools/mangadex/`, in the site's own theme format: the card layers sit where MangaDex puts its own, in the look's colors.
 
@@ -122,4 +122,4 @@ See `CONTRIBUTING.md`. Change colors in `palette/templates` or `tools/palette`, 
 
 ## Author
 
-Vadim Khristenko · `vadim@vai-rice.space` · MIT · https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme
+VAI_PROG (Vadim) · `miku@vai-rice.space` · MIT · https://github.com/VAIPROG/HatsuneMikuEditorTheme

@@ -1,6 +1,6 @@
 # Contributing
 
-[![CI](https://img.shields.io/github/actions/workflow/status/Vadim-Khristenko/HatsuneMikuEditorTheme/ci.yml?label=CI&labelColor=0d0e1a&color=39c5bb&style=for-the-badge)](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/actions/workflows/ci.yml)
+[![CI](https://img.shields.io/github/actions/workflow/status/VAIPROG/HatsuneMikuEditorTheme/ci.yml?label=CI&labelColor=0d0e1a&color=39c5bb&style=for-the-badge)](https://github.com/VAIPROG/HatsuneMikuEditorTheme/actions/workflows/ci.yml)
 
 Thanks for contributing to Hatsune Miku Editor Themes!
 
@@ -43,4 +43,4 @@ CI builds every port for the GitHub release, but publishes to Open VSX, JetBrain
 
 ## Author
 
-Vadim Khristenko · `vadim@vai-rice.space`
+VAI_PROG (Vadim) · `miku@vai-rice.space`

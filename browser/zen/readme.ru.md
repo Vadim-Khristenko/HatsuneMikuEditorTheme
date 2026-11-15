@@ -32,7 +32,7 @@ English: [readme.md](readme.md).
 5. В поле установки с GitHub вставь этот путь и установи:
 
    ```
-   Vadim-Khristenko/HatsuneMikuEditorTheme/tree/master/browser/zen
+   VAIPROG/HatsuneMikuEditorTheme/tree/master/browser/zen
    ```
 
    Часть `tree/master/browser/zen` обязательна. Без неё Sine ищет ветку `main` в корне репозитория и ничего не находит.
@@ -76,7 +76,7 @@ chmod +x ./sine-osx-arm64
 
 ## Новая вкладка
 
-Цвета окна даёт этот мод, а новую вкладку с Мику даёт дополнение HatsuneMikuEditor для Firefox. Поставь его с addons.mozilla.org или из файла `hatsune-miku-editor-firefox-*.zip` в [релизах](https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme/releases/latest) через `about:debugging`, «Загрузить временное дополнение». Если дополнение стоит, его настройка «Красить и сам браузер» перекрашивает и окно, так что мод не обязателен.
+Цвета окна даёт этот мод, а новую вкладку с Мику даёт дополнение HatsuneMikuEditor для Firefox. Поставь его с addons.mozilla.org или из файла `hatsune-miku-editor-firefox-*.zip` в [релизах](https://github.com/VAIPROG/HatsuneMikuEditorTheme/releases/latest) через `about:debugging`, «Загрузить временное дополнение». Если дополнение стоит, его настройка «Красить и сам браузер» перекрашивает и окно, так что мод не обязателен.
 
 ## Как это устроено
 

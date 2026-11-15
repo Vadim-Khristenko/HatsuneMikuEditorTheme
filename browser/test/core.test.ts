@@ -34,7 +34,7 @@ describe("bangs", () => {
     expect(expandBang(ttv, "lofi girl")).toBe("https://www.twitch.tv/search?term=lofi+girl");
     expect(expandBang(ttv, "")).toBe("https://www.twitch.tv/search");
     const repo = index.bangs.find((b) => b.name === "GitHub Repo")!;
-    expect(expandBang(repo, "Vadim-Khristenko/HatsuneMikuEditorTheme")).toBe("https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme");
+    expect(expandBang(repo, "VAIPROG/HatsuneMikuEditorTheme")).toBe("https://github.com/VAIPROG/HatsuneMikuEditorTheme");
     const deepl = index.bangs.find((b) => b.name === "DeepL Translator")!;
     expect(expandBang(deepl, "мику топ")).toBe("https://www.deepl.com/translator#xx/en/%D0%BC%D0%B8%D0%BA%D1%83%20%D1%82%D0%BE%D0%BF");
   });

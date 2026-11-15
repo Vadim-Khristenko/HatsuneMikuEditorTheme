@@ -2,7 +2,7 @@
   <id>com.github.vadimkhristenko.hatsunemikutheme</id>
   <name>Hatsune Miku Theme</name>
   <version>0.4.1</version>
-  <vendor url="https://github.com/Vadim-Khristenko/HatsuneMikuEditorTheme" email="vadim@vai-rice.space">Vadim Khristenko</vendor>
+  <vendor url="https://github.com/VAIPROG/HatsuneMikuEditorTheme" email="miku@vai-rice.space">VAI_PROG (Vadim)</vendor>
   <idea-version since-build="242"/>
   <description><![CDATA[
     Hatsune Miku color themes (Miku, Sakura, Snow Miku and Kasane Teto, each in Dark and Light) for
